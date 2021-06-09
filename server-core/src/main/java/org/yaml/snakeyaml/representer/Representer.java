@@ -50,11 +50,6 @@ public class Representer extends SafeRepresenter {
         this.representers.put(null, new RepresentJavaBean());
     }
 
-    public Representer(DumperOptions options) {
-        super(options);
-        this.representers.put(null, new RepresentJavaBean());
-    }
-    
     public TypeDescription addTypeDescription(TypeDescription td) {
         if (Collections.EMPTY_MAP == typeDefinitions) {
             typeDefinitions = new HashMap<Class<? extends Object>, TypeDescription>();
@@ -156,8 +151,7 @@ public class Representer extends SafeRepresenter {
             NodeId nodeId = nodeValue.getNodeId();
             if (customTag == null) {
                 if (nodeId == NodeId.scalar) {
-                    //generic Enum requires the full tag
-                    if (property.getType() != java.lang.Enum.class) {
+                    if (property.getType() == propertyValue.getClass()) {
                         if (propertyValue instanceof Enum<?>) {
                             nodeValue.setTag(Tag.STR);
                         }

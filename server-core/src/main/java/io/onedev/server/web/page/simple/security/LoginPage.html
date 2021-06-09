@@ -2,25 +2,25 @@
 	<form wicket:id="form" method="post">
 		<div wicket:id="feedback"></div>
 		<div class="form-group">
-			<input wicket:id="userName" autocomplete="username" type="text" class="form-control" placeholder="Login name">
+			<input wicket:id="userName" autocomplete="username" type="text" class="form-control" placeholder="用户名">
 		</div>
 		<div class="form-group">
-			<input wicket:id="password" autocomplete="current-password" type="password" class="form-control" placeholder="Password">
+			<input wicket:id="password" autocomplete="current-password" type="password" class="form-control" placeholder="密码">
 		</div>
 		<div class="form-group d-flex flex-wrap justify-content-between">
 			<div class="checkbox-inline">
 				<label class="checkbox text-muted">
 					<input wicket:id="rememberMe" id="rememberMe" type="checkbox" class="form-check-input">
-					Remember Me
+					记住密码
 				</label>
 			</div>
-			<a wicket:id="forgetPassword" class="text-muted text-hover-primary">Forgot Password?</a>
+			<a wicket:id="forgetPassword" class="text-muted text-hover-primary">忘记密码?</a>
 		</div>
-		<button class="btn btn-primary font-weight-bold" type="submit">Sign in</button>
+		<button class="btn btn-primary font-weight-bold" type="submit">登 录</button>
 	</form>
 	<wicket:enclosure child="registerUser">
 		<div class="signup">
-			<span class="opacity-50 mr-3">Don't have an account yet?</span> <a wicket:id="registerUser" class="text-muted text-hover-primary font-weight-bold">Sign Up!</a>
+			<span class="opacity-50 mr-3">没有账户？</span> <a wicket:id="registerUser" class="text-muted text-hover-primary font-weight-bold">请注册!</a>
 		</div>
 	</wicket:enclosure>
 	<wicket:enclosure child="ssoButtons">

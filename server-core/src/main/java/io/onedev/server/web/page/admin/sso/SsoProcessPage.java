@@ -1,8 +1,5 @@
 package io.onedev.server.web.page.admin.sso;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.RestartResponseException;
@@ -12,12 +9,10 @@ import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import io.onedev.commons.utils.StringUtils;
 import io.onedev.server.OneDev;
 import io.onedev.server.entitymanager.SettingManager;
 import io.onedev.server.model.support.administration.sso.SsoAuthenticated;
 import io.onedev.server.model.support.administration.sso.SsoConnector;
-import io.onedev.server.model.support.administration.sso.SsoConnectorContribution;
 import io.onedev.server.web.WebSession;
 import io.onedev.server.web.page.DashboardPage;
 import io.onedev.server.web.page.base.BasePage;
@@ -49,12 +44,7 @@ public class SsoProcessPage extends BasePage {
 		
 		try {
 			String connectorName = params.get(PARAM_CONNECTOR).toString();
-
-			Collection<SsoConnector> connectors = new ArrayList<>();
-			for (SsoConnectorContribution contribution: OneDev.getExtensions(SsoConnectorContribution.class))
-				connectors.addAll(contribution.getSsoConnectors());
-			connectors.addAll(OneDev.getInstance(SettingManager.class).getSsoConnectors());
-			connector = connectors.stream()
+			connector = OneDev.getInstance(SettingManager.class).getSsoConnectors().stream()
 					.filter(it->it.getName().equals(connectorName))
 					.findFirst()
 					.orElse(null);
@@ -65,7 +55,7 @@ public class SsoProcessPage extends BasePage {
 			if (stage.equals(STAGE_INITIATE)) {
 				String redirectUrlAfterLogin;
 				Url url = RestartResponseAtInterceptPageException.getOriginalUrl();
-				if (url != null && url.toString().length() != 0) 
+				if (url != null) 
 					redirectUrlAfterLogin = url.toString();
 				else 
 					redirectUrlAfterLogin = RequestCycle.get().urlFor(DashboardPage.class, new PageParameters()).toString(); 
@@ -76,7 +66,7 @@ public class SsoProcessPage extends BasePage {
 				SsoAuthenticated authenticated = connector.processLoginResponse();
 				
 				String redirectUrlAfterLogin = (String) Session.get().getAttribute(SESSION_ATTR_REDIRECT_URL);
-				if (StringUtils.isBlank(redirectUrlAfterLogin))
+				if (redirectUrlAfterLogin == null)
 					throw new AuthenticationException("unsolicited OIDC authentication response");
 				
 				WebSession.get().login(authenticated);
@@ -86,11 +76,6 @@ public class SsoProcessPage extends BasePage {
 		} catch (AuthenticationException e) {
 			throw new RestartResponseException(new LoginPage(e.getMessage()));
 		}
-	}
-	
-	public static void addParams(PageParameters params, String stage, String connector) {
-		params.add(PARAM_STAGE, stage);
-		params.add(PARAM_CONNECTOR, connector);
 	}
 	
 }

@@ -1,9 +1,10 @@
-package io.onedev.server.plugin.github;
+package io.onedev.server.plugin.sso.openid;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.wicket.request.cycle.RequestCycle;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
@@ -18,37 +19,22 @@ import com.nimbusds.openid.connect.sdk.OIDCAccessTokenResponse;
 import com.nimbusds.openid.connect.sdk.UserInfoErrorResponse;
 import com.nimbusds.openid.connect.sdk.UserInfoRequest;
 
-import io.onedev.commons.utils.StringUtils;
 import io.onedev.server.model.support.administration.sso.SsoAuthenticated;
-import io.onedev.server.plugin.sso.openid.OpenIdConnector;
-import io.onedev.server.plugin.sso.openid.ProviderMetadata;
+import io.onedev.server.web.editable.annotation.Editable;
 import net.minidev.json.JSONObject;
 
+@Editable(name="OpenID (GitHub)", order=100, description="Refer to this <a href='$docRoot/pages/github-sso.md' target='_blank'>usage scenario</a> for an example setup")
 public class GitHubConnector extends OpenIdConnector {
 
 	private static final long serialVersionUID = 1L;
-	
-	public static final String NAME = "GitHub";
 
-	private final GitHubSetting setting;
-	
-	public GitHubConnector(GitHubSetting setting) {
-		this.setting = setting;
-	}
-	
-	@Override
-	public String getName() {
-		return NAME;
-	}
-	
-	@Override
-	public String getClientId() {
-		return setting.getClientId();
+	public GitHubConnector() {
+		setName("GitHub");
 	}
 
 	@Override
-	public String getClientSecret() {
-		return setting.getClientSecret();
+	public String getIssuerUrl() {
+		return super.getIssuerUrl();
 	}
 
 	@Override
@@ -59,13 +45,18 @@ public class GitHubConnector extends OpenIdConnector {
 				"https://github.com/login/oauth/access_token", 
 				"https://api.github.com/user");
 	}
-	
+
 	@Override
 	public String getButtonImageUrl() {
-		ResourceReference logo = new PackageResourceReference(GitHubPluginModule.class, "octocat.png");
+		ResourceReference logo = new PackageResourceReference(GitHubConnector.class, "octocat.png");
 		return RequestCycle.get().urlFor(logo, new PageParameters()).toString();
 	}
-	
+
+	@Override
+	public String getGroupsClaim() {
+		return super.getGroupsClaim();
+	}
+
 	@Override
 	protected SsoAuthenticated processTokenResponse(OIDCAccessTokenResponse tokenSuccessResponse) {
 		BearerAccessToken accessToken = (BearerAccessToken) tokenSuccessResponse.getAccessToken();
@@ -96,13 +87,5 @@ public class GitHubConnector extends OpenIdConnector {
 	public boolean isManagingMemberships() {
 		return false;
 	}
-	
-	protected URI getCallbackUri() {
-		try {
-			return new URI(GitHubCallbackPage.getUrl());
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
+
 }

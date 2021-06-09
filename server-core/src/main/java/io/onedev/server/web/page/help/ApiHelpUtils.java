@@ -169,5 +169,4 @@ public class ApiHelpUtils {
 		
 		return fields;
 	}	
-	
 }

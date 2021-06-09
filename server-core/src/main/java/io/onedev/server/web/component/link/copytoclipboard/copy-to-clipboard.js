@@ -1,8 +1,12 @@
 onedev.server.copyToClipboard = {
 	onDomReady: function(buttonId, text) {
 		var $button = $("#" + buttonId);
-		new Clipboard("#"+buttonId, {text: function() {return text;}});
+		var clipboard = new Clipboard("#"+buttonId, {
+			text: function(trigger) {
+				return text;
+			}
+		});
 		$button.attr("title", "Copy to clipboard");
-		$button.addClass("pressable");
+		$button.addClass("copy-to-clipboard");
 	}
 };

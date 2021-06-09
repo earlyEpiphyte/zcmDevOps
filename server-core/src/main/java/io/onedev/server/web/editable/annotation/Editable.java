@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface Editable {
-
 	String group() default "";
 	
 	String icon() default "";
@@ -18,7 +17,4 @@ public @interface Editable {
 	int order() default 0;
 	
 	String description() default "";
-	
-	String descriptionProvider() default "";
-	
 }

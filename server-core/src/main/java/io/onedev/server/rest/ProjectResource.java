@@ -1,7 +1,6 @@
 package io.onedev.server.rest;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -23,13 +22,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.shiro.authz.UnauthorizedException;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import io.onedev.server.entitymanager.MilestoneManager;
 import io.onedev.server.entitymanager.ProjectManager;
-import io.onedev.server.git.GitContribution;
-import io.onedev.server.git.GitContributor;
-import io.onedev.server.infomanager.CommitInfoManager;
 import io.onedev.server.model.GroupAuthorization;
 import io.onedev.server.model.Milestone;
 import io.onedev.server.model.Project;
@@ -45,11 +40,9 @@ import io.onedev.server.model.support.pullrequest.ProjectPullRequestSetting;
 import io.onedev.server.persistence.dao.EntityCriteria;
 import io.onedev.server.rest.annotation.Api;
 import io.onedev.server.rest.jersey.InvalidParamException;
-import io.onedev.server.rest.support.RestConstants;
 import io.onedev.server.search.entity.project.ProjectQuery;
 import io.onedev.server.security.SecurityUtils;
 import io.onedev.server.util.DateUtils;
-import io.onedev.server.util.Day;
 
 @Api(order=1000)
 @Path("/projects")
@@ -62,14 +55,10 @@ public class ProjectResource {
 	
 	private final MilestoneManager milestoneManager;
 	
-	private final CommitInfoManager commitInfoManager;
-	
 	@Inject
-	public ProjectResource(ProjectManager projectManager, MilestoneManager milestoneManager, 
-			CommitInfoManager commitInfoManager) {
+	public ProjectResource(ProjectManager projectManager, MilestoneManager milestoneManager) {
 		this.projectManager = projectManager;
 		this.milestoneManager = milestoneManager;
-		this.commitInfoManager = commitInfoManager;
 	}
 
 	@Api(order=100)
@@ -177,27 +166,6 @@ public class ProjectResource {
     		criteria.add(Restrictions.eq(Milestone.PROP_CLOSED, closed));
     	
     	return milestoneManager.query(criteria, offset, count);
-    }
-	
-	@Api(order=760, description="Get top contributors on default branch")
-	@Path("/{projectId}/top-contributors")
-	@GET
-    public List<GitContributor> getTopContributors(@PathParam("projectId") Long projectId, 
-    		@QueryParam("type") @NotNull GitContribution.Type type, 
-    		@QueryParam("sinceDate") @NotEmpty @Api(description="Since date of format <i>yyyy-MM-dd</i>") String since, 
-    		@QueryParam("untilDate") @NotEmpty @Api(description="Until date of format <i>yyyy-MM-dd</i>") String until, 
-    		@QueryParam("count") int count) {
-    	Project project = projectManager.load(projectId);
-    	if (!SecurityUtils.canAccess(project)) 
-			throw new UnauthorizedException();
-    	
-    	if (count > RestConstants.MAX_PAGE_SIZE)
-    		throw new InvalidParamException("Count should be less than " + RestConstants.MAX_PAGE_SIZE);
-    	
-    	Day sinceDay = new Day(LocalDate.parse(since));
-    	Day untilDay = new Day(LocalDate.parse(until));
-    	
-    	return commitInfoManager.getTopContributors(project, count, type, sinceDay.getValue(), untilDay.getValue());
     }
 	
 	@SuppressWarnings("unused")
@@ -333,5 +301,4 @@ public class ProjectResource {
 		}
 		
 	}
-	
 }

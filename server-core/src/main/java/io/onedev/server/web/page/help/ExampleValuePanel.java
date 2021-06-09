@@ -11,10 +11,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
@@ -37,8 +35,6 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.util.visit.IVisit;
-import org.apache.wicket.util.visit.IVisitor;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -88,7 +84,7 @@ public class ExampleValuePanel extends Panel {
 		} 
 	}
 	
-	private IModel<Serializable> valueModel;
+	private final IModel<Serializable> valueModel;
 	
 	private final IModel<ValueInfo> valueInfoModel;
 	
@@ -113,87 +109,6 @@ public class ExampleValuePanel extends Panel {
 	private Serializable getValue() {
 		return valueModel.getObject();
 	}
-	
-	public boolean isScalarValue() {
-		return getValue() == null || getValue().getClass() == String.class
-				|| getValue().getClass() == boolean.class || getValue().getClass() == Boolean.class
-				|| getValue().getClass() == int.class || getValue().getClass() == Integer.class
-				|| getValue().getClass() == long.class || getValue().getClass() == Long.class
-				|| getValue().getClass() == Date.class || getValue() instanceof Enum;
-	}
-	
-	/**
-	 * Use this method to get json value instead of calling ObjectMapper.writeValueAsString for two reasons:
-	 * <ol>
-	 * 	<li> Use same order as displayed value
-	 * 	<li> Add typeInfo with help of field
-	 * </ol>
-	 */
-	public String getValueAsJson() {
-		StringBuilder builder = new StringBuilder();
-		if (isScalarValue()) {
-			builder.append(toJson(getValue()));
-		} else if (getField() != null && getField().getAnnotation(ManyToOne.class) != null) { 
-			builder.append(toJson(((AbstractEntity)getValue()).getId()));
-		} else if (getValue() instanceof Collection) {
-			List<String> elements = new ArrayList<>();
-			visitChildren(ExampleValuePanel.class, new IVisitor<ExampleValuePanel, Void>() {
-
-				@Override
-				public void component(ExampleValuePanel object, IVisit<Void> visit) {
-					elements.add(object.getValueAsJson());
-					visit.dontGoDeeper();
-				}
-				
-			});
-			if (elements.isEmpty()) 
-				builder.append("[ ]");
-			else 
-				builder.append("[ ").append(StringUtils.join(elements, " , ")).append(" ]");
-		} else {
-			Map<String, String> properties = new LinkedHashMap<>();
-
-			AtomicReference<String> nameJsonRef = new AtomicReference<>(null);
-			
-			visitChildren(ExampleValuePanel.class, new IVisitor<ExampleValuePanel, Void>() {
-
-				@Override
-				public void component(ExampleValuePanel object, IVisit<Void> visit) {
-					if (object.getId().equals("name"))
-						nameJsonRef.set(object.getValueAsJson());
-					else
-						properties.put(nameJsonRef.get(), object.getValueAsJson());
-					visit.dontGoDeeper();
-				}
-				
-			});
-			if (properties.isEmpty()) {
-				builder.append("{ }");
-			} else {
-				builder.append("{\n");
-				int propertyIndex = 0;
-				for (Map.Entry<String, String> property: properties.entrySet()) {
-					builder.append("    ").append(property.getKey());
-					builder.append(" : ");
-					int lineIndex = 0;
-					String[] lines = StringUtils.split(property.getValue(), "\n");
-					for (String line: lines) {
-						if (lineIndex != 0)
-							builder.append("    ");
-						builder.append(line);
-						if (lineIndex != lines.length-1)
-							builder.append("\n");
-						lineIndex++;
-					}
-					if (propertyIndex++ != properties.size()-1)
-						builder.append(",");
-					builder.append("\n");
-				}
-				builder.append("}");
-			}
-		}
-		return builder.toString();
-	}
 
 	@Override
 	protected void onInitialize() {
@@ -203,16 +118,21 @@ public class ExampleValuePanel extends Panel {
 	
 	@Override
 	protected void onBeforeRender() {
-		if (isScalarValue()) 
+		if (getValue() == null || getValue().getClass() == String.class
+				|| getValue().getClass() == boolean.class || getValue().getClass() == Boolean.class
+				|| getValue().getClass() == int.class || getValue().getClass() == Integer.class
+				|| getValue().getClass() == long.class || getValue().getClass() == Long.class
+				|| getValue().getClass() == Date.class || getValue() instanceof Enum) {
 			addOrReplace(newScalarFragment(getValue()));
-		else if (getField() != null && getField().getAnnotation(ManyToOne.class) != null) 
+		} else if (getField() != null && getField().getAnnotation(ManyToOne.class) != null) {
 			addOrReplace(newScalarFragment(((AbstractEntity)getValue()).getId()));
-		else if (getValue() instanceof Collection) 
+		} else if (getValue() instanceof Collection) {
 			addOrReplace(newArrayFragment());
-		else if (getValue() instanceof Map) 
+		} else if (getValue() instanceof Map) {
 			addOrReplace(newMapFragment());
-		else 
+		} else {
 			addOrReplace(newObjectFragment());
+		}
 		
 		if (newValueHint("psuedoId") != null) {
 			addOrReplace(new DropdownLink("hint") {
@@ -229,7 +149,7 @@ public class ExampleValuePanel extends Panel {
 		
 		super.onBeforeRender();
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Nullable
 	private Component newValueHint(String componentId) {
@@ -320,7 +240,7 @@ public class ExampleValuePanel extends Panel {
 		}
 		if (description.length() != 0) {
 			hasHint = true;
-			fragment.add(new Label("description", description).setEscapeModelStrings(false));
+			fragment.add(new Label("description", description));
 		} else {
 			fragment.add(new WebMarkupContainer("description").setVisible(false));
 		}
@@ -488,7 +408,7 @@ public class ExampleValuePanel extends Panel {
 				}
 				
 			};
-			typeInfoFragment.add(new ExampleValuePanel("name", Model.of(JsonTypeInfo.Id.NAME.getDefaultPropertyName()), 
+			typeInfoFragment.add(new ExampleValuePanel("name", Model.of(JsonTypeInfo.Id.CLASS.getDefaultPropertyName()), 
 					valueInfoModel, requestBodyClass));
 			typeInfoFragment.add(new ExampleValuePanel("value", new AbstractReadOnlyModel<Serializable>() {
 

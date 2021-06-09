@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>io.onedev</groupId>
 		<artifactId>server</artifactId>
-		<version>4.4.3</version>
+		<version>4.4.2</version>
 	</parent>
 	<build>
 		<plugins>
@@ -307,10 +307,6 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.github.scribejava</groupId>
-			<artifactId>scribejava-apis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.onedev</groupId>

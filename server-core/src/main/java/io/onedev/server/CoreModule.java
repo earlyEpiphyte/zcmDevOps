@@ -217,7 +217,7 @@ import io.onedev.server.persistence.annotation.Sessional;
 import io.onedev.server.persistence.annotation.Transactional;
 import io.onedev.server.persistence.dao.Dao;
 import io.onedev.server.persistence.dao.DefaultDao;
-import io.onedev.server.rest.ProjectResource;
+import io.onedev.server.rest.RestConstants;
 import io.onedev.server.rest.jersey.DefaultServletContainer;
 import io.onedev.server.rest.jersey.JerseyConfigurator;
 import io.onedev.server.rest.jersey.ResourceConfigProvider;
@@ -569,11 +569,10 @@ public class CoreModule extends AbstractPluginModule {
 			
 			@Override
 			public void configure(ResourceConfig resourceConfig) {
-				resourceConfig.packages(ProjectResource.class.getPackage().getName());
+				resourceConfig.packages(RestConstants.class.getPackage().getName());
 			}
 			
 		});
-		
 	}
 
 	private void configureWeb() {

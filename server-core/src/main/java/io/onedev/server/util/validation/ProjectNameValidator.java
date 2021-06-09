@@ -32,7 +32,7 @@ public class ProjectNameValidator implements ConstraintValidator<ProjectName, St
 			}
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;
-		} else if (value.equals("new") || value.equals("import")) {
+		} else if (value.equals("new")) {
 			constraintContext.disableDefaultConstraintViolation();
 			String message = this.message;
 			if (message.length() == 0)
