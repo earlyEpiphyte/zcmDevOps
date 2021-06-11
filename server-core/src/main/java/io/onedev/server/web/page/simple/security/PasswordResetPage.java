@@ -115,12 +115,12 @@ public class PasswordResetPage extends SimplePage {
 	
 	@Override
 	protected String getTitle() {
-		return "Forgotten Password?";
+		return "忘记密码?";
 	}
 
 	@Override
 	protected String getSubTitle() {
-		return "Enter your user name or email to reset password";
+		return "输入您的用户名或电子邮件重置密码";
 	}
 
 }

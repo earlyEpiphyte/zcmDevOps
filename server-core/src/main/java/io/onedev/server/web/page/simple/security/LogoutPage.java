@@ -17,7 +17,7 @@ public class LogoutPage extends BasePage {
 		WebSession.get().logout();
 		
 		if (getLoginUser() != null || OneDev.getInstance(SettingManager.class).getSecuritySetting().isEnableAnonymousAccess())
-			getSession().warn("You've been logged out");
+			getSession().warn("您已经注销了");
         
 		if (OneDev.getInstance(SettingManager.class).getSecuritySetting().isEnableAnonymousAccess())
 			throw new RestartResponseException(getApplication().getHomePage());

@@ -184,7 +184,7 @@ public class LoginPage extends SimplePage {
 
 	@Override
 	protected String getSubTitle() {
-		return "Enter your details to login to your account";
+		return "输入详细信息以登录账户";
 	}
 	
 }

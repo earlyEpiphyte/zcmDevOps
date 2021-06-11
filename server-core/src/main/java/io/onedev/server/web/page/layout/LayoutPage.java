@@ -110,59 +110,59 @@ public abstract class LayoutPage extends BasePage {
 				List<SidebarMenuItem> menuItems = new ArrayList<>(customization.getMainMenuItems());
 				if (SecurityUtils.isAdministrator()) {
 					List<SidebarMenuItem> administrationMenuItems = new ArrayList<>();
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "System Setting", 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "系统设置", 
 							SystemSettingPage.class, new PageParameters()));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "User Management", UserListPage.class, 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "用户管理", UserListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewUserPage.class, UserPage.class)));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Role Management", RoleListPage.class, 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "角色管理", RoleListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewRolePage.class, RoleDetailPage.class)));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Group Management", GroupListPage.class, 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "群组管理", GroupListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewGroupPage.class, GroupPage.class)));
 					
 					List<SidebarMenuItem> securitySettingMenuItems = new ArrayList<>();
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "General Setting", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "一般设置", 
 							GeneralSecuritySettingPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "External Authentication", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "外部认证", 
 							AuthenticatorPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSO Providers", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSO提供", 
 							SsoConnectorListPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSH Setting", 
+					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSH设置", 
 							SshSettingPage.class, new PageParameters()));
 					
-					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "Security Setting", securitySettingMenuItems));
+					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "安全设置", securitySettingMenuItems));
 					
 					List<SidebarMenuItem> issueSettingMenuItems = new ArrayList<>();
-					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "Custom Fields", 
+					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "自定义字段", 
 							IssueFieldListPage.class, new PageParameters()));
-					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "States", 
+					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "状态", 
 							IssueStateListPage.class, new PageParameters()));
-					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "State Transitions", 
+					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "状态转换", 
 							StateTransitionListPage.class, new PageParameters()));
-					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "Default Boards", 
+					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "默认面板", 
 							DefaultBoardListPage.class, new PageParameters()));
-					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "Description Templates", 
+					issueSettingMenuItems.add(new SidebarMenuItem.Page(null, "描述模板", 
 							IssueTemplateListPage.class, new PageParameters()));
 					
-					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "Issue Setting", issueSettingMenuItems));
+					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "问题设置", issueSettingMenuItems));
 					
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Mail Setting", 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "邮件设置", 
 							MailSettingPage.class, new PageParameters()));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Job Executors", 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "作业执行器", 
 							JobExecutorsPage.class, new PageParameters()));
 					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Groovy Scripts", 
 							GroovyScriptListPage.class, new PageParameters()));
 					
 					List<SidebarMenuItem> maintenanceMenuItems = new ArrayList<>();
-					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "Database Backup", 
+					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "数据库备份", 
 							DatabaseBackupPage.class, new PageParameters()));
-					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "Server Log", 
+					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "服务器日志", 
 							ServerLogPage.class, new PageParameters()));
-					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "Server Information", 
+					maintenanceMenuItems.add(new SidebarMenuItem.Page(null, "服务器信息", 
 							ServerInformationPage.class, new PageParameters()));
 					
-					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "System Maintenance", maintenanceMenuItems));
+					administrationMenuItems.add(new SidebarMenuItem.SubMenu(null, "系统维护", maintenanceMenuItems));
 					
-					menuItems.add(new SidebarMenuItem.SubMenu("gear", "Administration", administrationMenuItems));
+					menuItems.add(new SidebarMenuItem.SubMenu("gear", "管理", administrationMenuItems));
 				}		
 				menus.add(new SidebarMenu(null, menuItems));
 				menus.addAll(getSidebarMenus());

@@ -68,13 +68,13 @@ public class ConfirmativePasswordPropertyEditor extends PropertyEditor<String> {
 	protected String convertInputToValue() throws ConversionException {
 		if (input.getConvertedInput() != null) {
 			if (inputAgain.getConvertedInput() == null)
-				throw new ConversionException("Please confirm the password.");
+				throw new ConversionException("请确认密码");
 			else if (!input.getConvertedInput().equals(inputAgain.getConvertedInput()))
-				throw new ConversionException("Password and its confirmation should be identical.");
+				throw new ConversionException("密码应与之前保持一致");
 			else
 				return input.getConvertedInput();
 		} else if (inputAgain.getConvertedInput() != null) {
-			throw new ConversionException("Password and its confirmation should be identical.");
+			throw new ConversionException("密码应与之前保持一致");
 		} else {
 			return input.getConvertedInput();
 		}

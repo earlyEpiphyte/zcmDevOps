@@ -42,7 +42,7 @@ public class SystemSetting implements Serializable, Validatable {
 	@Editable(order=200, description="OneDev requires git command line to manage repositories. The minimum "
 			+ "required version is 2.11.1")
 	@Valid
-	@NotNull(message="may not be empty")
+	@NotNull(message="不能为空")
 	public GitConfig getGitConfig() {
 		return gitConfig;
 	}
@@ -53,7 +53,7 @@ public class SystemSetting implements Serializable, Validatable {
 
 	@Editable(order=250, description="OneDev configures git hooks to communicate with itself via curl")
 	@Valid
-	@NotNull(message="may not be empty")
+	@NotNull(message="不能为空")
 	public CurlConfig getCurlConfig() {
 		return curlConfig;
 	}

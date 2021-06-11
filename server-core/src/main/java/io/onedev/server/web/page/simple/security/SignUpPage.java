@@ -51,12 +51,12 @@ public class SignUpPage extends SimplePage {
 				User userWithSameName = userManager.findByName(user.getName());
 				if (userWithSameName != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another user.");
+							"此名称已被其他用户使用");
 				} 
 				User userWithSameEmail = userManager.findByEmail(user.getEmail());
 				if (userWithSameEmail != null) {
 					editor.error(new Path(new PathNode.Named("email")),
-							"This email has already been used by another user.");
+							"此邮箱已被其他用户使用");
 				} 
 				if (editor.isValid()) {
 					user.setPassword(AppLoader.getInstance(PasswordService.class).encryptPassword(user.getPassword()));
@@ -84,12 +84,12 @@ public class SignUpPage extends SimplePage {
 
 	@Override
 	protected String getTitle() {
-		return "Sign Up";
+		return "注 册";
 	}
 
 	@Override
 	protected String getSubTitle() {
-		return "Enter your details to create your account";
+		return "输入您的详细信息来创建您的帐户";
 	}
 
 }
