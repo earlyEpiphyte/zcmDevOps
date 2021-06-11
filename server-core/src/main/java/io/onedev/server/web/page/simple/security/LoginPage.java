@@ -71,9 +71,9 @@ public class LoginPage extends SimplePage {
 					continueToOriginalDestination();
 					setResponsePage(getApplication().getHomePage());
 				} catch (IncorrectCredentialsException e) {
-					error("Incorrect credentials");
+					error("密码不正确");
 				} catch (UnknownAccountException e) {
-					error("Unknown user name");
+					error("未知的用户名");
 				} catch (AuthenticationException ae) {
 					error(ae.getMessage());
 				}
