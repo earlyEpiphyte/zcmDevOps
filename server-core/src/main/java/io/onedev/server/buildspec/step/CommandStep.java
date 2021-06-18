@@ -41,7 +41,7 @@ public class CommandStep extends Step {
 			+ "under the <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>")
 	@Interpolative
 	@Code(language=Code.SHELL, variableProvider="suggestCommandVariables")
-	@Size(min=1, message="may not be empty")
+	@Size(min=1, message="不能为空")
 	public List<String> getCommands() {
 		return commands;
 	}

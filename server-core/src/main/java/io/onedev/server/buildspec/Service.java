@@ -34,7 +34,7 @@ public class Service implements NamedElement, Serializable {
 	
 	private String memoryRequirement = "128m";
 	
-	@Editable(order=100, description="Specify name of the service, which will be used as host name to access the service")
+	@Editable(order=100,name="名称", description="指定服务的名称，该名称将用作访问服务的主机名")
 	@SuggestionProvider("getNameSuggestions")
 	@DnsName
 	@NotEmpty
@@ -58,7 +58,7 @@ public class Service implements NamedElement, Serializable {
 		return new ArrayList<>();
 	}
 
-	@Editable(order=200, description="Specify docker image of the service")
+	@Editable(order=200, name="镜像", description="指定服务的docker镜像")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getImage() {
@@ -69,7 +69,7 @@ public class Service implements NamedElement, Serializable {
 		this.image = image;
 	}
 
-	@Editable(order=220, description="Optionally specify arguments to run above image")
+	@Editable(order=220, name="参数", description="（可选）指定在镜像上运行的参数")
 	@Interpolative(variableSuggester="suggestVariables")
 	public String getArguments() {
 		return arguments;
@@ -79,8 +79,7 @@ public class Service implements NamedElement, Serializable {
 		this.arguments = arguments;
 	}
 
-	@Editable(order=300, name="Environment Variables", description="Optionally specify environment variables of "
-			+ "the service")
+	@Editable(order=300, name="环境变量", description="（可选）指定服务的环境变量")
 	public List<EnvVar> getEnvVars() {
 		return envVars;
 	}
@@ -89,9 +88,7 @@ public class Service implements NamedElement, Serializable {
 		this.envVars = envVars;
 	}
 
-	@Editable(order=400, description="Specify command to check readiness of the service. This command will "
-			+ "be interpretated by cmd.exe on Windows images, and by shell on Linux images. It will be "
-			+ "executed repeatedly until a zero code is returned to indicate service ready")
+	@Editable(order=400, name="检查服务准备情况的命令", description="指定命令来检查服务的准备情况. 此命令将由 cmd.exe 在 Windows 映像上解释，在 Linux 映像上由 shell 解释。 将重复执行，直到返回zero code表示服务就绪")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getReadinessCheckCommand() {
@@ -102,8 +99,8 @@ public class Service implements NamedElement, Serializable {
 		this.readinessCheckCommand = readinessCheckCommand;
 	}
 	
-	@Editable(order=10000, name="CPU Requirement", group="More Settings", description="Specify CPU requirement of the job. "
-			+ "Refer to <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu' target='_blank'>kubernetes documentation</a> for details")
+	@Editable(order=10000, name="CPU要求", group="更多设置", description="指定作业的CPU要求。"
+			+ "有关详细信息，请参阅<a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu' target='_blank'>kubernetes 文档</a> for details")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getCpuRequirement() {
@@ -114,8 +111,8 @@ public class Service implements NamedElement, Serializable {
 		this.cpuRequirement = cpuRequirement;
 	}
 
-	@Editable(order=10100, group="More Settings", description="Specify memory requirement of the job. "
-			+ "Refer to <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory' target='_blank'>kubernetes documentation</a> for details")
+	@Editable(order=10100, name="内存要求", group="更多设置", description="指定作业的内存要求。"
+			+ "有关详细信息，请参阅<a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory' target='_blank'>kubernetes 文档</a> for details")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getMemoryRequirement() {

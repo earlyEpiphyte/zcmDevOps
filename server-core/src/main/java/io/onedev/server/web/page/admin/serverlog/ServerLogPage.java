@@ -44,7 +44,7 @@ public class ServerLogPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Server Log");
+		return new Label(componentId, "服务器日志");
 	}
 
 }

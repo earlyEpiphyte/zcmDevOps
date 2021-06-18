@@ -3,7 +3,7 @@
 		<div class="card-body">
 			<form wicket:id="query" class="clearable-wrapper mb-4">
 				<div class="input-group">
-					<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="Query and order builds here">
+					<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="在此处查询和给构建排序">
 					<span class="input-group-append">
 						<button wicket:id="submit" type="submit" class="btn btn-icon btn-outline-secondary" title="Query"><wicket:svg href="magnify" class="icon"></wicket:svg></button>
 					</span>
@@ -11,16 +11,16 @@
 			</form>
 			<div class="mb-4">
 				<a wicket:id="showSavedQueries" class="show-saved-queries text-gray mr-4">
-					<wicket:svg href="eye" class="icon"></wicket:svg> Show Saved Queries
+					<wicket:svg href="eye" class="icon"></wicket:svg> 显示保存的查询
 				</a>
 				<a wicket:id="saveQuery" class="save-query text-gray mr-4">
-					<wicket:svg href="save" class="icon"></wicket:svg> Save Query
+					<wicket:svg href="save" class="icon"></wicket:svg> 保存查询
 				</a>
 				<a wicket:id="listParams" class="list-params text-gray mr-4 d-none d-xl-inline">
-					<wicket:svg href="select" class="icon"></wicket:svg> Display Params
+					<wicket:svg href="select" class="icon"></wicket:svg> 显示参数
 				</a>
 				<a wicket:id="orderBy" class="order-by text-gray">
-					<wicket:svg href="sort" class="icon"></wicket:svg> Order By
+					<wicket:svg href="sort" class="icon"></wicket:svg> 根据条件排序
 				</a>
 			</div>
 			<div wicket:id="body">
@@ -55,16 +55,16 @@
 		<div class="build-list-params">
 			<form wicket:id="form">
 				<div class="modal-header">
-					<h5 id="modal-title" class="modal-title">Params to Display</h5>
+					<h5 id="modal-title" class="modal-title">要显示的参数</h5>
 					<button wicket:id="close" type="button" class="close"><wicket:svg href="times" class="icon"/></button>
 				</div>
 				<div class="modal-body">
 					<input wicket:id="params" type="hidden" class="form-control">
 				</div>
 				<div class="modal-footer">
-					<input wicket:id="save" type="submit" class="dirty-aware btn btn-primary" value="Save">
+					<input wicket:id="save" type="submit" class="dirty-aware btn btn-primary" value="保存">
 					<button wicket:id="useDefault" class="btn btn-primary">Use Default</button>
-					<a wicket:id="cancel" class="btn btn-secondary">Cancel</a>
+					<a wicket:id="cancel" class="btn btn-secondary">取消</a>
 				</div>
 			</form>
 		</div>

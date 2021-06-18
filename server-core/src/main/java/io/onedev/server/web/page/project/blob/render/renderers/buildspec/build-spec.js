@@ -18,7 +18,7 @@ onedev.server.buildSpec = {
 	            if (name.length != 0) 
 	                $name.text(name);
 	            else
-	                $name.html("<i>Name not specified</i>");
+	                $name.html("<i>未指定名称</i>");
 	            $name.closest(".nav").data("name", name);
 	        }
 	

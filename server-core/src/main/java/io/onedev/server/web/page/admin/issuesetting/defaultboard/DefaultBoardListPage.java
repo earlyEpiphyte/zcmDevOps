@@ -249,7 +249,7 @@ public class DefaultBoardListPage extends IssueSettingPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Default Issue Boards");
+		return new Label(componentId, "默认问题面板");
 	}
 	
 }

@@ -71,7 +71,7 @@ public class SshSettingPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "SSH Setting");
+		return new Label(componentId, "SSH 设置");
 	}
     
 }

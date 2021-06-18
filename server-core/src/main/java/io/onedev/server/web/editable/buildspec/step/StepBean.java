@@ -14,7 +14,7 @@ public class StepBean implements Serializable {
 
 	private Step step;
 
-	@Editable(name="Type", order=100)
+	@Editable(name="类型", order=100)
 	@NotNull(message="不能为空")
 	public Step getStep() {
 		return step;

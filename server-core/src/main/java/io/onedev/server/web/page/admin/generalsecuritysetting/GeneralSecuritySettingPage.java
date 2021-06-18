@@ -43,7 +43,7 @@ public class GeneralSecuritySettingPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "General Security Setting");
+		return new Label(componentId, "一般安全设置");
 	}
 
 }

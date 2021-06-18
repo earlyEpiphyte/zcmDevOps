@@ -116,7 +116,7 @@ public abstract class LayoutPage extends BasePage {
 							new PageParameters(), Lists.newArrayList(NewUserPage.class, UserPage.class)));
 					administrationMenuItems.add(new SidebarMenuItem.Page(null, "角色管理", RoleListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewRolePage.class, RoleDetailPage.class)));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "群组管理", GroupListPage.class, 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "分组管理", GroupListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewGroupPage.class, GroupPage.class)));
 					
 					List<SidebarMenuItem> securitySettingMenuItems = new ArrayList<>();
@@ -149,7 +149,7 @@ public abstract class LayoutPage extends BasePage {
 							MailSettingPage.class, new PageParameters()));
 					administrationMenuItems.add(new SidebarMenuItem.Page(null, "作业执行器", 
 							JobExecutorsPage.class, new PageParameters()));
-					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Groovy Scripts", 
+					administrationMenuItems.add(new SidebarMenuItem.Page(null, "Groovy脚本", 
 							GroovyScriptListPage.class, new PageParameters()));
 					
 					List<SidebarMenuItem> maintenanceMenuItems = new ArrayList<>();

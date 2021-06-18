@@ -30,7 +30,7 @@ public class CommitMessageBean implements Serializable {
 		this.summary = summary;
 	}
 
-	@Editable(order=200, name="Commit Message Body")
+	@Editable(order=200, name="请在这里提交消息")
 	@Multiline
 	@OmitName
 	@ReferenceAware

@@ -62,7 +62,7 @@ public class TagProtection implements Serializable {
 	
 	@Editable(order=150, name="Applicable Users", description="Rule will apply if user operating the tag matches criteria specified here")
 	@io.onedev.server.web.editable.annotation.UserMatch
-	@NotEmpty(message="may not be empty")
+	@NotEmpty(message="不能为空")
 	public String getUserMatch() {
 		return userMatch;
 	}

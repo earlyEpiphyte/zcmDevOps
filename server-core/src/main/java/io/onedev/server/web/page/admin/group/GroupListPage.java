@@ -292,7 +292,7 @@ public class GroupListPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Groups");
+		return new Label(componentId, "分组");
 	}
 
 }

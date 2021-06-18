@@ -14,7 +14,7 @@ public class JobTriggerBean implements Serializable {
 
 	private JobTrigger trigger;
 
-	@Editable(name="Type", order=100)
+	@Editable(name="类型", order=100)
 	@NotNull(message="不能为空")
 	public JobTrigger getTrigger() {
 		return trigger;

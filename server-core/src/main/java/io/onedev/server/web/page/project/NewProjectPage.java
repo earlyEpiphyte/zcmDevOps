@@ -50,7 +50,7 @@ public class NewProjectPage extends LayoutPage {
 				Project projectWithSameName = projectManager.find(project.getName());
 				if (projectWithSameName != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another project");
+							"此名称已被另一个项目使用");
 				} else {
 					project.setDefaultRole(defaultRoleBean.getRole());
 					projectManager.create(project);
@@ -68,7 +68,7 @@ public class NewProjectPage extends LayoutPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Create Project");
+		return new Label(componentId, "创建项目");
 	}
 	
 }
