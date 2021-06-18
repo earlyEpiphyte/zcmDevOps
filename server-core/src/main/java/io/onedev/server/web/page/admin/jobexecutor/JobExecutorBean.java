@@ -14,7 +14,7 @@ public class JobExecutorBean implements Serializable {
 
 	private JobExecutor executor;
 
-	@Editable(name="Type")
+	@Editable(name="类型")
 	@NotNull
 	public JobExecutor getExecutor() {
 		return executor;

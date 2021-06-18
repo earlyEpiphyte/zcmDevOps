@@ -1,9 +1,9 @@
 <wicket:extend>
 	<div class="text-muted mb-4">
-		<wicket:svg href="bulb" class="icon"/> Define issue templates here. 
-		When a new issue is created, the first template with criteria matching the issue will be used.
+		<wicket:svg href="bulb" class="icon"/> 在此处定义问题模板。
+		当一个新的问题被创建时， 将使用第一个匹配问题的标准模板。
 	</div>
-	<a wicket:id="addNew" class="btn btn-icon btn-primary mb-4" title="Add issue description template"><wicket:svg href="plus" class="icon"></wicket:svg></a>
+	<a wicket:id="addNew" class="btn btn-icon btn-primary mb-4" title="添加问题描述模板"><wicket:svg href="plus" class="icon"></wicket:svg></a>
 	<table wicket:id="issueTemplates" class="table"></table>
 	
 	<wicket:fragment wicket:id="showDetailFrag">
@@ -11,8 +11,8 @@
 	</wicket:fragment>
 	<wicket:fragment wicket:id="templateActionsFrag">
 		<div class="d-flex">
-			<a wicket:id="edit" class="btn btn-light-primary mr-1">Edit</a>
-			<a wicket:id="delete" class="btn btn-light-danger ml-auto">Delete</a>
+			<a wicket:id="edit" class="btn btn-light-primary mr-1">编辑</a>
+			<a wicket:id="delete" class="btn btn-light-danger ml-auto">删除</a>
 		</div>
 	</wicket:fragment>
 </wicket:extend>

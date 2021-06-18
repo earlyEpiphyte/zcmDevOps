@@ -12,7 +12,7 @@ public class MailSettingHolder implements Serializable {
 
 	private MailSetting mailSetting;
 
-	@Editable(name="Enable")
+	@Editable(name="启用")
 	public MailSetting getMailSetting() {
 		return mailSetting;
 	}
