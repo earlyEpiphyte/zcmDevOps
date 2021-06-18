@@ -45,7 +45,7 @@ public class ProjectDependency implements Serializable {
 	private String accessTokenSecret;
 	
 	// change Named("projectName") also if change name of this property 
-	@Editable(order=200, name="Project", description="Specify project to retrieve artifacts from")
+	@Editable(order=200, name="项目", description="指定项目来从中检索工件")
 	@ChoiceProvider("getProjectChoices")
 	@NotEmpty
 	public String getProjectName() {
@@ -70,7 +70,7 @@ public class ProjectDependency implements Serializable {
 		return choices;
 	}
 	
-	@Editable(order=300, name="Build", description="Specify build to retrieve artifacts from")
+	@Editable(order=300, name="构建", description="指定构建来从中检索工件")
 	@Interpolative(variableSuggester="suggestVariables", literalSuggester="suggestBuilds")
 	@NotEmpty
 	public String getBuildNumber() {
@@ -101,7 +101,7 @@ public class ProjectDependency implements Serializable {
 			return new ArrayList<>();
 	}
 
-	@Editable(order=400, name="Artifacts to Retrieve", description="Specify artifacts to retrieve into <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>")
+	@Editable(order=400, name="检索的工件", description="指定要检索到<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a>的工件")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(suggester="suggestArtifacts", path=true)
 	@NotEmpty
@@ -132,11 +132,10 @@ public class ProjectDependency implements Serializable {
 		return new ArrayList<>();
 	}
 
-	@Editable(order=500, description="Specify a secret to be used as access token to retrieve artifacts "
-			+ "from specified project. If not specified, project artifacts will be accessed anonymously")
+	@Editable(order=500, name="访问令牌秘密", description="指定要用作访问令牌以从指定项目检索工件的机密。如果未指定，将匿名访问项目工件")
 	@ChoiceProvider("getAccessTokenSecretChoices")
 	@Nullable
-	@NameOfEmptyValue("Access Anonymously")
+	@NameOfEmptyValue("匿名访问")
 	public String getAccessTokenSecret() {
 		return accessTokenSecret;
 	}

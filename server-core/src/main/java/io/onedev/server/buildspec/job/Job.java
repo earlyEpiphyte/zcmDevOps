@@ -107,7 +107,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 	
 	private transient Map<String, ParamSpec> paramSpecMap;
 	
-	@Editable(order=100, description="Specify name of the job")
+	@Editable(order=100, name="名称", description="指定作业名称")
 	@SuggestionProvider("getNameSuggestions")
 	@NotEmpty
 	@Override
@@ -130,8 +130,8 @@ public class Job implements NamedElement, Serializable, Validatable {
 		return new ArrayList<>();
 	}
 
-	@Editable(order=200, description="Steps will be executed serially on same node, sharing the same <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>")
-	@Size(min=1, max=1000, message="At least one step needs to be configured")
+	@Editable(order=200, name="步骤", description="步骤将在同一个节点上串行执行,共享同一个<a href='$docRoot/pages/concepts.md#job-workspace'>作业空间</a>")
+	@Size(min=1, max=1000, message="至少需要配置一个步骤")
 	public List<Step> getSteps() {
 		return steps;
 	}
@@ -140,7 +140,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.steps = steps;
 	}
 
-	@Editable(order=400, name="Parameter Specs", group="Params & Triggers", description="Optionally define parameter specifications of the job")
+	@Editable(name="参数规格", order=400, group="参数和触发器", description="可选地定义作业的参数规范")
 	@Valid
 	public List<ParamSpec> getParamSpecs() {
 		return paramSpecs;
@@ -150,7 +150,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.paramSpecs = paramSpecs;
 	}
 
-	@Editable(order=500, group="Params & Triggers", description="Use triggers to run the job automatically under certain conditions")
+	@Editable(name="触发器", order=500, group="参数和触发器", description="使用触发器在特定条件下自动运行作业")
 	@Valid
 	public List<JobTrigger> getTriggers() {
 		return triggers;
@@ -160,8 +160,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.triggers = triggers;
 	}
 
-	@Editable(name="Job Dependencies", order=9110, group="Dependencies & Services", description="Job dependencies determines the order and "
-			+ "concurrency when run different jobs. You may also specify artifacts to retrieve from upstream jobs")
+	@Editable(name="作业依赖", order=9110, group="依赖和服务", description="作业依赖性决定了运行不同作业时的顺序和并发性。您还可以指定要从上游作业中检索的工件")
 	@Valid
 	public List<JobDependency> getJobDependencies() {
 		return jobDependencies;
@@ -171,8 +170,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.jobDependencies = jobDependencies;
 	}
 
-	@Editable(name="Project Dependencies", order=9112, group="Dependencies & Services", description="Use project dependency to retrieve "
-			+ "artifacts from other projects")
+	@Editable(name="项目依赖", order=9112, group="依赖和服务", description="使用项目依赖从其他项目中检索工件")
 	@Valid
 	public List<ProjectDependency> getProjectDependencies() {
 		return projectDependencies;
@@ -182,7 +180,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.projectDependencies = projectDependencies;
 	}
 
-	@Editable(order=9114, group="Dependencies & Services", description="Optionally specify services required by this job")
+	@Editable(name="所需服务",order=9114, group="依赖和服务", description="（可选）指定此作业所需的服务")
 	@ChoiceProvider("getServiceChoices")
 	public List<String> getRequiredServices() {
 		return requiredServices;
@@ -207,7 +205,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		return choices;
 	}
 
-	@Editable(order=9400, group="More Settings", description="Specify condition to retry build upon failure")
+	@Editable(name="重试条件", order=9400, group="更多设置", description="指定条件以在失败时重试构建")
 	@NotEmpty
 	@RetryCondition
 	public String getRetryCondition() {
@@ -218,8 +216,8 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.retryCondition = retryCondition;
 	}
 
-	@Editable(order=9410, group="More Settings", description="Maximum of retries before giving up")
-	@Min(value=1, message="This value should not be less than 1")
+	@Editable(name="最大重试次数", order=9410, group="更多设置", description="最大重试次数")
+	@Min(value=1, message="此值不应小于 1")
 	public int getMaxRetries() {
 		return maxRetries;
 	}
@@ -228,10 +226,9 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.maxRetries = maxRetries;
 	}
 
-	@Editable(order=9420, group="More Settings", description="Delay for the first retry in seconds. "
-			+ "Delay of subsequent retries will be calculated using an exponential back-off "
-			+ "based on this delay")
-	@Min(value=1, message="This value should not be less than 1")
+	@Editable(name="重试延迟", order=9420, group="更多设置", description="延迟第一次重试以秒为单位。后续重试的延迟将使用基于此延迟的指数退避计算")
+			
+	@Min(value=1, message="此值不应小于 1")
 	public int getRetryDelay() {
 		return retryDelay;
 	}
@@ -240,8 +237,8 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.retryDelay = retryDelay;
 	}
 	
-	@Editable(order=10050, name="CPU Requirement", group="More Settings", description="Specify CPU requirement of the job. "
-			+ "Refer to <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu' target='_blank'>kubernetes documentation</a> for details")
+	@Editable(order=10050, name="CPU要求", group="更多设置", description="指定作业所需的CPU,"
+			+ "有关详细信息,请参阅 <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu' target='_blank'>kubernetes 文档</a>")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getCpuRequirement() {
@@ -252,8 +249,8 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.cpuRequirement = cpuRequirement;
 	}
 
-	@Editable(order=10060, group="More Settings", description="Specify memory requirement of the job. "
-			+ "Refer to <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory' target='_blank'>kubernetes documentation</a> for details")
+	@Editable(name="内存要求", order=10060, group="更多设置", description="指定作业所需的内存,"
+			+ "有关详细信息,请参阅 <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory' target='_blank'>kubernetes 文档</a>")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getMemoryRequirement() {
@@ -264,9 +261,8 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.memoryRequirement = memoryRequirement;
 	}
 
-	@Editable(order=10100, group="More Settings", description="Cache specific paths to speed up job execution. "
-			+ "For instance for node.js projects, you may cache folder <tt>/root/.npm</tt> to avoid downloading "
-			+ "node modules for subsequent job executions")
+	@Editable(name="缓存", order=10100, group="更多设置", description="缓存特定路径以加快作业执行速度。"
+			+ "例如，对于 node.js 项目，您可以缓存文件夹 <tt>/root/.npm</tt> 以避免为后续作业执行下载节点模块")
 	@Valid
 	public List<CacheSpec> getCaches() {
 		return caches;
@@ -276,7 +272,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.caches = caches;
 	}
 
-	@Editable(order=10500, group="More Settings", description="Specify timeout in seconds")
+	@Editable(name="超时", order=10500, group="更多设置", description="以秒为单位指定超时时间")
 	public long getTimeout() {
 		return timeout;
 	}
@@ -285,7 +281,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.timeout = timeout;
 	}
 	
-	@Editable(order=10600, name="Post Build Actions", group="More Settings")
+	@Editable(order=10600, name="构建后操作", group="更多设置")
 	@Valid
 	public List<PostBuildAction> getPostBuildActions() {
 		return postBuildActions;

@@ -249,7 +249,7 @@ public class ProjectListPage extends LayoutPage {
 	
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Projects");
+		return new Label(componentId, "项目");
 	}
 
 }

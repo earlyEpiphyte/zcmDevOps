@@ -412,7 +412,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 
 					@Override
 					public String getLabel() {
-						return "Create New File";
+						return "创建新文件";
 					}
 
 					@Override
@@ -434,7 +434,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 
 					@Override
 					public String getLabel() {
-						return "Upload Files";
+						return "上传文件";
 					}
 
 					@Override
@@ -518,7 +518,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 
 					@Override
 					public String getLabel() {
-						return "Quick Search";
+						return "快速查询";
 					}
 
 					@Override
@@ -549,7 +549,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 
 					@Override
 					public String getLabel() {
-						return "Advanced Search";
+						return "高级查询";
 					}
 
 					@Override

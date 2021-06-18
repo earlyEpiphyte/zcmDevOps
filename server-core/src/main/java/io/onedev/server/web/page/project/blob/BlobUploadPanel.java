@@ -74,7 +74,7 @@ public abstract class BlobUploadPanel extends Panel {
 
 				String commitMessage = summaryCommitMessage;
 				if (StringUtils.isBlank(commitMessage))
-					commitMessage = "Add files via upload";
+					commitMessage = "通过上传添加文件";
 				
 				if (StringUtils.isNotBlank(detailCommitMessage))
 					commitMessage += "\n\n" + detailCommitMessage;

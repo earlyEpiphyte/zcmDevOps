@@ -220,7 +220,7 @@ public class IssueStateListPage extends IssueSettingPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Issue States");
+		return new Label(componentId, "问题状态");
 	}
 	
 }

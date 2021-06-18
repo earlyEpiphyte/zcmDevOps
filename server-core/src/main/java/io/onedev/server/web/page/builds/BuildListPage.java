@@ -246,7 +246,7 @@ public class BuildListPage extends LayoutPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Builds");
+		return new Label(componentId, "构建");
 	}
 	
 	@Override

@@ -38,7 +38,7 @@ public class JobDependency implements Serializable {
 	private String artifacts = "**";
 	
 	// change Named("jobName") also if change name of this property 
-	@Editable(order=100, name="Job")
+	@Editable(order=100, name="作业")
 	@ChoiceProvider("getJobChoices")
 	@NotEmpty
 	public String getJobName() {
@@ -49,7 +49,7 @@ public class JobDependency implements Serializable {
 		this.jobName = jobName;
 	}
 
-	@Editable(order=150, description="Whether or not to require this dependency to be successful")
+	@Editable(order=150, name="需要成功", description="是否需要此依赖项成功")
 	public boolean isRequireSuccessful() {
 		return requireSuccessful;
 	}
@@ -70,8 +70,8 @@ public class JobDependency implements Serializable {
 		this.jobParams = jobParams;
 	}
 	
-	@Editable(order=300, name="Artifacts to Retrieve", description="Optionally specify artifacts to retrieve "
-			+ "from the dependency into <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>. Leave empty to do not retrieve any artifacts")
+	@Editable(order=300, name="检索的工件", description="（可选）指定要从依赖项检索到 "
+			+ "<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a> 的工件. 留空以不检索任何工件")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
 	@NameOfEmptyValue("Do not retrieve")

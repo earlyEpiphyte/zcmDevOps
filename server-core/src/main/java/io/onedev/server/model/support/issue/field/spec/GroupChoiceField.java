@@ -25,7 +25,7 @@ public class GroupChoiceField extends FieldSpec {
 	private DefaultValueProvider defaultValueProvider;
 	
 	@Editable(order=1000, name="Available Choices")
-	@NotNull(message="may not be empty")
+	@NotNull(message="不能为空")
 	@Valid
 	public ChoiceProvider getChoiceProvider() {
 		return choiceProvider;

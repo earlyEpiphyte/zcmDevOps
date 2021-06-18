@@ -1029,7 +1029,7 @@ public class Project extends AbstractEntity implements NameAware {
 		this.codeComments = codeComments;
 	}
 	
-	@Editable(order=300, name="Issue management", description="Whether or not to provide issue management for the project")
+	@Editable(order=300, name="问题管理", description="是否为项目提供问题管理")
 	public boolean isIssueManagementEnabled() {
 		return issueManagementEnabled;
 	}

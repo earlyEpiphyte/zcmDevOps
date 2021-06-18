@@ -1,7 +1,7 @@
 <wicket:panel>
 	<div class="saved-queries card">
 		<div class="card-header">
-			<h3 class="card-title mr-4">Saved Queries</h3>
+			<h3 class="card-title mr-4">已保存的查询</h3>
 			<div class="card-toolbar">
 				<a wicket:id="edit" class="edit-saved-queries mr-2 btn btn-light btn-xs btn-icon btn-hover-primary text-muted" title="Edit saved queries">
 					<wicket:svg href="edit" class="icon"></wicket:svg>
@@ -33,7 +33,7 @@
 	<wicket:fragment wicket:id="editSavedQueriesFrag">
 		<div class="edit-saved-queries">
 			<div class="modal-header">
-				<h5 class="modal-title">Edit Saved Queries</h5>
+				<h5 class="modal-title">编辑已保存的查询</h5>
 				<button wicket:id="close" type="button" class="close"><wicket:svg href="times" class="icon"/></button>
 			</div>
 			<div class="modal-body">
@@ -47,9 +47,9 @@
 			<div wicket:id="feedback"></div>
 			<div wicket:id="editor"></div>
 			<div class="modal-footer">
-				<input wicket:id="save" type="submit" class="dirty-aware btn btn-primary" value="Save">
+				<input wicket:id="save" type="submit" class="dirty-aware btn btn-primary" value="保存">
 				<a wicket:id="useDefault" class="btn btn-light-primary">Use Default</a>
-				<a wicket:id="cancel" class="btn btn-secondary">Cancel</a>
+				<a wicket:id="cancel" class="btn btn-secondary">取消</a>
 			</div>
 		</form>
 	</wicket:fragment>	

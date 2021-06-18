@@ -217,7 +217,7 @@ public abstract class SavedQueriesPanel<T extends NamedQuery> extends Panel {
 				List<Tab> tabs = new ArrayList<>();
 
 				ArrayList<T> userQueries = getUserQueries();
-				tabs.add(new AjaxActionTab(Model.of("Mine")) {
+				tabs.add(new AjaxActionTab(Model.of("我的")) {
 
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
@@ -236,7 +236,7 @@ public abstract class SavedQueriesPanel<T extends NamedQuery> extends Panel {
 				fragment.add(newUserQueriesEditor(TAB_PANEL_ID, modal, userQueries));
 				
 				if (SecurityUtils.isAdministrator() || Project.get() != null && SecurityUtils.canManage(Project.get())) {
-					tabs.add(new AjaxActionTab(Model.of("All Users")) {
+					tabs.add(new AjaxActionTab(Model.of("所有用户")) {
 
 						@Override
 						protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {

@@ -250,7 +250,7 @@ public class IssueListPage extends LayoutPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Issues");
+		return new Label(componentId, "问题");
 	}
 	
 	@Override

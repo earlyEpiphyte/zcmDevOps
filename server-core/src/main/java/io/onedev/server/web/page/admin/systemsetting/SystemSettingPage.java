@@ -53,7 +53,7 @@ public class SystemSettingPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "System Setting");
+		return new Label(componentId, "系统设置");
 	}
 
 }
