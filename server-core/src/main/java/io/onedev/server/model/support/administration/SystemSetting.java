@@ -28,8 +28,7 @@ public class SystemSetting implements Serializable, Validatable {
 	
 	private boolean gravatarEnabled;
 	
-	@Editable(name="Server URL", order=90, description="Specify root URL to access this server. Build jobs "
-			+ "running in Kubernetes cluster will access this url to download source and artifacts")
+	@Editable(name="服务器地址", order=90, description="明确访问服务器的根地址。在Kubernetes集群中运行的任务会通过这个地址下载源文件和生成物")
 	@NotEmpty
 	public String getServerUrl() {
 		return serverUrl;
@@ -39,8 +38,7 @@ public class SystemSetting implements Serializable, Validatable {
 		this.serverUrl = serverUrl;
 	}
 
-	@Editable(order=200, description="OneDev requires git command line to manage repositories. The minimum "
-			+ "required version is 2.11.1")
+	@Editable(order=200, description="OneDev需要git命令管理仓库。git版本不能低于2.11.1")
 	@Valid
 	@NotNull(message="不能为空")
 	public GitConfig getGitConfig() {
