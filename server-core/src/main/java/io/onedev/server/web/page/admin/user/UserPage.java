@@ -64,14 +64,14 @@ public abstract class UserPage extends AdministrationPage {
 		
 		List<PageTab> tabs = new ArrayList<>();
 		
-		tabs.add(new UserTab("Profile", "profile", UserProfilePage.class));
-		tabs.add(new UserTab("Edit Avatar", "avatar", UserAvatarPage.class));
+		tabs.add(new UserTab("个人信息", "profile", UserProfilePage.class));
+		tabs.add(new UserTab("修改Avatar头像", "avatar", UserAvatarPage.class));
 			
-		tabs.add(new UserTab("Change Password", "password", UserPasswordPage.class));
-		tabs.add(new UserTab("Belonging Groups", "group", UserMembershipsPage.class));
-		tabs.add(new UserTab("Authorized Projects", "project", UserAuthorizationsPage.class));
-		tabs.add(new UserTab("SSH Keys", "key", UserSshKeysPage.class));
-		tabs.add(new UserTab("Access Token", "token", UserAccessTokenPage.class));
+		tabs.add(new UserTab("修改密码", "password", UserPasswordPage.class));
+		tabs.add(new UserTab("所属用户组", "group", UserMembershipsPage.class));
+		tabs.add(new UserTab("已授权的项目", "project", UserAuthorizationsPage.class));
+		tabs.add(new UserTab("SSH密钥", "key", UserSshKeysPage.class));
+		tabs.add(new UserTab("访问令牌", "token", UserAccessTokenPage.class));
 		
 		add(new Tabbable("userTabs", tabs));
 	}

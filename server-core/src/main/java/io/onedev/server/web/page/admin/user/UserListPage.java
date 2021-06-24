@@ -164,7 +164,7 @@ public class UserListPage extends AdministrationPage {
 		
 		List<IColumn<User, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Login Name")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("登录名")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId,
@@ -188,7 +188,7 @@ public class UserListPage extends AdministrationPage {
 			}
 		});
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Full Name")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("全名")) {
 
 			@Override
 			public String getCssClass() {
@@ -203,7 +203,7 @@ public class UserListPage extends AdministrationPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Email")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("电子邮箱")) {
 
 			@Override
 			public String getCssClass() {
@@ -218,7 +218,7 @@ public class UserListPage extends AdministrationPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Auth Source")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("账户来源")) {
 
 			@Override
 			public String getCssClass() {
@@ -232,7 +232,7 @@ public class UserListPage extends AdministrationPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("Actions")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("操作")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
@@ -244,7 +244,7 @@ public class UserListPage extends AdministrationPage {
 					public void onClick(AjaxRequestTarget target) {
 						User user = rowModel.getObject();
 						OneDev.getInstance(UserManager.class).delete(user);
-						Session.get().success("User '" + user.getDisplayName() + "' deleted");
+						Session.get().success("用户'" + user.getDisplayName() + "'已被删除");
 						
 						target.add(usersTable);
 					}
@@ -254,7 +254,7 @@ public class UserListPage extends AdministrationPage {
 						super.updateAjaxAttributes(attributes);
 						
 						User user = rowModel.getObject();
-						String message = "Do you really want to delete user '" + user.getDisplayName() + "'?";
+						String message = "你真的想删除用户'" + user.getDisplayName() + "'吗?";
 						attributes.getAjaxCallListeners().add(new ConfirmClickListener(message));
 					}
 
@@ -262,12 +262,12 @@ public class UserListPage extends AdministrationPage {
 					protected void onComponentTag(ComponentTag tag) {
 						super.onComponentTag(tag);
 						if (!isEnabled())
-							tag.put("disabled", "disabled");
+							tag.put("disabled", "禁用");
 						User user = rowModel.getObject();
 						if (user.isRoot())
-							tag.put("title", "Root user can not be deleted");
+							tag.put("title", "不能删除Root用户");
 						else if (user.equals(SecurityUtils.getUser()))
-							tag.put("title", "You can not delete yourself");
+							tag.put("title", "你不能删除自己");
 					}
 
 					@Override
@@ -357,7 +357,7 @@ public class UserListPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "用户");
+		return new Label(componentId, "用户列表");
 	}
 
 }

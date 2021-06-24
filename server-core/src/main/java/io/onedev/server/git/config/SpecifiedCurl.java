@@ -4,14 +4,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(name="Use Specified curl", order=200)
+@Editable(name="使用指定的curl", order=200)
 public class SpecifiedCurl extends CurlConfig {
 
 	private static final long serialVersionUID = 1L;
 	
 	private String curlPath;
 	
-	@Editable(description="Specify path to curl executable, for instance: <tt>/usr/bin/curl</tt>")
+	@Editable(description="指定curl可执行的路径,例如: <tt>/usr/bin/curl</tt>")
 	@NotEmpty
 	public String getCurlPath() {
 		return curlPath;

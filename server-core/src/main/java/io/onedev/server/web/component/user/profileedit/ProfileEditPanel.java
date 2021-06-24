@@ -69,16 +69,16 @@ public class ProfileEditPanel extends GenericPanel<User> {
 				User userWithSameName = userManager.findByName(user.getName());
 				if (userWithSameName != null && !userWithSameName.equals(user)) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another user.");
+							"此用户名已被使用！");
 				} 
 				User userWithSameEmail = userManager.findByEmail(user.getEmail());
 				if (userWithSameEmail != null && !userWithSameEmail.equals(user)) {
 					editor.error(new Path(new PathNode.Named("email")),
-							"This email has already been used by another user.");
+							"此邮箱已被使用！");
 				} 
 				if (editor.isValid()) {
 					userManager.save(user, oldName);
-					Session.get().success("Profile updated");
+					Session.get().success("个人信息已更新");
 					setResponsePage(getPage().getClass(), getPage().getPageParameters());
 				}
 			}

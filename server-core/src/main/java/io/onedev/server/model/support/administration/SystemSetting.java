@@ -38,7 +38,7 @@ public class SystemSetting implements Serializable, Validatable {
 		this.serverUrl = serverUrl;
 	}
 
-	@Editable(order=200, description="OneDev需要git命令管理仓库。git版本不能低于2.11.1")
+	@Editable(name="git配置",order=200, description="OneDev需要git命令管理仓库。git版本不能低于2.11.1")
 	@Valid
 	@NotNull(message="不能为空")
 	public GitConfig getGitConfig() {
@@ -49,7 +49,7 @@ public class SystemSetting implements Serializable, Validatable {
 		this.gitConfig = gitConfig;
 	}
 
-	@Editable(order=250, description="OneDev configures git hooks to communicate with itself via curl")
+	@Editable(name="curl配置",order=250, description="OneDev通过curl设置git hooks和它自身交互")
 	@Valid
 	@NotNull(message="不能为空")
 	public CurlConfig getCurlConfig() {
@@ -60,7 +60,7 @@ public class SystemSetting implements Serializable, Validatable {
 		this.curlConfig = curlConfig;
 	}
 
-	@Editable(order=300, description="Whether or not to enable user gravatar (https://gravatar.com)")
+	@Editable(name="启用gravatar头像",order=300, description="是否启用用户gravatar头像(https://gravatar.com)")
 	public boolean isGravatarEnabled() {
 		return gravatarEnabled;
 	}

@@ -50,7 +50,7 @@ public class SshKeyListPanel extends GenericPanel<List<SshKey>> {
         
 		List<IColumn<SshKey, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<SshKey, Void>(Model.of("Digest")) {
+		columns.add(new AbstractColumn<SshKey, Void>(Model.of("摘要")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<SshKey>> cellItem, String componentId,
@@ -60,7 +60,7 @@ public class SshKeyListPanel extends GenericPanel<List<SshKey>> {
 			
 		});
 		
-		columns.add(new AbstractColumn<SshKey, Void>(Model.of("Comment")) {
+		columns.add(new AbstractColumn<SshKey, Void>(Model.of("注释")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<SshKey>> cellItem, String componentId,
@@ -69,12 +69,12 @@ public class SshKeyListPanel extends GenericPanel<List<SshKey>> {
 				if (comment != null)
 					cellItem.add(new Label(componentId, comment));
 				else
-					cellItem.add(new Label(componentId, "<i>No comment</i>").setEscapeModelStrings(false));
+					cellItem.add(new Label(componentId, "<i>无注释</i>").setEscapeModelStrings(false));
 			}
 			
 		});
 		
-		columns.add(new AbstractColumn<SshKey, Void>(Model.of("Created At")) {
+		columns.add(new AbstractColumn<SshKey, Void>(Model.of("创建时间")) {
 
 			@Override
 			public String getCssClass() {
@@ -102,14 +102,14 @@ public class SshKeyListPanel extends GenericPanel<List<SshKey>> {
 					public void onClick(AjaxRequestTarget target) {
 						SshKey sshKey = rowModel.getObject();
 						OneDev.getInstance(SshKeyManager.class).delete(sshKey);
-						Session.get().success("SSH key deleted");
+						Session.get().success("SSH密钥已删除");
 						target.add(sshKeysTable);
 					}
 
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 						super.updateAjaxAttributes(attributes);
-						String message = "Do you really want to delete this SSH key?";
+						String message = "你真的想删除这个SSH密钥吗?";
 						attributes.getAjaxCallListeners().add(new ConfirmClickListener(message));
 					}
 
