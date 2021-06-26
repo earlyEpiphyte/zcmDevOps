@@ -31,7 +31,7 @@ public class UserProfilePage extends UserPage {
 			add(new UserDeleteLink("delete") {
 
 				@Override
-				protected User getUser() {
+ 				protected User getUser() {
 					return UserProfilePage.this.getUser();
 				}
 				

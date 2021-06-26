@@ -17,7 +17,7 @@ public class AuthorizationBean implements Serializable {
 	
 	private String roleName;
 
-	@Editable(order=100, name="Project")
+	@Editable(order=100, name="项目")
 	@ProjectChoice
 	@NotEmpty
 	public String getProjectName() {
@@ -28,7 +28,7 @@ public class AuthorizationBean implements Serializable {
 		this.projectName = projectName;
 	}
 
-	@Editable(order=200, name="Role")
+	@Editable(order=200, name="角色")
 	@RoleChoice
 	@NotEmpty
 	public String getRoleName() {
