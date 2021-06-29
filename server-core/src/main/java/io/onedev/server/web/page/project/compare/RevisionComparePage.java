@@ -856,7 +856,7 @@ public class RevisionComparePage extends ProjectPage implements RevisionDiff.Ann
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Code Compare");
+		return new Label(componentId, "代码比较");
 	}
 
 	@Override

@@ -33,9 +33,8 @@ public class JobPrivilege implements Serializable {
 	
 	private String accessibleReports;
 	
-	@Editable(order=100, description="Specify space-separated jobs. Use '*' or '?' for wildcard match. "
-			+ "Prefix with '-' to exclude. <b class='text-danger'>NOTE: </b> Permission to access build artifacts "
-			+ "will be granted implicitly in matched jobs even if no other permissions are specified here")
+	@Editable(name="作业名称",order=100, description="明确空格隔开的任务。使用'*'或'?'通配符"
+			+ "'-'前缀表示排除。<b class='text-danger'>注意: </b>即便在此没有明确其他权限，在匹配的任务中会默许授权访问构建实例的权限")
 	@Patterns(suggester = "suggestJobNames")
 	@NotEmpty
 	public String getJobNames() {
@@ -53,7 +52,7 @@ public class JobPrivilege implements Serializable {
 		return SuggestionUtils.suggest(jobNames, matchWith);
 	}
 
-	@Editable(order=100, description="This permission is required to delete builds. It implies all other job permissions")
+	@Editable(name="管理任务",order=100, description="删除构建需要此权限。它包含了其他所有任务权限")
 	public boolean isManageJob() {
 		return manageJob;
 	}
@@ -67,8 +66,7 @@ public class JobPrivilege implements Serializable {
 		return !(boolean) EditContext.get().getInputValue("manageJob");
 	}
 
-	@Editable(order=200, description="The permission to run job manually. It also implies the permission "
-			+ "to access build log, and all published reports")
+	@Editable(name="运行任务",order=200, description="此权限可手动运行任务。 它也包含了访问构建日志和所有公布的报告的权限")
 	@ShowCondition("isManageJobDisabled")
 	public boolean isRunJob() {
 		return runJob;
@@ -83,8 +81,7 @@ public class JobPrivilege implements Serializable {
 		return !(boolean) EditContext.get().getInputValue("runJob");
 	}
 	
-	@Editable(order=300, name="Access Build Log", description="The permission to access build log. "
-			+ "It also implies the permission to access published reports")
+	@Editable(name="访问构建日志",order=300, description="此权限可访问构建日志。它也包含了访问所有公布的报告的权限")
 	@ShowCondition("isRunJobDisabled")
 	public boolean isAccessLog() {
 		return accessLog;
@@ -99,8 +96,8 @@ public class JobPrivilege implements Serializable {
 		return !(boolean) EditContext.get().getInputValue("accessLog");
 	}
 	
-	@Editable(order=400, name="Access Build Reports", description="Optionally specify space-separated reports. "
-			+ "Use '*' or '?' for wildcard match. Prefix with '-' to exclude. Leave empty to match all")
+	@Editable(order=400, name="访问构建报告", description="可选的明确空格隔开的报告。使用'*'或'?'通配符。" + 
+			"'-'前缀表示排除。空白表示匹配全部")
 	@ShowCondition("isAccessLogDisabled")
 	@Patterns
 	@Nullable

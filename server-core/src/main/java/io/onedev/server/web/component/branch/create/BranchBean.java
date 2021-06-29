@@ -21,7 +21,7 @@ public class BranchBean implements Validatable, Serializable {
 
 	private String name;
 	
-	@Editable(order=100, name="Branch Name")
+	@Editable(order=100, name="分支名称")
 	@NotEmpty
 	@OmitName
 	public String getName() {

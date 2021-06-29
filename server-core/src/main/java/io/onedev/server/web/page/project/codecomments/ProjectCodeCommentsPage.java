@@ -237,7 +237,7 @@ public class ProjectCodeCommentsPage extends ProjectPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "<span class='text-truncate'>Code Comments</span>").setEscapeModelStrings(false);
+		return new Label(componentId, "<span class='text-truncate'>代码注释</span>").setEscapeModelStrings(false);
 	}
 	
 	@Override

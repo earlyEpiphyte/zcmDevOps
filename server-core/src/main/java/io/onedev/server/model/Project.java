@@ -1065,11 +1065,11 @@ public class Project extends AbstractEntity implements NameAware {
 	public ArrayList<NamedCommitQuery> getNamedCommitQueries() {
 		if (namedCommitQueries == null) {
 			namedCommitQueries = new ArrayList<>();
-			namedCommitQueries.add(new NamedCommitQuery("All", null));
-			namedCommitQueries.add(new NamedCommitQuery("Default branch", "default-branch"));
-			namedCommitQueries.add(new NamedCommitQuery("Authored by me", "authored-by-me"));
-			namedCommitQueries.add(new NamedCommitQuery("Committed by me", "committed-by-me"));
-			namedCommitQueries.add(new NamedCommitQuery("Committed recently", "after(last week)"));
+			namedCommitQueries.add(new NamedCommitQuery("全部", null));
+			namedCommitQueries.add(new NamedCommitQuery("默认分支", "default-branch"));
+			namedCommitQueries.add(new NamedCommitQuery("我的项目", "authored-by-me"));
+			namedCommitQueries.add(new NamedCommitQuery("我的提交", "committed-by-me"));
+			namedCommitQueries.add(new NamedCommitQuery("最近提交", "after(last week)"));
 		}
 		return namedCommitQueries;
 	}
@@ -1081,10 +1081,10 @@ public class Project extends AbstractEntity implements NameAware {
 	public ArrayList<NamedCodeCommentQuery> getNamedCodeCommentQueries() {
 		if (namedCodeCommentQueries == null) {
 			namedCodeCommentQueries = new ArrayList<>(); 
-			namedCodeCommentQueries.add(new NamedCodeCommentQuery("All", null));
-			namedCodeCommentQueries.add(new NamedCodeCommentQuery("Created by me", "created by me"));
-			namedCodeCommentQueries.add(new NamedCodeCommentQuery("Created recently", "\"Create Date\" is since \"last week\""));
-			namedCodeCommentQueries.add(new NamedCodeCommentQuery("Updated recently", "\"Update Date\" is since \"last week\""));
+			namedCodeCommentQueries.add(new NamedCodeCommentQuery("全部", null));
+			namedCodeCommentQueries.add(new NamedCodeCommentQuery("我的创建", "created by me"));
+			namedCodeCommentQueries.add(new NamedCodeCommentQuery("最近创建", "\"Create Date\" is since \"last week\""));
+			namedCodeCommentQueries.add(new NamedCodeCommentQuery("最近更新", "\"Update Date\" is since \"last week\""));
 		}
 		return namedCodeCommentQueries;
 	}

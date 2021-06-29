@@ -879,7 +879,7 @@ public class ProjectBranchesPage extends ProjectPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Branches");
+		return new Label(componentId, "分支");
 	}
 
 	@Override
