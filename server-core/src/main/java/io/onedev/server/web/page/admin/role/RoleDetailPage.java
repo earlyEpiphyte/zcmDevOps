@@ -95,12 +95,12 @@ public class RoleDetailPage extends AdministrationPage {
 					Role roleWithSameName = roleManager.find(role.getName());
 					if (roleWithSameName != null && !roleWithSameName.equals(role)) {
 						editor.error(new Path(new PathNode.Named("name")),
-								"This name has already been used by another role.");
+								"此角色名已被使用！");
 					} 
 					if (editor.isValid()) {
 						roleManager.save(role, oldName);
 						setResponsePage(RoleDetailPage.class, RoleDetailPage.paramsOf(role));
-						Session.get().success("Role updated");
+						Session.get().success("角色已更新");
 					}
 				}
 				
@@ -129,7 +129,7 @@ public class RoleDetailPage extends AdministrationPage {
 					setVisible(!getRole().isOwner());
 				}
 				
-			}.add(new ConfirmClickModifier("Do you really want to delete role '" + getRole().getName() + "'?")));
+			}.add(new ConfirmClickModifier("你真的想删除角色'" + getRole().getName() + "'吗?")));
 			
 			fragment.add(form);
 			add(fragment);

@@ -151,7 +151,7 @@ public class RoleListPage extends AdministrationPage {
 		
 		List<IColumn<Role, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<Role, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Role, Void>(Model.of("角色名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Role>> cellItem, String componentId, IModel<Role> rowModel) {
@@ -177,7 +177,7 @@ public class RoleListPage extends AdministrationPage {
 			}
 		});
 		
-		columns.add(new AbstractColumn<Role, Void>(Model.of("Actions")) {
+		columns.add(new AbstractColumn<Role, Void>(Model.of("操作")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Role>> cellItem, String componentId, IModel<Role> rowModel) {
@@ -188,7 +188,7 @@ public class RoleListPage extends AdministrationPage {
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 						super.updateAjaxAttributes(attributes);
-						String message = "Do you really want to delete role '" + rowModel.getObject().getName() + "'?";						
+						String message = "你真的想删除角色'" + rowModel.getObject().getName() + "'?";						
 						attributes.getAjaxCallListeners().add(new ConfirmClickListener(message));
 					}
 
@@ -196,7 +196,7 @@ public class RoleListPage extends AdministrationPage {
 					public void onClick(AjaxRequestTarget target) {
 						Role role = rowModel.getObject();
 						OneDev.getInstance(RoleManager.class).delete(role);
-						Session.get().success("Role '" + role.getName() + "' deleted");
+						Session.get().success("角色'" + role.getName() + "'已删除");
 						target.add(rolesTable);
 					}
 
@@ -204,7 +204,7 @@ public class RoleListPage extends AdministrationPage {
 					protected void onComponentTag(ComponentTag tag) {
 						super.onComponentTag(tag);
 						if (!isEnabled()) {
-							tag.put("disabled", "disabled");
+							tag.put("disabled", "禁用");
 							tag.put("title", "This is a built-in role and can not be deleted");
 						}
 					}
@@ -284,7 +284,7 @@ public class RoleListPage extends AdministrationPage {
 	
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "角色");
+		return new Label(componentId, "角色列表");
 	}
 
 }
