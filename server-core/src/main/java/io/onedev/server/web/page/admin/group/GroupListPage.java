@@ -155,7 +155,7 @@ public class GroupListPage extends AdministrationPage {
 		
 		List<IColumn<Group, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<Group, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Group, Void>(Model.of("分组名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Group>> cellItem, String componentId, IModel<Group> rowModel) {
@@ -178,7 +178,7 @@ public class GroupListPage extends AdministrationPage {
 			}
 		});
 		
-		columns.add(new AbstractColumn<Group, Void>(Model.of("Is Admin")) {
+		columns.add(new AbstractColumn<Group, Void>(Model.of("是否为管理员")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Group>> cellItem, String componentId,
@@ -188,7 +188,7 @@ public class GroupListPage extends AdministrationPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<Group, Void>(Model.of("Actions")) {
+		columns.add(new AbstractColumn<Group, Void>(Model.of("操作")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Group>> cellItem, String componentId, IModel<Group> rowModel) {
@@ -199,7 +199,7 @@ public class GroupListPage extends AdministrationPage {
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 						super.updateAjaxAttributes(attributes);
-						String message = "Do you really want to delete group '" + rowModel.getObject().getName() + "'?";
+						String message = "你真的想删除分组'" + rowModel.getObject().getName() + "'吗?";
 						attributes.getAjaxCallListeners().add(new ConfirmClickListener(message));
 					}
 
@@ -207,7 +207,7 @@ public class GroupListPage extends AdministrationPage {
 					public void onClick(AjaxRequestTarget target) {
 						Group group = rowModel.getObject();
 						OneDev.getInstance(GroupManager.class).delete(group);
-						Session.get().success("Group '" + group.getName() + "' deleted");
+						Session.get().success("分组'" + group.getName() + "'已删除");
 						target.add(groupsTable);
 					}
 

@@ -41,7 +41,7 @@ public class Group extends AbstractEntity implements NameAware {
 	
 	private transient Collection<User> members;
 	
-	@Editable(order=100)
+	@Editable(name="分组名称",order=100)
 	@NotEmpty
 	@Override
 	public String getName() {
@@ -52,7 +52,7 @@ public class Group extends AbstractEntity implements NameAware {
 		this.name = name;
 	}
 
-	@Editable(order=200, description="Optionally describe the group")
+	@Editable(name="描述",order=200, description="可选的描述分组")
 	public String getDescription() {
 		return description;
 	}
@@ -61,7 +61,7 @@ public class Group extends AbstractEntity implements NameAware {
 		this.description = description;
 	}
 
-	@Editable(order=300, name="Site Administrator")
+	@Editable(order=300, name="选为管理员组")
 	public boolean isAdministrator() {
 		return administrator;
 	}

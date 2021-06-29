@@ -49,7 +49,7 @@ public class GroupAuthorizationsPage extends GroupPage {
 				Collection<GroupAuthorization> authorizations = new ArrayList<>();
 				for (AuthorizationBean authorizationBean: authorizationsBean.getAuthorizations()) {
 					if (projectNames.contains(authorizationBean.getProjectName())) {
-						error("Duplicate authorizations found: " + authorizationBean.getProjectName());
+						error("发现重复的授权项: " + authorizationBean.getProjectName());
 						return;
 					} else {
 						projectNames.add(authorizationBean.getProjectName());
@@ -62,7 +62,7 @@ public class GroupAuthorizationsPage extends GroupPage {
 				}
 				
 				OneDev.getInstance(GroupAuthorizationManager.class).syncAuthorizations(getGroup(), authorizations);
-				Session.get().success("Project authorizations updated");
+				Session.get().success("已授权项目已更新");
 			}
 			
 		};

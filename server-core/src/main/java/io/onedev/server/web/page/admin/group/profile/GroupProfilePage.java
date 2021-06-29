@@ -68,12 +68,12 @@ public class GroupProfilePage extends GroupPage {
 				Group groupWithSameName = groupManager.find(group.getName());
 				if (groupWithSameName != null && !groupWithSameName.equals(group)) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another group.");
+							"此组名已被其他分组使用！");
 				} 
 				if (editor.isValid()) {
 					groupManager.save(group, oldName);
 					setResponsePage(GroupProfilePage.class, GroupProfilePage.paramsOf(group));
-					Session.get().success("Profile updated");
+					Session.get().success("分组信息已更新");
 				}
 			}
 			
@@ -86,7 +86,7 @@ public class GroupProfilePage extends GroupPage {
 			@Override
 			public void onClick() {
 				OneDev.getInstance(GroupManager.class).delete(getGroup());
-				Session.get().success("Group '" + getGroup().getName() + "' deleted");
+				Session.get().success("已删除分组'" + getGroup().getName());
 				
 				String redirectUrlAfterDelete = WebSession.get().getRedirectUrlAfterDelete(Group.class);
 				if (redirectUrlAfterDelete != null)
@@ -95,7 +95,7 @@ public class GroupProfilePage extends GroupPage {
 					setResponsePage(GroupListPage.class);
 			}
 			
-		}.add(new ConfirmClickModifier("Do you really want to delete group '" + getGroup().getName() + "'?")));
+		}.add(new ConfirmClickModifier("你真的想删除分组'" + getGroup().getName() + "'吗?")));
 		
 		add(form);
 	}
