@@ -35,7 +35,7 @@ public class SystemSettingPage extends AdministrationPage {
 			protected void onSubmit() {
 				super.onSubmit();
 				OneDev.getInstance(SettingManager.class).saveSystemSetting(systemSetting);
-				getSession().success("System setting has been saved");
+				getSession().success("已保存系统设置");
 				
 				setResponsePage(SystemSettingPage.class);
 			}

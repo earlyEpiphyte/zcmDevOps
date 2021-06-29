@@ -50,17 +50,17 @@ public class NewUserPage extends AdministrationPage {
 				User userWithSameName = userManager.findByName(user.getName());
 				if (userWithSameName != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another user.");
+							"此用户名已被使用！");
 				} 
 				User userWithSameEmail = userManager.findByEmail(user.getEmail());
 				if (userWithSameEmail != null) {
 					editor.error(new Path(new PathNode.Named("email")),
-							"This email has already been used by another user.");
+							"此邮箱已被使用！");
 				} 
 				if (editor.isValid()){
 					user.setPassword(AppLoader.getInstance(PasswordService.class).encryptPassword(user.getPassword()));
 					userManager.save(user, null);
-					Session.get().success("New user created");
+					Session.get().success("已创建新用户");
 					if (continueToAdd) {
 						user = new User();
 						replace(BeanContext.edit("editor", user));
@@ -100,7 +100,7 @@ public class NewUserPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Create User");
+		return new Label(componentId, "创建新用户");
 	}
 
 }

@@ -62,7 +62,7 @@ public class UserAuthorizationsPage extends UserPage {
 				}
 				
 				OneDev.getInstance(UserAuthorizationManager.class).syncAuthorizations(getUser(), authorizations);
-				Session.get().success("Project authorizations updated");
+				Session.get().success("授权项目已更新");
 			}
 			
 		};

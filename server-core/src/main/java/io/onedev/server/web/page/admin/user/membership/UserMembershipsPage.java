@@ -130,7 +130,7 @@ public class UserMembershipsPage extends UserPage {
 			protected void onInitialize() {
 				super.onInitialize();
 				
-				getSettings().setPlaceholder("Add to group...");
+				getSettings().setPlaceholder("添加到...");
 				getSettings().setFormatResult("onedev.server.groupChoiceFormatter.formatResult");
 				getSettings().setFormatSelection("onedev.server.groupChoiceFormatter.formatSelection");
 				getSettings().setEscapeMarkup("onedev.server.groupChoiceFormatter.escapeMarkup");
@@ -143,7 +143,7 @@ public class UserMembershipsPage extends UserPage {
 				membership.setGroup(OneDev.getInstance(GroupManager.class).load(selection.getId()));
 				OneDev.getInstance(MembershipManager.class).save(membership);
 				target.add(membershipsTable);
-				Session.get().success("Group added");
+				Session.get().success("已添加");
 			}
 			
 			@Override
