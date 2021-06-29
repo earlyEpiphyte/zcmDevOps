@@ -231,7 +231,7 @@ public class ProjectCommitsPage extends ProjectPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Commits");
+		return new Label(componentId, "提交");
 	}
 	
 	@Override

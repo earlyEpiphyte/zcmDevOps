@@ -996,7 +996,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Issue Boards");
+		return new Label(componentId, "发行版");
 	}
 	
 	@Override

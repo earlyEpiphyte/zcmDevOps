@@ -141,7 +141,7 @@ public abstract class BuildListPanel extends Panel {
 			error(e.getMessage());
 			return null;
 		} catch (Exception e) {
-			warn("Not a valid formal query, performing fuzzy query");
+			warn("不是有效的查询，请执行模糊查询");
 			try {
 				EntityQuery.getProjectScopedNumber(getProject(), queryString);
 				return BuildQuery.merge(baseQuery, 

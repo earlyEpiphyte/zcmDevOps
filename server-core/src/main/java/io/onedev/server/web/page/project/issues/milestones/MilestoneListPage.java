@@ -375,7 +375,7 @@ public class MilestoneListPage extends ProjectPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Milestones");
+		return new Label(componentId, "里程碑");
 	}
 
 	@Override

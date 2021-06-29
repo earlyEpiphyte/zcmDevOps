@@ -1538,7 +1538,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Files");
+		return new Label(componentId, "文件");
 	}
 
 }
