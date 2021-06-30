@@ -244,7 +244,7 @@ public class ProjectListPage extends LayoutPage {
 
 	@Override
 	protected String getPageTitle() {
-		return "Projects - OneDev";
+		return "项目 - OneDev";
 	}
 	
 	@Override

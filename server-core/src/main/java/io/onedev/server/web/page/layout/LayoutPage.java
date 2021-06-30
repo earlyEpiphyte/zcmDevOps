@@ -171,6 +171,7 @@ public abstract class LayoutPage extends BasePage {
 			
 		}) {
 
+			
 			@Override
 			protected void populateItem(ListItem<SidebarMenu> item) {
 				SidebarMenu menu = item.getModelObject();
