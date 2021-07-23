@@ -94,6 +94,7 @@ public abstract class LayoutPage extends BasePage {
 		
 		WebRequest request = (WebRequest) RequestCycle.get().getRequest();
 		Cookie cookie = request.getCookie("sidebar.minimized");
+		
 		if (cookie != null && "true".equals(cookie.getValue())) 
 			sidebar.add(AttributeAppender.append("class", "sidebar-minimized"));
 		add(sidebar);
@@ -108,14 +109,20 @@ public abstract class LayoutPage extends BasePage {
 			protected List<SidebarMenu> load() {
 				List<SidebarMenu> menus = new ArrayList<>();
 				List<SidebarMenuItem> menuItems = new ArrayList<>(customization.getMainMenuItems());
+				
 				if (SecurityUtils.isAdministrator()) {
+					
 					List<SidebarMenuItem> administrationMenuItems = new ArrayList<>();
+					
 					administrationMenuItems.add(new SidebarMenuItem.Page(null, "系统设置", 
 							SystemSettingPage.class, new PageParameters()));
+					
 					administrationMenuItems.add(new SidebarMenuItem.Page(null, "用户管理", UserListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewUserPage.class, UserPage.class)));
+					
 					administrationMenuItems.add(new SidebarMenuItem.Page(null, "角色管理", RoleListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewRolePage.class, RoleDetailPage.class)));
+					
 					administrationMenuItems.add(new SidebarMenuItem.Page(null, "分组管理", GroupListPage.class, 
 							new PageParameters(), Lists.newArrayList(NewGroupPage.class, GroupPage.class)));
 					

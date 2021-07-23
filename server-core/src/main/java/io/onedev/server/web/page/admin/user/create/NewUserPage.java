@@ -40,6 +40,7 @@ public class NewUserPage extends AdministrationPage {
 		
 		BeanEditor editor = BeanContext.edit("editor", user);
 		
+		//输入新用户的信息
 		Form<?> form = new Form<Void>("form") {
 
 			@Override
@@ -47,16 +48,17 @@ public class NewUserPage extends AdministrationPage {
 				super.onSubmit();
 				
 				UserManager userManager = OneDev.getInstance(UserManager.class);
+				
 				User userWithSameName = userManager.findByName(user.getName());
 				if (userWithSameName != null) {
-					editor.error(new Path(new PathNode.Named("name")),
-							"此用户名已被使用！");
+					editor.error(new Path(new PathNode.Named("name")), "此用户名已被使用！");
 				} 
+				
 				User userWithSameEmail = userManager.findByEmail(user.getEmail());
 				if (userWithSameEmail != null) {
-					editor.error(new Path(new PathNode.Named("email")),
-							"此邮箱已被使用！");
+					editor.error(new Path(new PathNode.Named("email")), "此邮箱已被使用！");
 				} 
+				
 				if (editor.isValid()){
 					user.setPassword(AppLoader.getInstance(PasswordService.class).encryptPassword(user.getPassword()));
 					userManager.save(user, null);
@@ -69,8 +71,10 @@ public class NewUserPage extends AdministrationPage {
 					}
 				}
 			}
-			
 		};
+		
+		
+		
 		form.add(editor);
 		form.add(new CheckBox("continueToAdd", new IModel<Boolean>() {
 

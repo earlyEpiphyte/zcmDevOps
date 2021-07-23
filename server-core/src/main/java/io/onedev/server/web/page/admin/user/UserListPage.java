@@ -101,10 +101,15 @@ public class UserListPage extends AdministrationPage {
 		super.onBeforeRender();
 	}
 
+	
+	
+	
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
 		
+		
+		//查询用户
 		add(searchField = new TextField<String>("filterUsers", new IModel<String>() {
 
 			@Override
@@ -119,13 +124,18 @@ public class UserListPage extends AdministrationPage {
 			@Override
 			public void setObject(String object) {
 				query = object;
+				
+				//获取查询用户框的输入信息
 				PageParameters params = getPageParameters();
 				params.set(PARAM_QUERY, query);
 				params.remove(PARAM_PAGE);
 				
+				//获取查询用户请求的url链接
 				String url = RequestCycle.get().urlFor(UserListPage.class, params).toString();
-
+				System.out.println(url);
+				
 				AjaxRequestTarget target = RequestCycle.get().find(AjaxRequestTarget.class);
+				
 				if (typing)
 					replaceState(target, url, query);
 				else
@@ -139,6 +149,9 @@ public class UserListPage extends AdministrationPage {
 			
 		}));
 		
+		
+		
+		
 		searchField.add(new OnTypingDoneBehavior(100) {
 
 			@Override
@@ -147,6 +160,8 @@ public class UserListPage extends AdministrationPage {
 
 		});
 		
+		
+		//添加新用户
 		add(new Link<Void>("addNew") {
 
 			@Override
@@ -162,21 +177,28 @@ public class UserListPage extends AdministrationPage {
 			
 		});
 		
+		
+		
+		
 		List<IColumn<User, Void>> columns = new ArrayList<>();
 		
 		columns.add(new AbstractColumn<User, Void>(Model.of("登录名")) {
 
 			@Override
-			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId,
-					IModel<User> rowModel) {
+			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
+				
+				//获取所有用户
 				User user = rowModel.getObject();
+				
+				//每一个用户就在一个Fragment下
 				Fragment fragment = new Fragment(componentId, "nameFrag", UserListPage.this);
+				
+				//用户信息页链接
 				WebMarkupContainer link = new ActionablePageLink<Void>("link", UserProfilePage.class, UserProfilePage.paramsOf(user)) {
 
 					@Override
 					protected void doBeforeNav(AjaxRequestTarget target) {
-						String redirectUrlAfterDelete = RequestCycle.get().urlFor(
-								UserListPage.class, getPageParameters()).toString();
+						String redirectUrlAfterDelete = RequestCycle.get().urlFor(UserListPage.class, getPageParameters()).toString();
 						WebSession.get().setRedirectUrlAfterDelete(User.class, redirectUrlAfterDelete);
 					}
 					
@@ -188,6 +210,9 @@ public class UserListPage extends AdministrationPage {
 			}
 		});
 		
+		
+		
+		
 		columns.add(new AbstractColumn<User, Void>(Model.of("全名")) {
 
 			@Override
@@ -196,12 +221,14 @@ public class UserListPage extends AdministrationPage {
 			}
 			
 			@Override
-			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId,
-					IModel<User> rowModel) {
+			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
 				cellItem.add(new Label(componentId, rowModel.getObject().getFullName()));
 			}
 			
 		});
+		
+		
+		
 		
 		columns.add(new AbstractColumn<User, Void>(Model.of("电子邮箱")) {
 
@@ -211,12 +238,14 @@ public class UserListPage extends AdministrationPage {
 			}
 			
 			@Override
-			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId,
-					IModel<User> rowModel) {
+			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
 				cellItem.add(new Label(componentId, rowModel.getObject().getEmail()));
 			}
 			
 		});
+		
+		
+		
 		
 		columns.add(new AbstractColumn<User, Void>(Model.of("账户来源")) {
 
@@ -232,12 +261,15 @@ public class UserListPage extends AdministrationPage {
 			
 		});
 		
+		
+		
 		columns.add(new AbstractColumn<User, Void>(Model.of("操作")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
 				Fragment fragment = new Fragment(componentId, "actionsFrag", UserListPage.this);
 				
+				//删除用户
 				fragment.add(new AjaxLink<Void>("delete") {
 
 					@Override
@@ -279,6 +311,8 @@ public class UserListPage extends AdministrationPage {
 
 				});
 				
+				
+				//切换用户
 				fragment.add(new Link<Void>("impersonate") {
 
 					@Override
@@ -286,18 +320,21 @@ public class UserListPage extends AdministrationPage {
 						SecurityUtils.getSubject().runAs(rowModel.getObject().getPrincipals());
 						setResponsePage(ProjectListPage.class);
 					}
-										
 				});
 				
 				cellItem.add(fragment);
 			}
 
+			
 			@Override
 			public String getCssClass() {
 				return "actions";
 			}
 			
 		});
+		
+		
+		
 		
 		SortableDataProvider<User, Void> dataProvider = new LoadableDetachableDataProvider<User, Void>() {
 
@@ -349,6 +386,9 @@ public class UserListPage extends AdministrationPage {
 				WebConstants.PAGE_SIZE, pagingHistorySupport));
 	}
 
+	
+	
+	
 	@Override
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);

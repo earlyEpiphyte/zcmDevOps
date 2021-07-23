@@ -195,15 +195,13 @@ public abstract class BasePage extends WebPage {
 
 	public void pushState(IPartialPageRequestHandler handler, String url, Serializable data) {
 		String encodedData = new String(Base64.encodeBase64(CipherUtils.encrypt(SerializationUtils.serialize(data))));
-		String script = String.format("onedev.server.history.pushState('%s', '%s', '%s');", 
-				url, encodedData, JavaScriptEscape.escapeJavaScript(getPageTitle()));
+		String script = String.format("onedev.server.history.pushState('%s', '%s', '%s');", url, encodedData, JavaScriptEscape.escapeJavaScript(getPageTitle()));
 		handler.prependJavaScript(script);
 	}
 
 	public void replaceState(IPartialPageRequestHandler handler, String url, Serializable data) {
 		String encodedData = new String(Base64.encodeBase64(CipherUtils.encrypt(SerializationUtils.serialize(data))));
-		String script = String.format("onedev.server.history.replaceState('%s', '%s', '%s');", 
-				url, encodedData, JavaScriptEscape.escapeJavaScript(getPageTitle()));
+		String script = String.format("onedev.server.history.replaceState('%s', '%s', '%s');", url, encodedData, JavaScriptEscape.escapeJavaScript(getPageTitle()));
 		handler.prependJavaScript(script);
 	}
 	
@@ -261,7 +259,7 @@ public abstract class BasePage extends WebPage {
 	
 	public void unauthorized() {
 		if (getLoginUser() != null) 
-			throw new UnauthorizedException("You are not allowed to perform this operation");
+			throw new UnauthorizedException("您无权执行此操作");
 		else 
 			throw new RestartResponseAtInterceptPageException(LoginPage.class);
 	}
