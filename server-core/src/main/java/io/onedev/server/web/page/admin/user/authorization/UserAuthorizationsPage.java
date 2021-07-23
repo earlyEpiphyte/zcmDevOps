@@ -49,7 +49,7 @@ public class UserAuthorizationsPage extends UserPage {
 				Collection<UserAuthorization> authorizations = new ArrayList<>();
 				for (AuthorizationBean authorizationBean: authorizationsBean.getAuthorizations()) {
 					if (projectNames.contains(authorizationBean.getProjectName())) {
-						error("Duplicate authorizations found: " + authorizationBean.getProjectName());
+						error("发现相同的已授权项目: " + authorizationBean.getProjectName());
 						return;
 					} else {
 						projectNames.add(authorizationBean.getProjectName());

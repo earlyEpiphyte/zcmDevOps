@@ -96,9 +96,8 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 	@OneToMany(mappedBy="role", cascade=CascadeType.REMOVE)
 	private Collection<GroupAuthorization> groupAuthorizations = new ArrayList<>();
 	
-	@Editable(order=100, description="Specify name of the role. <b class='text-danger'>NOTE: </b> "
-			+ "Permission to view issues will be granted implicitly even if no other permissions "
-			+ "are specified here")
+	@Editable(order=100, description="明确角色名称。<b class='text-danger'>注意:</b> "
+			+ "即便这里没有明确其他权限，会隐含的授予查看问题的权限")
 	@NotEmpty
 	@Override
 	public String getName() {
@@ -113,7 +112,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		return getId().equals(OWNER_ID);
 	}
 
-	@Editable(order=200)
+	@Editable(name="管理项目",order=200)
 	public boolean isManageProject() {
 		return manageProject;
 	}
@@ -127,7 +126,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		return !(boolean)EditContext.get().getInputValue("manageProject");
 	}
 
-	@Editable(order=250)
+	@Editable(name="管理拉取请求",order=250)
 	@ShowCondition("isManageProjectDisabled")
 	public boolean isManagePullRequests() {
 		return managePullRequests;
@@ -137,7 +136,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		this.managePullRequests = managePullRequests;
 	}
 	
-	@Editable(order=260)
+	@Editable(name="管理代码评论",order=260)
 	@ShowCondition("isManageProjectDisabled")
 	public boolean isManageCodeComments() {
 		return manageCodeComments;
@@ -147,7 +146,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		this.manageCodeComments = manageCodeComments;
 	}
 
-	@Editable(order=300)
+	@Editable(name="代码权限",order=300)
 	@ShowCondition("isCodePrivilegeVisible")
 	@NotNull
 	public CodePrivilege getCodePrivilege() {
@@ -164,7 +163,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 				&& !(boolean)EditContext.get().getInputValue("manageCodeComments");
 	}
 	
-	@Editable(order=400)
+	@Editable(name="管理问题",order=400)
 	@ShowCondition("isManageProjectDisabled")
 	public boolean isManageIssues() {
 		return manageIssues;
@@ -179,7 +178,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		return !(boolean)EditContext.get().getInputValue("manageIssues");
 	}
 	
-	@Editable(order=500, description="This permission enables one to schedule issues into milestones")
+	@Editable(name="收录问题",order=500, description="此权限可在里程碑中收录一些问题")
 	@ShowCondition("isManageIssuesDisabled")
 	public boolean isScheduleIssues() {
 		return scheduleIssues;
@@ -189,7 +188,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		this.scheduleIssues = scheduleIssues;
 	}
 
-	@Editable(order=600, description="Optionally specify custom fields allowed to edit when open new issues")
+	@Editable(name="可编辑的问题字段",order=600, description="当开放新的问题时，可选择性的明确可修改的字段")
 	@ShowCondition("isManageIssuesDisabled")
 	@NotNull
 	public IssueFieldSet getEditableIssueFields() {
@@ -205,7 +204,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		return OneDev.getInstance(SettingManager.class).getIssueSetting().getFieldNames();
 	}
 	
-	@Editable(order=650)
+	@Editable(name="管理构建",order=650)
 	@ShowCondition("isManageProjectDisabled")
 	public boolean isManageBuilds() {
 		return manageBuilds;
@@ -220,7 +219,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 		return !(boolean)EditContext.get().getInputValue("manageBuilds");
 	}
 	
-	@Editable(order=700)
+	@Editable(name="作业特权",order=700)
 	@ShowCondition("isManageBuildsDisabled")
 	public List<JobPrivilege> getJobPrivileges() {
 		return jobPrivileges;

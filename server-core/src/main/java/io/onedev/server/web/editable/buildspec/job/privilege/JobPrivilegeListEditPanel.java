@@ -102,7 +102,7 @@ class JobPrivilegeListEditPanel extends PropertyEditor<List<Serializable>> {
 			
 		});		
 		
-		columns.add(new AbstractColumn<JobPrivilege, Void>(Model.of("Job Names")) {
+		columns.add(new AbstractColumn<JobPrivilege, Void>(Model.of("作业名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<JobPrivilege>> cellItem, String componentId, IModel<JobPrivilege> rowModel) {
@@ -110,21 +110,21 @@ class JobPrivilegeListEditPanel extends PropertyEditor<List<Serializable>> {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<JobPrivilege, Void>(Model.of("Privilege")) {
+		columns.add(new AbstractColumn<JobPrivilege, Void>(Model.of("特权")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<JobPrivilege>> cellItem, String componentId, IModel<JobPrivilege> rowModel) {
 				JobPrivilege privilege = rowModel.getObject();
 				if (privilege.isManageJob())
-					cellItem.add(new Label(componentId, "Manage Job"));
+					cellItem.add(new Label(componentId, "管理任务"));
 				else if (privilege.isRunJob())
-					cellItem.add(new Label(componentId, "Run Job"));
+					cellItem.add(new Label(componentId, "运行任务"));
 				else if (privilege.isAccessLog())
-					cellItem.add(new Label(componentId, "Access Log"));
+					cellItem.add(new Label(componentId, "访问日志"));
 				else if (privilege.getAccessibleReports() != null)
-					cellItem.add(new Label(componentId, "Access Reports: " + privilege.getAccessibleReports()));
+					cellItem.add(new Label(componentId, "访问报告: " + privilege.getAccessibleReports()));
 				else
-					cellItem.add(new Label(componentId, "Access Artifacts"));
+					cellItem.add(new Label(componentId, "访问实例"));
 			}
 		});		
 		

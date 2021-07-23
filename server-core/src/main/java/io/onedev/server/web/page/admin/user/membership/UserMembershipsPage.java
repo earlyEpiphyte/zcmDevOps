@@ -193,7 +193,7 @@ public class UserMembershipsPage extends UserPage {
 			columns.add(selectionColumn);
 		}
 		
-		columns.add(new AbstractColumn<Membership, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Membership, Void>(Model.of("组名")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Membership>> cellItem, String componentId,
@@ -214,7 +214,7 @@ public class UserMembershipsPage extends UserPage {
 			}
 		});
 		
-		columns.add(new AbstractColumn<Membership, Void>(Model.of("Description")) {
+		columns.add(new AbstractColumn<Membership, Void>(Model.of("描述")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Membership>> cellItem, String componentId,

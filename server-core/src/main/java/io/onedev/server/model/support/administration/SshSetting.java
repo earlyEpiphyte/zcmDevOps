@@ -29,8 +29,7 @@ public class SshSetting implements Serializable, Validatable {
 
     private String pemPrivateKey;
     
-	@Editable(name="SSH Server URL", order=90, description="This property will be used as base to construct "
-			+ "urls of various ssh services such as git over ssh")
+	@Editable(name="SSH服务器地址", order=90, description="这个属性将被用作构建各种ssh服务(如使用ssh的git)的基础url")
 	@NotEmpty
     public String getServerUrl() {
         return serverUrl;
@@ -40,8 +39,7 @@ public class SshSetting implements Serializable, Validatable {
         this.serverUrl = serverUrl;
     }
 
-    @Editable(name="Server Private Key", order=100, description="Specify the private key (in PEM format) used "
-    		+ "by ssh server to establish connections with client")
+    @Editable(name="服务器私钥", order=100, description="明确与客户端建立连接的ssh服务器的私钥(PEM格式)")
     @Multiline
     @NotEmpty
     public String getPemPrivateKey() {
@@ -96,7 +94,7 @@ public class SshSetting implements Serializable, Validatable {
         try {
             SshKeyUtils.decodePEMPrivateKey(pemPrivateKey);
         } catch (Exception e) {
-            context.buildConstraintViolationWithTemplate("The provided key is not valid. Please check and try again")
+            context.buildConstraintViolationWithTemplate("所给的密钥不合规则。请检查并再次尝试")
                     .addPropertyNode(propertyNode).addConstraintViolation()
                     .disableDefaultConstraintViolation();
             hasErrors = true;

@@ -47,11 +47,11 @@ public class NewGroupPage extends AdministrationPage {
 				Group groupWithSameName = groupManager.find(group.getName());
 				if (groupWithSameName != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another group");
+							"该组名已被其他分组使用！");
 				} 
 				if (editor.isValid()) {
 					groupManager.save(group, null);
-					Session.get().success("Group created");
+					Session.get().success("分组已创建");
 					setResponsePage(GroupMembershipsPage.class, GroupMembershipsPage.paramsOf(group));
 				}
 			}

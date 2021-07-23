@@ -38,7 +38,7 @@ public class SshSettingPage extends AdministrationPage {
             protected void onSubmit() {
                 super.onSubmit();
                 OneDev.getInstance(SettingManager.class).saveSshSetting(sshSetting);
-                getSession().success("SSH setting has been saved");
+                getSession().success("SSH设置已保存");
                 
                 setResponsePage(SshSettingPage.class);
             }
@@ -61,7 +61,7 @@ public class SshSettingPage extends AdministrationPage {
 				});
 				target.add(form);
 				target.appendJavaScript(String.format("onedev.server.form.markDirty($('#%s'));", form.getMarkupId()));
-	            getSession().success("Private key regenerated");
+	            getSession().success("私钥已重新生成");
 			}
         	
         });
@@ -71,7 +71,7 @@ public class SshSettingPage extends AdministrationPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "SSH 设置");
+		return new Label(componentId, "SSH设置");
 	}
     
 }

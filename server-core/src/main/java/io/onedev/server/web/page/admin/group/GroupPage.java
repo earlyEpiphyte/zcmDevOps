@@ -58,9 +58,9 @@ public abstract class GroupPage extends AdministrationPage {
 		
 		List<PageTab> tabs = new ArrayList<>();
 		
-		tabs.add(new GroupTab("Profile", "profile", GroupProfilePage.class));
-		tabs.add(new GroupTab("Members", "members", GroupMembershipsPage.class));
-		tabs.add(new GroupTab("Authorized Projects", "project", GroupAuthorizationsPage.class));
+		tabs.add(new GroupTab("分组详情", "profile", GroupProfilePage.class));
+		tabs.add(new GroupTab("成员", "members", GroupMembershipsPage.class));
+		tabs.add(new GroupTab("已授权项目", "project", GroupAuthorizationsPage.class));
 		
 		add(new Tabbable("groupTabs", tabs));
 	}

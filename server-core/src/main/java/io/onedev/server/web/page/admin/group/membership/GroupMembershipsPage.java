@@ -129,7 +129,7 @@ public class GroupMembershipsPage extends GroupPage {
 			protected void onInitialize() {
 				super.onInitialize();
 				
-				getSettings().setPlaceholder("Add member...");
+				getSettings().setPlaceholder("添加成员...");
 				getSettings().setFormatResult("onedev.server.userChoiceFormatter.formatResult");
 				getSettings().setFormatSelection("onedev.server.userChoiceFormatter.formatSelection");
 				getSettings().setEscapeMarkup("onedev.server.userChoiceFormatter.escapeMarkup");
@@ -142,7 +142,7 @@ public class GroupMembershipsPage extends GroupPage {
 				membership.setUser(OneDev.getInstance(UserManager.class).load(selection.getId()));
 				OneDev.getInstance(MembershipManager.class).save(membership);
 				target.add(membershipsTable);
-				Session.get().success("Member added");
+				Session.get().success("成员已添加");
 			}
 			
 			@Override
@@ -197,7 +197,7 @@ public class GroupMembershipsPage extends GroupPage {
 		if (SecurityUtils.isAdministrator())
 			columns.add(selectionColumn);
 		
-		columns.add(new AbstractColumn<Membership, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Membership, Void>(Model.of("用户名")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Membership>> cellItem, String componentId,
@@ -213,7 +213,7 @@ public class GroupMembershipsPage extends GroupPage {
 			}
 		});
 		
-		columns.add(new AbstractColumn<Membership, Void>(Model.of("Email")) {
+		columns.add(new AbstractColumn<Membership, Void>(Model.of("邮箱")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Membership>> cellItem, String componentId,

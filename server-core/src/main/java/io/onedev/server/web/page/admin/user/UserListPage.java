@@ -182,7 +182,7 @@ public class UserListPage extends AdministrationPage {
 		
 		List<IColumn<User, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<User, Void>(Model.of("登录名")) {
+		columns.add(new AbstractColumn<User, Void>(Model.of("用户名")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<User>> cellItem, String componentId, IModel<User> rowModel) {
