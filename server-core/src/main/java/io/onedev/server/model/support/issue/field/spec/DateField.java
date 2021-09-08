@@ -18,8 +18,8 @@ public class DateField extends FieldSpec {
 
 	private DefaultValueProvider defaultValueProvider;
 	
-	@Editable(order=1000, name="Default Value")
-	@NameOfEmptyValue("No default value")
+	@Editable(order=1000, name="默认值")
+	@NameOfEmptyValue("无默认值")
 	@Valid
 	public DefaultValueProvider getDefaultValueProvider() {
 		return defaultValueProvider;

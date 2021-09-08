@@ -21,7 +21,7 @@ public class NumberField extends FieldSpec {
 	
 	private DefaultValueProvider defaultValueProvider;
 	
-	@Editable(order=1000, description="Optionally specify the minimum value allowed.")
+	@Editable(order=1000, name="小值", description="可选择的指定最小值")
 	public Integer getMinValue() {
 		return minValue;
 	}
@@ -30,7 +30,7 @@ public class NumberField extends FieldSpec {
 		this.minValue = minValue;
 	}
 
-	@Editable(order=1100, description="Optionally specify the maximum value allowed.")
+	@Editable(order=1100, name="大值", description="可选择的指定最大值")
 	public Integer getMaxValue() {
 		return maxValue;
 	}
@@ -39,8 +39,8 @@ public class NumberField extends FieldSpec {
 		this.maxValue = maxValue;
 	}
 
-	@Editable(order=1200, name="Default Value")
-	@NameOfEmptyValue("No default value")
+	@Editable(order=1200, name="默认值")
+	@NameOfEmptyValue("无默认值")
 	@Valid
 	public DefaultValueProvider getDefaultValueProvider() {
 		return defaultValueProvider;

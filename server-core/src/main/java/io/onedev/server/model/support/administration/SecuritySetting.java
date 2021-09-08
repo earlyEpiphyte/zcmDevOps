@@ -13,7 +13,7 @@ public class SecuritySetting implements Serializable {
 	
 	private boolean enableSelfRegister = true;
 	
-	@Editable(name="",order=100, description="是否允许不登录访问次服务器")
+	@Editable(name="允许匿名登录",order=100, description="是否允许不登录访问服务器")
 	public boolean isEnableAnonymousAccess() {
 		return enableAnonymousAccess;
 	}
