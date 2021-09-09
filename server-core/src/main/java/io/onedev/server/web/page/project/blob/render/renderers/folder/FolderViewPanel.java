@@ -62,7 +62,7 @@ public class FolderViewPanel extends Panel {
 
 		@Override
 		protected List<BlobIdent> load() {
-			Repository repository = context.getProject().getRepository();			
+			Repository repository = context.getProject().getRepository();		
 			try (RevWalk revWalk = new RevWalk(repository)) {
 				RevTree revTree = revWalk.parseCommit(getCommitId()).getTree();
 				TreeWalk treeWalk;
@@ -98,7 +98,7 @@ public class FolderViewPanel extends Panel {
 					children.set(i, child);
 				}
 				
-				Collections.sort(children);
+				Collections.sort(children);//children:[BlobIdent{revision=master, path=ddd}, ...]
 				
 				BlobIdent oldBuildSpecIdent = new BlobIdent(context.getBlobIdent().revision, 
 						".onedev-buildspec", FileMode.REGULAR_FILE.getBits());

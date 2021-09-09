@@ -1,6 +1,7 @@
 package io.onedev.server.web.page.project.blob.render.view;
 
 import javax.annotation.Nullable;
+import javax.sound.sampled.LineListener;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
@@ -67,13 +68,31 @@ public abstract class BlobViewPanel extends Panel {
 		WebMarkupContainer changeActions = new WebMarkupContainer("changeActions");
 
 		Project project = context.getProject();
+		
 		if (SecurityUtils.canWriteCode(project) && context.isOnBranch()) {
 			User user = SecurityUtils.getUser();
 			String revision = context.getBlobIdent().revision;
 			String path = context.getBlobIdent().path;
 			boolean reviewRequired = project.isReviewRequiredForModification(user, revision, path);
 			boolean buildRequired = project.isBuildRequiredForModification(user, revision, path);
+			
+			
+			WebMarkupContainer compiler = new WebMarkupContainer("compiler");
+			changeActions.add(compiler);
 
+			AjaxLink<Void> compile = new ViewStateAwareAjaxLink<Void>("compile") {
+				
+				@Override
+				public void onClick(AjaxRequestTarget target) {
+					//这里
+					System.out.println("compiling...");
+					System.out.println(context.getDirectoryUrl());
+					System.out.println(context.getRootDirectoryUrl());
+				}
+
+			};
+			compiler.add(compile);
+			
 			WebMarkupContainer edit = new WebMarkupContainer("edit");
 			changeActions.add(edit);
 			if (isEditSupported()) {
