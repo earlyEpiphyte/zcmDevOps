@@ -186,7 +186,7 @@ public class SourceViewPanel extends BlobViewPanel implements Positionable, Sear
 		this.viewPlainMode = viewPlainMode;
 		
 		Blob blob = context.getProject().getBlob(context.getBlobIdent(), true);
-		
+		//System.out.println(blob.getText().getContent());
 		String blobName = context.getBlobIdent().getName();
 		SymbolExtractor<Symbol> extractor = SymbolExtractorRegistry.getExtractor(blobName);
 		if (extractor != null) {

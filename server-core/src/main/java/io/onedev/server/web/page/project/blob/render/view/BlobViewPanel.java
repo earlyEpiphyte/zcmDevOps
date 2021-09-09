@@ -86,8 +86,7 @@ public abstract class BlobViewPanel extends Panel {
 				public void onClick(AjaxRequestTarget target) {
 					//这里
 					System.out.println("compiling...");
-					System.out.println(context.getDirectoryUrl());
-					System.out.println(context.getRootDirectoryUrl());
+					System.out.println(context.getProject().getBlob(context.getBlobIdent(), true).getText().getContent());
 				}
 
 			};
