@@ -738,6 +738,16 @@ public class Project extends AbstractEntity implements NameAware {
 		return buildSpec.orNull();
 	}
 	
+	public void setBuildSpec(ObjectId commitId,BuildSpec buildSpec) {
+		if (buildSpecCache == null)
+			buildSpecCache = new HashMap<>();
+		buildSpecCache.put(commitId, Optional.fromNullable(buildSpec));
+	}
+	
+	public Map<ObjectId, Optional<BuildSpec>> test() {
+		return buildSpecCache;
+	}
+	
 	public List<String> getJobNames() {
 		List<String> jobNames = new ArrayList<>();
 		if (getDefaultBranch() != null) {

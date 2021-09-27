@@ -1,8 +1,19 @@
 package io.onedev.server.web.page.project.blob.render.view;
 
-import javax.annotation.Nullable;
-import javax.sound.sampled.LineListener;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.annotation.Nullable;
+
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes.Method;
@@ -19,12 +30,35 @@ import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
+import org.eclipse.jgit.lib.FileMode;
+import org.eclipse.jgit.lib.ObjectId;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 import io.onedev.commons.utils.FileUtils;
+import io.onedev.k8shelper.Executable;
+import io.onedev.k8shelper.ExecuteCondition;
+import io.onedev.server.OneDev;
+import io.onedev.server.buildspec.BuildSpec;
+import io.onedev.server.buildspec.job.Job;
+import io.onedev.server.buildspec.job.JobManager;
+import io.onedev.server.buildspec.job.SubmitReason;
+import io.onedev.server.buildspec.job.gitcredential.DefaultCredential;
+import io.onedev.server.buildspec.job.gitcredential.GitCredential;
+import io.onedev.server.buildspec.param.ParamCombination;
+import io.onedev.server.buildspec.step.CheckoutStep;
+import io.onedev.server.buildspec.step.CommandStep;
+import io.onedev.server.buildspec.step.Step;
+import io.onedev.server.entitymanager.BuildManager;
+import io.onedev.server.entitymanager.impl.DefaultBuildManager;
+import io.onedev.server.event.RefUpdated;
+import io.onedev.server.git.BlobContent;
+import io.onedev.server.git.BlobEdits;
 import io.onedev.server.git.BlobIdent;
+import io.onedev.server.model.Build;
 import io.onedev.server.model.Project;
+import io.onedev.server.model.PullRequest;
 import io.onedev.server.model.User;
 import io.onedev.server.security.SecurityUtils;
 import io.onedev.server.web.ajaxlistener.ConfirmLeaveListener;
@@ -32,6 +66,7 @@ import io.onedev.server.web.ajaxlistener.TrackViewStateListener;
 import io.onedev.server.web.component.link.ViewStateAwareAjaxLink;
 import io.onedev.server.web.page.project.blob.render.BlobRenderContext;
 import io.onedev.server.web.page.project.blob.render.BlobRenderContext.Mode;
+import io.onedev.server.web.page.project.builds.detail.log.BuildLogPage;
 import io.onedev.server.web.resource.RawBlobResource;
 import io.onedev.server.web.resource.RawBlobResourceReference;
 
@@ -84,9 +119,74 @@ public abstract class BlobViewPanel extends Panel {
 				
 				@Override
 				public void onClick(AjaxRequestTarget target) {
-					//这里
-					System.out.println("compiling...");
-					System.out.println(context.getProject().getBlob(context.getBlobIdent(), true).getText().getContent());
+					//照抄RunJobLink中的reason
+					SubmitReason reason = new SubmitReason() {
+
+						@Override
+						public String getRefName() {
+							return Lists.newArrayList(context.getRefName()).iterator().next();
+						}
+
+						@Override
+						public PullRequest getPullRequest() {
+							return context.getPullRequest();
+						}
+
+						@Override
+						public String getDescription() {
+							return "online compile";
+						}
+						
+					};
+					//.onedev-buildspce.yml位置：src/main/resources
+					ObjectId commitId = context.getCommit().copy();
+					ObjectId preCommitId = context.getProject().getObjectId(revision, true);
+					String jobName = "myjob";
+
+					//删除project
+					Set<String> oldPaths = new HashSet<>();
+					oldPaths.add(BuildSpec.BLOB_PATH);
+					Map<String, BlobContent> newBlobs = new HashMap<>();
+					String content = "version: 6\n" + 
+							"jobs:\n" + 
+							"- name: myjob\n" + 
+							"  steps:\n" + 
+							"  - !CheckoutStep\n" + 
+							"    name: checkout\n" + 
+							"    cloneCredential: !DefaultCredential {}\n" + 
+							"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
+							"  - !CommandStep\n" + 
+							"    name: run\n" + 
+							"    image: alpine_cpp\n" + 
+							"    commands:\n" + 
+							"    - g++ -o test a.cpp\n" + 
+							"    - ./test\n" + 
+							"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
+							"  retryCondition: never\n" + 
+							"  maxRetries: 3\n" + 
+							"  retryDelay: 30\n" + 
+							"  cpuRequirement: 250m\n" + 
+							"  memoryRequirement: 128m\n" + 
+							"  timeout: 3600";
+					newBlobs.put(BuildSpec.BLOB_PATH,new BlobContent.Immutable(content.getBytes(), FileMode.REGULAR_FILE));
+					ObjectId newCommitId = new BlobEdits(oldPaths, newBlobs).commit(project.getRepository(), project.getRefName(revision), 
+							preCommitId, preCommitId, user.asPerson(), "在线编译");
+					
+					Build build = new Build();
+					build.setProject(project);
+					build.setCommitHash(newCommitId.name());
+					build.setJobName(jobName);
+					build.setSubmitDate(new Date());
+					build.setStatus(Build.Status.WAITING);
+					build.setSubmitReason(reason.getDescription());
+					build.setSubmitter(SecurityUtils.getUser());
+					build.setRefName(reason.getRefName());
+					build.setRequest(reason.getPullRequest());
+					
+					//target.appendJavaScript("$(window).resize();");
+					//target.appendJavaScript("window.location.reload();");
+					OneDev.getInstance(BuildManager.class).create(build);
+					setResponsePage(BuildLogPage.class, BuildLogPage.paramsOf(build));
 				}
 
 			};
