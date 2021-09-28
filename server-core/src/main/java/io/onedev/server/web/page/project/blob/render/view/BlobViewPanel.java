@@ -1,8 +1,12 @@
 package io.onedev.server.web.page.project.blob.render.view;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,6 +18,7 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes.Method;
@@ -30,8 +35,15 @@ import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
+import org.eclipse.jgit.errors.CorruptObjectException;
+import org.eclipse.jgit.errors.IncorrectObjectTypeException;
+import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.lib.FileMode;
 import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevTree;
+import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.treewalk.TreeWalk;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -56,6 +68,7 @@ import io.onedev.server.event.RefUpdated;
 import io.onedev.server.git.BlobContent;
 import io.onedev.server.git.BlobEdits;
 import io.onedev.server.git.BlobIdent;
+import io.onedev.server.git.GitUtils;
 import io.onedev.server.model.Build;
 import io.onedev.server.model.Project;
 import io.onedev.server.model.PullRequest;
@@ -99,7 +112,7 @@ public abstract class BlobViewPanel extends Panel {
 		return new WebMarkupContainer(id);
 	}
 
-	private void newChangeActions(@Nullable IPartialPageRequestHandler target) {
+	private void newChangeActions(@Nullable IPartialPageRequestHandler target){
 		WebMarkupContainer changeActions = new WebMarkupContainer("changeActions");
 
 		Project project = context.getProject();
@@ -118,7 +131,7 @@ public abstract class BlobViewPanel extends Panel {
 			AjaxLink<Void> compile = new ViewStateAwareAjaxLink<Void>("compile") {
 				
 				@Override
-				public void onClick(AjaxRequestTarget target) {
+				public void onClick(AjaxRequestTarget target){
 					//照抄RunJobLink中的reason
 					SubmitReason reason = new SubmitReason() {
 
@@ -134,22 +147,19 @@ public abstract class BlobViewPanel extends Panel {
 
 						@Override
 						public String getDescription() {
-							return "online compile";
+							return "我是在线编译";
 						}
 						
 					};
-					//.onedev-buildspce.yml位置：src/main/resources
-					ObjectId commitId = context.getCommit().copy();
-					ObjectId preCommitId = context.getProject().getObjectId(revision, true);
-					String jobName = "myjob";
-
-					//删除project
+					ObjectId preCommitId = context.getCommit().copy();
+					ObjectId newCommitId = null;
+					String jobName = "online-compile";
+					Repository repository = project.getRepository();
+					String refName = project.getRefName(revision);
 					Set<String> oldPaths = new HashSet<>();
-					oldPaths.add(BuildSpec.BLOB_PATH);
 					Map<String, BlobContent> newBlobs = new HashMap<>();
-					String content = "version: 6\n" + 
-							"jobs:\n" + 
-							"- name: myjob\n" + 
+					String fileName = context.getBlobIdent().getName();
+					String compileJob = "- name: " + jobName + "\n" + 
 							"  steps:\n" + 
 							"  - !CheckoutStep\n" + 
 							"    name: checkout\n" + 
@@ -157,36 +167,76 @@ public abstract class BlobViewPanel extends Panel {
 							"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
 							"  - !CommandStep\n" + 
 							"    name: run\n" + 
-							"    image: alpine_cpp\n" + 
+							"    image: alpine_cpp_java\n" + 
 							"    commands:\n" + 
-							"    - g++ -o test a.cpp\n" + 
-							"    - ./test\n" + 
+							"    - g++ -o obj "+ fileName +"\n" + 
+							"    - ./obj\n" + 
 							"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
 							"  retryCondition: never\n" + 
 							"  maxRetries: 3\n" + 
 							"  retryDelay: 30\n" + 
 							"  cpuRequirement: 250m\n" + 
 							"  memoryRequirement: 128m\n" + 
-							"  timeout: 3600";
-					newBlobs.put(BuildSpec.BLOB_PATH,new BlobContent.Immutable(content.getBytes(), FileMode.REGULAR_FILE));
-					ObjectId newCommitId = new BlobEdits(oldPaths, newBlobs).commit(project.getRepository(), project.getRefName(revision), 
-							preCommitId, preCommitId, user.asPerson(), "在线编译");
+							"  timeout: 3600";;
+					String content = "version: 6\n" + 
+							"jobs:\n" + compileJob;
 					
-					Build build = new Build();
-					build.setProject(project);
-					build.setCommitHash(newCommitId.name());
-					build.setJobName(jobName);
-					build.setSubmitDate(new Date());
-					build.setStatus(Build.Status.WAITING);
-					build.setSubmitReason(reason.getDescription());
-					build.setSubmitter(SecurityUtils.getUser());
-					build.setRefName(reason.getRefName());
-					build.setRequest(reason.getPullRequest());
-					
-					//target.appendJavaScript("$(window).resize();");
-					//target.appendJavaScript("window.location.reload();");
-					OneDev.getInstance(BuildManager.class).create(build);
-					setResponsePage(BuildLogPage.class, BuildLogPage.paramsOf(build));
+					int dotIndex =  fileName.lastIndexOf(".");
+					String suffix = "NO_DOT";
+					if( dotIndex > -1) {
+						suffix = fileName.substring(dotIndex);
+					}
+					if("NO_DOT".equals(suffix) || (!"NO_DOT".equals(suffix) && !suffix.equals(".cpp") && !suffix.equals(".c") && !suffix.equals(".java"))){
+						Session.get().fatal("仅支持.c,.cpp,.java后缀的文件编译！");//要么无逗号；要么有逗号，但不是.c,.cpp,.java后缀
+					}
+					else {
+						/*
+						 * 三种状态：无.onedev-build.yml文件;空job;无所需的job
+						 */
+						TreeWalk exist = null;
+						try (RevWalk revWalk = new RevWalk(repository)) {
+							RevTree revTree = revWalk.parseCommit(preCommitId).getTree();
+							exist = TreeWalk.forPath(repository, BuildSpec.BLOB_PATH, revTree);
+						} catch (MissingObjectException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IncorrectObjectTypeException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} 
+						if(exist != null) {//不是空文件;若是空文件的话无需操作
+							BuildSpec buildSpec = project.getBuildSpec(preCommitId);
+							if(buildSpec.getJobs().size() == 0) {//空job
+								oldPaths.add(BuildSpec.BLOB_PATH);
+							}
+							else if(buildSpec.getJobMap().get(jobName) == null) {//无所需的job 
+								String oldBuilSpec = project.getBlob(new BlobIdent(revision, BuildSpec.BLOB_PATH, FileMode.REGULAR_FILE.getBits()), true).getText().getContent();
+								content = oldBuilSpec + compileJob;
+							}
+							
+						}
+						//提交或修改.onedev-build.yml文件（添加指定job）
+						newBlobs.put(BuildSpec.BLOB_PATH,new BlobContent.Immutable(content.getBytes(), FileMode.REGULAR_FILE));
+						newCommitId = new BlobEdits(oldPaths, newBlobs).commit(repository, refName, 
+								preCommitId, preCommitId, user.asPerson(), "在线编译-提交/修改.onedev-build.yml文件");
+
+//						//构建编译
+						Build build = new Build();
+						build.setProject(project);
+						build.setCommitHash(newCommitId.name());
+						build.setJobName(jobName);
+						build.setSubmitDate(new Date());
+						build.setStatus(Build.Status.WAITING);
+						build.setSubmitReason(reason.getDescription());
+						build.setSubmitter(SecurityUtils.getUser());
+						build.setRefName(reason.getRefName());
+						build.setRequest(reason.getPullRequest());
+						OneDev.getInstance(BuildManager.class).create(build);
+						setResponsePage(BuildLogPage.class, BuildLogPage.paramsOf(build));
+					}
 				}
 
 			};
