@@ -1,23 +1,15 @@
 package io.onedev.server.web.page.project.blob.render.view;
 
-import static org.junit.Assert.assertNotNull;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Nullable;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxRequestAttributes;
@@ -35,7 +27,6 @@ import org.apache.wicket.markup.html.link.ResourceLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
-import org.eclipse.jgit.errors.CorruptObjectException;
 import org.eclipse.jgit.errors.IncorrectObjectTypeException;
 import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.lib.FileMode;
@@ -49,26 +40,13 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 
 import io.onedev.commons.utils.FileUtils;
-import io.onedev.k8shelper.Executable;
-import io.onedev.k8shelper.ExecuteCondition;
 import io.onedev.server.OneDev;
 import io.onedev.server.buildspec.BuildSpec;
-import io.onedev.server.buildspec.job.Job;
-import io.onedev.server.buildspec.job.JobManager;
 import io.onedev.server.buildspec.job.SubmitReason;
-import io.onedev.server.buildspec.job.gitcredential.DefaultCredential;
-import io.onedev.server.buildspec.job.gitcredential.GitCredential;
-import io.onedev.server.buildspec.param.ParamCombination;
-import io.onedev.server.buildspec.step.CheckoutStep;
-import io.onedev.server.buildspec.step.CommandStep;
-import io.onedev.server.buildspec.step.Step;
 import io.onedev.server.entitymanager.BuildManager;
-import io.onedev.server.entitymanager.impl.DefaultBuildManager;
-import io.onedev.server.event.RefUpdated;
 import io.onedev.server.git.BlobContent;
 import io.onedev.server.git.BlobEdits;
 import io.onedev.server.git.BlobIdent;
-import io.onedev.server.git.GitUtils;
 import io.onedev.server.model.Build;
 import io.onedev.server.model.Project;
 import io.onedev.server.model.PullRequest;
@@ -147,7 +125,7 @@ public abstract class BlobViewPanel extends Panel {
 
 						@Override
 						public String getDescription() {
-							return "我是在线编译";
+							return "online-compile";
 						}
 						
 					};
@@ -159,27 +137,6 @@ public abstract class BlobViewPanel extends Panel {
 					Set<String> oldPaths = new HashSet<>();
 					Map<String, BlobContent> newBlobs = new HashMap<>();
 					String fileName = context.getBlobIdent().getName();
-					String compileJob = "- name: " + jobName + "\n" + 
-							"  steps:\n" + 
-							"  - !CheckoutStep\n" + 
-							"    name: checkout\n" + 
-							"    cloneCredential: !DefaultCredential {}\n" + 
-							"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
-							"  - !CommandStep\n" + 
-							"    name: run\n" + 
-							"    image: alpine_cpp_java\n" + 
-							"    commands:\n" + 
-							"    - g++ -o obj "+ fileName +"\n" + 
-							"    - ./obj\n" + 
-							"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
-							"  retryCondition: never\n" + 
-							"  maxRetries: 3\n" + 
-							"  retryDelay: 30\n" + 
-							"  cpuRequirement: 250m\n" + 
-							"  memoryRequirement: 128m\n" + 
-							"  timeout: 3600";;
-					String content = "version: 6\n" + 
-							"jobs:\n" + compileJob;
 					
 					int dotIndex =  fileName.lastIndexOf(".");
 					String suffix = "NO_DOT";
@@ -190,8 +147,48 @@ public abstract class BlobViewPanel extends Panel {
 						Session.get().fatal("仅支持.c,.cpp,.java后缀的文件编译！");//要么无逗号；要么有逗号，但不是.c,.cpp,.java后缀
 					}
 					else {
+						//根据不同的后缀，改变commands的值
+						String commands = "";
+						if(suffix.equals(".cpp")) {
+							commands = 
+									"    - g++ -o obj "+ fileName +"\n" + 
+									"    - ./obj\n";
+						}
+						else if(suffix.equals(".c")) {
+							commands = 
+									"    - gcc -o obj "+ fileName +"\n" + 
+									"    - ./obj\n";
+						}
+						else if(suffix.equals(".java")) {
+							commands = 
+									"    - javac "+ fileName +"\n" + 
+									"    - java "+ fileName.substring(0,dotIndex) +"\n";
+						}
+						String compileJob = 
+								"- name: " + jobName + "\n" + 
+								"  steps:\n" + 
+								"  - !CheckoutStep\n" + 
+								"    name: checkout\n" + 
+								"    cloneCredential: !DefaultCredential {}\n" + 
+								"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
+								"  - !CommandStep\n" + 
+								"    name: run\n" + 
+								"    image: alpine_cpp_java\n" + 
+								"    commands:\n" + commands +
+								"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
+								"  retryCondition: never\n" + 
+								"  maxRetries: 3\n" + 
+								"  retryDelay: 30\n" + 
+								"  cpuRequirement: 250m\n" + 
+								"  memoryRequirement: 128m\n" + 
+								"  timeout: 3600";
+								
+						String content = "version: 6\n" + 
+								"jobs:\n" + compileJob;
+						int state = -1;
+						String oldBuilSpec = "";//用于复原无所需的job 
 						/*
-						 * 三种状态：无.onedev-build.yml文件;空job;无所需的job
+						 * 三种状态：无.onedev-build.yml文件(0);空job(1);无所需的job(2);若有所需的job，无论command是否正确，更新
 						 */
 						TreeWalk exist = null;
 						try (RevWalk revWalk = new RevWalk(repository)) {
@@ -211,19 +208,37 @@ public abstract class BlobViewPanel extends Panel {
 							BuildSpec buildSpec = project.getBuildSpec(preCommitId);
 							if(buildSpec.getJobs().size() == 0) {//空job
 								oldPaths.add(BuildSpec.BLOB_PATH);
+								state = 1;
 							}
 							else if(buildSpec.getJobMap().get(jobName) == null) {//无所需的job 
-								String oldBuilSpec = project.getBlob(new BlobIdent(revision, BuildSpec.BLOB_PATH, FileMode.REGULAR_FILE.getBits()), true).getText().getContent();
-								content = oldBuilSpec + compileJob;
+								oldBuilSpec = project.getBlob(new BlobIdent(revision, BuildSpec.BLOB_PATH, FileMode.REGULAR_FILE.getBits()), true).getText().getContent();
+								content = oldBuilSpec + compileJob;//将特定的job加到原buildspec后面
+								state = 2;
 							}
-							
+						}
+						else {
+							state = 0;
 						}
 						//提交或修改.onedev-build.yml文件（添加指定job）
 						newBlobs.put(BuildSpec.BLOB_PATH,new BlobContent.Immutable(content.getBytes(), FileMode.REGULAR_FILE));
 						newCommitId = new BlobEdits(oldPaths, newBlobs).commit(repository, refName, 
 								preCommitId, preCommitId, user.asPerson(), "在线编译-提交/修改.onedev-build.yml文件");
-
-//						//构建编译
+						
+						//复原编译前状态
+						newBlobs = new HashMap<>();
+						oldPaths = new HashSet<>();
+						oldPaths.add(BuildSpec.BLOB_PATH);
+						if(state == 0) {//无.onedev-build.yml文件
+						}
+						else if(state == 1) {//空job
+							newBlobs.put(BuildSpec.BLOB_PATH,new BlobContent.Immutable("version: 6".getBytes(), FileMode.REGULAR_FILE));
+						}
+						else if(state == 2) {//无所需的job
+							newBlobs.put(BuildSpec.BLOB_PATH,new BlobContent.Immutable(oldBuilSpec.getBytes(), FileMode.REGULAR_FILE));
+						}
+						new BlobEdits(oldPaths, newBlobs).commit(repository, refName, 
+								newCommitId, newCommitId, user.asPerson(), "在线编译-复原编译前状态");
+						//构建编译
 						Build build = new Build();
 						build.setProject(project);
 						build.setCommitHash(newCommitId.name());
