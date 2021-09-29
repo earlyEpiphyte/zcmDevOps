@@ -72,7 +72,7 @@ public abstract class ProjectCommentPanel extends Panel {
 
 			}, getContentVersionSupport()));
 		} else {
-			viewer.add(new Label("content", "<i class='text-muted'>No comment</i>").setEscapeModelStrings(false));
+			viewer.add(new Label("content", "<i class='text-muted'>没有评论</i>").setEscapeModelStrings(false));
 		}
 		
 		WebMarkupContainer actions = new WebMarkupContainer("actions");
@@ -125,7 +125,7 @@ public abstract class ProjectCommentPanel extends Panel {
 							editor.replaceWith(viewer);
 							target.add(viewer);
 						} catch (StaleStateException e) {
-							warn("Some one changed the content you are editing. Reload the page and try again.");
+							warn("有人更改了您正在编辑的内容。 重新加载页面并重试.");
 							target.add(feedback);
 						}
 					}
@@ -167,7 +167,7 @@ public abstract class ProjectCommentPanel extends Panel {
 			@Override
 			protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 				super.updateAjaxAttributes(attributes);
-				attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete this comment?"));
+				attributes.getAjaxCallListeners().add(new ConfirmClickListener("你真的要删除这条评论吗?"));
 			}
 
 			@Override

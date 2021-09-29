@@ -62,7 +62,7 @@ abstract class TagProtectionPanel extends Panel {
 			@Override
 			protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 				super.updateAjaxAttributes(attributes);
-				attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete this protection?"));
+				attributes.getAjaxCallListeners().add(new ConfirmClickListener("您确定要删除此保护吗?"));
 			}
 
 			@Override

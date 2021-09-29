@@ -56,10 +56,10 @@ abstract class CreateBranchPanel extends Panel {
 				String branchName = helperBean.getName();
 				if (project.getObjectId(GitUtils.branch2ref(branchName), false) != null) {
 					editor.error(new Path(new PathNode.Named("name")), 
-							"Branch '" + branchName + "' already exists, please choose a different name");
+							"分支 '" + branchName + "' 已经存在, 请选择不同的名字");
 					target.add(form);
 				} else if (project.getBranchProtection(branchName, user).isPreventCreation()) {
-					editor.error(new Path(new PathNode.Named("name")), "Unable to create protected branch");
+					editor.error(new Path(new PathNode.Named("name")), "无法创建受保护的分支");
 					target.add(form);
 				} else {
 					project.createBranch(branchName, revision);

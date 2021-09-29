@@ -98,7 +98,7 @@ public abstract class RevisionPicker extends DropdownLink {
 			} 
 			label = HtmlEscape.escapeHtml5(label);
 		} else {
-			label = "Choose Revision";
+			label = "选择修订版";
 			icon = "";
 		}
 		

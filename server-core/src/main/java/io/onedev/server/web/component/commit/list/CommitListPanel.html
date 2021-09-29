@@ -5,7 +5,7 @@
 				<div class="input-group">
 					<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="请在此处提交查询">
 					<span class="input-group-append">
-						<button wicket:id="submit" type="submit" class="btn btn-outline-secondary btn-icon" title="Query"><wicket:svg href="magnify" class="icon"></wicket:svg></button>
+						<button wicket:id="submit" type="submit" class="btn btn-outline-secondary btn-icon" title="查询"><wicket:svg href="magnify" class="icon"></wicket:svg></button>
 					</span>
 				</div>
 			</form>
@@ -25,7 +25,7 @@
 	            <div wicket:id="noCommits" class="no-commits"></div>
 	        </div>
 	        <div wicket:id="foot" class="foot text-center">
-	            <a wicket:id="more" class="btn btn-primary">More commits</a>
+	            <a wicket:id="more" class="btn btn-primary">更多提交</a>
 	            <div wicket:id="tooMany" class="alert alert-light-warning">Too many commits to load</div>
 	        </div>
 		</div>
@@ -52,9 +52,9 @@
 	            <a wicket:id="copyHash" class="btn btn-outline-secondary btn-icon"><wicket:svg href="copy" class="icon"></wicket:svg></a>
 	        </span>
 	        <span class="btn-group browse">
-	            <a wicket:id="browseCode" title="Browse code" class="btn btn-outline-secondary btn-icon"><wicket:svg href="files" class="icon"></wicket:svg></a>
+	            <a wicket:id="browseCode" title="浏览代码" class="btn btn-outline-secondary btn-icon"><wicket:svg href="files" class="icon"></wicket:svg></a>
 	            <wicket:enclosure>
-	            <a wicket:id="compare" class="compare btn btn-outline-secondary btn-icon" title="Compare with base revision"><wicket:svg href="diff" class="icon"></wicket:svg></a>
+	            <a wicket:id="compare" class="compare btn btn-outline-secondary btn-icon" title="与基础版本比较"><wicket:svg href="diff" class="icon"></wicket:svg></a>
 	            </wicket:enclosure>
 	        </span>
 		</div>

@@ -30,7 +30,7 @@ public class PatternsValidator implements ConstraintValidator<Patterns, String> 
 				if (StringUtils.isNotBlank(e.getMessage()))
 					message = e.getMessage();
 				else
-					message = "Malformed pattern set";
+					message = "格式错误的模式集";
 			}
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;

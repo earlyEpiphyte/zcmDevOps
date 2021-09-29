@@ -420,7 +420,7 @@ public abstract class RevisionSelector extends Panel {
 				item.add(AttributeAppender.append("class", "active"));
 			itemsView.add(item);
 		}
-		itemsContainer.add(new Label("noItems", branchesActive? "No branches found": "No tags found") {
+		itemsContainer.add(new Label("noItems", branchesActive? "未找到分支": "未找到标签") {
 
 			@Override
 			protected void onConfigure() {

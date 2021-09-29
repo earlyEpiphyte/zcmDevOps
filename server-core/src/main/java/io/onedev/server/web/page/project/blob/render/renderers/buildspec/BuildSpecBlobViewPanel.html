@@ -6,7 +6,7 @@
         	<a wicket:id="jobs" class="jobs">作业</a>
         	<a wicket:id="services" class="services">服务</a>
         	<a wicket:id="stepTemplates" class="step-templates">步骤模板</a>
-        	<a wicket:id="properties" class="properties">特性</a>
+        	<a wicket:id="properties" class="properties">属性</a>
         	<a wicket:id="imports" class="imports">导入</a>
         </div>
         <div class="body">
@@ -21,7 +21,7 @@
         <div class="side flex-shrink-0">
         	<div class="navs"><div wicket:id="navs" class="nav btn-group btn-block mb-3">
             	<a wicket:id="job" class="select btn btn-secondary justify-content-start"><span wicket:id="label"></span></a>
-            	<a wicket:id="runJob" class="run btn btn-secondary btn-icon flex-grow-0 flex-shrink-0" title="Run this job"><wicket:svg href="play" class="icon"></wicket:svg></a>
+            	<a wicket:id="runJob" class="run btn btn-secondary btn-icon flex-grow-0 flex-shrink-0" title="运行作业"><wicket:svg href="play" class="icon"></wicket:svg></a>
 	        </div></div>
 		</div>
         <div wicket:id="job" class="main ml-4 flex-grow-1">
@@ -59,8 +59,8 @@
 	<wicket:fragment wicket:id="propertiesFrag">
 	    <table class="table">
 	        <thead>
-	            <th>Name</th>
-	            <th>Value</th>
+	            <th>名称</th>
+	            <th>值</th>
 	        </thead>
 	        <tbody>
 	            <tr wicket:id="properties">

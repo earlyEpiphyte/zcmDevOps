@@ -205,7 +205,7 @@ public class RoleListPage extends AdministrationPage {
 						super.onComponentTag(tag);
 						if (!isEnabled()) {
 							tag.put("disabled", "禁用");
-							tag.put("title", "This is a built-in role and can not be deleted");
+							tag.put("title", "内置角色，无法删除");
 						}
 					}
 

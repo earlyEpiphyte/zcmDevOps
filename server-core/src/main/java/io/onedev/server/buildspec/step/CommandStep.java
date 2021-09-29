@@ -26,7 +26,7 @@ public class CommandStep extends Step {
 	
 	private List<String> commands = new ArrayList<>();
 	
-	@Editable(order=100, description="Specify docker image to execute commands inside")
+	@Editable(order=100, description="指定docker镜像并在里面执行命令")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getImage() {
@@ -37,8 +37,7 @@ public class CommandStep extends Step {
 		this.image = image;
 	}
 
-	@Editable(order=110, description="Specify content of Linux shell script or Windows command batch to execute "
-			+ "under the <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>")
+	@Editable(order=110, description="指定在<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作空间</a>执行的 Linux shell 脚本或 Windows 命令批处理的内容")
 	@Interpolative
 	@Code(language=Code.SHELL, variableProvider="suggestCommandVariables")
 	@Size(min=1, message="不能为空")

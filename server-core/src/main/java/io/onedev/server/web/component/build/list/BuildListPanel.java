@@ -235,9 +235,9 @@ public abstract class BuildListPanel extends Panel {
 				if (!isEnabled()) 
 					tag.append("class", "disabled", " ");
 				if (!querySubmitted)
-					tag.put("title", "Query not submitted");
+					tag.put("title", "查询没有提交");
 				else if (queryModel.getObject() == null)
-					tag.put("title", "Can not save malformed query");
+					tag.put("title", "无法保存格式错误的查询");
 			}
 
 			@Override
@@ -474,7 +474,7 @@ public abstract class BuildListPanel extends Panel {
 		};
 		
 		if (expectedCount != 0 && expectedCount != dataProvider.size())
-			warn("Some builds might be hidden due to permission policy");
+			warn("由于权限策略，某些构建可能会被隐藏");
 		
 		body = new WebMarkupContainer("body");
 		add(body.setOutputMarkupId(true));

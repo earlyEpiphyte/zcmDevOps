@@ -25,8 +25,8 @@ public class DefaultFixedIssueFilter implements Serializable {
 	
 	private String issueQuery;
 
-	@Editable(order=100, description="Specify space-separated jobs. Use '*' or '?' for wildcard match. "
-			+ "Prefix with '-' to exclude")
+	@Editable(order=100, description="指定以空格分隔的作业. 使用 '*' 或者 '?' 用于通配符匹配. "
+			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestJobNames")
 	@NotEmpty
 	public String getJobNames() {

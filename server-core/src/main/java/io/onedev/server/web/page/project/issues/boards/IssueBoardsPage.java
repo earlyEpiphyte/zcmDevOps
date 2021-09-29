@@ -177,7 +177,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 		if (StringUtils.isNotBlank(boardName)) {
 			boardIndex = BoardSpec.getBoardIndex(boards, boardName);
 			if (boardIndex == -1)
-				throw new ExplicitException("Can not find issue board: " + boardName);
+				throw new ExplicitException("找不到问题板: " + boardName);
 		} else if (!boards.isEmpty()) {
 			boardIndex = 0;
 		} else {
@@ -189,7 +189,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 		if (milestoneName != null) {
 			milestone = getProject().getMilestone(milestoneName);
 			if (milestone == null)
-				throw new ExplicitException("Can not find milestone: " + milestoneName);
+				throw new ExplicitException("找不到里程碑: " + milestoneName);
 		} else if (!getProject().getSortedMilestones().isEmpty()) {
 			milestone = getProject().getSortedMilestones().iterator().next();
 		} else {
@@ -295,7 +295,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 									&& getProject().getIssueSetting().getBoardSpecs(false) != null);
 						}
 						
-					}.add(new ConfirmClickModifier("This will discard all project specific boards, do you want to continue?")));
+					}.add(new ConfirmClickModifier("将丢弃所有特定于项目的板，您想继续吗?")));
 					
 					menuFragment.add(new ListView<BoardSpec>("boards", boards) {
 
@@ -351,7 +351,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 									setResponsePage(IssueBoardsPage.class, params);
 								}
 
-							}.add(new ConfirmClickModifier("Do you really want to delete board '" + item.getModelObject().getName() + "'?") ));
+							}.add(new ConfirmClickModifier("您确定要删除里程碑 '" + item.getModelObject().getName() + "吗'?") ));
 						}
 						
 					});
@@ -475,9 +475,9 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 								}
 								dropdown.close();
 								if (milestone.isClosed())
-									Session.get().success("Milestone '" + milestone.getName() + "' is closed");
+									Session.get().success("里程碑 '" + milestone.getName() + "' 已关闭");
 								else
-									Session.get().success("Milestone '" + milestone.getName() + "' is reopened");
+									Session.get().success("里程碑 '" + milestone.getName() + "' 重新打开");
 							}
 							
 							@Override
@@ -544,7 +544,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 									protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 										super.updateAjaxAttributes(attributes);
 										attributes.getAjaxCallListeners().add(new ConfirmClickListener(
-												"Do you really want to delete milestone '" + item.getModelObject().getName() + "'?"));
+												"您确定要删除里程碑 '" + item.getModelObject().getName() + "吗'?"));
 									}
 									
 									@Override
@@ -558,7 +558,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 										} else {
 											getMilestoneManager().delete(milestone);
 										}
-										Session.get().success("Milestone '" + milestone.getName() + "' deleted");
+										Session.get().success("里程碑 '" + milestone.getName() + "' 已删除");
 									}
 
 								});
@@ -607,7 +607,7 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 
 					@Override
 					public IModel<?> getBody() {
-						return Model.of(String.format("<svg class='icon mr-2'><use xlink:href='%s'/></svg>Add Milestone", 
+						return Model.of(String.format("<svg class='icon mr-2'><use xlink:href='%s'/></svg>添加里程碑", 
 								SpriteImage.getVersionedHref(IconScope.class, "plus")));
 					}
 					
@@ -649,9 +649,9 @@ public class IssueBoardsPage extends ProjectIssuesPage {
 			});
 			
 			if (backlog)
-				queryInput.add(AttributeAppender.append("placeholder", "Filter backlog issues..."));
+				queryInput.add(AttributeAppender.append("placeholder", "过滤待办问题..."));
 			else
-				queryInput.add(AttributeAppender.append("placeholder", "Filter issues..."));
+				queryInput.add(AttributeAppender.append("placeholder", "过滤问题..."));
 				
 			form.add(queryInput);
 

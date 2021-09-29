@@ -33,8 +33,8 @@ public class FileProtection implements Serializable, Validatable {
 	
 	private List<String> jobNames = new ArrayList<>();
 	
-	@Editable(order=100, description="Specify space-separated paths to be protected. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude")
+	@Editable(order=100, description="指定要保护的空格分隔路径. 使用 '**', '*' 或者 '?' 用于 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestPaths", path=true)
 	@NotEmpty
 	public String getPaths() {

@@ -34,7 +34,7 @@ public class DefaultFixedIssueFiltersPage extends BuildSettingPage {
 			@Override
 			protected void onSubmit() {
 				super.onSubmit();
-				getSession().success("Default fixed issue filters saved");
+				getSession().success("已保存默认固定问题过滤器");
 				getProject().getBuildSetting().setDefaultFixedIssueFilters(bean.getDefaultFixedIssueFilters());
 				OneDev.getInstance(ProjectManager.class).save(getProject());
 				setResponsePage(DefaultFixedIssueFiltersPage.class, 
@@ -49,7 +49,7 @@ public class DefaultFixedIssueFiltersPage extends BuildSettingPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Default Fixed Issue Filters");
+		return new Label(componentId, "默认固定问题过滤器");
 	}
 
 }

@@ -42,7 +42,7 @@ public class GeneralProjectSettingPage extends ProjectSettingPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		
-		add(new Label("help", "Git repository of this project is stored at: " + getProject().getGitDir()));
+		add(new Label("help", "本项目的 Git 仓库存放在: " + getProject().getGitDir()));
 		
 		Collection<String> properties = Sets.newHashSet("name", "description", "issueManagementEnabled");
 		
@@ -129,7 +129,7 @@ public class GeneralProjectSettingPage extends ProjectSettingPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "General Setting");
+		return new Label(componentId, "通用设置");
 	}
 
 }

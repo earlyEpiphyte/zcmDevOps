@@ -992,7 +992,7 @@ public class NewPullRequestPage extends ProjectPage implements RevisionDiff.Anno
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "<span class='text-nowrap'>Create Pull Request</span>").setEscapeModelStrings(false);
+		return new Label(componentId, "<span class='text-nowrap'>创建拉取请求</span>").setEscapeModelStrings(false);
 	}
 	
 }

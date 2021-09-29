@@ -81,14 +81,14 @@ public class ProjectAuthorizationsPage extends ProjectSettingPage {
 					}
 				}
 				if (!canManageProject) {
-					error("You can not unauthorize yourself as a manager");
+					error("您不能取消自己作为经理的授权");
 					return;
 				}
 				Set<String> userNames = new HashSet<>();
 				Collection<UserAuthorization> authorizations = new ArrayList<>();
 				for (AuthorizationBean authorizationBean: authorizationsBean.getAuthorizations()) {
 					if (userNames.contains(authorizationBean.getUserName())) {
-						error("Duplicate authorizations found: " + authorizationBean.getUserName());
+						error("发现重复的授权: " + authorizationBean.getUserName());
 						return;
 					} else {
 						userNames.add(authorizationBean.getUserName());
@@ -101,7 +101,7 @@ public class ProjectAuthorizationsPage extends ProjectSettingPage {
 				}
 				
 				OneDev.getInstance(UserAuthorizationManager.class).syncAuthorizations(getProject(), authorizations);
-				Session.get().success("User authorizations updated");
+				Session.get().success("用户授权已更新");
 			}
 			
 		};
@@ -112,7 +112,7 @@ public class ProjectAuthorizationsPage extends ProjectSettingPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Project Authorizations");
+		return new Label(componentId, "项目授权");
 	}
 	
 }

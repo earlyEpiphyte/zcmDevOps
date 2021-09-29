@@ -13,7 +13,7 @@ public class ActiveDirectoryAuthenticator extends LdapAuthenticator {
 	private String groupSearchBase;
 	
     @Editable(order=100, name="LDAP URL", description=
-    	"Specifies LDAP URL of the Active Directory server, for example: <i>ldap://ad-server</i>, or <i>ldaps://ad-server</i>")
+    	"指定 Active Directory 服务器的 LDAP URL, 例如: <i>ldap://ad-server</i>, or <i>ldaps://ad-server</i>")
     @NotEmpty
 	@Override
 	public String getLdapUrl() {
@@ -26,10 +26,10 @@ public class ActiveDirectoryAuthenticator extends LdapAuthenticator {
 	}
 
 	@Editable(order=300, description=""
-			+ "To authenticate user against Active Directory and retrieve associated attributes and groups, OneDev "
-			+ "would have to first authenticate itself against the Active Directory server and OneDev does that by "
-			+ "sending 'manager' DN and password. The manager DN should be specified in form of "
-			+ "<i>&lt;account name&gt;@&lt;domain&gt;</i>, for instance: <i>onedev@example.com</i>")
+			+ "根据 Active Directory 对用户进行身份验证并检索关联的属性和组,"
+			+ "OneDev 必须首先针对 Active Directory 服务器对自身进行身份验证，而 OneDev 通过发送 'manager' DN 和密码来做到这一点，"
+			+ "'manager' DN 应该以以下形式进行指定 "
+			+ "<i>&lt;account name&gt;@&lt;domain&gt;</i>, 例如: <i>onedev@example.com</i>")
 	@NotEmpty
 	@Override
 	public String getManagerDN() {
@@ -42,7 +42,7 @@ public class ActiveDirectoryAuthenticator extends LdapAuthenticator {
 	}
 
 	@Editable(order=500, description=
-		"Specifies the base node for user search. For example: <i>cn=Users, dc=example, dc=com</i>")
+		"指定用于用户搜索的基节点. 例如: <i>cn=Users, dc=example, dc=com</i>")
 	@NotEmpty
 	@Override
 	public String getUserSearchBase() {
@@ -65,11 +65,10 @@ public class ActiveDirectoryAuthenticator extends LdapAuthenticator {
 	}
 
 	@Editable(order=1000, description=""
-			+ "Optionally specify group search base if you want to retrieve group membership information "
-			+ "of the user. For example: <i>cn=Users, dc=example, dc=com</i>. To give appropriate "
-			+ "permissions to a Active Directory group, a OneDev group with same name should be defined. "
-			+ "Leave empty to manage group memberships at OneDev side")
-	@NameOfEmptyValue("Do not retrieve groups")
+			+ "如果要检索用户的组成员信息，可选择指定组搜索库. 例如: <i>cn=Users, dc=example, dc=com</i>. "
+			+ "要为 Active Directory 组授予适当的权限，应定义一个同名的 OneDev 组. "
+			+ "留空以管理 OneDev 端的组成员身份")
+	@NameOfEmptyValue("不检索组")
 	public String getGroupSearchBase() {
 		return groupSearchBase;
 	}

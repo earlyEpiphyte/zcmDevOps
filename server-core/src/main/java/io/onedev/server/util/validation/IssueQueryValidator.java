@@ -46,7 +46,7 @@ public class IssueQueryValidator implements ConstraintValidator<IssueQuery, Stri
 					if (StringUtils.isNotBlank(e.getMessage()))
 						message = e.getMessage();
 					else
-						message = "Malformed issue query";
+						message = "问题格式错误";
 				}
 				
 				constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();

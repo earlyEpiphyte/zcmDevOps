@@ -29,8 +29,8 @@ public class TextParam extends ParamSpec {
 		this.pattern = pattern;
 	}
 
-	@Editable(order=1200, name="Default Value")
-	@NameOfEmptyValue("No default value")
+	@Editable(order=1200, name="默认值")
+	@NameOfEmptyValue("无默认值")
 	@Valid
 	public DefaultValueProvider getDefaultValueProvider() {
 		return defaultValueProvider;

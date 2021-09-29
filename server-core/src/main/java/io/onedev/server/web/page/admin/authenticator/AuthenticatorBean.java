@@ -14,7 +14,7 @@ public class AuthenticatorBean implements Serializable {
 	private Authenticator authenticator;
 
 	@Editable
-	@NameOfEmptyValue("No external authentication")
+	@NameOfEmptyValue("无外部身份验证")
 	public Authenticator getAuthenticator() {
 		return authenticator;
 	}

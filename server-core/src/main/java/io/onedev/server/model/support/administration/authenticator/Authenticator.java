@@ -19,7 +19,7 @@ public abstract class Authenticator implements Serializable {
 	
 	private int timeout = 300;
 
-	@Editable(order=10000, description="Specify network timeout in seconds when authenticate through this system")
+	@Editable(order=10000, description="通过此系统进行身份验证时指定网络超时（以秒为单位）")
 	public int getTimeout() {
 		return timeout;
 	}
@@ -28,10 +28,9 @@ public abstract class Authenticator implements Serializable {
 		this.timeout = timeout;
 	}
 
-	@Editable(order=20000, description="Optionally add newly authenticated user to specified group if membership "
-			+ "information is not retrieved")
+	@Editable(order=20000, description="如果未检索到成员资格信息，可选择将新认证的用户添加到指定组")
 	@GroupChoice
-	@NameOfEmptyValue("No default group")
+	@NameOfEmptyValue("无默认组")
 	public String getDefaultGroup() {
 		return defaultGroup;
 	}

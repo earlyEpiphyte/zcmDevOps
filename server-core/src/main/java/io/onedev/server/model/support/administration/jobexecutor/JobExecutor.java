@@ -71,7 +71,7 @@ public abstract class JobExecutor implements Serializable {
 		return SuggestionUtils.suggest(jobNames, matchWith);
 	}
 
-	@Editable(order=50000, group="More Settings", description="Specify job cache TTL (time to live) by days. "
+	@Editable(order=50000, group="更多设置", description="Specify job cache TTL (time to live) by days. "
 			+ "OneDev may create multiple job caches even for same cache key to avoid cache conflicts when "
 			+ "running jobs concurrently. This setting tells OneDev to remove caches inactive for specified "
 			+ "time period to save disk space")

@@ -117,7 +117,7 @@ public class IssueStateListPage extends IssueSettingPage {
 				if (description != null)
 					cellItem.add(new Label(componentId, description));
 				else
-					cellItem.add(new Label(componentId, "<i>No description</i>").setEscapeModelStrings(false));
+					cellItem.add(new Label(componentId, "<i>无描述</i>").setEscapeModelStrings(false));
 			}
 			
 			@Override
@@ -164,7 +164,7 @@ public class IssueStateListPage extends IssueSettingPage {
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 						super.updateAjaxAttributes(attributes);
-						attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete this state?"));
+						attributes.getAjaxCallListeners().add(new ConfirmClickListener("你真的要删除这个状态吗?"));
 					}
 
 					@Override

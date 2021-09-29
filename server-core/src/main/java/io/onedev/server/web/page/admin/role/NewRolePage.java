@@ -42,11 +42,11 @@ public class NewRolePage extends AdministrationPage {
 				Role roleWithSameName = roleManager.find(role.getName());
 				if (roleWithSameName != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another role");
+							"该名称已被另一个角色使用");
 				} 
 				if (editor.isValid()) {
 					roleManager.save(role, null);
-					Session.get().success("Role created");
+					Session.get().success("角色已创建");
 					setResponsePage(RoleListPage.class);
 				}
 			}

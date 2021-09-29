@@ -1,10 +1,9 @@
 <wicket:extend>
 	<div class="state-transitions">
 		<div class="text-muted mb-4">
-			<wicket:svg href="bulb" class="icon"/> Define default issue transitions for all projects here. 
-			A certain project can override this setting to define its own issue transitions.
+			<wicket:svg href="bulb" class="icon"/> 在此处为所有项目定义默认问题转换。 某个项目可以覆盖此设置以定义其自己的问题转换。
 		</div>
-		<a wicket:id="addNew" class="btn btn-icon btn-primary mb-4" title="Add issue state transition"><wicket:svg href="plus" class="icon"></wicket:svg></a>
+		<a wicket:id="addNew" class="btn btn-icon btn-primary mb-4" title="添加问题状态转换"><wicket:svg href="plus" class="icon"></wicket:svg></a>
 		<table wicket:id="stateTransitions" class="table"></table>
 	</div>
 	<wicket:fragment wicket:id="showDetailFrag">
@@ -12,8 +11,8 @@
 	</wicket:fragment>
 	<wicket:fragment wicket:id="transitionActionsFrag">
 		<div class="d-flex">
-			<a wicket:id="edit" class="btn btn-light-primary mr-1">Edit</a>
-			<a wicket:id="delete" class="btn btn-light-danger ml-auto">Delete</a>
+			<a wicket:id="edit" class="btn btn-light-primary mr-1">编辑</a>
+			<a wicket:id="delete" class="btn btn-light-danger ml-auto">删除</a>
 		</div>
 	</wicket:fragment>
 </wicket:extend>

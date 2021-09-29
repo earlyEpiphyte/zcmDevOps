@@ -101,7 +101,7 @@ public class IssueQuery extends EntityQuery<Issue> {
 				@Override
 				public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
 						int charPositionInLine, String msg, RecognitionException e) {
-					throw new RuntimeException("Malformed issue query", e);
+					throw new RuntimeException("问题格式错误", e);
 				}
 				
 			});

@@ -179,7 +179,7 @@ public class LoginPage extends SimplePage {
 
 	@Override
 	protected String getTitle() {
-		return "Sign In To OneDev";
+		return "登录";
 	}
 
 	@Override

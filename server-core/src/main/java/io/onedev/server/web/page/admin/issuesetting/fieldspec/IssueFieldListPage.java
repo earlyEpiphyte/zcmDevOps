@@ -93,7 +93,7 @@ public class IssueFieldListPage extends IssueSettingPage {
 		
 		List<IColumn<FieldSpec, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<FieldSpec, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<FieldSpec, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<FieldSpec>> cellItem, String componentId, IModel<FieldSpec> rowModel) {
@@ -104,7 +104,7 @@ public class IssueFieldListPage extends IssueSettingPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<FieldSpec, Void>(Model.of("Type")) {
+		columns.add(new AbstractColumn<FieldSpec, Void>(Model.of("类型")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<FieldSpec>> cellItem, String componentId, IModel<FieldSpec> rowModel) {
@@ -113,7 +113,7 @@ public class IssueFieldListPage extends IssueSettingPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<FieldSpec, Void>(Model.of("Display in Issue List")) {
+		columns.add(new AbstractColumn<FieldSpec, Void>(Model.of("在问题列表中显示")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<FieldSpec>> cellItem, String componentId, IModel<FieldSpec> rowModel) {
@@ -201,7 +201,7 @@ public class IssueFieldListPage extends IssueSettingPage {
 									@Override
 									protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 										super.updateAjaxAttributes(attributes);
-										attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete this field?"));
+										attributes.getAjaxCallListeners().add(new ConfirmClickListener("您确定要删除此字段吗?"));
 									}
 
 									@Override
@@ -279,7 +279,7 @@ public class IssueFieldListPage extends IssueSettingPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Issue Custom Fields");
+		return new Label(componentId, "发布自定义字段");
 	}
 
 }

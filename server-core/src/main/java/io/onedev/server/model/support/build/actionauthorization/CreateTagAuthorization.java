@@ -17,8 +17,8 @@ public class CreateTagAuthorization extends ActionAuthorization {
 
 	private String tagNames;
 
-	@Editable(order=100, description="Specify space-separated tag names. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude. Leave empty to match all")
+	@Editable(order=100, description="指定以空格分隔的标签名称. 使用 '**', '*' 或者 '?' 用于 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "以'-'为前缀来排除. 留空以匹配所有")
 	@Patterns(suggester = "suggestTags", path=true)
 	@NameOfEmptyValue("All")
 	public String getTagNames() {

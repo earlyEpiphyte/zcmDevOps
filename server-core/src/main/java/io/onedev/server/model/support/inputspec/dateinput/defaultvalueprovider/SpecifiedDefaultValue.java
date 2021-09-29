@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.OmitName;
 
-@Editable(order=100, name="Use specified default value")
+@Editable(order=100, name="使用指定的默认值")
 public class SpecifiedDefaultValue implements DefaultValueProvider {
 
 	private static final long serialVersionUID = 1L;

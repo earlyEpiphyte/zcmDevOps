@@ -30,7 +30,7 @@ public class StateSpec implements Serializable {
 	}
 
 	@Editable(order=200)
-	@NameOfEmptyValue("No description")
+	@NameOfEmptyValue("没有说明")
 	public String getDescription() {
 		return description;
 	}
@@ -39,9 +39,9 @@ public class StateSpec implements Serializable {
 		this.description = description;
 	}
 
-	@Editable(order=400, description="Specify color of the state for displaying purpose")
+	@Editable(order=400, description="为显示目的，指定状态的颜色")
 	@Color
-	@NotEmpty(message="choose a color for this state")
+	@NotEmpty(message="为这种状态选择一种颜色")
 	public String getColor() {
 		return color;
 	}

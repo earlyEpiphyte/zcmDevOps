@@ -198,7 +198,7 @@ onedev.server.inputassist = {
 		if ($dropdown.find("li.active").length != 0) {
 			$dropdown.find(".help .complete").empty().append("Tab or &crarr; to use selected item.");
 		} else {
-			$dropdown.find(".help .complete").empty().append("Tab to use first item.");
+			$dropdown.find(".help .complete").empty().append("Tab 用于选择第一项.");
 		}
 	}
 };

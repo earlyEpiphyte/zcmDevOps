@@ -24,7 +24,7 @@ public class MilestoneDueLabel extends Label {
 				if (milestone.getDueDate() != null)
 					return DateUtils.formatDate(milestone.getDueDate());
 				else
-					return "<i>No Due Date</i>";
+					return "<i>没有截止日期</i>";
 			}
 			
 		});

@@ -323,7 +323,7 @@ public abstract class IssueSidePanel extends Panel {
 				}
 				
 			};
-			link.add(new Label("label", "<i>No milestone</i>").setEscapeModelStrings(false));
+			link.add(new Label("label", "<i>无里程碑</i>").setEscapeModelStrings(false));
 			fragment.add(new WebMarkupContainer("status").setVisible(false));
 			fragment.add(new WebMarkupContainer("progress").setVisible(false));
 			fragment.add(link);

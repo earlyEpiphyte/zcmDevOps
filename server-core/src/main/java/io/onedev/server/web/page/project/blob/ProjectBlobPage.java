@@ -209,7 +209,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 		
 		if (state.mode == Mode.ADD || state.mode == Mode.EDIT || state.mode == Mode.DELETE) {
 			if (!isOnBranch()) 
-				throw new IllegalArgumentException("Files can only be edited on branch");
+				throw new IllegalArgumentException("文件只能在分支上编辑");
 			
 			String path = state.blobIdent.path;
 			if (path != null && state.blobIdent.isTree())
@@ -483,7 +483,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 					tag.append("class", "disabled", " ");
 					tag.put("title", "Build required for this change. Submit pull request instead");
 				} else {
-					tag.put("title", "Add on branch " + state.blobIdent.revision);
+					tag.put("title", "添加分支" + state.blobIdent.revision);
 				}
 			}
 
@@ -850,7 +850,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 			protected void onComponentTag(ComponentTag tag) {
 				super.onComponentTag(tag);
 				if (isOnBranch())
-					tag.put("title", "Press 'y' to get permalink");
+					tag.put("title", "按 'y' 获取永久链接");
 			}
 
 			@Override

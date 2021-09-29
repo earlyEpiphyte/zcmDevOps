@@ -525,8 +525,8 @@ public abstract class RevisionDiffPanel extends Panel {
 			@Override
 			protected List<String> getHints(TerminalExpect terminalExpect) {
 				return Lists.newArrayList(
-						"Path containing spaces or starting with dash needs to be quoted",
-						"Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. Prefix with '-' to exclude"
+						"包含空格或以破折号开头的路径需要加引号",
+						"使用 '**', '*' 或者 '?' 做 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. 以 '-' 为前缀来排除"
 						);
 			}
 			

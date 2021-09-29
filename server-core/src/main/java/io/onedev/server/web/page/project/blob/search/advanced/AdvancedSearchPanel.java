@@ -105,7 +105,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 		});
 		
 		List<Tab> tabs = new ArrayList<Tab>();
-		tabs.add(new AjaxActionTab(Model.of("Text occurrences")) {
+		tabs.add(new AjaxActionTab(Model.of("出现的文本")) {
 			
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -115,7 +115,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 			
 		}.setSelected(option instanceof TextSearchOption));
 		
-		tabs.add(new AjaxActionTab(Model.of("File names")) {
+		tabs.add(new AjaxActionTab(Model.of("文件名称")) {
 			
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -125,7 +125,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 			
 		}.setSelected(option instanceof FileSearchOption));
 		
-		tabs.add(new AjaxActionTab(Model.of("Symbol names")) {
+		tabs.add(new AjaxActionTab(Model.of("符号名称")) {
 			
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -241,7 +241,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 								
 								@Override
 								public Serializable getErrorMessage(IErrorMessageSource messageSource) {
-									return "This field is required";
+									return "此字段为必填项";
 								}
 								
 							});
@@ -254,7 +254,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 									
 									@Override
 									public Serializable getErrorMessage(IErrorMessageSource messageSource) {
-										return "Search is too general";
+										return "搜索不明确";
 									}
 									
 								});
@@ -318,7 +318,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 								
 								@Override
 								public Serializable getErrorMessage(IErrorMessageSource messageSource) {
-									return "This field is required";
+									return "此字段为必填项";
 								}
 								
 							});
@@ -334,7 +334,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 									
 									@Override
 									public Serializable getErrorMessage(IErrorMessageSource messageSource) {
-										return "Search is too general";
+										return "搜索不明确";
 									}
 									
 								});
@@ -399,7 +399,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 								
 								@Override
 								public Serializable getErrorMessage(IErrorMessageSource messageSource) {
-									return "This field is required";
+									return "此字段为必填项";
 								}
 								
 							});
@@ -427,7 +427,7 @@ public abstract class AdvancedSearchPanel extends Panel {
 									
 									@Override
 									public Serializable getErrorMessage(IErrorMessageSource messageSource) {
-										return "Search is too general";
+										return "搜索不明确";
 									}
 									
 								});

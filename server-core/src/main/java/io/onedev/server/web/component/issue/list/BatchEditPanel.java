@@ -96,7 +96,7 @@ abstract class BatchEditPanel extends Panel implements InputContext {
 		Form<?> form = new Form<Void>("form");
 		form.setOutputMarkupId(true);
 		
-		form.add(new Label("title", "Batch Editing " + getIssueCount() + " Issues"));
+		form.add(new Label("title", "批量编辑 " + getIssueCount() + " 个问题"));
 		
 		form.add(new FencedFeedbackPanel("feedback", form));
 		
@@ -223,7 +223,7 @@ abstract class BatchEditPanel extends Panel implements InputContext {
 
 			@Override
 			protected List<AttributeModifier> getInputModifiers() {
-				return Lists.newArrayList(AttributeModifier.replace("placeholder", "Leave a comment"));
+				return Lists.newArrayList(AttributeModifier.replace("placeholder", "发表评论"));
 			}
 			
 		});
@@ -273,7 +273,7 @@ abstract class BatchEditPanel extends Panel implements InputContext {
 				if (!selectedFields.isEmpty()) {
 					runTaskBehavior.requestRun(target);
 				} else {
-					form.error("Please select fields to update");
+					form.error("请选择要更新的字段");
 					target.add(form);
 				}
 			}

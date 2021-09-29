@@ -3,17 +3,17 @@
 	<wicket:fragment wicket:id="titleEditFrag">
 		<form wicket:id="form" class="flex-grow-1 d-flex align-items-center">
 			<div class="clearable-wrapper flex-grow-1 mr-3">
-				<input wicket:id="title" type="text" placeholder="Input title" class="form-control">
+				<input wicket:id="title" type="text" placeholder="输入标题" class="form-control">
 			</div>
 			<div class="flex-shrink-0 text-nowrap">
-				<button wicket:id="save" title="Save" value="Save" class="btn btn-primary btn-icon mr-1" type="submit"><wicket:svg href="tick" class="icon"/></button>
-				<a wicket:id="cancel" title="Cancel" type="button" value="Cancel" class="btn btn-danger btn-icon"><wicket:svg href="times" class="icon"/></a>
+				<button wicket:id="save" title="保存" value="保存" class="btn btn-primary btn-icon mr-1" type="submit"><wicket:svg href="tick" class="icon"/></button>
+				<a wicket:id="cancel" title="取消" type="button" value="取消" class="btn btn-danger btn-icon"><wicket:svg href="times" class="icon"/></a>
 			</div>
 		</form>
 	</wicket:fragment>
 	<wicket:fragment wicket:id="titleViewFrag">
 		<span wicket:id="title" class="mr-3"></span>
-		<a wicket:id="copy" class="btn btn-xs btn-icon btn-light btn-hover-primary copy flex-shrink-0 mr-3" title="Copy issue number and title"><wicket:svg href="copy" class="icon"></wicket:svg></a>
-		<a wicket:id="edit" class="btn btn-xs btn-icon btn-light btn-hover-primary edit flex-shrink-0 mr-3" title="Edit issue title"><wicket:svg href="edit" class="icon"></wicket:svg></a>
+		<a wicket:id="copy" class="btn btn-xs btn-icon btn-light btn-hover-primary copy flex-shrink-0 mr-3" title="复制问题编号和标题"><wicket:svg href="copy" class="icon"></wicket:svg></a>
+		<a wicket:id="edit" class="btn btn-xs btn-icon btn-light btn-hover-primary edit flex-shrink-0 mr-3" title="编辑问题标题"><wicket:svg href="edit" class="icon"></wicket:svg></a>
 	</wicket:fragment>
 </wicket:panel>

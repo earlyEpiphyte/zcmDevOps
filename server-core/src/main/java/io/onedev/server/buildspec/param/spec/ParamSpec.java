@@ -35,8 +35,8 @@ public abstract class ParamSpec extends InputSpec {
 		super.setName(name);
 	}
 
-	@Editable(order=30, description="Optionally describes the param")
-	@NameOfEmptyValue("No description")
+	@Editable(order=30, description="可选地描述参数")
+	@NameOfEmptyValue("没有说明")
 	@Override
 	public String getDescription() {
 		return super.getDescription();
@@ -47,7 +47,7 @@ public abstract class ParamSpec extends InputSpec {
 		super.setDescription(description);
 	}
 
-	@Editable(order=35, description="Whether or not multiple values can be specified for this param")
+	@Editable(order=35, description="是否可以为此参数指定多个值")
 	@Override
 	public boolean isAllowMultiple() {
 		return super.isAllowMultiple();
@@ -58,8 +58,8 @@ public abstract class ParamSpec extends InputSpec {
 		super.setAllowMultiple(allowMultiple);
 	}
 
-	@Editable(order=40, name="Show Conditionally", description="Enable if visibility of this param depends on other params")
-	@NameOfEmptyValue("Always")
+	@Editable(order=40, name="有条件地显示", description="如果此参数的可见性取决于其他参数，则启用")
+	@NameOfEmptyValue("总是")
 	@Valid
 	@Override
 	public ShowCondition getShowCondition() {
@@ -71,7 +71,7 @@ public abstract class ParamSpec extends InputSpec {
 		super.setShowCondition(showCondition);
 	}
 	
-	@Editable(order=50, name="Allow Empty Value", description="Whether or not this param accepts empty value")
+	@Editable(order=50, name="允许空值", description="此参数是否接受空值")
 	@Override
 	public boolean isAllowEmpty() {
 		return super.isAllowEmpty();

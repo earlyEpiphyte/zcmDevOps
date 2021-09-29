@@ -49,7 +49,7 @@ public class ApplyDatabaseConstraints extends DefaultPersistManager {
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
-			logger.warn("Press 'y' to run the script, or 'n' to stop");
+			logger.warn("按 'y' 运行脚本，或按 'n' 停止");
 			String input;
 			try {
 				input = reader.readLine();

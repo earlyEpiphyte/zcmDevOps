@@ -150,7 +150,7 @@ public class BuildSpecBlobViewPanel extends BlobViewPanel {
 							};
 							propertiesViewer.add(AttributeAppender.append("class", "properties"));
 						} else {
-							propertiesViewer = new Label("content", "No properties defined");
+							propertiesViewer = new Label("content", "没有定义属性");
 							String cssClasses = "properties not-defined alert alert-notice alert-light-warning d-flex";
 							propertiesViewer.add(AttributeAppender.append("class", cssClasses));
 						}
@@ -275,7 +275,7 @@ public class BuildSpecBlobViewPanel extends BlobViewPanel {
 							};
 						} else {
 							String cssClasses = "jobs not-defined alert alert-notice alert-light-warning d-flex";
-							jobsViewer = new Label("content", "No jobs defined").add(AttributeAppender.append("class", cssClasses));
+							jobsViewer = new Label("content", "没有定义作业").add(AttributeAppender.append("class", cssClasses));
 						}
 						jobsViewer.add(new Behavior() {
 								
@@ -379,7 +379,7 @@ public class BuildSpecBlobViewPanel extends BlobViewPanel {
 							};
 						} else {
 							String cssClasses = "services not-defined alert alert-notice alert-light-warning d-flex";
-							servicesViewer = new Label("content", "No services defined").add(AttributeAppender.append("class", cssClasses));
+							servicesViewer = new Label("content", "没有定义服务").add(AttributeAppender.append("class", cssClasses));
 						}
 						servicesViewer.add(new Behavior() {
 								
@@ -483,7 +483,7 @@ public class BuildSpecBlobViewPanel extends BlobViewPanel {
 							};
 						} else {
 							String cssClasses = "step-templates not-defined alert alert-notice alert-light-warning d-flex";
-							templatesViewer = new Label("content", "No step templates defined").add(AttributeAppender.append("class", cssClasses));
+							templatesViewer = new Label("content", "没有定义步骤模板").add(AttributeAppender.append("class", cssClasses));
 						}
 						templatesViewer.add(new Behavior() {
 								
@@ -509,7 +509,7 @@ public class BuildSpecBlobViewPanel extends BlobViewPanel {
 							importsViewer = PropertyContext.view("content", buildSpec, "imports");
 							importsViewer.add(AttributeAppender.append("class", "imports"));
 						} else {
-							importsViewer = new Label("content", "No imports defined");
+							importsViewer = new Label("content", "没有定义导入");
 							String cssClasses = "imports not-defined alert alert-notice alert-light-warning d-flex";
 							importsViewer.add(AttributeAppender.append("class", cssClasses));
 						}

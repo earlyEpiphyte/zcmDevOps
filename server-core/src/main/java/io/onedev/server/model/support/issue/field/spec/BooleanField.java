@@ -18,7 +18,7 @@ public class BooleanField extends FieldSpec {
 
 	private DefaultValueProvider defaultValueProvider = new FalseDefaultValue();
 
-	@Editable(name="Default Value", order=1000)
+	@Editable(name="默认值", order=1000)
 	@NotNull(message="不能为空")
 	@Valid
 	public DefaultValueProvider getDefaultValueProvider() {

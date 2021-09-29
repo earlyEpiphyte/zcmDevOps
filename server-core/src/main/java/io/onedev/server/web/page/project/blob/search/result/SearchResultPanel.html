@@ -1,12 +1,12 @@
 <wicket:panel>
 	<div class="search-result d-flex flex-column flex-grow-1 overflow-hidden">
 		<div class="head d-flex align-items-center px-3 py-2 flex-shrink-0">
-			<h6 class="title mr-4 mb-0">Search Result</h6>
+			<h6 class="title mr-4 mb-0">查询结果</h6>
 			<div class="actions text-nowrap mr-2">
-				<a wicket:id="prevMatch" title="Show previous match" class="mr-1"><wicket:svg href="arrow2" class="icon rotate-270"></wicket:svg></a>
-				<a wicket:id="nextMatch" title="Show next match" class="mr-1"><wicket:svg href="arrow2" class="icon rotate-90"></wicket:svg></a>
-				<a wicket:id="expandAll" title="Expand all" class="mr-2"><wicket:svg href="plus-square" class="icon"></wicket:svg></a>
-				<a wicket:id="collapseAll" title="Collapse all"><wicket:svg href="minus-square" class="icon"></wicket:svg></a>
+				<a wicket:id="prevMatch" title="显示上一个匹配" class="mr-1"><wicket:svg href="arrow2" class="icon rotate-270"></wicket:svg></a>
+				<a wicket:id="nextMatch" title="显示下一个匹配" class="mr-1"><wicket:svg href="arrow2" class="icon rotate-90"></wicket:svg></a>
+				<a wicket:id="expandAll" title="展开全部" class="mr-2"><wicket:svg href="plus-square" class="icon"></wicket:svg></a>
+				<a wicket:id="collapseAll" title="全部收缩"><wicket:svg href="minus-square" class="icon"></wicket:svg></a>
 			</div>
 			<div wicket:id="hasMoreMessage" class="warning mr-2 d-none d-md-inline text-muted"></div>
 			<div class="ml-auto">
@@ -36,7 +36,7 @@
 				</ul>
 			</li>
 			<li wicket:id="noMatchingResult" class="no-matching-result my-2 alert alert-notice alert-light-warning">
-				Nothing matching your query
+				没有与您的查询匹配的内容
 			</li>
 		</ul>
 	</div>

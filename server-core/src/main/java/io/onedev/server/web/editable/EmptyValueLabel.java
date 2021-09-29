@@ -20,6 +20,6 @@ public class EmptyValueLabel extends Label {
 		if (nameOfEmptyValue != null)
 			return HtmlEscape.escapeHtml5(nameOfEmptyValue.value());
 		else
-			return "Not defined";
+			return "未定义";
 	}
 }

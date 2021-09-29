@@ -28,8 +28,8 @@ public class MailSetting implements Serializable {
 	
 	private int timeout = 60;
 
-	@Editable(order=100, name="SMTP Host", description=
-		"Specify the SMTP mail host used by OneDev to send email."
+	@Editable(order=100, name="SMTP 主机", description=
+		"指定 OneDev 用于发送电子邮件的 SMTP 主机."
 		)
 	@NotEmpty
 	public String getSmtpHost() {
@@ -40,7 +40,7 @@ public class MailSetting implements Serializable {
 		this.smtpHost = smtpHost;
 	}
 
-	@Editable(order=200, name="SMTP Port")
+	@Editable(order=200, name="SMTP 端口")
 	public int getSmtpPort() {
 		return smtpPort;
 	}
@@ -49,7 +49,7 @@ public class MailSetting implements Serializable {
 		this.smtpPort = smtpPort;
 	}
 
-	@Editable(order=250, name="Enable STARTTLS", description="Whether or not to enable STARTTLS on above port")
+	@Editable(order=250, name="启用 STARTTLS", description="是否端口上启用 STARTTLS")
 	public boolean isEnableStartTLS() {
 		return enableStartTLS;
 	}
@@ -58,8 +58,8 @@ public class MailSetting implements Serializable {
 		this.enableStartTLS = enableStartTLS;
 	}
 
-	@Editable(order=260, name="Send as Html", description=
-			"If checked, mail will be sent in html format. Otherwise in plain text format")
+	@Editable(order=260, name="以 HTML 格式发送", description=
+			"如果选中，邮件将以 html 格式发送. 否则为纯文本格式")
 	public boolean isSendAsHtml() {
 		return sendAsHtml;
 	}
@@ -68,8 +68,8 @@ public class MailSetting implements Serializable {
 		this.sendAsHtml = sendAsHtml;
 	}
 
-	@Editable(order=300, name="SMTP User", description=
-		"Optionally specify user name here if the SMTP host needs authentication"
+	@Editable(order=300, name="SMTP 用户", description=
+		"如果 SMTP 主机需要身份验证，可选择在此处指定用户名"
 		)
 	public String getSmtpUser() {
 		return smtpUser;
@@ -79,8 +79,8 @@ public class MailSetting implements Serializable {
 		this.smtpUser = smtpUser;
 	}
 
-	@Editable(order=400, name="SMTP Password", description=
-		"Optionally specify password here if the SMTP host needs authentication"
+	@Editable(order=400, name="SMTP 密码", description=
+		"如果 SMTP 主机需要身份验证，可选择在此处指定密码"
 		)
 	@Password(autoComplete="new-password")
 	public String getSmtpPassword() {
@@ -92,10 +92,9 @@ public class MailSetting implements Serializable {
 	}
 
 	@Editable(order=500, description=
-		"This property is optional. If specified, OneDev will use this email " +
-		"as the sender address when sending out emails. Otherwise, the sender " +
-		"address will be <b>onedev@&lt;hostname&gt;</b>, where &lt;hostname&gt; " +
-		"is the host name of OneDev server."
+		"此属性是可选的。 如果指定，OneDev 将在发送电子邮件时使用此电子邮件作为发件人地址. 否则, 发件人地址将是" +
+		"<b>onedev@&lt;hostname&gt;</b>, 其中 &lt;hostname&gt; " +
+		"是 OneDev 服务器的主机名."
 		)
 	public String getSenderAddress() {
 		return senderAddress;
@@ -105,8 +104,8 @@ public class MailSetting implements Serializable {
 		this.senderAddress = senderAddress;
 	}
 
-	@Editable(order=600, description="Specify timeout in seconds when communicating with the SMTP server. " +
-			"Use 0 to set an infinite timeout.")
+	@Editable(order=600, description="指定与 SMTP 服务器通信时的超时时间（以秒为单位）. " +
+			"设置 0 表示无限超时.")
 	public int getTimeout() {
 		return timeout;
 	}

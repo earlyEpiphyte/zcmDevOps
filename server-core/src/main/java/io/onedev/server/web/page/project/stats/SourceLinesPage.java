@@ -45,7 +45,7 @@ public class SourceLinesPage extends ProjectStatsPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Line Statistics");
+		return new Label(componentId, "代码行统计");
 	}
 
 }

@@ -89,7 +89,7 @@ public class Milestone extends AbstractEntity {
 		this.description = description;
 	}
 
-	@Editable(order=300, description="Optionally specify due date of the milestone")
+	@Editable(order=300, description="（可选）指定里程碑的截止日期")
 	@Nullable
 	public Date getDueDate() {
 		return dueDate;

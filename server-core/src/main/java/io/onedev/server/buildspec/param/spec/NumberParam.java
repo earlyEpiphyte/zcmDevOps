@@ -21,7 +21,7 @@ public class NumberParam extends ParamSpec {
 	
 	private DefaultValueProvider defaultValueProvider;
 	
-	@Editable(order=1000, description="Optionally specify the minimum value allowed.")
+	@Editable(order=1000, description="（可选）指定允许的最小值.")
 	public Integer getMinValue() {
 		return minValue;
 	}
@@ -30,7 +30,7 @@ public class NumberParam extends ParamSpec {
 		this.minValue = minValue;
 	}
 
-	@Editable(order=1100, description="Optionally specify the maximum value allowed.")
+	@Editable(order=1100, description="（可选）指定允许的最大值.")
 	public Integer getMaxValue() {
 		return maxValue;
 	}
@@ -39,8 +39,8 @@ public class NumberParam extends ParamSpec {
 		this.maxValue = maxValue;
 	}
 
-	@Editable(order=1200, name="Default Value")
-	@NameOfEmptyValue("No default value")
+	@Editable(order=1200, name="默认值")
+	@NameOfEmptyValue("无默认值")
 	@Valid
 	public DefaultValueProvider getDefaultValueProvider() {
 		return defaultValueProvider;

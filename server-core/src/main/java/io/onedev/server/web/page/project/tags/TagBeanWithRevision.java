@@ -16,7 +16,7 @@ public class TagBeanWithRevision extends TagBean {
 
 	@Editable(order=1000, name="Revision")
 	@RevisionPick
-	@NotEmpty(message = "Please select revision to create tag from")
+	@NotEmpty(message = "请选择要从中创建标签的修订版")
 	@OmitName
 	public String getRevision() {
 		return revision;

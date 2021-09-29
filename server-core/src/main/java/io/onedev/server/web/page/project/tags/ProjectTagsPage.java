@@ -231,17 +231,17 @@ public class ProjectTagsPage extends ProjectPage {
 						
 						if (getProject().getObjectId(GitUtils.tag2ref(tagName), false) != null) {
 							editor.error(new Path(new PathNode.Named("name")), 
-									"Tag '" + tagName + "' already exists, please choose a different name.");
+									"标签 '" + tagName + "' 已经存在, 请选择不同的名字.");
 							target.add(form);
 						} else if (getProject().getTagProtection(tagName, user).isPreventCreation()) {
-							editor.error(new Path(new PathNode.Named("name")), "Unable to create protected tag"); 
+							editor.error(new Path(new PathNode.Named("name")), "无法创建受保护的标签"); 
 							target.add(form);
 						} else {
 							getProject().createTag(tagName, helperBean.getRevision(), user.asPerson(), helperBean.getMessage());
 							modal.close();
 							target.add(tagsTable);
 							
-							getSession().success("Tag '" + tagName + "' created");
+							getSession().success("标签 '" + tagName + "' 已经创建");
 						}
 					}
 
@@ -365,20 +365,20 @@ public class ProjectTagsPage extends ProjectPage {
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 						super.updateAjaxAttributes(attributes);
-						attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete tag " + tagName + "?"));
+						attributes.getAjaxCallListeners().add(new ConfirmClickListener("你真的要删除标签 " + tagName + " 吗?"));
 					}
 
 					@Override
 					protected void disableLink(ComponentTag tag) {
 						super.disableLink(tag);
 						tag.append("class", "disabled", " ");
-						tag.put("title", "Deletion not allowed due to tag protection rule");
+						tag.put("title", "由于标记保护规则，不允许删除");
 					}
 
 					@Override
 					public void onClick(AjaxRequestTarget target) {
 						OneDev.getInstance(ProjectManager.class).deleteTag(getProject(), tagName);
-						WebSession.get().success("Tag '" + tagName + "' deleted");
+						WebSession.get().success("标签 '" + tagName + "' 已经删除");
 						target.add(tagsTable);
 					}
 

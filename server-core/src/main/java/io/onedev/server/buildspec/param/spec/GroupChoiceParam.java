@@ -22,7 +22,7 @@ public class GroupChoiceParam extends ParamSpec {
 
 	private DefaultValueProvider defaultValueProvider;
 	
-	@Editable(order=1000, name="Available Choices")
+	@Editable(order=1000, name="可用选项")
 	@NotNull(message="不能为空")
 	@Valid
 	public ChoiceProvider getChoiceProvider() {
@@ -33,8 +33,8 @@ public class GroupChoiceParam extends ParamSpec {
 		this.choiceProvider = choiceProvider;
 	}
 
-	@Editable(order=1100, name="Default Value")
-	@NameOfEmptyValue("No default value")
+	@Editable(order=1100, name="默认值")
+	@NameOfEmptyValue("无默认值")
 	@Valid
 	public DefaultValueProvider getDefaultValueProvider() {
 		return defaultValueProvider;

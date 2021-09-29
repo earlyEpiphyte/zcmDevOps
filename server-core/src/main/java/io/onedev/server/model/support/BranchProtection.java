@@ -69,8 +69,8 @@ public class BranchProtection implements Serializable {
 		this.enabled = enabled;
 	}
 
-	@Editable(order=100, description="Specify space-separated branches to be protected. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude")
+	@Editable(order=100, description="指定要保护的以空格分隔的分支. 使用 '**', '*' 或者 '?' 用于 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestBranches", path=true)
 	@NotEmpty
 	public String getBranches() {
@@ -86,7 +86,7 @@ public class BranchProtection implements Serializable {
 		return SuggestionUtils.suggestBranches(Project.get(), matchWith);
 	}
 	
-	@Editable(order=150, name="Applicable Users", description="Rule will apply only if the user changing the branch matches criteria specified here")
+	@Editable(order=150, name="适用用户", description="规则仅适用于当更改分支的用户与此处指定的条件匹配时")
 	@io.onedev.server.web.editable.annotation.UserMatch
 	@NotEmpty(message="不能为空")
 	public String getUserMatch() {
@@ -97,7 +97,7 @@ public class BranchProtection implements Serializable {
 		this.userMatch = userMatch;
 	}
 
-	@Editable(order=200, description="Check this to prevent forced push")
+	@Editable(order=200, description="选中此项以防止强制推送")
 	public boolean isPreventForcedPush() {
 		return preventForcedPush;
 	}
@@ -106,7 +106,7 @@ public class BranchProtection implements Serializable {
 		this.preventForcedPush = preventForcedPush;
 	}
 
-	@Editable(order=300, description="Check this to prevent branch deletion")
+	@Editable(order=300, description="选中此项以防止分支删除")
 	public boolean isPreventDeletion() {
 		return preventDeletion;
 	}
@@ -115,7 +115,7 @@ public class BranchProtection implements Serializable {
 		this.preventDeletion = preventDeletion;
 	}
 
-	@Editable(order=350, description="Check this to prevent branch creation")
+	@Editable(order=350, description="选中此项以防止创建分支")
 	public boolean isPreventCreation() {
 		return preventCreation;
 	}
@@ -124,10 +124,9 @@ public class BranchProtection implements Serializable {
 		this.preventCreation = preventCreation;
 	}
 
-	@Editable(order=400, name="Required Reviewers", description="Optionally specify required reviewers for changes of "
-			+ "specified branch")
+	@Editable(order=400, name="所需审阅者", description="（可选）为指定分支的更改指定所需的审阅者")
 	@io.onedev.server.web.editable.annotation.ReviewRequirement
-	@NameOfEmptyValue("No one")
+	@NameOfEmptyValue("没有人")
 	public String getReviewRequirement() {
 		return reviewRequirement;
 	}
@@ -147,9 +146,9 @@ public class BranchProtection implements Serializable {
 		reviewRequirement = parsedReviewRequirement.toString();
 	}
 	
-	@Editable(order=500, name="Required Builds", description="Optionally choose required builds")
+	@Editable(order=500, name="所需的构建", description="可选地选择所需的构建")
 	@JobChoice
-	@NameOfEmptyValue("No any")
+	@NameOfEmptyValue("没有")
 	public List<String> getJobNames() {
 		return jobNames;
 	}
@@ -158,7 +157,7 @@ public class BranchProtection implements Serializable {
 		this.jobNames = jobNames;
 	}
 	
-	@Editable(order=700, description="Optionally specify path protection rules")
+	@Editable(order=700, description="可选地指定路径保护规则")
 	@Valid
 	public List<FileProtection> getFileProtections() {
 		return fileProtections;

@@ -72,7 +72,7 @@ public class BuildSuccessfulTrigger extends TransitionTrigger {
 			return new ArrayList<>();
 	}
 	
-	@Editable(order=1000, name="Applicable Issues", description="Optionally specify issues applicable for this transition. Leave empty for all issues")
+	@Editable(order=1000, name="适用问题", description="（可选）指定适用于此转换的问题.为所有问题留空")
 	@IssueQuery(withOrder = false, withCurrentUserCriteria = false, withCurrentBuildCriteria = true, 
 			withCurrentPullRequestCriteria = false, withCurrentCommitCriteria = false)
 	@NameOfEmptyValue("All")

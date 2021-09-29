@@ -123,7 +123,7 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 		this.capacity = capacity;
 	}
 
-	@Editable(order=50050, group="More Settings", description="Optionally specify options to run container. For instance, you may use <tt>-m 2g</tt> "
+	@Editable(order=50050, group="更多设置", description="Optionally specify options to run container. For instance, you may use <tt>-m 2g</tt> "
 			+ "to limit memory of created container to be 2 giga bytes")
 	public String getRunOptions() {
 		return runOptions;
@@ -133,7 +133,7 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 		this.runOptions = runOptions;
 	}
 
-	@Editable(order=50100, group="More Settings", description="Optionally specify docker executable, for instance <i>/usr/local/bin/docker</i>. "
+	@Editable(order=50100, group="更多设置", description="Optionally specify docker executable, for instance <i>/usr/local/bin/docker</i>. "
 			+ "Leave empty to use docker executable in PATH")
 	@NameOfEmptyValue("Use default")
 	public String getDockerExecutable() {

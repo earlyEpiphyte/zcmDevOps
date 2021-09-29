@@ -6,11 +6,11 @@
 					<div class="input-group">
 						<input wicket:id="input" spellcheck="false" autocomplete="off" class="form-control" placeholder="在这里查询和给问题排序">
 						<span class="input-group-append">
-							<button wicket:id="submit" type="submit" class="btn btn-outline-secondary btn-icon" title="Query"><wicket:svg href="magnify" class="icon"></wicket:svg></button>
+							<button wicket:id="submit" type="submit" class="btn btn-outline-secondary btn-icon" title="查询"><wicket:svg href="magnify" class="icon"></wicket:svg></button>
 						</span>
 					</div>
 				</form>
-				<a wicket:id="newIssue" class="add-new btn btn-primary btn-icon flex-shrink-0 ml-3" title="Create new issue"><wicket:svg href="plus" class="icon"/></a>
+				<a wicket:id="newIssue" class="add-new btn btn-primary btn-icon flex-shrink-0 ml-3" title="创建新问题"><wicket:svg href="plus" class="icon"/></a>
 			</div>
 			<div class="mb-5">
 				<a wicket:id="showSavedQueries" class="show-saved-queries text-gray mr-4">
@@ -20,10 +20,10 @@
 					<wicket:svg href="save" class="icon"></wicket:svg> 保存查询
 				</a>
 				<a wicket:id="batchEditSelected" class="text-gray mr-4">
-					<wicket:svg href="edit-selected" class="icon"></wicket:svg> Batch Edit Selected
+					<wicket:svg href="edit-selected" class="icon"></wicket:svg> 批量编辑所选
 				</a>
 				<a wicket:id="batchEditAll" class="text-gray mr-4">
-					<wicket:svg href="edit" class="icon"></wicket:svg> Batch Edit All
+					<wicket:svg href="edit" class="icon"></wicket:svg> 批量编辑全部
 				</a>
 				<a wicket:id="listFields" class="list-fields text-gray mr-4">
 					<wicket:svg href="select" class="icon"></wicket:svg> 显示参数
@@ -48,10 +48,10 @@
 				</a>
 			</div>
 			<div class="flex-shrink-0 d-none d-lg-block text-muted">
-				<span class="votes mr-2" title="Votes">
+				<span class="votes mr-2" title="投票">
 					<wicket:svg href="thumb-up" class="icon"></wicket:svg> <span wicket:id="votes"></span>
 				</span>
-				<span class="comments" title="Comments">
+				<span class="comments" title="评论">
 					<wicket:svg href="comments" class="icon"></wicket:svg> <span wicket:id="comments"></span>
 				</span>
 			</div>
@@ -72,7 +72,7 @@
 		<div class="issue-list-fields">
 			<form wicket:id="form">
 				<div class="modal-header">
-					<h5 id="modal-title" class="modal-title">Fields to Display</h5>
+					<h5 id="modal-title" class="modal-title">显示参数</h5>
 					<button wicket:id="close" type="button" class="close"><wicket:svg href="times" class="icon"/></button>
 				</div>
 				<div class="modal-body">
@@ -80,7 +80,7 @@
 				</div>
 				<div class="modal-footer">
 					<input wicket:id="save" type="submit" class="dirty-aware btn btn-primary" value="保存">
-					<button wicket:id="useDefault" class="btn btn-primary">Use Default</button>
+					<button wicket:id="useDefault" class="btn btn-primary">使用默认</button>
 					<a wicket:id="cancel" class="btn btn-secondary">取消</a>
 				</div>
 			</form>

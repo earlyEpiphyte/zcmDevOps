@@ -441,17 +441,17 @@ public class ProjectBranchesPage extends ProjectPage {
 						User user = Preconditions.checkNotNull(getLoginUser());
 						if (getProject().getObjectId(GitUtils.branch2ref(branchName), false) != null) {
 							editor.error(new Path(new PathNode.Named("name")), 
-									"Branch '" + branchName + "' already exists, please choose a different name");
+									"分支 '" + branchName + "' 已经存在, 请选择不同的名字");
 							target.add(form);
 						} else if (getProject().getBranchProtection(branchName, user).isPreventCreation()) {
-							editor.error(new Path(new PathNode.Named("name")), "Unable to create protected branch");
+							editor.error(new Path(new PathNode.Named("name")), "无法创建受保护的分支");
 							target.add(form);
 						} else {
 							getProject().createBranch(branchName, helperBean.getRevision());
 							modal.close();
 							target.add(branchesTable);
 							
-							getSession().success("Branch '" + branchName + "' created");
+							getSession().success("分支 '" + branchName + "' 已创建");
 						}
 					}
 
@@ -586,9 +586,9 @@ public class ProjectBranchesPage extends ProjectPage {
 						super.disableLink(tag);
 						tag.append("class", "disabled", " ");
 						if (getProject().getDefaultBranch().equals(branch)) {
-							tag.put("title", "Can not delete default branch");
+							tag.put("title", "无法删除默认分支");
 						} else {
-							tag.put("title", "Deletion not allowed due to branch protection rule");
+							tag.put("title", "由于分支保护规则，不允许删除");
 						}
 					}
 
@@ -607,14 +607,14 @@ public class ProjectBranchesPage extends ProjectPage {
 							bodyFrag.add(new Label("branch", branch));
 							fragment.add(bodyFrag);
 						} else {
-							fragment.add(new Label("body", "You selected to delete branch " + branch));
+							fragment.add(new Label("body", "您选择了删除分支" + branch));
 						}
 						fragment.add(new AjaxLink<Void>("delete") {
 
 							@Override
 							public void onClick(AjaxRequestTarget target) {
 								OneDev.getInstance(ProjectManager.class).deleteBranch(getProject(), branch);
-								getSession().success("Branch '" + branch + "' deleted");
+								getSession().success("分支 '" + branch + "' 已删除");
 								if (branch.equals(baseBranch)) {
 									baseBranch = getProject().getDefaultBranch();
 									target.add(baseChoice);

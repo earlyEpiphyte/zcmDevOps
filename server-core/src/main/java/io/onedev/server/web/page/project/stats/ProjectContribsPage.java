@@ -46,7 +46,7 @@ public class ProjectContribsPage extends ProjectStatsPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		if (getProject().getDefaultBranch() != null)
-			add(new Label("note", "Contributions to " + getProject().getDefaultBranch() + " branch, excluding merge commits"));
+			add(new Label("note", "对 " + getProject().getDefaultBranch() + " 分支的贡献, 不包括合并提交"));
 		else
 			add(new WebMarkupContainer("note").setVisible(false));
 		add(new WebMarkupContainer(USER_CARD_ID).setOutputMarkupId(true));
@@ -100,7 +100,7 @@ public class ProjectContribsPage extends ProjectStatsPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Contribution Statistics");
+		return new Label(componentId, "贡献统计");
 	}
 
 }

@@ -59,10 +59,10 @@ public abstract class CreateTagPanel extends Panel {
 				User user = Preconditions.checkNotNull(SecurityUtils.getUser());
 				if (project.getObjectId(GitUtils.tag2ref(tagName), false) != null) {
 					editor.error(new Path(new PathNode.Named("name")), 
-							"Tag '" + helperBean.getName() + "' already exists, please choose a different name.");
+							"标签 '" + helperBean.getName() + "' 已经存在, 请选择不同的名字.");
 					target.add(form);
 				} else if (project.getTagProtection(tagName, user).isPreventCreation()) {
-						editor.error(new Path(new PathNode.Named("name")), "Unable to create protected tag"); 
+						editor.error(new Path(new PathNode.Named("name")), "无法创建受保护的标签"); 
 						target.add(form);
 				} else {
 					project.createTag(tagName, revision, user.asPerson(), helperBean.getMessage());

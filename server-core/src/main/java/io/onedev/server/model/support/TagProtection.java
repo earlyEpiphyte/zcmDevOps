@@ -43,8 +43,8 @@ public class TagProtection implements Serializable {
 		this.enabled = enabled;
 	}
 
-	@Editable(order=100, description="Specify space-separated tags to be protected. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude")
+	@Editable(order=100, description="指定要保护的空格分隔标签. 使用 '**', '*' 或者 '?' 用于 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestTags", path=true)
 	@NotEmpty
 	public String getTags() {
@@ -60,7 +60,7 @@ public class TagProtection implements Serializable {
 		return SuggestionUtils.suggestTags(Project.get(), matchWith);
 	}
 	
-	@Editable(order=150, name="Applicable Users", description="Rule will apply if user operating the tag matches criteria specified here")
+	@Editable(order=150, name="适用用户", description="如果用户操作标签匹配此处指定的标准，则规则将适用")
 	@io.onedev.server.web.editable.annotation.UserMatch
 	@NotEmpty(message="不能为空")
 	public String getUserMatch() {
@@ -80,7 +80,7 @@ public class TagProtection implements Serializable {
 			return new ArrayList<>();
 	}
 	
-	@Editable(order=200, description="Check this to prevent tag update")
+	@Editable(order=200, description="选中此项以防止标签更新")
 	public boolean isPreventUpdate() {
 		return preventUpdate;
 	}
@@ -89,7 +89,7 @@ public class TagProtection implements Serializable {
 		this.preventUpdate = preventUpdate;
 	}
 
-	@Editable(order=300, description="Check this to prevent tag deletion")
+	@Editable(order=300, description="选中此项以防止标签删除")
 	public boolean isPreventDeletion() {
 		return preventDeletion;
 	}
@@ -98,7 +98,7 @@ public class TagProtection implements Serializable {
 		this.preventDeletion = preventDeletion;
 	}
 
-	@Editable(order=400, description="Check this to prevent tag creation")
+	@Editable(order=400, description="选中此项以防止创建标签")
 	public boolean isPreventCreation() {
 		return preventCreation;
 	}

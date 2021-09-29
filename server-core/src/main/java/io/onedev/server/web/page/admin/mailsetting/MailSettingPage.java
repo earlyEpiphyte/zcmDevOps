@@ -46,7 +46,7 @@ public class MailSettingPage extends AdministrationPage {
 				super.onSubmit();
 				
 				OneDev.getInstance(SettingManager.class).saveMailSetting(mailSettingHolder.getMailSetting());
-				getSession().success("Mail setting has been saved");
+				getSession().success("邮件设置已保存");
 			}
 			
 		};

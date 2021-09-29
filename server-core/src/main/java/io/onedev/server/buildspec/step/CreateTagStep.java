@@ -21,7 +21,7 @@ import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 import io.onedev.server.web.editable.annotation.Multiline;
 
-@Editable(name="Create Tag", order=30)
+@Editable(name="Create Label", order=30)
 public class CreateTagStep extends ServerStep {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ public class CreateTagStep extends ServerStep {
 	
 	private String tagMessage;
 	
-	@Editable(order=1000, description="Specify name of the tag")
+	@Editable(order=1000, description="指定标签名称")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getTagName() {
@@ -41,7 +41,7 @@ public class CreateTagStep extends ServerStep {
 		this.tagName = tagName;
 	}
 	
-	@Editable(order=1050, description="Optionally specify message of the tag")
+	@Editable(order=1050, description="可选地指定标签的信息")
 	@Multiline
 	@Interpolative(variableSuggester="suggestVariables")
 	public String getTagMessage() {
@@ -72,7 +72,7 @@ public class CreateTagStep extends ServerStep {
 				project.createTag(tagName, build.getCommitHash(), tagIdent, getTagMessage());
 			}
 		} else {
-			throw new ExplicitException("This build is not authorized to create tag '" + tagName + "'");
+			throw new ExplicitException("此构建无权创建标签 '" + tagName + "'");
 		}
 		
 		return null;

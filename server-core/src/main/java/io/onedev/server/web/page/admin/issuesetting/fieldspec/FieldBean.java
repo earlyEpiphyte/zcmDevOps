@@ -16,7 +16,7 @@ public class FieldBean implements Serializable {
 
 	private boolean promptUponIssueOpen = true;
 
-	@Editable(name="Type", order=100)
+	@Editable(name="类型", order=100)
 	@NotNull(message="不能为空")
 	public FieldSpec getField() {
 		return field;
@@ -26,7 +26,7 @@ public class FieldBean implements Serializable {
 		this.field = field;
 	}
 
-	@Editable(order=200, description="If checked, this field will be prompted for user input by default when issue is opened")
+	@Editable(order=200, description="如果选中，则默认情况下会在打开问题时提示用户输入此字段")
 	public boolean isPromptUponIssueOpen() {
 		return promptUponIssueOpen;
 	}

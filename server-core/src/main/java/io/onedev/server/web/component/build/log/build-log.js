@@ -19,7 +19,7 @@ onedev.server.buildLog = {
         if (numOfEntriesToRemove > 0) {
             $logEntries.slice(0, numOfEntriesToRemove).remove();
             if ($buildLog.children(".too-many-entries").length == 0)
-                $buildLog.prepend("<h6 class='too-many-entries text-warning'>Too many log entries, displaying recent " + maxNumOfLogEntries + "</h6>")
+                $buildLog.prepend("<h6 class='too-many-entries text-warning'>日志条目过多，显示最近的 " + maxNumOfLogEntries + "条</h6>")
         } 
         if ($logEntries.length == 0) {
             if ($buildLog.children(".no-entries").length == 0)

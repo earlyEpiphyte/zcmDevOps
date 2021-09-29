@@ -81,11 +81,11 @@ abstract class SsoConnectorEditPanel extends Panel {
 					if (!bean.getConnector().getName().equals(oldConnector.getName()) 
 							&& getConnector(bean.getConnector().getName()) != null) {
 						editor.error(new Path(new PathNode.Named("connector"), new PathNode.Named("name")),
-								"This name has already been used by another provider");
+								"此名称已被其他提供商使用");
 					}
 				} else if (getConnector(bean.getConnector().getName()) != null) {
 					editor.error(new Path(new PathNode.Named("connector"), new PathNode.Named("name")),
-							"This name has already been used by another provider");
+							"此名称已被其他提供商使用");
 				}
 
 				if (editor.isValid()) {

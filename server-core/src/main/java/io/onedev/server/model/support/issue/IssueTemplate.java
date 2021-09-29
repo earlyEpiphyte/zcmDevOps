@@ -26,12 +26,12 @@ public class IssueTemplate implements Serializable {
 
 	private String issueDescription;
 	
-	@Editable(order=100, name="Applicable Issues", description="Optionally specify issues applicable for this template. "
-			+ "Leave empty for all")
+	@Editable(order=100, name="适用问题", description="（可选）指定适用于此模板的问题. "
+			+ "为所有留空")
 	@IssueQuery(withCurrentBuildCriteria = false, withCurrentCommitCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentUserCriteria = false, 
 			withOrder = false)
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	public String getIssueQuery() {
 		return issueQuery;
 	}

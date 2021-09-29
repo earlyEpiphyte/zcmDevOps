@@ -332,7 +332,7 @@ public abstract class LayoutPage extends BasePage {
 			userInfo.add(signOutLink);
 		} else {
 			ViewStateAwarePageLink<Void> signOutLink = new ViewStateAwarePageLink<Void>("signOut", LogoutPage.class); 
-			signOutLink.add(new Label("label", "Sign Out"));
+			signOutLink.add(new Label("label", "退出"));
 			userInfo.add(signOutLink);
 		}
 

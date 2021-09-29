@@ -2,14 +2,14 @@
 	<div class="build-side">
         <div wicket:id="general" class="general properties">
         	<div>
-        		<div class="name">Commit</div>
+        		<div class="name">提交</div>
         		<div class="value">
         			<a wicket:id="commit"><span wicket:id="label"></span></a>
         		</div>
         	</div>
 			<wicket:enclosure child="branch">
         	<div>
-        		<div class="name">Branch</div>
+        		<div class="name">分支</div>
         		<div class="value">
         			<a wicket:id="branch"><span wicket:id="label"></span></a>
         		</div>
@@ -17,38 +17,38 @@
 			</wicket:enclosure>
 			<wicket:enclosure child="tag">
         	<div>
-        		<div class="name">Tag</div>
+        		<div class="name">标签</div>
         		<div class="value">
         			<a wicket:id="tag"><span wicket:id="label"></span></a>
         		</div>
         	</div>
 			</wicket:enclosure>
             <div>
-                <div class="name">Job</div>
+                <div class="name">作业</div>
                 <div class="value">
                     <a wicket:id="job"><span wicket:id="label"></span></a>
 					<a wicket:id="editJob" title="Edit job"><wicket:svg href="edit" class="icon icon-sm ml-1 mb-1"/></a>
                 </div>
             </div>
             <div>
-                <div class="name">Submitted By</div>
+                <div class="name">提交人</div>
                 <div class="value">
                     <a wicket:id="submitter"></a>
                 </div>
             </div>
             <div>
-                <div class="name">Submitted At</div>
+                <div class="name">提交时间</div>
                 <div class="value"><span wicket:id="submitDate"></span></div>
             </div>
             <wicket:enclosure child="submitReason">
             <div>
-                <div class="name">Submit Reason</div>
+                <div class="name">提交原因</div>
                 <div class="value"><span wicket:id="submitReason"></span></div>
             </div>
             </wicket:enclosure>
             <wicket:enclosure child="retryDate">
             <div>
-                <div class="name">Retried At</div>
+                <div class="name">重试时间</div>
                 <div class="value"><span wicket:id="retryDate"></span></div>
             </div>
             </wicket:enclosure>
@@ -100,7 +100,7 @@
 		<div wicket:id="reference"></div>
 		<wicket:enclosure child="delete">
 			<div class="actions">
-				<a wicket:id="delete" class="delete btn btn-light-danger">Delete</a>
+				<a wicket:id="delete" class="delete btn btn-light-danger">删除</a>
 			</div>
 		</wicket:enclosure>
 	</div>

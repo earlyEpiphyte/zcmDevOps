@@ -26,7 +26,7 @@ public class CloseMilestoneStep extends ServerStep {
 	
 	private String milestoneName;
 	
-	@Editable(order=1000, description="Specify name of the milestone")
+	@Editable(order=1000, description="指定里程碑的名称")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getMilestoneName() {
@@ -57,10 +57,10 @@ public class CloseMilestoneStep extends ServerStep {
 						milestone.setClosed(true);
 						milestoneManager.save(milestone);
 					} else {
-						throw new ExplicitException("This build is not authorized to close milestone '" + milestoneName + "'");
+						throw new ExplicitException("此构建未授权关闭里程碑 '" + milestoneName + "'");
 					}
 				} else {
-					logger.log("WARNING: Unable to find milestone '" + milestoneName + "'");
+					logger.log("WARNING: 找不到里程碑 '" + milestoneName + "'");
 				}
 			}
 			

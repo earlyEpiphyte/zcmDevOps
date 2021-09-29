@@ -279,7 +279,7 @@ public class UserResource {
     	return userManager.query(criteria, offset, count);
     }
 	
-	@Api(order=1900, description="Update user of specified id in request body, or create new if id property not provided")
+	@Api(order=1900, description="更新请求正文中指定 id 的用户，如果未提供 id 属性，则创建新用户")
     @POST
     public Long createOrUpdate(@NotNull User user) {
     	if (user.isNew()) {
@@ -307,11 +307,11 @@ public class UserResource {
 			throw new UnauthorizedException();
     	} else if (user.getPassword().equals(User.EXTERNAL_MANAGED)) {
 			if (user.getSsoInfo().getConnector() != null) {
-				throw new ExplicitException("The user is currently authenticated via SSO provider '" 
-						+ user.getSsoInfo().getConnector() + "', please change password there instead");
+				throw new ExplicitException("用户当前已通过 SSO 提供商进行身份验证 '" 
+						+ user.getSsoInfo().getConnector() + "', 请更改密码");
 			} else {
-				throw new ExplicitException("The user is currently authenticated via external system, "
-						+ "please change password there instead");
+				throw new ExplicitException("用户是通过外部系统进行身份验证的, "
+						+ "请更改密码");
 			}
 		} else {
 	    	user.setPassword(passwordService.encryptPassword(password));
@@ -377,9 +377,9 @@ public class UserResource {
 			throw new UnauthorizedException();
     	User user = userManager.load(userId);
     	if (user.isRoot())
-			throw new ExplicitException("Root user can not be deleted");
+			throw new ExplicitException("无法删除root用户");
     	else if (user.equals(SecurityUtils.getUser()))
-    		throw new ExplicitException("Can not delete yourself");
+    		throw new ExplicitException("不能删除自己");
     	else
     		userManager.delete(user);
     	return Response.ok().build();

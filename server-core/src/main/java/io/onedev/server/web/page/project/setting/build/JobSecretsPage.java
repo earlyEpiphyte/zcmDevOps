@@ -215,7 +215,7 @@ public class JobSecretsPage extends BuildSettingPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Job Secrets");
+		return new Label(componentId, "作业秘密");
 	}
 
 }

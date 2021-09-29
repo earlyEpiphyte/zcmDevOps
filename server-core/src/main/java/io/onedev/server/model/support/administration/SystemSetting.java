@@ -60,7 +60,7 @@ public class SystemSetting implements Serializable, Validatable {
 		this.curlConfig = curlConfig;
 	}
 
-	@Editable(name="启用gravatar头像",order=300, description="是否启用用户gravatar头像(https://gravatar.com)")
+	@Editable(name="启用头像",order=300, description="是否启用用户头像(https://gravatar.com)")
 	public boolean isGravatarEnabled() {
 		return gravatarEnabled;
 	}

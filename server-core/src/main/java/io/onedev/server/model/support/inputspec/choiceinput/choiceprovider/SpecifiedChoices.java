@@ -20,7 +20,7 @@ import io.onedev.server.util.validation.annotation.ClassValidating;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.OmitName;
 
-@Editable(order=100, name="Use specified choices")
+@Editable(order=100, name="使用指定的选项")
 @ClassValidating
 public class SpecifiedChoices extends ChoiceProvider implements Validatable {
 

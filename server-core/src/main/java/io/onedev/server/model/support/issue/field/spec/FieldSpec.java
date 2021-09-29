@@ -45,8 +45,8 @@ public abstract class FieldSpec extends InputSpec {
 		super.setName(name);
 	}
 
-	@Editable(order=30, description="Optionally describes the custom field")
-	@NameOfEmptyValue("No description")
+	@Editable(order=30, description="可选地描述自定义字段")
+	@NameOfEmptyValue("没有说明")
 	@Override
 	public String getDescription() {
 		return super.getDescription();
@@ -57,7 +57,7 @@ public abstract class FieldSpec extends InputSpec {
 		super.setDescription(description);
 	}
 
-	@Editable(order=35, description="Whether or not multiple values can be specified for this field")
+	@Editable(order=35, description="是否可以为该字段指定多个值")
 	@Override
 	public boolean isAllowMultiple() {
 		return super.isAllowMultiple();
@@ -68,8 +68,8 @@ public abstract class FieldSpec extends InputSpec {
 		super.setAllowMultiple(allowMultiple);
 	}
 
-	@Editable(order=40, name="Show Conditionally", description="Enable if visibility of this field depends on other fields")
-	@NameOfEmptyValue("Always")
+	@Editable(order=40, name="有条件地显示", description="如果此字段的可见性取决于其他字段，则启用")
+	@NameOfEmptyValue("总是")
 	@Valid
 	@Override
 	public ShowCondition getShowCondition() {
@@ -81,7 +81,7 @@ public abstract class FieldSpec extends InputSpec {
 		super.setShowCondition(showCondition);
 	}
 	
-	@Editable(order=50, name="Allow Empty Value", description="Whether or not this field accepts empty value")
+	@Editable(order=50, name="允许空值", description="此参数是否接受空值")
 	@Override
 	public boolean isAllowEmpty() {
 		return super.isAllowEmpty();

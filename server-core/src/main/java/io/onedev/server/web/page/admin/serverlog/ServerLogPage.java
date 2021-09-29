@@ -32,7 +32,7 @@ public class ServerLogPage extends AdministrationPage {
 		List<String> lines = ServerLogResource.readServerLog();		
 		String content;
 		if (lines.size() > MAX_DISPLAY_LINES) {
-			add(new Label("warning", "Too many log entries, displaying recent " + MAX_DISPLAY_LINES));
+			add(new Label("warning", "日志条目过多，显示最近的" + MAX_DISPLAY_LINES +"条"));
 			content = Joiner.on("\n").join(lines.subList(lines.size()-MAX_DISPLAY_LINES, lines.size()));
 		} else {
 			add(new WebMarkupContainer("warning").setVisible(false));

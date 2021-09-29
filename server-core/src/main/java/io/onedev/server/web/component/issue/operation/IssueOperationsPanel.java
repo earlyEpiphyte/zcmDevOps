@@ -150,7 +150,7 @@ public abstract class IssueOperationsPanel extends Panel {
 							
 							@Override
 							protected List<AttributeModifier> getInputModifiers() {
-								return Lists.newArrayList(AttributeModifier.replace("placeholder", "Leave a comment"));
+								return Lists.newArrayList(AttributeModifier.replace("placeholder", "发表评论"));
 							}
 							
 							@Override
