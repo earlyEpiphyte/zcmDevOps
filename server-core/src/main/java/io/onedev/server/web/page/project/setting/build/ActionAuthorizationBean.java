@@ -14,7 +14,7 @@ public class ActionAuthorizationBean implements Serializable {
 
 	private ActionAuthorization authorization;
 
-	@Editable(name="Action")
+	@Editable(name="行动")
 	@NotNull
 	public ActionAuthorization getAuthorization() {
 		return authorization;

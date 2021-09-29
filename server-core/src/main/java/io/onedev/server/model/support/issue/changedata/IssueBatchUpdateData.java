@@ -114,7 +114,7 @@ public class IssueBatchUpdateData extends IssueFieldChangeData {
 
 	@Override
 	public String getActivity(Issue withIssue) {
-		String activity = "batch edited";
+		String activity = "批量编辑";
 		if (withIssue != null)
 			activity += " issue " + withIssue.getNumberAndTitle();
 		return activity;

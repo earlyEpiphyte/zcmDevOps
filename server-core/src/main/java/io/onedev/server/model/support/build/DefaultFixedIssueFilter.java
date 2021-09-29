@@ -37,7 +37,7 @@ public class DefaultFixedIssueFilter implements Serializable {
 		this.jobNames = jobNames;
 	}
 
-	@Editable(order=200, description="Specify a default query to filter/order fixed issues of specified jobs")
+	@Editable(order=200, description="指定默认查询以过滤/排序指定作业的已修复问题")
 	@IssueQuery(withCurrentBuildCriteria = false, withCurrentCommitCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentUserCriteria = true, 
 			withOrder = true)

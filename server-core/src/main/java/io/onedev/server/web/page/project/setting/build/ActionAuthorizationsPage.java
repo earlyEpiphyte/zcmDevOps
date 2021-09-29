@@ -78,7 +78,7 @@ public class ActionAuthorizationsPage extends BuildSettingPage {
 		
 		List<IColumn<ActionAuthorization, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<ActionAuthorization, Void>(Model.of("Action")) {
+		columns.add(new AbstractColumn<ActionAuthorization, Void>(Model.of("行动")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<ActionAuthorization>> cellItem, String componentId, 
@@ -88,7 +88,7 @@ public class ActionAuthorizationsPage extends BuildSettingPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<ActionAuthorization, Void>(Model.of("Authorized Branches")) {
+		columns.add(new AbstractColumn<ActionAuthorization, Void>(Model.of("授权分支")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<ActionAuthorization>> cellItem, String componentId, 
@@ -96,7 +96,7 @@ public class ActionAuthorizationsPage extends BuildSettingPage {
 				if (rowModel.getObject().getAuthorizedBranches() != null)
 					cellItem.add(new Label(componentId, rowModel.getObject().getAuthorizedBranches()));
 				else
-					cellItem.add(new Label(componentId, "<i>All</i>").setEscapeModelStrings(false));
+					cellItem.add(new Label(componentId, "<i>全部</i>").setEscapeModelStrings(false));
 			}
 			
 		});
@@ -149,7 +149,7 @@ public class ActionAuthorizationsPage extends BuildSettingPage {
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 						super.updateAjaxAttributes(attributes);
-						String message = "Do you really want to delete this authorization?";
+						String message = "您确定要删除此授权吗?";
 						attributes.getAjaxCallListeners().add(new ConfirmClickListener(message));
 					}
 
@@ -157,7 +157,7 @@ public class ActionAuthorizationsPage extends BuildSettingPage {
 					public void onClick(AjaxRequestTarget target) {
 						getProject().getBuildSetting().getActionAuthorizations().remove(index);
 						OneDev.getInstance(ProjectManager.class).save(getProject());
-						Session.get().success("Action authorization deleted");
+						Session.get().success("操作授权已删除");
 						target.add(authorizationsTable);
 					}
 
@@ -198,7 +198,7 @@ public class ActionAuthorizationsPage extends BuildSettingPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Action Authorizations");
+		return new Label(componentId, "行动授权");
 	}
 
 }

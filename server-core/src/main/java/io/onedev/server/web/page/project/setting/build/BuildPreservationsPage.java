@@ -34,7 +34,7 @@ public class BuildPreservationsPage extends BuildSettingPage {
 			@Override
 			protected void onSubmit() {
 				super.onSubmit();
-				getSession().success("Build preserve rules saved");
+				getSession().success("建立保留规则已保存");
 				getProject().getBuildSetting().setBuildPreservations(bean.getBuildPreservations());
 				OneDev.getInstance(ProjectManager.class).save(getProject());
 				setResponsePage(BuildPreservationsPage.class, 
@@ -49,7 +49,7 @@ public class BuildPreservationsPage extends BuildSettingPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "Build Preserve Rules");
+		return new Label(componentId, "建立保留规则");
 	}
 
 }

@@ -45,8 +45,7 @@ public class JobSecretsPage extends BuildSettingPage {
 		super.onInitialize();
 
 		String note = String.format("<svg class='icon mr-2'><use xlink:href='%s'/></svg> "
-				+ "Define job secrets to be used in build spec. Secret value less "
-				+ "than %d characters will not be masked in build log", 
+				+ "定义要在构建规范中使用的作业秘密. 小于 %d 个字符的秘密值不会在构建日志中被屏蔽 ",
 				SpriteImage.getVersionedHref("bulb"), SecretInput.MASK.length());
 		add(new Label("secretsNote", note).setEscapeModelStrings(false));
 
@@ -101,7 +100,7 @@ public class JobSecretsPage extends BuildSettingPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<JobSecret, Void>(Model.of("Authorized Branches")) {
+		columns.add(new AbstractColumn<JobSecret, Void>(Model.of("授权分支")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<JobSecret>> cellItem, String componentId, 
@@ -109,7 +108,7 @@ public class JobSecretsPage extends BuildSettingPage {
 				if (rowModel.getObject().getAuthorizedBranches() != null)
 					cellItem.add(new Label(componentId, rowModel.getObject().getAuthorizedBranches()));
 				else
-					cellItem.add(new Label(componentId, "<i>All</i>").setEscapeModelStrings(false));
+					cellItem.add(new Label(componentId, "<i>全部</i>").setEscapeModelStrings(false));
 			}
 			
 		});
@@ -166,7 +165,7 @@ public class JobSecretsPage extends BuildSettingPage {
 					@Override
 					protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 						super.updateAjaxAttributes(attributes);
-						String message = "Do you really want to delete secret '" + rowModel.getObject().getName() + "'?";
+						String message = "你真的要删除秘密 '" + rowModel.getObject().getName() + "'吗?";
 						attributes.getAjaxCallListeners().add(new ConfirmClickListener(message));
 					}
 
@@ -174,7 +173,7 @@ public class JobSecretsPage extends BuildSettingPage {
 					public void onClick(AjaxRequestTarget target) {
 						getProject().getBuildSetting().getJobSecrets().remove(index);
 						OneDev.getInstance(ProjectManager.class).save(getProject());
-						Session.get().success("Secret '" + rowModel.getObject().getName() + "' deleted");
+						Session.get().success("秘密 '" + rowModel.getObject().getName() + "' 已删除");
 						target.add(secretsTable);
 					}
 
