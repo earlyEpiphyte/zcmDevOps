@@ -137,32 +137,40 @@ public abstract class BlobViewPanel extends Panel {
 					Set<String> oldPaths = new HashSet<>();
 					Map<String, BlobContent> newBlobs = new HashMap<>();
 					String fileName = context.getBlobIdent().getName();
-					
+					String imageName = "";//镜像名称
 					int dotIndex =  fileName.lastIndexOf(".");
 					String suffix = "NO_DOT";
 					if( dotIndex > -1) {
 						suffix = fileName.substring(dotIndex);
 					}
-					if("NO_DOT".equals(suffix) || (!"NO_DOT".equals(suffix) && !suffix.equals(".cpp") && !suffix.equals(".c") && !suffix.equals(".java"))){
-						Session.get().fatal("仅支持.c,.cpp,.java后缀的文件编译！");//要么无逗号；要么有逗号，但不是.c,.cpp,.java后缀
+					if("NO_DOT".equals(suffix) || (!"NO_DOT".equals(suffix) && !suffix.equals(".cpp") && !suffix.equals(".c") && !suffix.equals(".java") && !suffix.equals(".py"))){
+						Session.get().fatal("仅支持.c,.cpp,.java后缀的文件编译！");//要么无逗号；要么有逗号，但不是.c,.cpp,.java,.py后缀
 					}
 					else {
-						//根据不同的后缀，改变commands的值
+						//根据不同的后缀，改变commands和imageName的值
 						String commands = "";
 						if(suffix.equals(".cpp")) {
 							commands = 
 									"    - g++ -o obj "+ fileName +"\n" + 
 									"    - ./obj\n";
+							imageName = "cpp";
 						}
 						else if(suffix.equals(".c")) {
 							commands = 
 									"    - gcc -o obj "+ fileName +"\n" + 
 									"    - ./obj\n";
+							imageName = "c";
 						}
 						else if(suffix.equals(".java")) {
 							commands = 
 									"    - javac "+ fileName +"\n" + 
 									"    - java "+ fileName.substring(0,dotIndex) +"\n";
+							imageName = "java";
+						}
+						else if(suffix.equals(".py")) {
+							commands = 
+									"    - python "+ fileName +"\n";
+							imageName = "python";
 						}
 						String compileJob = 
 								"- name: " + jobName + "\n" + 
@@ -173,7 +181,7 @@ public abstract class BlobViewPanel extends Panel {
 								"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
 								"  - !CommandStep\n" + 
 								"    name: run\n" + 
-								"    image: alpine_cpp_java\n" + 
+								"    image: "+ imageName +"\n" + 
 								"    commands:\n" + commands +
 								"    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL\n" + 
 								"  retryCondition: never\n" + 
