@@ -301,7 +301,7 @@ public class CommitDetailPage extends ProjectPage implements RevisionDiff.Annota
 						}
 					}
 				} catch (Exception e) {
-					logger.error("Error retrieving build spec (project: {}, commit: {})", 
+					logger.error("检索构建规范时出错 (project: {}, commit: {})", 
 							getProject().getName(), getCommit().name(), e);
 				}
 				return jobs;

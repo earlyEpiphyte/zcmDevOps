@@ -120,7 +120,7 @@ public class SshKey extends AbstractEntity implements Validatable {
 	            return true;
 	        } catch (Exception exception) {
 				context.disableDefaultConstraintViolation();
-				context.buildConstraintViolationWithTemplate("Invalid OpenSSH public key")
+				context.buildConstraintViolationWithTemplate("无效的 OpenSSH 公钥")
 						.addPropertyNode("content").addConstraintViolation();
 				return false;
 	        } 

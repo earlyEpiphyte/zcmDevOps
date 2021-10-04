@@ -37,22 +37,22 @@ public class BuildLogResource extends AbstractResource {
 
 		String projectName = params.get(PARAM_PROJECT).toString();
 		if (StringUtils.isBlank(projectName))
-			throw new IllegalArgumentException("project name has to be specified");
+			throw new IllegalArgumentException("必须指定项目名称");
 		
 		Project project = OneDev.getInstance(ProjectManager.class).find(projectName);
 		
 		if (project == null) 
-			throw new EntityNotFoundException("Unable to find project: " + projectName);
+			throw new EntityNotFoundException("无法找到项目: " + projectName);
 		
 		Long buildNumber = params.get(PARAM_BUILD).toOptionalLong();
 		
 		if (buildNumber == null)
-			throw new IllegalArgumentException("build number has to be specified");
+			throw new IllegalArgumentException("必须指定版本号");
 		
 		Build build = OneDev.getInstance(BuildManager.class).find(project, buildNumber);
 
 		if (build == null) {
-			String message = String.format("Unable to find build (project: %s, build number: %d)", 
+			String message = String.format("无法找到构建 (项目: %s, 版本号: %d)", 
 					project.getName(), buildNumber);
 			throw new EntityNotFoundException(message);
 		}

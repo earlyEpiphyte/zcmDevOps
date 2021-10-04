@@ -117,7 +117,7 @@ public class DefaultWebSocketManager implements WebSocketManager {
 		try {
 			connection.sendMessage(message);
 		} catch (Exception e) {
-			logger.error("Error sending websocket message: " + message, e);
+			logger.error("发送 websocket 消息时出错: " + message, e);
 		}
 	}
 
@@ -162,7 +162,7 @@ public class DefaultWebSocketManager implements WebSocketManager {
 						try {
 							connection.sendMessage(WebSocketManager.KEEP_ALIVE);
 						} catch (Exception e) {
-							logger.error("Error sending websocket keep alive message", e);
+							logger.error("发送 websocket 保持活动消息时出错", e);
 						}
 					}
 				}

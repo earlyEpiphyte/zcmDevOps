@@ -92,7 +92,7 @@ public class WebSocketConnection extends AbstractWebSocketConnection
 	{
 		if (!isOpen())
 		{
-			throw new IllegalStateException("The connection is closed.");
+			throw new IllegalStateException("连接已关闭.");
 		}
 	}
 }

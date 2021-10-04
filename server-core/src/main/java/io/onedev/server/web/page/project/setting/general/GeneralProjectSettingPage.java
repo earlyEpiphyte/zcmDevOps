@@ -84,12 +84,12 @@ public class GeneralProjectSettingPage extends ProjectSettingPage {
 				ProjectManager projectManager = OneDev.getInstance(ProjectManager.class);
 				Project projectWithSameName = projectManager.find(project.getName());
 				if (projectWithSameName != null && !projectWithSameName.equals(project)) {
-					String errorMessage = "This name has already been used by another project"; 
+					String errorMessage = "此名称已被另一个项目使用"; 
 					editor.error(new Path(new PathNode.Named("name")), errorMessage);
 				} else {
 					project.setDefaultRole(defaultRoleBean.getRole());
 					projectManager.save(project, oldName);
-					Session.get().success("General setting has been updated");
+					Session.get().success("常规设置已更新");
 					setResponsePage(GeneralProjectSettingPage.class, paramsOf(project));
 				}
 			}

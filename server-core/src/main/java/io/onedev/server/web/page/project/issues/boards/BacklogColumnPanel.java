@@ -150,7 +150,7 @@ abstract class BacklogColumnPanel extends Panel {
 				IRequestParameters params = RequestCycle.get().getRequest().getPostParameters();
 				Issue issue = OneDev.getInstance(IssueManager.class).load(params.getParameterValue("issue").toLong());
 				if (!SecurityUtils.canScheduleIssues(issue.getProject())) 
-					throw new UnauthorizedException("Permission denied");
+					throw new UnauthorizedException("没有权限");
 				OneDev.getInstance(IssueChangeManager.class).changeMilestone(issue, null);
 				target.appendJavaScript(String.format("onedev.server.issueBoards.markAccepted(%d, true);", issue.getId()));
 			}

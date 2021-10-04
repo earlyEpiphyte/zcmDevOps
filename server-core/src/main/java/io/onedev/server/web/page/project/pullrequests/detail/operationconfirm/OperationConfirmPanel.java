@@ -96,7 +96,7 @@ public abstract class OperationConfirmPanel extends Panel {
 					if (operate()) {
 						modal.close();
 					} else {
-						form.error("Can not perform this operation now");
+						form.error("现在无法执行此操作");
 						target.add(form);
 					}
 				} else {
@@ -107,7 +107,7 @@ public abstract class OperationConfirmPanel extends Panel {
 					CharSequence url = RequestCycle.get().urlFor(PullRequestChangesPage.class, 
 							PullRequestChangesPage.paramsOf(request, state));
 					
-					form.warn(String.format("There are <a href='%s'>new changes</a> in this pull request", url));					
+					form.warn(String.format("此拉取请求中有<a href='%s'>新更改</a>", url));					
 					
 					target.add(form);
 					latestUpdateId = request.getLatestUpdate().getId();

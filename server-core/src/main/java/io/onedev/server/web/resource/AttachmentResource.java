@@ -36,27 +36,27 @@ public class AttachmentResource extends AbstractResource {
 
 		String projectName = params.get(PARAM_PROJECT).toString();
 		if (StringUtils.isBlank(projectName))
-			throw new IllegalArgumentException("project name has to be specified");
+			throw new IllegalArgumentException("必须指定项目名称");
 		
 		Project project = OneDev.getInstance(ProjectManager.class).find(projectName);
 		
 		if (project == null) 
-			throw new EntityNotFoundException("Unable to find project: " + projectName);
+			throw new EntityNotFoundException("无法找到项目: " + projectName);
 		
 		if (!SecurityUtils.canReadCode(project)) 
 			throw new UnauthorizedException();
 
 		String uuid = params.get(PARAM_UUID).toString();
 		if (StringUtils.isBlank(uuid))
-			throw new IllegalArgumentException("uuid parameter has to be specified");
+			throw new IllegalArgumentException("必须指定 uuid 参数");
 
 		String attachment = params.get(PARAM_ATTACHMENT).toString();
 		if (StringUtils.isBlank(attachment))
-			throw new IllegalArgumentException("attachment parameter has to be specified");
+			throw new IllegalArgumentException("必须指定附件参数");
 
 		File attachmentFile = new File(getAttachmentDir(project, uuid), attachment);
 		if (!attachmentFile.exists()) 
-			throw new RuntimeException("Attachment not found: " + attachment);
+			throw new RuntimeException("找不到附件: " + attachment);
 		
 		ResourceResponse response = new ResourceResponse();
 		response.setContentLength(attachmentFile.length());

@@ -339,7 +339,7 @@ abstract class BoardColumnPanel extends Panel implements EditContext {
 				if (issue.getMilestone() == null && getMilestone() != null) { 
 					// move a backlog issue to board 
 					if (!SecurityUtils.canScheduleIssues(issue.getProject())) 
-						throw new UnauthorizedException("Permission denied");
+						throw new UnauthorizedException("没有权限");
 					
 					OneDev.getInstance(IssueChangeManager.class).changeMilestone(issue, getMilestone());
 					markAccepted(target, issue, true);
@@ -352,7 +352,7 @@ abstract class BoardColumnPanel extends Panel implements EditContext {
 						}
 					}
 					if (transitionRef.get() == null) 
-						throw new UnauthorizedException("Permission denied");
+						throw new UnauthorizedException("没有权限");
 					
 					boolean hasPromptFields = false;
 					PressButtonTrigger trigger = (PressButtonTrigger) transitionRef.get().getTrigger();
@@ -404,10 +404,10 @@ abstract class BoardColumnPanel extends Panel implements EditContext {
 				} else {
 					FieldSpec fieldSpec = getIssueSetting().getFieldSpec(fieldName);
 					if (fieldSpec == null)
-						throw new ExplicitException("Undefined custom field: " + fieldName);
+						throw new ExplicitException("未定义的自定义字段: " + fieldName);
 					
 					if (!SecurityUtils.canEditIssueField(getProject(), fieldSpec.getName()))
-						throw new UnauthorizedException("Permission denied");
+						throw new UnauthorizedException("没有权限");
 					
 					Map<String, Object> fieldValues = new HashMap<>();
 					fieldValues.put(fieldName, getColumn());

@@ -165,7 +165,7 @@ public class SuggestionUtils {
 				filePath = "";
 			if (filePath.length() == 0)
 				filePath = "example.txt";
-			variables.put(VariableInterpolator.PREFIX_FILE + filePath, "Use content of specified file");
+			variables.put(VariableInterpolator.PREFIX_FILE + filePath, "使用指定文件的内容");
 		}
 		
 		for (GroovyScript script: OneDev.getInstance(SettingManager.class).getGroovyScripts()) 

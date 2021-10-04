@@ -634,7 +634,7 @@ public class NewPullRequestPage extends ProjectPage implements RevisionDiff.Anno
 				ProjectAndBranch source = getPullRequest().getSource();
 				if (!target.getObjectName().equals(getPullRequest().getTarget().getObjectName()) 
 						|| !source.getObjectName().equals(getPullRequest().getSource().getObjectName())) {
-					getSession().warn("Either target branch or source branch has new commits just now, please re-check.");
+					getSession().warn("目标分支或源分支刚刚有新的提交，请重新检查.");
 					setResponsePage(NewPullRequestPage.class, paramsOf(getProject(), target, source));
 				} else {
 					getPullRequest().setSource(source);

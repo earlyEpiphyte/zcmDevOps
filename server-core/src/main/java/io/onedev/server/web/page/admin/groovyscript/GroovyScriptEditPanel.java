@@ -80,11 +80,11 @@ abstract class GroovyScriptEditPanel extends Panel {
 					GroovyScript oldScript = getScripts().get(scriptIndex);
 					if (!script.getName().equals(oldScript.getName()) && getScript(script.getName()) != null) {
 						editor.error(new Path(new PathNode.Named("name")),
-								"This name has already been used by another script");
+								"该名称已被其他脚本使用");
 					}
 				} else if (getScript(script.getName()) != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another script");
+							"该名称已被其他脚本使用");
 				}
 
 				if (editor.isValid()) {

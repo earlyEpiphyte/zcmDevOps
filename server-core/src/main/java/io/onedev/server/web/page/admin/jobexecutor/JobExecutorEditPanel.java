@@ -75,11 +75,11 @@ abstract class JobExecutorEditPanel extends Panel {
 					JobExecutor oldExecutor = executors.get(executorIndex);
 					if (!executor.getName().equals(oldExecutor.getName()) && getExecutor(executor.getName()) != null) {
 						editor.error(new Path(new PathNode.Named("executor"), new PathNode.Named("name")),
-								"This name has already been used by another job executor");
+								"此名称已被另一个作业执行程序使用");
 					}
 				} else if (getExecutor(executor.getName()) != null) {
 					editor.error(new Path(new PathNode.Named("executor"), new PathNode.Named("name")),
-							"This name has already been used by another job executor");
+							"此名称已被另一个作业执行程序使用");
 				}
 				
 				if (editor.isValid()) {

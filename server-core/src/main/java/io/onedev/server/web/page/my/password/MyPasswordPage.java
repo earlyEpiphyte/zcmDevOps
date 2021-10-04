@@ -46,7 +46,7 @@ public class MyPasswordPage extends MyPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "Change My Password");
+		return new Label(componentId, "修改密码");
 	}
 
 }

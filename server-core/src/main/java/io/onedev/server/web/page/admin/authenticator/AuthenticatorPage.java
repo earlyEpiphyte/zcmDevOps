@@ -160,9 +160,9 @@ public class AuthenticatorPage extends AdministrationPage {
 							.append("\n");
 				}
 				StringBuilder messageBuilder = 
-						new StringBuilder("Test successful: authentication passed");
+						new StringBuilder("测试成功：认证通过");
 				if (retrievedInfoBuilder.length() != 0) {
-					messageBuilder.append(" with below information retrieved:\n")
+					messageBuilder.append(" 检索到以下信息:\n")
 							.append(retrievedInfoBuilder);
 				} 
 				return messageBuilder.toString();

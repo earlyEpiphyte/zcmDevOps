@@ -16,7 +16,7 @@ public class AuthenticationToken implements Serializable {
 	
 	private String password;
 
-	@Editable(order=100, description="Specify user name to authenticate with")
+	@Editable(order=100, description="指定用户名以进行身份验证")
 	@NotEmpty
 	public String getUserName() {
 		return userName;
@@ -26,7 +26,7 @@ public class AuthenticationToken implements Serializable {
 		this.userName = userName;
 	}
 
-	@Editable(order=200, description="Specify password to authenticate with")
+	@Editable(order=200, description="指定密码进行身份验证")
 	@Password
 	@NotEmpty
 	public String getPassword() {

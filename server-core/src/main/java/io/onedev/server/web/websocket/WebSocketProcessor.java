@@ -127,9 +127,9 @@ public class WebSocketProcessor extends AbstractWebSocketProcessor implements We
 	public void onWebSocketError(Throwable throwable) {
 		IOException ioException = ExceptionUtils.find(throwable, IOException.class);
 		if (ioException != null && "Broken pipe".equals(ioException.getMessage())) 
-			logger.debug("WebSocket closed", throwable);
+			logger.debug("WebSocket已关闭", throwable);
 		else 
-			logger.error("An error occurred when using WebSocket.", throwable);	
+			logger.error("使用 WebSocket 时发生错误.", throwable);	
 	}
 
 	@Override

@@ -51,12 +51,12 @@ public class RawBlobResource extends AbstractResource {
 
 		String projectName = params.get(PARAM_PROJECT).toString();
 		if (StringUtils.isBlank(projectName))
-			throw new IllegalArgumentException("project name has to be specified");
+			throw new IllegalArgumentException("必须指定项目名称");
 
 		Project project = OneDev.getInstance(ProjectManager.class).find(projectName);
 
 		if (project == null)
-			throw new EntityNotFoundException("Unable to find project: " + projectName);
+			throw new EntityNotFoundException("无法找到项目: " + projectName);
 
 		List<String> revisionAndPathSegments = new ArrayList<>();
 		String segment = params.get(PARAM_REVISION).toString();
@@ -77,7 +77,7 @@ public class RawBlobResource extends AbstractResource {
 		String revision = blobIdent.revision;
 		String path = blobIdent.path;
 		if (StringUtils.isBlank(path))
-			throw new IllegalArgumentException("path parameter has to be specified");
+			throw new IllegalArgumentException("必须指定路径参数");
 
 		if (!SecurityUtils.canReadCode(project))
 			throw new UnauthorizedException();

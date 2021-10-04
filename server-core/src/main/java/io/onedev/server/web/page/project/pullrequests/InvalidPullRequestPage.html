@@ -5,15 +5,15 @@
 				<wicket:svg href="sad-panda" class="icon icon-hero flex-shrink-0 ml-n4"/>		
 				<div>
 					<h4 class="mb-3">
-						Unable to show pull request as some commits no longer exist in git repository
+						无法显示拉取请求，因为 git 存储库中不再存在某些提交
 					</h4>
-					This might happen for two reasons:
+					这可能有两个原因：
 					<ul>
-						<li> The project points to a wrong git repository. In this case, you will need to copy over the correct repository, 
-						or make sure that the correct global storage directory is specified.</li>
-						<li> Those commits are no longer needed and have been garbage collected. 
+						<li> 该项目指向错误的 git 存储库. 在这种情况下，您需要复制正确的存储库, 
+						或者确保指定了正确的全局存储目录.</li>
+						<li> 不再需要这些提交并且已被垃圾回收. 
 						<wicket:enclosure child="delete">
-						In this case, you may also <a wicket:id="delete" class="link-primary">delete the pull request</a>
+						在这种情况下，您也可以<a wicket:id="delete" class="link-primary">删除拉取请求</a>
 						</wicket:enclosure>
 						</li>
 					</ul>

@@ -92,7 +92,7 @@ public abstract class BuildMetricStatsPage<T extends AbstractEntity> extends Pro
 			parsedQuery = BuildMetricQuery.parse(getProject(), query);
 		} catch (Exception e) {
 			parsedQuery = null;
-			form.error("Malformed metric query");
+			form.error("格式错误的指标查询");
 		}
 	}
 	

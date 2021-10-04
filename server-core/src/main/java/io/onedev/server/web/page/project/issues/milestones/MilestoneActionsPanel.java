@@ -39,7 +39,7 @@ abstract class MilestoneActionsPanel extends GenericPanel<Milestone> {
 				getMilestoneManager().save(getMilestone());
 				target.add(MilestoneActionsPanel.this);
 				onUpdated(target);
-				getSession().success("Milestone '" + getMilestone().getName() + "' reopened");
+				getSession().success("里程碑 '" + getMilestone().getName() + "' 重新打开");
 			}
 
 			@Override
@@ -64,7 +64,7 @@ abstract class MilestoneActionsPanel extends GenericPanel<Milestone> {
 				getMilestoneManager().save(getMilestone());
 				target.add(MilestoneActionsPanel.this);
 				onUpdated(target);
-				getSession().success("Milestone '" + getMilestone().getName() + "' closed");
+				getSession().success("里程碑 '" + getMilestone().getName() + "' 已关闭");
 			}
 
 		});
@@ -78,7 +78,7 @@ abstract class MilestoneActionsPanel extends GenericPanel<Milestone> {
 			protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 				super.updateAjaxAttributes(attributes);
 				attributes.getAjaxCallListeners().add(new ConfirmClickListener(
-						"Do you really want to delete milestone '" + getMilestone().getName() + "'?"));
+						"您确定要删除里程碑 '" + getMilestone().getName() + "'吗?"));
 			}
 			
 			@Override
@@ -86,7 +86,7 @@ abstract class MilestoneActionsPanel extends GenericPanel<Milestone> {
 				getMilestoneManager().delete(getMilestone());
 				target.add(MilestoneActionsPanel.this);
 				onDeleted(target);
-				getSession().success("Milestone '" + getMilestone().getName() + "' deleted");
+				getSession().success("里程碑 '" + getMilestone().getName() + "' 已删除");
 			}
 
 		});		

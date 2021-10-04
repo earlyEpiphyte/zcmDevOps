@@ -189,7 +189,7 @@ public abstract class QuickSearchPanel extends Panel {
 						}
 					}
 				} else {
-					throw new IllegalStateException("Unrecognized key: " + key);
+					throw new IllegalStateException("无法识别的密钥: " + key);
 				}
 			}
 

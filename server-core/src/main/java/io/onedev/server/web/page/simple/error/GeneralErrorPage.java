@@ -31,7 +31,7 @@ public class GeneralErrorPage extends SimplePage {
 		
 		String title = ExceptionUtils.getExpectedError(exception);
 		if (title == null) {
-			title = "An unexpected exception occurred";
+			title = "发生意外异常";
 			detailMessage = Throwables.getStackTraceAsString(exception);
 		}
 	}
@@ -73,7 +73,7 @@ public class GeneralErrorPage extends SimplePage {
 
 	@Override
 	protected String getTitle() {
-		return "OOPS! There Is An Error";
+		return "哎呀！ 出错了";
 	}
 
 	@Override

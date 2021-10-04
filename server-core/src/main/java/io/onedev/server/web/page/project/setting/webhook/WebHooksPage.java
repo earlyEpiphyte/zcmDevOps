@@ -35,7 +35,7 @@ public class WebHooksPage extends ProjectSettingPage {
 			@Override
 			protected void onSubmit() {
 				super.onSubmit();
-				getSession().success("Web hooks saved");
+				getSession().success("Web hooks 已保存");
 				getProject().setWebHooks(bean.getWebHooks());
 				OneDev.getInstance(ProjectManager.class).save(getProject());
 				setResponsePage(WebHooksPage.class, WebHooksPage.paramsOf(getProject()));

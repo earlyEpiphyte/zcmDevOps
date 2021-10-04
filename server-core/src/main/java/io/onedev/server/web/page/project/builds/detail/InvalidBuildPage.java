@@ -73,7 +73,7 @@ public class InvalidBuildPage extends ProjectPage {
 				setVisible(SecurityUtils.canManage(getBuild()));
 			}
 			
-		}.add(new ConfirmClickModifier("Do you really want to delete build #" + getBuild().getNumber() + "?")));
+		}.add(new ConfirmClickModifier("你真的要删除构建 #" + getBuild().getNumber() + "?")));
 	}
 
 	public static PageParameters paramsOf(Build build) {

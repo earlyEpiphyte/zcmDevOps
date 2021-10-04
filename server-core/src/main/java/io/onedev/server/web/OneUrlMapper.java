@@ -122,7 +122,7 @@ public class OneUrlMapper extends CompoundRequestMapper {
 	@Override
 	public CompoundRequestMapper add(IRequestMapper mapper) {
 		if (mapper instanceof ResourceMapper && !(mapper instanceof BaseResourceMapper))
-			throw new ExplicitException("Base resource mapper should be used");
+			throw new ExplicitException("应该使用基础资源映射器");
 		return super.add(mapper);
 	}
 

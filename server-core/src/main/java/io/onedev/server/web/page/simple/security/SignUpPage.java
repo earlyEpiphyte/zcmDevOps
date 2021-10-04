@@ -29,9 +29,9 @@ public class SignUpPage extends SimplePage {
 		super(params);
 		
 		if (!OneDev.getInstance(SettingManager.class).getSecuritySetting().isEnableSelfRegister())
-			throw new UnauthenticatedException("User sign-up is disabled");
+			throw new UnauthenticatedException("用户注册被禁用");
 		if (getLoginUser() != null)
-			throw new IllegalStateException("Can not sign up a user while signed in");
+			throw new IllegalStateException("用户登录后无法注册");
 	}
 	
 	@Override

@@ -97,7 +97,7 @@ public abstract class ProjectPage extends LayoutPage implements ProjectAware {
 		Project project = OneDev.getInstance(ProjectManager.class).find(projectName);
 		
 		if (project == null) 
-			throw new ExplicitException("Unable to find project " + projectName);
+			throw new ExplicitException("无法找到项目 " + projectName);
 		
 		Long projectId = project.getId();
 		

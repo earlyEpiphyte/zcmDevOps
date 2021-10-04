@@ -268,11 +268,11 @@ public class CommitOptionPanel extends Panel {
 			if (newContentProvider != null) {
 				String newPath = context.getNewPath();
 				if (revision != null && context.getProject().isReviewRequiredForModification(user, revision, newPath)) {
-					form.error("Review required for this change. Please submit pull request instead");
+					form.error("此更改需要审核。 请改为提交拉取请求");
 					target.add(form);
 					return false;
 				} else if (revision != null && context.getProject().isBuildRequiredForModification(user, revision, newPath)) {
-					form.error("Build required for this change. Please submit pull request instead");
+					form.error("此更改需要构建。 请改为提交拉取请求");
 					target.add(form);
 					return false;
 				}
@@ -300,13 +300,13 @@ public class CommitOptionPanel extends Panel {
 					newCommitId = new BlobEdits(oldPaths, newBlobs).commit(repository, refName, 
 							prevCommitId, prevCommitId, user.asPerson(), commitMessage);
 				} catch (ObjectAlreadyExistsException e) {
-					form.error("A path with same name already exists. "
-							+ "Please choose a different name and try again.");
+					form.error("已存在同名路径. "
+							+ "请选择其他名称，然后重试.");
 					target.add(form);
 					break;
 				} catch (NotTreeException e) {
-					form.error("A file exists where you’re trying to create a subdirectory. "
-							+ "Choose a new path and try again..");
+					form.error("您尝试创建子目录的位置存在文件. "
+							+ "选择一条新路径并重试..");
 					target.add(form);
 					break;
 				} catch (ObsoleteCommitException e) {
@@ -329,14 +329,14 @@ public class CommitOptionPanel extends Panel {
 									if (newContentProvider != null) {
 										oldPaths.clear();
 										changesOfOthers = getChange(treeWalk, lastPrevCommit, prevCommit);
-										form.warn("Someone made below change since you started editing");
+										form.warn("自从您开始编辑以来，有人进行了以下更改");
 										break;
 									} else {
 										newCommitId = e.getOldCommitId();
 									}
 								} else {
 									changesOfOthers = getChange(treeWalk, lastPrevCommit, prevCommit);
-									form.warn("Someone made below change since you started editing");
+									form.warn("自从您开始编辑以来，有人进行了以下更改");
 									break;
 								}
 							} 

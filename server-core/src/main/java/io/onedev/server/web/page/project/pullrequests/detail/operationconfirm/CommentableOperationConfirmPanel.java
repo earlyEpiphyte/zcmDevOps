@@ -53,7 +53,7 @@ public abstract class CommentableOperationConfirmPanel extends OperationConfirmP
 			
 			@Override
 			protected List<AttributeModifier> getInputModifiers() {
-				return Lists.newArrayList(AttributeModifier.replace("placeholder", "Leave a note"));
+				return Lists.newArrayList(AttributeModifier.replace("placeholder", "留言"));
 			}
 			
 		});

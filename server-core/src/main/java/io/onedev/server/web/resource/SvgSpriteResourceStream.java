@@ -77,7 +77,7 @@ public class SvgSpriteResourceStream implements IResourceStream {
 				}
 				return time;
 			} else {
-				throw new IllegalStateException("Unable to find package directory: " + 
+				throw new IllegalStateException("找不到包目录: " + 
 						packageDir.getAbsolutePath());
 			}				
 		} 
@@ -132,7 +132,7 @@ public class SvgSpriteResourceStream implements IResourceStream {
 						}
 					}
 				} else {
-					throw new IllegalStateException("Unable to find package directory: " + 
+					throw new IllegalStateException("找不到包目录: " + 
 							packageDir.getAbsolutePath());
 				}				
 			}

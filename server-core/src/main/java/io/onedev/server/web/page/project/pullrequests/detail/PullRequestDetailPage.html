@@ -110,9 +110,9 @@
 	<wicket:fragment wicket:id="moreInfoFrag">
 		<wicket:enclosure child="reviews">
 		<div class="reviews">
-			<div class="head">Reviewers</div>
+			<div class="head">审阅者</div>
 			<div wicket:id="reviews" class="body"></div>
-			<div wicket:id="reviewerHelp" class="font-size-sm text-muted form-text">Pull request can only be merged after getting approvals from all reviewers</div>
+			<div wicket:id="reviewerHelp" class="font-size-sm text-muted form-text">拉取请求只有在获得所有审阅者的批准后才能合并</div>
 		</div>
 		</wicket:enclosure>
 		<wicket:enclosure child="jobs">
@@ -129,13 +129,13 @@
 		</wicket:enclosure>
 		<wicket:enclosure child="assignments">
 		<div class="assignments">
-			<div class="head">Assignees</div>
+			<div class="head">受让人</div>
 			<div wicket:id="assignments" class="body"></div>
-			<div wicket:id="assigneeHelp" class="font-size-sm text-muted form-text">Assignees are expected to merge the pull request</div>
+			<div wicket:id="assigneeHelp" class="font-size-sm text-muted form-text">受让人应合并拉取请求</div>
 		</div>
 		</wicket:enclosure>
 		<div wicket:id="mergeStrategy" class="merge-strategy">
-			<div class="head">Merge Strategy</div>
+			<div class="head">合并策略</div>
 			<div class="body">
 				<select wicket:id="editor" class="form-control custom-select"></select> 
 				<span wicket:id="viewer"></span>
@@ -147,7 +147,7 @@
 		<div wicket:id="actions" class="d-flex align-items-center justify-content-between">
 			<wicket:enclosure child="synchronize">
 			<div class="synchronize d-flex align-items-center mr-3">
-				<a wicket:id="synchronize" class="btn btn-light-primary mr-2">Synchronize</a>
+				<a wicket:id="synchronize" class="btn btn-light-primary mr-2">同步</a>
 				<a href="javascript:void(0)" class="help text-muted text-hover-primary" title="如果拉取请求状态与底层存储库不同步，您可以在此处手动同步它们">
 					<wicket:svg href="question-o" class="icon"/>
 				</a>
@@ -158,7 +158,7 @@
 		
     </wicket:fragment>
 	<wicket:fragment wicket:id="projectTitleFrag">
-		<a wicket:id="pullRequests" class="text-nowrap">Pull Requests</a> 
+		<a wicket:id="pullRequests" class="text-nowrap">拉取请求</a> 
 		<span class="dot"></span>
 		<span wicket:id="pullRequestNumber"></span>
 	</wicket:fragment>

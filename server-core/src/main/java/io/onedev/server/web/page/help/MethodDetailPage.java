@@ -60,7 +60,7 @@ public class MethodDetailPage extends ApiHelpPage {
 				if (method.getName().equals(methodName))
 					return method;
 			}
-			String errorMessage = String.format("Unable to find resource method (resource: %s, method: %s)", 
+			String errorMessage = String.format("无法找到资源方法 (resource: %s, method: %s)", 
 					resourceClass.getName(), methodName);
 			throw new ExplicitException(errorMessage);
 		}

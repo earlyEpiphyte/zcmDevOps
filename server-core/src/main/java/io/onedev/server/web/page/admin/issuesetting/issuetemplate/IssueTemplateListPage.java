@@ -102,7 +102,7 @@ public class IssueTemplateListPage extends IssueSettingPage {
 				if (template.getIssueQuery() != null)
 					label = HtmlEscape.escapeHtml5(template.getIssueQuery());
 				else
-					label = "<i>All</i>";
+					label = "<i>全部</i>";
 				cellItem.add(new Label(componentId, label).setEscapeModelStrings(false));
 			}
 		});		

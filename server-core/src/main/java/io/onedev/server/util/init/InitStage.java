@@ -39,7 +39,7 @@ public class InitStage implements Serializable, Cloneable {
 	}
 
 	public synchronized void finished() {
-		message = "Please wait...";
+		message = "请等待...";
 		manualConfigs.clear();
 		notify();
 	}

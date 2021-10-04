@@ -87,11 +87,11 @@ abstract class FieldEditPanel extends Panel implements InputContext {
 					FieldSpec oldField = getSetting().getFieldSpecs().get(fieldIndex);
 					if (!field.getName().equals(oldField.getName()) && getSetting().getFieldSpec(field.getName()) != null) {
 						editor.error(new Path(new PathNode.Named("field"), new PathNode.Named("name")),
-								"This name has already been used by another field");
+								"此名称已被其他字段使用");
 					}
 				} else if (getSetting().getFieldSpec(field.getName()) != null) {
 					editor.error(new Path(new PathNode.Named("field"), new PathNode.Named("name")),
-							"This name has already been used by another field");
+							"此名称已被其他字段使用");
 				}
 
 				if (editor.isValid()) {

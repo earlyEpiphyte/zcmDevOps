@@ -79,11 +79,11 @@ abstract class StateEditPanel extends Panel {
 					StateSpec oldState = getSetting().getStateSpecs().get(stateIndex);
 					if (!state.getName().equals(oldState.getName()) && getSetting().getStateSpec(state.getName()) != null) {
 						editor.error(new Path(new PathNode.Named("name")),
-								"This name has already been used by another state");
+								"此名称已被另一个状态使用");
 					}
 				} else if (getSetting().getStateSpec(state.getName()) != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another state");
+							"此名称已被另一个状态使用");
 				}
 
 				if (editor.isValid()) {

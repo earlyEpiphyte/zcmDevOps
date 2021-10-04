@@ -70,10 +70,10 @@ public class MailSettingPage extends AdministrationPage {
 			protected String runTask(SimpleLogger logger) {
 				User user = SecurityUtils.getUser();
 				
-				String body = "Great, your mail setting is working!";
+				String body = "太好了，您的邮件设置有效!";
 				OneDev.getInstance(MailManager.class).sendMail(mailSettingHolder.getMailSetting(), 
 						Sets.newHashSet(user.getEmail()), "Test email from OneDev", body, body);
-				return "Test mail has been sent to " + user.getEmail() + ", please check your mail box";
+				return "测试邮件已发送至 " + user.getEmail() + ", 请检查您的邮箱";
 			}
 
 		};

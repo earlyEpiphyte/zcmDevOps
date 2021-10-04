@@ -54,7 +54,7 @@ public class NewProjectPage extends LayoutPage {
 				} else {
 					project.setDefaultRole(defaultRoleBean.getRole());
 					projectManager.create(project);
-					Session.get().success("New project created");
+					Session.get().success("新项目已创建");
 					setResponsePage(ProjectBlobPage.class, ProjectBlobPage.paramsOf(project));
 				}
 			}

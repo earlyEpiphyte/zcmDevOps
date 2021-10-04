@@ -538,10 +538,10 @@ public class BuildSpecBlobViewPanel extends BlobViewPanel {
 						Validator validator = OneDev.getInstance(Validator.class);
 						for (ConstraintViolation<BuildSpec> violation: validator.validate(buildSpec)) {
 							if (StringUtils.isNotBlank(violation.getPropertyPath().toString())) {
-								error(String.format("Error validating build spec (location: %s, error message: %s)", 
+								error(String.format("验证构建规范时出错 (location: %s, error message: %s)", 
 										violation.getPropertyPath(), violation.getMessage()));
 							} else {
-								error(String.format("Error validating build spec: %s", violation.getMessage()));
+								error(String.format("验证构建规范时出错: %s", violation.getMessage()));
 							}
 						}
 						

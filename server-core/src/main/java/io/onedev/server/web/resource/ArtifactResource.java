@@ -48,22 +48,22 @@ public class ArtifactResource extends AbstractResource {
 
 		String projectName = params.get(PARAM_PROJECT).toString();
 		if (StringUtils.isBlank(projectName))
-			throw new IllegalArgumentException("project name has to be specified");
+			throw new IllegalArgumentException("必须指定项目名称");
 		
 		Project project = OneDev.getInstance(ProjectManager.class).find(projectName);
 		
 		if (project == null) 
-			throw new EntityNotFoundException("Unable to find project: " + projectName);
+			throw new EntityNotFoundException("无法找到项目: " + projectName);
 		
 		Long buildNumber = params.get(PARAM_BUILD).toOptionalLong();
 		
 		if (buildNumber == null)
-			throw new IllegalArgumentException("build number has to be specified");
+			throw new IllegalArgumentException("必须指定版本号");
 		
 		Build build = OneDev.getInstance(BuildManager.class).find(project, buildNumber);
 
 		if (build == null) {
-			String message = String.format("Unable to find build (project: %s, build number: %d)", 
+			String message = String.format("无法找到构建 (项目: %s, 版本号: %d)", 
 					project.getName(), buildNumber);
 			throw new EntityNotFoundException(message);
 		}
@@ -76,7 +76,7 @@ public class ArtifactResource extends AbstractResource {
 		if (pathSegment.length() != 0)
 			pathSegments.add(pathSegment);
 		else
-			throw new ExplicitException("Artifact path has to be specified");
+			throw new ExplicitException("必须指定Artifact路径");
 
 		for (int i = 0; i < params.getIndexedCount(); i++) {
 			pathSegment = params.get(i).toString();
@@ -89,7 +89,7 @@ public class ArtifactResource extends AbstractResource {
 		File artifactsDir = build.getArtifactsDir();
 		File artifactFile = new File(artifactsDir, artifactPath);
 		if (!artifactFile.exists() || artifactFile.isDirectory()) {
-			String message = String.format("Specified artifact path does not exist or is a directory (project: %s, build number: %d, path: %s)", 
+			String message = String.format("指定的Artifact路径不存在或为目录 (项目: %s, 版本号: %d, 路径: %s)", 
 					project.getName(), build.getNumber(), artifactPath);
 			throw new ExplicitException(message);
 		}

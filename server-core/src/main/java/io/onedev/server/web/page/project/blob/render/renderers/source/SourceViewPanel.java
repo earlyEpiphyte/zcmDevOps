@@ -199,7 +199,7 @@ public class SourceViewPanel extends BlobViewPanel implements Positionable, Sear
 				try {
 					symbols.addAll(extractor.extract(null, StringUtils.removeBOM(blob.getText().getContent())));
 				} catch (Exception e) {
-					logger.trace("Can not extract symbols from blob: " + context.getBlobIdent(), e);
+					logger.trace("无法从 blob 中提取符号: " + context.getBlobIdent(), e);
 				}
 			}
 		}

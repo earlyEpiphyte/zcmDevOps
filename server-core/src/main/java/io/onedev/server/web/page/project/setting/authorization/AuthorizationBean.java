@@ -32,7 +32,7 @@ public class AuthorizationBean implements Serializable {
 
 	@Editable(order=200, name="Role")
 	@RoleChoice
-	@Size(min=1, message="At least one role needs to be specified")
+	@Size(min=1, message="至少需要指定一个角色")
 	public String getRoleName() {
 		return roleName;
 	}

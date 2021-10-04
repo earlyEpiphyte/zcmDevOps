@@ -38,7 +38,7 @@ public class DatabaseBackupPage extends AdministrationPage {
 			protected void onSubmit() {
 				super.onSubmit();
 				OneDev.getInstance(SettingManager.class).saveBackupSetting(backupSettingHolder.getBackupSetting());
-				getSession().success("Backup setting has been updated");
+				getSession().success("备份设置已更新");
 				
 				setResponsePage(DatabaseBackupPage.class);
 			}

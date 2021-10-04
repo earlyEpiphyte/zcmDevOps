@@ -46,7 +46,7 @@ public abstract class UserPage extends AdministrationPage {
 		
 		Long userId = Long.valueOf(userIdString);
 		if (userId == User.SYSTEM_ID)
-			throw new ExplicitException("System user is not accessible");
+			throw new ExplicitException("无法访问系统用户");
 		
 		userModel = new LoadableDetachableModel<User>() {
 
@@ -65,7 +65,7 @@ public abstract class UserPage extends AdministrationPage {
 		List<PageTab> tabs = new ArrayList<>();
 		
 		tabs.add(new UserTab("个人信息", "profile", UserProfilePage.class));
-		tabs.add(new UserTab("修改Avatar头像", "avatar", UserAvatarPage.class));
+		tabs.add(new UserTab("修改头像", "avatar", UserAvatarPage.class));
 			
 		tabs.add(new UserTab("修改密码", "password", UserPasswordPage.class));
 		tabs.add(new UserTab("所属用户组", "group", UserMembershipsPage.class));

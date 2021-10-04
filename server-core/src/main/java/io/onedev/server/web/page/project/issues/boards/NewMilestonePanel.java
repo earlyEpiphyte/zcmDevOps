@@ -45,12 +45,12 @@ abstract class NewMilestonePanel extends Panel {
 				Milestone milestoneWithSameName = milestoneManager.find(getProject(), milestone.getName());
 				if (milestoneWithSameName != null) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another milestone in the project");
+							"该名称已被项目中的另一个里程碑使用");
 				} 
 				if (editor.isValid()){
 					milestone.setProject(getProject());
 					milestoneManager.save(milestone);
-					Session.get().success("New milestone created");
+					Session.get().success("新里程碑已创建");
 					onMilestoneCreated(target, milestone);
 				} else {
 					target.add(NewMilestonePanel.this);

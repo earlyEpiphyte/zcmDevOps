@@ -62,12 +62,12 @@ public class MilestoneEditPage extends ProjectPage {
 				Milestone milestoneWithSameName = milestoneManager.find(getProject(), milestone.getName());
 				if (milestoneWithSameName != null && !milestoneWithSameName.equals(milestone)) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another milestone in the project");
+							"该名称已被项目中的另一个里程碑使用");
 				} 
 				if (editor.isValid()){
 					editor.getDescriptor().copyProperties(milestone, getMilestone());
 					milestoneManager.save(getMilestone());
-					Session.get().success("Milestone saved");
+					Session.get().success("里程碑已保存");
 					setResponsePage(MilestoneDetailPage.class, MilestoneDetailPage.paramsOf(getMilestone(), null));
 				}
 				

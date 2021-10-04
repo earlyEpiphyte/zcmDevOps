@@ -812,7 +812,7 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 						public void onClick() {
 							PullRequest request = getPullRequest();
 							getPullRequestManager().delete(request);
-							Session.get().success("Pull request #" + request.getNumber() + " deleted");
+							Session.get().success("拉取请求 #" + request.getNumber() + " 已删除");
 							
 							String redirectUrlAfterDelete = WebSession.get().getRedirectUrlAfterDelete(PullRequest.class);
 							if (redirectUrlAfterDelete != null)
@@ -821,7 +821,7 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 								setResponsePage(ProjectPullRequestsPage.class, ProjectPullRequestsPage.paramsOf(getProject()));
 						}
 						
-					}.add(new ConfirmClickModifier("Do you really want to delete this pull request?")));
+					}.add(new ConfirmClickModifier("你真的要删除这个拉取请求吗?")));
 				} else {
 					actions.add(new WebMarkupContainer("synchronize"));
 					actions.add(new WebMarkupContainer("delete"));

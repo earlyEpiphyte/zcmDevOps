@@ -2,13 +2,13 @@
 	<div class="changes">
 		<div wicket:id="changesHead" class="head">
 			<div class="btn-group btn-block mb-4">
-				<button wicket:id="prevCommitLink" class="btn btn-light btn-hover-primary btn-icon flex-grow-0 flex-shrink-0" title="Previous commit"><wicket:svg href="arrow" class="icon rotate-180"></wicket:svg></button>
+				<button wicket:id="prevCommitLink" class="btn btn-light btn-hover-primary btn-icon flex-grow-0 flex-shrink-0" title="上一次提交"><wicket:svg href="arrow" class="icon rotate-180"></wicket:svg></button>
 				<button wicket:id="comparingCommits" class="btn btn-light btn-hover-primary"><span wicket:id="label"></span> <wicket:svg href="arrow" class="ml-1 icon rotate-90"></wicket:svg></button>
-				<button wicket:id="nextCommitLink" class="btn btn-light btn-hover-primary btn-icon flex-grow-0 flex-shrink-0" title="Next commit"><wicket:svg href="arrow" class="icon"></wicket:svg></button>
+				<button wicket:id="nextCommitLink" class="btn btn-light btn-hover-primary btn-icon flex-grow-0 flex-shrink-0" title="下一次提交"><wicket:svg href="arrow" class="icon"></wicket:svg></button>
 			</div>
 			<wicket:enclosure child="fullChanges">
 				<div class="alert alert-notice alert-light-warning mb-4">
-					You are viewing a subset of all changes. <a wicket:id="fullChanges" class="link-primary ml-2">show all changes</a>
+					您正在查看所有变更的子集. <a wicket:id="fullChanges" class="link-primary ml-2">显示所有更改</a>
 				</div>
 			</wicket:enclosure>
 		</div>
@@ -17,9 +17,9 @@
 	<wicket:fragment wicket:id="commitsFrag">
 		<div class="commits-selector noselect p-4">
 			<div class="links mb-3">
-				<a wicket:id="allChanges" class="btn btn-light btn-sm mr-2">All changes</a>
-				<a wicket:id="changesSinceLastReview" class="btn btn-light btn-sm mr-2">Changes since last review</a>
-				<a class="btn btn-light btn-sm selected-changes disabled">Show selected changes</a>
+				<a wicket:id="allChanges" class="btn btn-light btn-sm mr-2">所有更改</a>
+				<a wicket:id="changesSinceLastReview" class="btn btn-light btn-sm mr-2">自上次审核以来的更改</a>
+				<a class="btn btn-light btn-sm selected-changes disabled">显示选定的更改</a>
 			</div>
 			<ul class="list-unstyled autosuit mb-0">
 				<li wicket:id="commits">
@@ -31,7 +31,7 @@
 				</li>
 			</ul>
 			<div class="mt-3 text-muted d-flex align-items-center">
-				<wicket:svg href="bulb" class="icon mr-2"/> Click to select a commit, or shift-click to select multiple commit
+				<wicket:svg href="bulb" class="icon mr-2"/> 单击以选择一个提交，或按住 Shift 键单击以选择多个提交
 			</div>
 		</div>
 	</wicket:fragment>

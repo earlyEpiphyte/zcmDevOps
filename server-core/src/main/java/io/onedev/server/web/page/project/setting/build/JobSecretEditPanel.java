@@ -72,7 +72,7 @@ public abstract class JobSecretEditPanel extends Panel {
 					JobSecret secret = secrets.get(i);
 					if (i != index && secret.getName().equals(editingSecret.getName())) {
 						editor.error(new Path(new PathNode.Named("name")), 
-								"Name already been used by another secret");
+								"名称已被另一个秘密使用");
 						hasErrors = true;
 						break;
 					}

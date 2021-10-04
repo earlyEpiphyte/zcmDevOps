@@ -30,7 +30,7 @@ public class MySshKeysPage extends MyPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		
-        add(new Label("sshKeyNote", "Your SSH keys are managed from " + getLoginUser().getAuthSource()) {
+        add(new Label("sshKeyNote", "您的 SSH 密钥是通过以下方式管理的 " + getLoginUser().getAuthSource()) {
         	
         	@Override
         	protected void onConfigure() {
@@ -86,7 +86,7 @@ public class MySshKeysPage extends MyPage {
 
 	@Override
 	protected Component newTopbarTitle(String componentId) {
-		return new Label(componentId, "My SSH Keys");
+		return new Label(componentId, "SSH 密钥");
 	}
 	
 }

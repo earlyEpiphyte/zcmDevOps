@@ -18,7 +18,7 @@ public class CommitMessageBean implements Serializable {
 	
 	private String body;
 
-	@Editable(order=100, name="Commit Message Summary")
+	@Editable(order=100, name="提交消息摘要")
 	@NotEmpty
 	@OmitName
 	@ReferenceAware

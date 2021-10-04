@@ -227,7 +227,7 @@ public class RevisionComparePage extends ProjectPage implements RevisionDiff.Ann
 		 * project  
 		 */
 		if (!state.compareWithMergeBase && !state.leftSide.getProject().equals(state.rightSide.getProject())) 
-			throw new IllegalArgumentException("Can only compare with common ancestor when different projects are involved");
+			throw new IllegalArgumentException("只有在涉及不同项目时才能与共同祖先进行比较");
 		
 		state.pathFilter = params.get(PARAM_PATH_FILTER).toString();
 		state.blameFile = params.get(PARAM_BLAME_FILE).toString();
@@ -331,9 +331,9 @@ public class RevisionComparePage extends ProjectPage implements RevisionDiff.Ann
 		String tooltip;
 		if (!state.leftSide.getProject().equals(state.rightSide.getProject())) {
 			checkBox.add(AttributeAppender.append("disabled", "disabled"));
-			tooltip = "Can only compare with common ancestor when different projects are involved";
+			tooltip = "只有在涉及不同项目时才能与共同祖先进行比较";
 		} else {
-			tooltip = "Check this to compare \"right side\" with common ancestor of left and right";
+			tooltip = "选中此项以将 \"right side\"与左右的共同祖先进行比较";
 		}
 		
 		add(new WebMarkupContainer("mergeBaseTooltip").add(AttributeAppender.append("title", tooltip)));

@@ -43,20 +43,20 @@ public class ArchiveResource extends AbstractResource {
 
 		String projectName = params.get(PARAM_PROJECT).toString();
 		if (StringUtils.isBlank(projectName))
-			throw new IllegalArgumentException("project name has to be specified");
+			throw new IllegalArgumentException("必须指定项目名称");
 		
 		Project project = OneDev.getInstance(ProjectManager.class).find(projectName);
 		
 		if (project == null) 
-			throw new EntityNotFoundException("Unable to find project: " + projectName);
+			throw new EntityNotFoundException("无法找到项目: " + projectName);
 		
 		String revision = params.get(PARAM_REVISION).toString();
 		if (StringUtils.isBlank(revision))
-			throw new IllegalArgumentException("revision parameter has to be specified");
+			throw new IllegalArgumentException("必须指定版本参数");
 		
 		String format = params.get(PARAM_FORMAT).toString();
 		if (!FORMAT_ZIP.equals(format) && !FORMAT_TGZ.equals(format)) {
-			throw new IllegalArgumentException("format parameter should be specified either zip or tar.gz");
+			throw new IllegalArgumentException("格式参数应指定为 zip 或 tar.gz");
 		}
 		
 		if (!SecurityUtils.canReadCode(project)) 

@@ -22,12 +22,12 @@ public class UserPasswordPage extends UserPage {
 		if (getUser().getPassword().equals(User.EXTERNAL_MANAGED)) {
 			String message;
 			if (getUser().getSsoInfo().getConnector() != null) {
-				message = "The user is currently authenticated via SSO provider '" 
+				message = "用户当前已通过 SSO 提供商进行身份验证 '" 
 						+ getUser().getSsoInfo().getConnector() 
-						+ "', please change password there instead";
+						+ "', 请更改密码";
 			} else {
-				message = "The user is currently authenticated via external system, "
-						+ "please change password there instead";
+				message = "用户当前已通过外部系统进行身份验证, "
+						+ "请更改密码";
 			}
 			add(new Label("content", message).add(AttributeAppender.append("class", "alert alert-light-warning alert-notice mb-0")));
 		} else {

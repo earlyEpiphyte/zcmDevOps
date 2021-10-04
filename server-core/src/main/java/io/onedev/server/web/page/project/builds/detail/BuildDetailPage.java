@@ -300,7 +300,7 @@ public abstract class BuildDetailPage extends ProjectPage
 			@Override
 			public void onClick() {
 				OneDev.getInstance(JobManager.class).cancel(getBuild());
-				getSession().success("Cancel request submitted");
+				getSession().success("已提交取消请求");
 			}
 
 			@Override
@@ -309,7 +309,7 @@ public abstract class BuildDetailPage extends ProjectPage
 				setVisible(!getBuild().isFinished() && SecurityUtils.canRunJob(getBuild().getProject(), getBuild().getJobName()));
 			}
 			
-		}.add(new ConfirmClickModifier("Do you really want to cancel this build?")));
+		}.add(new ConfirmClickModifier("你真的要取消这个构建吗?")));
 		
 		add(new DropdownLink("downstream") {
 

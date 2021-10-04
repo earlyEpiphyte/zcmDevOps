@@ -50,7 +50,7 @@ public class SsoProcessPage extends BasePage {
 					.orElse(null);
 			
 			if (connector == null) 
-				throw new AuthenticationException("Unable to find SSO connector: " + connectorName);
+				throw new AuthenticationException("找不到 SSO 连接器: " + connectorName);
 			
 			if (stage.equals(STAGE_INITIATE)) {
 				String redirectUrlAfterLogin;
@@ -67,7 +67,7 @@ public class SsoProcessPage extends BasePage {
 				
 				String redirectUrlAfterLogin = (String) Session.get().getAttribute(SESSION_ATTR_REDIRECT_URL);
 				if (redirectUrlAfterLogin == null)
-					throw new AuthenticationException("unsolicited OIDC authentication response");
+					throw new AuthenticationException("未经请求的 OIDC 身份验证响应");
 				
 				WebSession.get().login(authenticated);
 				

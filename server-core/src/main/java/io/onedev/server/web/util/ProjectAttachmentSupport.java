@@ -118,7 +118,7 @@ public class ProjectAttachmentSupport implements AttachmentSupport {
 	        while (-1 != (n = attachmentStream.read(buffer))) {
 	            count += n;
 		        if (count > getAttachmentMaxSize()) {
-		        	throw new RuntimeException("Upload must be less than " 
+		        	throw new RuntimeException("上传必须小于 " 
 		        			+ FileUtils.byteCountToDisplaySize(getAttachmentMaxSize()));
 		        }
 	            os.write(buffer, 0, n);

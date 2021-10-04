@@ -86,7 +86,7 @@ abstract class JobExecutorPanel extends Panel {
 			@Override
 			protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 				super.updateAjaxAttributes(attributes);
-				attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete this executor?"));
+				attributes.getAjaxCallListeners().add(new ConfirmClickListener("你真的要删除这个执行器吗?"));
 			}
 
 			@Override

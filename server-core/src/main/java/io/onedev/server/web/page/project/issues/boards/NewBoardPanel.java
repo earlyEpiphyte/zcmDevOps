@@ -47,7 +47,7 @@ abstract class NewBoardPanel extends Panel {
 				int indexWithSameName = BoardSpec.getBoardIndex(boards, board.getName());
 				if (indexWithSameName != -1) {
 					editor.error(new Path(new PathNode.Named("name")),
-							"This name has already been used by another issue board in the project");
+							"此名称已被项目中的另一个问题板使用");
 				} 
 				if (editor.isValid()){
 					board.populateColumns();
@@ -55,7 +55,7 @@ abstract class NewBoardPanel extends Panel {
 					boards.add(board);
 					getProject().getIssueSetting().setBoardSpecs(boards);
 					OneDev.getInstance(ProjectManager.class).save(getProject());
-					Session.get().success("New issue board created");
+					Session.get().success("新的问题板已创建");
 					onBoardCreated(target, board);
 				} else {
 					target.add(NewBoardPanel.this);

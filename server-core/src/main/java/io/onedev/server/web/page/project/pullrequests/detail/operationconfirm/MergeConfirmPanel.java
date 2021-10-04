@@ -58,9 +58,9 @@ public abstract class MergeConfirmPanel extends OperationConfirmPanel {
 		else if (mergeStrategy == SQUASH_SOURCE_BRANCH_COMMITS) 
 			bean.setSummary("Pull request " + request.getNumberAndTitle());
 		else if (mergeStrategy == REBASE_SOURCE_BRANCH_COMMITS) 
-			description = "Source branch commits will be rebased onto target branch";
+			description = "源分支提交将重新基于目标分支";
 		else if (mergePreview.getMergeCommitHash().equals(mergePreview.getHeadCommitHash())) 
-			description = "Source branch commits will be fast-forwarded to target branch";
+			description = "源分支提交将快速转发到目标分支";
 		else 
 			bean.setSummary("Merge pull request " + request.getNumberAndTitle());
 		

@@ -66,7 +66,7 @@ public class PasswordResetPage extends SimplePage {
 				if (user == null) 
 					user = userManager.findByEmail(loginNameOrEmail);
 				if (user == null) {
-					throw new ExplicitException("No user found with login name or email: " + loginNameOrEmail);
+					throw new ExplicitException("没有找到具有登录名或电子邮件的用户: " + loginNameOrEmail);
 				} else {
 					SettingManager settingManager = OneDev.getInstance(SettingManager.class);
 					if (settingManager.getMailSetting() != null) {
@@ -94,7 +94,7 @@ public class PasswordResetPage extends SimplePage {
 								"Your OneDev password has been reset", htmlBody, textBody);
 						return "Please check your email " + user.getEmail() + " for the reset password";
 					} else {
-						throw new ExplicitException("Unable to send password reset email as smtp setting is not defined");
+						throw new ExplicitException("无法发送密码重置电子邮件，因为未定义 smtp 设置");
 					}
 				}
 			}

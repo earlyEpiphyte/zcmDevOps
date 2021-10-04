@@ -142,7 +142,7 @@ public class WebApplication extends org.apache.wicket.protocol.http.WebApplicati
 						&& !(component instanceof AbstractErrorPage) 
 						&& !(component instanceof BasePage)
 						&& !(component instanceof BrowserInfoPage)) {
-					throw new ExplicitException("Page classes should extend from BasePage.");
+					throw new ExplicitException("页面类应该从 BasePage 扩展.");
 				}
 			}
 		});
@@ -238,7 +238,7 @@ public class WebApplication extends org.apache.wicket.protocol.http.WebApplicati
 	@Override
 	public void mount(IRequestMapper mapper) {
 		if (mapper instanceof ResourceMapper && !(mapper instanceof BaseResourceMapper))
-			throw new ExplicitException("Base resource mapper should be used");
+			throw new ExplicitException("应该使用基础资源映射器");
 		super.mount(mapper);
 	}
 
