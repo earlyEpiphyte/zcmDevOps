@@ -115,7 +115,7 @@ public class DefaultDataManager implements DataManager, Serializable {
 			administrator = new User();
 			administrator.setId(User.ROOT_ID);
 			Set<String> excludedProperties = Sets.newHashSet("administrator", "canCreateProjects"); 
-			manualConfigs.add(new ManualConfig("Create Administrator Account", null, administrator, excludedProperties) {
+			manualConfigs.add(new ManualConfig("创建管理员账户", null, administrator, excludedProperties) {
 
 				@Override
 				public Skippable getSkippable() {
@@ -148,7 +148,7 @@ public class DefaultDataManager implements DataManager, Serializable {
 				excludedProps.add("gitConfig");
 				excludedProps.add("curlConfig");
 			}
-			manualConfigs.add(new ManualConfig("Specify System Setting", null, 
+			manualConfigs.add(new ManualConfig("指定系统设置", null, 
 					systemSetting, excludedProps) {
 	
 				@Override

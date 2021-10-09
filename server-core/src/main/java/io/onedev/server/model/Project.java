@@ -321,7 +321,7 @@ public class Project extends AbstractEntity implements NameAware {
     
 	private transient List<Milestone> sortedMilestones;
 	
-	@Editable(order=100)
+	@Editable(order=100,name="项目名称")
 	@ProjectName
 	@NotEmpty
 	@Override
@@ -333,7 +333,7 @@ public class Project extends AbstractEntity implements NameAware {
 		this.name = name;
 	}
 
-	@Editable(order=200)
+	@Editable(order=200,name="描述")
 	@Markdown
 	public String getDescription() {
 		return description;

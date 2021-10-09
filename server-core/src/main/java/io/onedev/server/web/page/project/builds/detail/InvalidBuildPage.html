@@ -5,15 +5,15 @@
 				<wicket:svg href="sad-panda" class="icon icon-hero flex-shrink-0 ml-n4"/>		
 				<div>
 					<h4 class="mb-3">
-						Unable to show build as corresponding commit no longer exist in git repository
+						无法展示构建，因为对应的提交在git仓库中不再存在了
 					</h4>
-					This might happen for two reasons:
+					可能为以下两个原因:
 					<ul>
-						<li> The project points to a wrong git repository. In this case, you will need to copy over the correct repository, 
-						or make sure that the correct global storage directory is specified.</li>
-						<li> The commit is no longer needed and have been garbage collected. 
+						<li> 项目指向了错误的git仓库。这种情况下，你需要复制整个正确的仓库， 
+						或者保证指定了正确的目标存储路径。</li>
+						<li> 不再需要此提交并且被垃圾回收了。
 						<wicket:enclosure child="delete">
-						In this case, you may also <a wicket:id="delete" class="link-primary">delete the build</a>
+						这种情况下，你可能需要 <a wicket:id="delete" class="link-primary">删除构建</a>
 						</wicket:enclosure>
 						</li>
 					</ul>		

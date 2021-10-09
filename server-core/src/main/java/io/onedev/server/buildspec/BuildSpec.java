@@ -83,7 +83,7 @@ public class BuildSpec implements Serializable, Validatable {
 	        
 	});
 	
-	public static final String BLOB_PATH = ".onedev-buildspec.yml";
+	public static final String BLOB_PATH = ".buildspec.yml";
 	
 	private static final String PROP_JOBS = "jobs";
 	

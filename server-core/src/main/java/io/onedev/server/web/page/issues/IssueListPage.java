@@ -255,7 +255,7 @@ public class IssueListPage extends LayoutPage {
 	
 	@Override
 	protected String getPageTitle() {
-		return "Issues - OneDev";
+		return "问题 - 工业互联网标识解析集成开发平台";
 	}
 	
 }

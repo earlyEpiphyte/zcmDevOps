@@ -321,7 +321,7 @@ public class ProjectListPanel extends Panel {
 		
 		List<IColumn<Project, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<Project, Void>(Model.of("Project")) {
+		columns.add(new AbstractColumn<Project, Void>(Model.of("项目名称")) {
 
 			@Override
 			public String getCssClass() {
@@ -352,7 +352,7 @@ public class ProjectListPanel extends Panel {
 			}
 		});
 		
-		columns.add(new AbstractColumn<Project, Void>(Model.of("Last Update")) {
+		columns.add(new AbstractColumn<Project, Void>(Model.of("最近更新时间")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Project>> cellItem, String componentId, 

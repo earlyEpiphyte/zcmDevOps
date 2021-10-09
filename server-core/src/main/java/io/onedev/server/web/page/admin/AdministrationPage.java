@@ -35,7 +35,7 @@ public abstract class AdministrationPage extends LayoutPage implements ScriptIde
 
 	@Override
 	protected String getPageTitle() {
-		return "Administration - OneDev";
+		return "管理 - 工业互联网标识解析集成开发平台";
 	}
 
 	@Override

@@ -46,7 +46,7 @@ public abstract class Wizard extends Panel {
 
 			@Override
 			public String getObject() {
-				String template = "Step %s of %s: %s";
+				String template = "步骤 %s / %s: %s";
 				return String.format(template, activeStepIndex+1, steps.size(), getActiveStep().getTitle());
 			}
 			
