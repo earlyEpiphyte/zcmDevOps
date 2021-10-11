@@ -43,7 +43,7 @@ public class TagProtection implements Serializable {
 		this.enabled = enabled;
 	}
 
-	@Editable(order=100, description="指定要保护的空格分隔标签. 使用 '**', '*' 或者 '?' 用于 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+	@Editable(order=100,name="标签名", description="指定要保护的空格分隔标签。使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>。"
 			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestTags", path=true)
 	@NotEmpty
@@ -80,7 +80,7 @@ public class TagProtection implements Serializable {
 			return new ArrayList<>();
 	}
 	
-	@Editable(order=200, description="选中此项以防止标签更新")
+	@Editable(order=200,name="防止标签更新", description="选中此项以防止标签更新")
 	public boolean isPreventUpdate() {
 		return preventUpdate;
 	}
@@ -89,7 +89,7 @@ public class TagProtection implements Serializable {
 		this.preventUpdate = preventUpdate;
 	}
 
-	@Editable(order=300, description="选中此项以防止标签删除")
+	@Editable(order=300,name="防止标签删除", description="选中此项以防止标签删除")
 	public boolean isPreventDeletion() {
 		return preventDeletion;
 	}
@@ -98,7 +98,7 @@ public class TagProtection implements Serializable {
 		this.preventDeletion = preventDeletion;
 	}
 
-	@Editable(order=400, description="选中此项以防止创建标签")
+	@Editable(order=400,name="防止创建标签", description="选中此项以防止创建标签")
 	public boolean isPreventCreation() {
 		return preventCreation;
 	}

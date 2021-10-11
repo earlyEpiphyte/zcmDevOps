@@ -10,14 +10,14 @@ import io.onedev.server.web.editable.annotation.NameOfEmptyValue;
 import io.onedev.server.web.editable.annotation.Patterns;
 import io.onedev.server.web.util.SuggestionUtils;
 
-@Editable(order=200, name="Close milestone")
+@Editable(order=200, name="关闭里程碑")
 public class CloseMilestoneAuthorization extends ActionAuthorization {
 
 	private static final long serialVersionUID = 1L;
 
 	private String milestoneNames;
 
-	@Editable(order=100, description="指定以空格分隔的里程碑名称. 使用 '*' 或者 '?' 用于通配符匹配. "
+	@Editable(order=100,name="里程碑名称", description="指定以空格分隔的里程碑名称. 使用 '*' 或者 '?' 用于通配符匹配. "
 			+ "以'-'为前缀来排除. 留空以匹配所有")
 	@Patterns(suggester = "suggestMilestones")
 	@NameOfEmptyValue("All")
@@ -40,9 +40,9 @@ public class CloseMilestoneAuthorization extends ActionAuthorization {
 	@Override
 	public String getActionDescription() {
 		if (milestoneNames != null)
-			return "Close milestone with name matching '" + milestoneNames + "'";
+			return "关闭匹配'" + milestoneNames + "'名称的里程碑";
 		else
-			return "Close milestone";
+			return "关闭里程碑";
 	}
 
 }

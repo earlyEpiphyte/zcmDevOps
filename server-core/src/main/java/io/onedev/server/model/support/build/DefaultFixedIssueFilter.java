@@ -25,7 +25,7 @@ public class DefaultFixedIssueFilter implements Serializable {
 	
 	private String issueQuery;
 
-	@Editable(order=100, description="指定以空格分隔的作业. 使用 '*' 或者 '?' 用于通配符匹配. "
+	@Editable(order=100, name="作业名称",description="指定以空格分隔的作业. 使用 '*' 或者 '?' 用于通配符匹配. "
 			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestJobNames")
 	@NotEmpty
@@ -37,7 +37,7 @@ public class DefaultFixedIssueFilter implements Serializable {
 		this.jobNames = jobNames;
 	}
 
-	@Editable(order=200, description="指定默认查询以过滤/排序指定作业的已修复问题")
+	@Editable(order=200,name="问题查询", description="指定默认查询以过滤/排序指定作业的已修复问题")
 	@IssueQuery(withCurrentBuildCriteria = false, withCurrentCommitCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentUserCriteria = true, 
 			withOrder = true)

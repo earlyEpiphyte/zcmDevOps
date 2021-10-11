@@ -15,7 +15,7 @@ public class BuildPreservation implements Serializable {
 	
 	private Integer count;
 
-	@Editable(order=100, description="指定保留构建必须匹配的条件")
+	@Editable(order=100,name="条件", description="指定保留构建必须匹配的条件")
 	@BuildQuery(withOrder = false, withCurrentUserCriteria = false, withUnfinishedCriteria = false)
 	@NameOfEmptyValue("全部")
 	public String getCondition() {
@@ -26,7 +26,7 @@ public class BuildPreservation implements Serializable {
 		this.condition = condition;
 	}
 
-	@Editable(order=200, description="要保留的构建数量")
+	@Editable(order=200, name="数量",description="要保留的构建数量")
 	@NameOfEmptyValue("无限制")
 	public Integer getCount() {
 		return count;

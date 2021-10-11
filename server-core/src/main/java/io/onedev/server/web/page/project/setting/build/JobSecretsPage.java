@@ -45,7 +45,7 @@ public class JobSecretsPage extends BuildSettingPage {
 		super.onInitialize();
 
 		String note = String.format("<svg class='icon mr-2'><use xlink:href='%s'/></svg> "
-				+ "定义要在构建规范中使用的作业秘密. 小于 %d 个字符的秘密值不会在构建日志中被屏蔽 ",
+				+ "定义要在构建规范中使用的作业秘密。 小于 %d 个字符的秘密值不会在构建日志中被屏蔽 ",
 				SpriteImage.getVersionedHref("bulb"), SecretInput.MASK.length());
 		add(new Label("secretsNote", note).setEscapeModelStrings(false));
 
@@ -90,7 +90,7 @@ public class JobSecretsPage extends BuildSettingPage {
 		
 		List<IColumn<JobSecret, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<JobSecret, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<JobSecret, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<JobSecret>> cellItem, String componentId, 

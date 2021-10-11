@@ -59,7 +59,7 @@ public class InvalidCodeCommentPage extends ProjectPage {
 			public void onClick() {
 				OneDev.getInstance(CodeCommentManager.class).delete(getCodeComment());
 				
-				Session.get().success("代码注释 #" + getCodeComment().getId() + " 已删除");
+				Session.get().success("代码评论 #" + getCodeComment().getId() + " 已删除");
 				
 				String redirectUrlAfterDelete = WebSession.get().getRedirectUrlAfterDelete(CodeComment.class);
 				if (redirectUrlAfterDelete != null)
@@ -75,7 +75,7 @@ public class InvalidCodeCommentPage extends ProjectPage {
 				setVisible(SecurityUtils.canManageCodeComments(getCodeComment().getProject()));
 			}
 			
-		}.add(new ConfirmClickModifier("真想删除这段代码注释?")));
+		}.add(new ConfirmClickModifier("真想删除这段代码评论?")));
 	}
 	
 	public static PageParameters paramsOf(CodeComment codeComment) {

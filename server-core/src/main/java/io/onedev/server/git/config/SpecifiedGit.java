@@ -11,7 +11,7 @@ public class SpecifiedGit extends GitConfig {
 	
 	private String gitPath;
 	
-	@Editable(description="指定git可执行的路径,例如: <tt>/usr/bin/git</tt>")
+	@Editable(name="git路径",description="指定git可执行的路径,例如: <tt>/usr/bin/git</tt>")
 	@NotEmpty
 	public String getGitPath() {
 		return gitPath;

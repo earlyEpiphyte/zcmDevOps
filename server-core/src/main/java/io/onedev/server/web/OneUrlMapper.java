@@ -205,7 +205,6 @@ public class OneUrlMapper extends CompoundRequestMapper {
 		add(new DynamicPathPageMapper("administration/settings/backup", DatabaseBackupPage.class));
 		add(new DynamicPathPageMapper("administration/settings/security", GeneralSecuritySettingPage.class));
 		add(new DynamicPathPageMapper("administration/settings/authenticator", AuthenticatorPage.class));
-		add(new DynamicPathPageMapper("administration/settings/sso-connectors", SsoConnectorListPage.class));
 		add(new DynamicPathPageMapper("administration/settings/ssh", SshSettingPage.class));
 
 		add(new DynamicPathPageMapper("administration/settings/job-executors", JobExecutorsPage.class));

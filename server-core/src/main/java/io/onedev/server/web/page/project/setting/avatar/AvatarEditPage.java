@@ -84,7 +84,7 @@ public class AvatarEditPage extends ProjectSettingPage {
 
 	@Override
 	protected Component newProjectTitle(String componentId) {
-		return new Label(componentId, "编辑头像");
+		return new Label(componentId, "编辑项目头像");
 	}
 	
 }

@@ -18,10 +18,10 @@ public abstract class ActionAuthorization implements Serializable {
 
 	private String authorizedBranches;
 
-	@Editable(order=1000, description="Action is allowed only if build runs on "
-			+ "specified branches. Multiple branches should be separated with space. "
-			+ "Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude. Leave empty to match all")
+	@Editable(order=1000,name="已授权分支", description="当且仅当构建运行在指定分支上，行动才被允许。"
+			+ "多个分支空格隔开。"
+			+ "指定以空格分隔的标签名称。 使用 '**', '*' 或者 '?' 用于<b><i>路径通配符匹配</i></b>。"
+			+ "以'-'为前缀来排除。 留空以匹配所有")
 	@Patterns(suggester = "suggestBranches", path=true)
 	@NameOfEmptyValue("All")
 	public String getAuthorizedBranches() {

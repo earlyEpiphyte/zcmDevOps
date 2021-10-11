@@ -28,8 +28,8 @@ public abstract class ConfirmDeleteProjectModal extends ConfirmModalPanel {
 	
 	@Override
 	protected String getConfirmMessage() {
-		return "Everything inside this project will be deleted and can not be recovered, "
-				+ "please input project name \"" + getProject().getName() + "\" below to confirm deletion.";
+		return "项目内的所有东西都会被删除且无法复原, "
+				+ "请下方输入项目名称 \"" + getProject().getName() + "\" 来确定删除";
 	}
 
 	@Override

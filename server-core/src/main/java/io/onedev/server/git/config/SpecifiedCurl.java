@@ -11,7 +11,7 @@ public class SpecifiedCurl extends CurlConfig {
 	
 	private String curlPath;
 	
-	@Editable(description="指定curl可执行的路径,例如: <tt>/usr/bin/curl</tt>")
+	@Editable(name="curl路径",description="指定curl可执行的路径,例如: <tt>/usr/bin/curl</tt>")
 	@NotEmpty
 	public String getCurlPath() {
 		return curlPath;

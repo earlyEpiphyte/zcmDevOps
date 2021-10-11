@@ -73,7 +73,7 @@ public class WebHook implements Serializable {
 	
 	private String secret = RandomStringUtils.randomAlphanumeric(20);
 
-	@Editable(order=100, description="将接收 webhook POST 请求的服务器端点的 URL")
+	@Editable(order=100,name="发布的URL", description="将接收 webhook POST 请求的服务器端点的 URL")
 	@NotEmpty
 	public String getPostUrl() {
 		return postUrl;
@@ -83,7 +83,7 @@ public class WebHook implements Serializable {
 		this.postUrl = postUrl;
 	}
 
-	@Editable(order=200)
+	@Editable(order=200,name="事件类型")
 	@Size(min=1, message="至少需要选择一种事件类型")
 	public List<EventType> getEventTypes() {
 		return eventTypes;
@@ -93,8 +93,8 @@ public class WebHook implements Serializable {
 		this.eventTypes = eventTypes;
 	}
 
-	@Editable(order=300, description="允许您确保发送到有效负载 URL 的 POST 请求来自 OneDev 的秘密. "
-			+ "设置秘密后，您将在 webhook POST 请求中收到 X-OneDev-Signature 标头")
+	@Editable(order=300,name="密钥", description="允许您确保发送到有效负载 URL 的 POST 请求来自平台的密钥. "
+			+ "设置密钥后，您将在 webhook POST 请求中收到 X-OneDev-Signature 标头")
 	@NotEmpty
 	public String getSecret() {
 		return secret;

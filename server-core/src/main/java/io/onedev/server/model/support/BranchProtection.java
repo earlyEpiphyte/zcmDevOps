@@ -69,7 +69,7 @@ public class BranchProtection implements Serializable {
 		this.enabled = enabled;
 	}
 
-	@Editable(order=100, description="指定要保护的以空格分隔的分支. 使用 '**', '*' 或者 '?' 用于 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+	@Editable(order=100,name="分支", description="指定要保护的以空格分隔的分支. 使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>. "
 			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestBranches", path=true)
 	@NotEmpty
@@ -97,7 +97,7 @@ public class BranchProtection implements Serializable {
 		this.userMatch = userMatch;
 	}
 
-	@Editable(order=200, description="选中此项以防止强制推送")
+	@Editable(order=200, name="防止强制推送",description="选中此项以防止强制推送")
 	public boolean isPreventForcedPush() {
 		return preventForcedPush;
 	}
@@ -106,7 +106,7 @@ public class BranchProtection implements Serializable {
 		this.preventForcedPush = preventForcedPush;
 	}
 
-	@Editable(order=300, description="选中此项以防止分支删除")
+	@Editable(order=300,name="防止分支删除", description="选中此项以防止分支删除")
 	public boolean isPreventDeletion() {
 		return preventDeletion;
 	}
@@ -115,7 +115,7 @@ public class BranchProtection implements Serializable {
 		this.preventDeletion = preventDeletion;
 	}
 
-	@Editable(order=350, description="选中此项以防止创建分支")
+	@Editable(order=350,name="防止创建分支", description="选中此项以防止创建分支")
 	public boolean isPreventCreation() {
 		return preventCreation;
 	}
@@ -157,7 +157,7 @@ public class BranchProtection implements Serializable {
 		this.jobNames = jobNames;
 	}
 	
-	@Editable(order=700, description="可选地指定路径保护规则")
+	@Editable(order=700,name="文件保护", description="可选的指定路径保护规则")
 	@Valid
 	public List<FileProtection> getFileProtections() {
 		return fileProtections;

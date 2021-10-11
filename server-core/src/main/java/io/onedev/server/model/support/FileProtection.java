@@ -33,7 +33,7 @@ public class FileProtection implements Serializable, Validatable {
 	
 	private List<String> jobNames = new ArrayList<>();
 	
-	@Editable(order=100, description="指定要保护的空格分隔路径. 使用 '**', '*' 或者 '?' 用于 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+	@Editable(order=100,name="文件路径", description="指定要保护的空格分隔路径. 使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>. "
 			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestPaths", path=true)
 	@NotEmpty
@@ -53,8 +53,8 @@ public class FileProtection implements Serializable, Validatable {
 			return new ArrayList<>();
 	}
 
-	@Editable(order=200, name="Reviewers", description="Specify required reviewers if specified path is "
-			+ "changed. Note that the user submitting the change is considered to reviewed the change automatically")
+	@Editable(order=200, name="审阅者", description="若指定的路径文件改变，需要指定审阅者。"
+			+ "若用户提交了改变，会视为自动审阅了改变。")
 	@io.onedev.server.web.editable.annotation.ReviewRequirement
 	public String getReviewRequirement() {
 		return reviewRequirement;
@@ -75,7 +75,7 @@ public class FileProtection implements Serializable, Validatable {
 		reviewRequirement = parsedReviewRequirement.toString();
 	}
 	
-	@Editable(order=500, name="Required Builds", description="Optionally choose required builds")
+	@Editable(order=500, name="所需的构建", description="可选")
 	@JobChoice
 	@NameOfEmptyValue("No any")
 	public List<String> getJobNames() {
@@ -90,7 +90,7 @@ public class FileProtection implements Serializable, Validatable {
 	public boolean isValid(ConstraintValidatorContext context) {
 		if (getJobNames().isEmpty() && getReviewRequirement() == null) {
 			context.disableDefaultConstraintViolation();
-			String message = "Either reviewer or required builds should be specified";
+			String message = "审阅者和所需的构建至少指定一项";
 			context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;
 		} else {

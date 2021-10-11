@@ -26,7 +26,7 @@ public class JobSecret implements Serializable {
 	
 	private String authorizedBranches;
 	
-	@Editable(order=100)
+	@Editable(order=100,name="名称")
 	@NotEmpty
 	@SecretName
 	public String getName() {
@@ -37,7 +37,7 @@ public class JobSecret implements Serializable {
 		this.name = name;
 	}
 	
-	@Editable(order=200)
+	@Editable(order=200,name="值")
 	@NotEmpty
 	@Multiline
 	public String getValue() {
@@ -48,11 +48,11 @@ public class JobSecret implements Serializable {
 		this.value = value;
 	}
 
-	@Editable(order=300, description=""
-			+ "Optionally specify space-separated branches to authorize.\n"
-			+ "Only builds from authorized branches can access this secret.\n"
-			+ "Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude. Leave empty to authorize all branches")
+	@Editable(order=300, name="授权的分支",description=""
+			+ "可选的指定分支进行授权，空格隔开。\n"
+			+ "只有授权的分支才可以获取这个秘密。\n"
+			+ "使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>。"
+			+ "'-'开头表示排除。留空表示授权所有分支 。")
 	@Patterns(suggester = "suggestBranches", path=true)
 	@NameOfEmptyValue("All")
 	public String getAuthorizedBranches() {

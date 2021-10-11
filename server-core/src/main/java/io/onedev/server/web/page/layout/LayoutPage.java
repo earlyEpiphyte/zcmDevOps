@@ -131,8 +131,7 @@ public abstract class LayoutPage extends BasePage {
 							GeneralSecuritySettingPage.class, new PageParameters()));
 					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "外部认证", 
 							AuthenticatorPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSO提供", 
-							SsoConnectorListPage.class, new PageParameters()));
+				
 					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSH设置", 
 							SshSettingPage.class, new PageParameters()));
 					
@@ -323,12 +322,12 @@ public abstract class LayoutPage extends BasePage {
 				@Override
 				public void onClick() {
 					SecurityUtils.getSubject().releaseRunAs();
-					Session.get().warn("Exited impersonation");
+					Session.get().warn("已返回上个用户");
 					setResponsePage(ProjectListPage.class);
 				}
 				
 			}; 
-			signOutLink.add(new Label("label", "Exit Impersonation"));
+			signOutLink.add(new Label("label", "返回上个用户"));
 			userInfo.add(signOutLink);
 		} else {
 			ViewStateAwarePageLink<Void> signOutLink = new ViewStateAwarePageLink<Void>("signOut", LogoutPage.class); 

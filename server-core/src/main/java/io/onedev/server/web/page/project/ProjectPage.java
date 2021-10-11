@@ -179,7 +179,7 @@ public abstract class ProjectPage extends LayoutPage implements ProjectAware {
 				Lists.newArrayList(BuildDetailPage.class, InvalidBuildPage.class)));
 		
 		if (SecurityUtils.canReadCode(getProject())) {
-			menuItems.add(new SidebarMenuItem.Page("comments", "代码注释", 
+			menuItems.add(new SidebarMenuItem.Page("comments", "代码评论", 
 					ProjectCodeCommentsPage.class, ProjectCodeCommentsPage.paramsOf(getProject(), 0)));
 			menuItems.add(new SidebarMenuItem.Page("diff", "代码比较", 
 					RevisionComparePage.class, RevisionComparePage.paramsOf(getProject())));
@@ -208,7 +208,7 @@ public abstract class ProjectPage extends LayoutPage implements ProjectAware {
 			List<SidebarMenuItem> settingMenuItems = new ArrayList<>();
 			settingMenuItems.add(new SidebarMenuItem.Page(null, "通用设置", 
 					GeneralProjectSettingPage.class, GeneralProjectSettingPage.paramsOf(getProject())));
-			settingMenuItems.add(new SidebarMenuItem.Page(null, "编辑头像", 
+			settingMenuItems.add(new SidebarMenuItem.Page(null, "编辑项目头像", 
 					AvatarEditPage.class, AvatarEditPage.paramsOf(getProject())));
 			settingMenuItems.add(new SidebarMenuItem.Page(null, "授权", 
 					ProjectAuthorizationsPage.class, ProjectAuthorizationsPage.paramsOf(getProject())));
