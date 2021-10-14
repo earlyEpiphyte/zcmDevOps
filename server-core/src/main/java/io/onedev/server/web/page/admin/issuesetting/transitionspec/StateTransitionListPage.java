@@ -88,7 +88,7 @@ public class StateTransitionListPage extends IssueSettingPage {
 		
 		List<IColumn<TransitionSpec, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("From States")) {
+		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("从状态")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<TransitionSpec>> cellItem, String componentId, IModel<TransitionSpec> rowModel) {
@@ -100,7 +100,7 @@ public class StateTransitionListPage extends IssueSettingPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("To State")) {
+		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("到状态")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<TransitionSpec>> cellItem, String componentId, IModel<TransitionSpec> rowModel) {
@@ -110,7 +110,7 @@ public class StateTransitionListPage extends IssueSettingPage {
 			
 		});		
 		
-		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("Do Transition When")) {
+		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("状态转换的条件")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<TransitionSpec>> cellItem, String componentId, IModel<TransitionSpec> rowModel) {
@@ -125,7 +125,7 @@ public class StateTransitionListPage extends IssueSettingPage {
 			
 		});		
 		
-		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("Applicable Issues")) {
+		columns.add(new AbstractColumn<TransitionSpec, Void>(Model.of("适用的问题")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<TransitionSpec>> cellItem, String componentId, IModel<TransitionSpec> rowModel) {

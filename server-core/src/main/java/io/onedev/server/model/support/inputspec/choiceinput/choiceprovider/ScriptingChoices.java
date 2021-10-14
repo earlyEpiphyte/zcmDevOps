@@ -14,7 +14,7 @@ import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.OmitName;
 import io.onedev.server.web.editable.annotation.ScriptChoice;
 
-@Editable(order=300, name="Evaluate script to get choices")
+@Editable(order=300, name="评估脚本来获取选项")
 public class ScriptingChoices extends ChoiceProvider {
 
 	private static final long serialVersionUID = 1L;
@@ -23,10 +23,10 @@ public class ScriptingChoices extends ChoiceProvider {
 
 	private String scriptName;
 
-	@Editable(description="Groovy script to be evaluated. The return value should be a value to color map, "
-			+ "for instance:<br>"
-			+ "<code>return [\"Successful\":\"#00ff00\", \"Failed\":\"#ff0000\"]</code>, "
-			+ "Use <tt>null</tt> if the value does not have a color. Check <a href='$docRoot/pages/scripting.md' target='_blank'>scripting help</a> for details")
+	@Editable(name="脚本",description="用于评估的Groovy脚本。它应该返回存储颜色的map，"
+			+ "例如:<br>"
+			+ "<code>return [\"Successful\":\"#00ff00\", \"Failed\":\"#ff0000\"]</code>, null代表无颜色。"
+			+ "查看用户手册<b><i>脚本帮助</i></b>查看详情")
 	@ScriptChoice
 	@OmitName
 	@NotEmpty

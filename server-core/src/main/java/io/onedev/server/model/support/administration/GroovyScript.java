@@ -54,7 +54,7 @@ public class GroovyScript implements Serializable {
 
 	@Editable(order=300)
 	@Code(language = Code.GROOVY)
-	@Size(min=1, message="May not be empty")
+	@Size(min=1, message="不可为空")
 	public List<String> getContent() {
 		return content;
 	}

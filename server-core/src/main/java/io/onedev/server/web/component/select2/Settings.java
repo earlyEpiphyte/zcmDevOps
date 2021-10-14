@@ -409,7 +409,7 @@ public final class Settings implements Serializable {
 		Method propertyGetter = propertyDescriptor.getPropertyGetter();
 		if (propertyDescriptor.isPropertyRequired()) {
 			if (propertyDescriptor.getPropertyGetter().getAnnotation(OmitName.class) != null)
-				setPlaceholder("Choose " + propertyDescriptor.getDisplayName().toLowerCase() + "...");
+				setPlaceholder("选择" + propertyDescriptor.getDisplayName().toLowerCase() + "...");
 			else
 				setPlaceholder("选择...");
 		} else if (propertyDescriptor.getPropertyGetter().getAnnotation(OmitName.class) != null) {

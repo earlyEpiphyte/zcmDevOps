@@ -4,7 +4,7 @@ import java.util.List;
 
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=400, name="is empty")
+@Editable(order=400, name="为空")
 public class ValueIsEmpty implements ValueMatcher {
 
 	private static final long serialVersionUID = 1L;

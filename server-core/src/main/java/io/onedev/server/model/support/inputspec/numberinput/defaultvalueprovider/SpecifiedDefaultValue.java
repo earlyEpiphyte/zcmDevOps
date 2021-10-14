@@ -10,7 +10,7 @@ public class SpecifiedDefaultValue implements DefaultValueProvider {
 
 	private int value;
 
-	@Editable(name="Specified default value")
+	@Editable(name="指定默认值")
 	@OmitName
 	public int getValue() {
 		return value;

@@ -83,7 +83,7 @@ public class IssueStateListPage extends IssueSettingPage {
 		
 		List<IColumn<StateSpec, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("状态名")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<StateSpec>> cellItem, String componentId, IModel<StateSpec> rowModel) {
@@ -97,7 +97,7 @@ public class IssueStateListPage extends IssueSettingPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("Color")) {
+		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("颜色")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<StateSpec>> cellItem, String componentId, IModel<StateSpec> rowModel) {
@@ -108,7 +108,7 @@ public class IssueStateListPage extends IssueSettingPage {
 			
 		});		
 		
-		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("Description")) {
+		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("描述")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<StateSpec>> cellItem, String componentId, IModel<StateSpec> rowModel) {
@@ -127,7 +127,7 @@ public class IssueStateListPage extends IssueSettingPage {
 
 		});		
 		
-		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("Actions")) {
+		columns.add(new AbstractColumn<StateSpec, Void>(Model.of("操作")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<StateSpec>> cellItem, String componentId, IModel<StateSpec> rowModel) {

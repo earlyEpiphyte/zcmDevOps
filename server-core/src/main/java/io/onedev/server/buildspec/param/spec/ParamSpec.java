@@ -22,7 +22,7 @@ public abstract class ParamSpec extends InputSpec {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Editable(order=10)
+	@Editable(order=10,name="参数名")
 	@ParamName
 	@NotEmpty
 	@Override
@@ -35,7 +35,7 @@ public abstract class ParamSpec extends InputSpec {
 		super.setName(name);
 	}
 
-	@Editable(order=30, description="可选地描述参数")
+	@Editable(order=30,name="描述", description="可选地描述参数")
 	@NameOfEmptyValue("没有说明")
 	@Override
 	public String getDescription() {
@@ -47,7 +47,7 @@ public abstract class ParamSpec extends InputSpec {
 		super.setDescription(description);
 	}
 
-	@Editable(order=35, description="是否可以为此参数指定多个值")
+	@Editable(order=35,name="允许多值", description="是否可以为此参数指定多个值")
 	@Override
 	public boolean isAllowMultiple() {
 		return super.isAllowMultiple();

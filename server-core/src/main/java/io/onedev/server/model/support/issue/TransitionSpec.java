@@ -46,7 +46,7 @@ public class TransitionSpec implements Serializable {
 	
 	private List<String> removeFields = new ArrayList<>();
 	
-	@Editable(order=100)
+	@Editable(order=100,name="从状态")
 	@Size(min=1, message="At least one state needs to be specified")
 	@ChoiceProvider("getStateChoices")
 	public List<String> getFromStates() {
@@ -57,7 +57,7 @@ public class TransitionSpec implements Serializable {
 		this.fromStates = fromStates;
 	}
 
-	@Editable(order=200)
+	@Editable(order=200,name="到状态")
 	@NotEmpty
 	@ChoiceProvider("getStateChoices")
 	public String getToState() {
@@ -68,7 +68,7 @@ public class TransitionSpec implements Serializable {
 		this.toState = toState;
 	}
 
-	@Editable(order=400, name="Do Transition When")
+	@Editable(order=400, name="状态转换的条件")
 	@NotNull(message="不能为空")
 	public TransitionTrigger getTrigger() {
 		return trigger;
@@ -78,9 +78,9 @@ public class TransitionSpec implements Serializable {
 		this.trigger = trigger;
 	}
 	
-	@Editable(order=1000, description="Optionally select fields to remove when this transition happens")
+	@Editable(order=1000, description="当转换发生时，可选择字段移除",name="移除字段")
 	@ChoiceProvider("getFieldChoices")
-	@NameOfEmptyValue("No fields to remove")
+	@NameOfEmptyValue("无字段可移除")
 	public List<String> getRemoveFields() {
 		return removeFields;
 	}

@@ -13,7 +13,7 @@ public class SpecifiedDefaultValue implements DefaultValueProvider {
 
 	private String value;
 
-	@Editable(name="Specified default value")
+	@Editable(name="指定默认值")
 	@Password
 	@NotEmpty
 	@OmitName

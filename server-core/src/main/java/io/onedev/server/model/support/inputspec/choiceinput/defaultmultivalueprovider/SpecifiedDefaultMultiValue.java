@@ -22,7 +22,7 @@ public class SpecifiedDefaultMultiValue implements DefaultMultiValueProvider {
 
 	private List<String> value;
 
-	@Editable(name="Literal default value")
+	@Editable(name="字面意义的默认值")
 	@io.onedev.server.web.editable.annotation.ChoiceProvider("getValueChoices")
 	@NotEmpty
 	@OmitName

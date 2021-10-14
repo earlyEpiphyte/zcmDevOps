@@ -26,7 +26,7 @@ public class FieldBean implements Serializable {
 		this.field = field;
 	}
 
-	@Editable(order=200, description="如果选中，则默认情况下会在打开问题时提示用户输入此字段")
+	@Editable(order=200,name="提示输入字段", description="如果选中，则默认情况下会在打开问题时提示用户输入此字段")
 	public boolean isPromptUponIssueOpen() {
 		return promptUponIssueOpen;
 	}

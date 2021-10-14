@@ -90,9 +90,9 @@ public class WebApplication extends org.apache.wicket.protocol.http.WebApplicati
 	
 	@Override
 	public RuntimeConfigurationType getConfigurationType() {
-//		if (Bootstrap.sandboxMode && !Bootstrap.prodMode)
-//			return RuntimeConfigurationType.DEVELOPMENT;
-//		else
+		if (Bootstrap.sandboxMode && !Bootstrap.prodMode)
+			return RuntimeConfigurationType.DEVELOPMENT;
+		else
 			return RuntimeConfigurationType.DEPLOYMENT;
 	}
 

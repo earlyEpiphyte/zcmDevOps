@@ -20,7 +20,7 @@ public class NumberInput {
 		inputSpec.appendField(buffer, index, "Integer");
 		inputSpec.appendCommonAnnotations(buffer, index);
 		if (!inputSpec.isAllowEmpty())
-			buffer.append("    @NotNull(message=\"May not be empty\")\n");
+			buffer.append("    @NotNull(message=\"不可为空\")\n");
 		if (minValue != null) {
 			if (maxValue != null) {
 				buffer.append("    @Range(min=" + minValue.toString() + "L,max=" + maxValue.toString() +"L)\n");

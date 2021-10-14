@@ -24,7 +24,7 @@ public class BooleanInput {
 		StringBuffer buffer = new StringBuffer();
 		inputSpec.appendField(buffer, index, "Boolean");
 		inputSpec.appendCommonAnnotations(buffer, index);
-		buffer.append("    @NotNull(message=\"May not be empty\")\n");
+		buffer.append("    @NotNull(message=\"不可为空\")\n");
 		inputSpec.appendMethods(buffer, index, "Boolean", null, defaultValueProvider);
 		
 		return buffer.toString();

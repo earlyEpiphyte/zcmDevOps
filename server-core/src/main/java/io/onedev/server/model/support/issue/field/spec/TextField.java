@@ -19,7 +19,7 @@ public class TextField extends FieldSpec {
 	
 	private DefaultValueProvider defaultValueProvider;
 
-	@Editable(order=1100, name="表达式", description="可选的为输入合法化指定<a href='http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html'>正则表达式</a> ")
+	@Editable(order=1100, name="表达式", description="可选的为输入合法化指定正则表达式")
 	public String getPattern() {
 		return pattern;
 	}

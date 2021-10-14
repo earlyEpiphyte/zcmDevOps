@@ -129,8 +129,6 @@ public abstract class LayoutPage extends BasePage {
 					List<SidebarMenuItem> securitySettingMenuItems = new ArrayList<>();
 					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "常规设置", 
 							GeneralSecuritySettingPage.class, new PageParameters()));
-					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "外部认证", 
-							AuthenticatorPage.class, new PageParameters()));
 				
 					securitySettingMenuItems.add(new SidebarMenuItem.Page(null, "SSH设置", 
 							SshSettingPage.class, new PageParameters()));

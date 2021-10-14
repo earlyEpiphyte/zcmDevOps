@@ -18,7 +18,7 @@ public class SpecifiedDefaultValue implements DefaultValueProvider {
 
 	private String value;
 
-	@Editable(name="Literal default value")
+	@Editable(name="字面意义的默认值")
 	@UserChoice("getValueChoices")
 	@NotEmpty
 	@OmitName

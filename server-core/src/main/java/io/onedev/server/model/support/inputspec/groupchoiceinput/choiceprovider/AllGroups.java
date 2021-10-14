@@ -9,7 +9,7 @@ import io.onedev.server.entitymanager.GroupManager;
 import io.onedev.server.model.Group;
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=100, name="All groups")
+@Editable(order=100, name="所有用户组")
 public class AllGroups implements ChoiceProvider {
 
 	private static final long serialVersionUID = 1L;

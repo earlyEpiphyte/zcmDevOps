@@ -52,7 +52,7 @@ public class Select2Choice<T> extends AbstractSelect2Choice<T, T> {
 	protected void onInitialize() {
 		super.onInitialize();
 		if (isRequired())
-			getSettings().setPlaceholder("Select below...");
+			getSettings().setPlaceholder("选择...");
 		else
 			getSettings().setPlaceholder("");
 	}

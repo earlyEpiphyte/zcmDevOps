@@ -32,7 +32,7 @@ public abstract class FieldSpec extends InputSpec {
 	
 	private String nameOfEmptyValue;
 	
-	@Editable(order=10)
+	@Editable(order=10,name="字段名")
 	@FieldName
 	@NotEmpty
 	@Override
@@ -45,7 +45,7 @@ public abstract class FieldSpec extends InputSpec {
 		super.setName(name);
 	}
 
-	@Editable(order=30, description="可选地描述自定义字段")
+	@Editable(order=30,name="描述", description="可选地描述自定义字段")
 	@NameOfEmptyValue("没有说明")
 	@Override
 	public String getDescription() {
@@ -57,7 +57,7 @@ public abstract class FieldSpec extends InputSpec {
 		super.setDescription(description);
 	}
 
-	@Editable(order=35, description="是否可以为该字段指定多个值")
+	@Editable(order=35,name="允许多值", description="是否可以为该字段指定多个值")
 	@Override
 	public boolean isAllowMultiple() {
 		return super.isAllowMultiple();
@@ -92,7 +92,7 @@ public abstract class FieldSpec extends InputSpec {
 		super.setAllowEmpty(allowEmpty);
 	}
 	
-	@Editable(order=60)
+	@Editable(order=60,name="空值的名称")
 	@io.onedev.server.web.editable.annotation.ShowCondition("isNameOfEmptyValueVisible")
 	@NotEmpty
 	public String getNameOfEmptyValue() {

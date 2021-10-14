@@ -18,7 +18,7 @@ import io.onedev.server.web.editable.annotation.ChoiceProvider;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.OmitName;
 
-@Editable(order=200, name="does not have any value of")
+@Editable(order=200, name="无其中值")
 public class ValueIsNotAnyOf implements ValueMatcher {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ public class ValueIsNotAnyOf implements ValueMatcher {
 	@Editable
 	@ChoiceProvider("getValueChoices")
 	@OmitName
-	@Size(min=1, message="At least one value needs to be specified")
+	@Size(min=1, message="至少指定一个值")
 	public List<String> getValues() {
 		return values;
 	}

@@ -30,7 +30,7 @@ public class ShowCondition implements Serializable {
 	
 	private ValueMatcher valueMatcher = new ValueIsOneOf();
 	
-	@Editable(order=100, name="When")
+	@Editable(order=100, name="条件")
 	@ChoiceProvider("getNameChoices")
 	@NotEmpty
 	public String getInputName() {

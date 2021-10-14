@@ -18,7 +18,7 @@ import io.onedev.server.web.editable.annotation.ChoiceProvider;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.OmitName;
 
-@Editable(order=100, name="has any value of")
+@Editable(order=100, name="有其中的值")
 public class ValueIsOneOf implements ValueMatcher {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ public class ValueIsOneOf implements ValueMatcher {
 	@Editable
 	@ChoiceProvider("getValueChoices")
 	@OmitName
-	@Size(min=1, message="At least one value needs to be specified")
+	@Size(min=1, message="至少指定一个值")
 	public List<String> getValues() {
 		return values;
 	}
