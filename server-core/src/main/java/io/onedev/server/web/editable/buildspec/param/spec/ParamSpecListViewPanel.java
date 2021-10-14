@@ -54,7 +54,7 @@ class ParamSpecListViewPanel extends Panel {
 		
 		List<IColumn<ParamSpec, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<ParamSpec>> cellItem, String componentId, IModel<ParamSpec> rowModel) {
@@ -63,7 +63,7 @@ class ParamSpecListViewPanel extends Panel {
 			
 		});		
 		
-		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("Type")) {
+		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("类型")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<ParamSpec>> cellItem, String componentId, IModel<ParamSpec> rowModel) {
@@ -133,7 +133,7 @@ class ParamSpecListViewPanel extends Panel {
 			protected void onInitialize() {
 				super.onInitialize();
 				addTopToolbar(new HeadersToolbar<Void>(this, null));
-				addBottomToolbar(new NoRecordsToolbar(this, Model.of("Not defined")));
+				addBottomToolbar(new NoRecordsToolbar(this, Model.of("未定义")));
 				add(new NoRecordsBehavior());
 			}
 			

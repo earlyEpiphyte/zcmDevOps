@@ -189,7 +189,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 		Project.push(project);
 		try {
 	    	for (ConstraintViolation<?> violation: validator.validate(project.getBuildSpec(commitId))) {
-	    		String message = String.format("Error validating build spec (project: %s, commit: %s, location: %s, message: %s)", 
+	    		String message = String.format("验证构建规范时出错 (project: %s, commit: %s, location: %s, message: %s)", 
 	    				project.getName(), commitId.name(), violation.getPropertyPath(), violation.getMessage());
 	    		throw new ExplicitException(message);
 	    	}
@@ -297,14 +297,14 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 					dependency = interpolator.interpolateProperties(dependency);
 					Project dependencyProject = projectManager.find(dependency.getProjectName());
 					if (dependencyProject == null)
-						throw new ExplicitException("Unable to find dependency project: " + dependency.getProjectName());
+						throw new ExplicitException("找不到依赖项目: " + dependency.getProjectName());
 	
 					Subject subject;
 					if (dependency.getAccessTokenSecret() != null) {
 						String accessToken = build.getSecretValue(dependency.getAccessTokenSecret());
 						User user = userManager.findByAccessToken(accessToken);
 						if (user == null) {
-							throw new ExplicitException("Unable to access dependency project '" 
+							throw new ExplicitException("无法访问依赖项目 '" 
 									+ dependency.getProjectName() + "': invalid access token");
 						}
 						subject = user.asSubject();
@@ -317,14 +317,14 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 					Long buildNumber = Long.parseLong(buildNumberStr);
 					Build dependencyBuild = buildManager.find(dependencyProject, buildNumber);
 					if (dependencyBuild == null) {
-						String errorMessage = String.format("Unable to find dependency build (project: %s, build number: %d)", 
+						String errorMessage = String.format("无法找到依赖构建 (project: %s, build number: %d)", 
 								dependency.getProjectName(), buildNumber);
 						throw new ExplicitException(errorMessage);
 					}
 					
 					JobPermission jobPermission = new JobPermission(dependencyBuild.getJobName(), new AccessBuild());
 					if (!subject.isPermitted(new ProjectPermission(dependencyProject, jobPermission))) {
-						throw new ExplicitException("Unable to access dependency build '" 
+						throw new ExplicitException("无法访问依赖构建 '" 
 								+ dependencyBuild.getFQN() + "': permission denied");
 					}
 					
@@ -569,7 +569,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 											
 										})) {
 											log(e, jobLogger);
-											jobLogger.log("Job will be retried after a while...");
+											jobLogger.log("作业将在一段时间后重试...");
 											transactionManager.run(new Runnable() {
 
 												@Override
@@ -616,7 +616,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 						} catch (Throwable e) {
 							throw maskSecrets(e, jobSecretsToMask);
 						} finally {
-							jobLogger.log("Job finished");
+							jobLogger.log("作业完成");
 						}
 					}
 					
@@ -624,7 +624,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 				
 				return executionRef.get();
 			} else {
-				throw new ExplicitException("No applicable job executor");
+				throw new ExplicitException("没有合适的工作执行器");
 			}
 		} finally {
 			Build.pop();
@@ -656,7 +656,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 	public JobContext getJobContext(String jobToken, boolean mustExist) {
 		JobContext jobContext = jobContexts.get(jobToken);
 		if (mustExist && jobContext == null)
-			throw new ExplicitException("No job context found for specified job token");
+			throw new ExplicitException("找不到指定作业令牌的作业上下文");
 		return jobContext;
 	}
 	
@@ -705,7 +705,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 														
 													}.run();
 												} catch (Throwable e) {
-													String message = String.format("Error submitting build (project: %s, commit: %s, job: %s)", 
+													String message = String.format("提交构建时出错 (project: %s, commit: %s, job: %s)", 
 															project.getName(), commitId.name(), job.getName());
 													logger.error(message, e);
 												}
@@ -719,7 +719,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 						}
 					}
 				} catch (Throwable e) {
-					String message = String.format("Error checking job triggers (project: %s, commit: %s)", 
+					String message = String.format("检查作业触发器时出错 (project: %s, commit: %s)", 
 							event.getProject().getName(), commitId.name());
 					logger.error(message, e);
 				} finally {
@@ -774,7 +774,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 			buildManager.save(build);
 			listenerRegistry.post(new BuildSubmitted(build));
 		} else {
-			throw new ExplicitException("Build #" + build.getNumber() + " not finished yet");
+			throw new ExplicitException("构建 #" + build.getNumber() + " 还没有完成");
 		}
 	}
 
@@ -917,7 +917,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 				}
 			}
 		} catch (Exception e) {
-			logger.error("Error scheduling project '" + project.getName() + "'", e);
+			logger.error("错误的安排项目 '" + project.getName() + "'", e);
 		} finally {
 			tasksOfProject = scheduledTasks.put(project.getId(), tasksOfProject);
 			if (tasksOfProject != null)
@@ -1012,7 +1012,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 									} else if (build.getDependencies().stream().anyMatch(it -> it.isRequireSuccessful() 
 											&& it.getDependency().isFinished() 
 											&& it.getDependency().getStatus() != Build.Status.SUCCESSFUL)) {
-										markBuildError(build, "Some dependencies are required to be successful but failed");
+										markBuildError(build, "需要一些依赖才能成功但失败");
 									} else if (build.getDependencies().stream().allMatch(it->it.getDependency().isFinished())) {
 										build.setStatus(Build.Status.PENDING);
 										build.setPendingDate(new Date());
@@ -1059,7 +1059,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 				}
 				Thread.sleep(CHECK_INTERVAL);
 			} catch (Throwable e) {
-				logger.error("Error checking unfinished builds", e);
+				logger.error("检查未完成的构建时出错", e);
 			} 
 		}	
 	}
@@ -1101,7 +1101,7 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 									action.execute(build);
 							}
 						} catch (Throwable e) {
-							String message = String.format("Error processing post build actions (project: %s, commit: %s, job: %s)", 
+							String message = String.format("处理后构建操作时出错 (project: %s, commit: %s, job: %s)", 
 									build.getProject().getName(), build.getCommitHash(), build.getJobName());
 							logger.error(message, e);
 						} finally {

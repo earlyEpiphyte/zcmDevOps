@@ -123,7 +123,7 @@ class StepListEditPanel extends PropertyEditor<List<Serializable>> {
 			
 		});		
 		
-		columns.add(new AbstractColumn<Step, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Step, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Step>> cellItem, String componentId, IModel<Step> rowModel) {
@@ -132,7 +132,7 @@ class StepListEditPanel extends PropertyEditor<List<Serializable>> {
 			
 		});		
 		
-		columns.add(new AbstractColumn<Step, Void>(Model.of("Condition")) {
+		columns.add(new AbstractColumn<Step, Void>(Model.of("条件")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Step>> cellItem, String componentId, IModel<Step> rowModel) {
@@ -217,7 +217,7 @@ class StepListEditPanel extends PropertyEditor<List<Serializable>> {
 		DataTable<Step, Void> dataTable;
 		add(dataTable = new DataTable<Step, Void>("steps", columns, dataProvider, Integer.MAX_VALUE));
 		dataTable.addTopToolbar(new HeadersToolbar<Void>(dataTable, null));
-		dataTable.addBottomToolbar(new NoRecordsToolbar(dataTable, Model.of("Not defined")));
+		dataTable.addBottomToolbar(new NoRecordsToolbar(dataTable, Model.of("未定义")));
 		dataTable.add(new NoRecordsBehavior());
 		
 		dataTable.add(new SortBehavior() {

@@ -502,9 +502,9 @@ public abstract class IssueSidePanel extends Panel {
 					protected String load() {
 						if (SecurityUtils.getUser() != null) {
 							if (getVote(SecurityUtils.getUser()) != null)
-								return "Unvote";
+								return "取消";
 							else
-								return "Vote";
+								return "投票";
 						} else {
 							return "Login to vote";
 						}

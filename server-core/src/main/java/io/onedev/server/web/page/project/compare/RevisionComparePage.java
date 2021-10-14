@@ -503,7 +503,7 @@ public class RevisionComparePage extends ProjectPage implements RevisionDiff.Ann
 		if (mergeBase != null) {
 			List<Tab> tabs = new ArrayList<>();
 			
-			tabs.add(new AjaxActionTab(Model.of("Commits")) {
+			tabs.add(new AjaxActionTab(Model.of("提交")) {
 				
 				@Override
 				public boolean isSelected() {
@@ -520,7 +520,7 @@ public class RevisionComparePage extends ProjectPage implements RevisionDiff.Ann
 				
 			});
 
-			tabs.add(new AjaxActionTab(Model.of("File Changes")) {
+			tabs.add(new AjaxActionTab(Model.of("文件变更")) {
 				
 				@Override
 				public boolean isSelected() {

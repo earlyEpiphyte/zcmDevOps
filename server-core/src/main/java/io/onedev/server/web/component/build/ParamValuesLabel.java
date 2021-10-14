@@ -19,7 +19,7 @@ public class ParamValuesLabel extends Label {
 		} else if (!param.getValues().isEmpty()) {
 			setDefaultModel(Model.of(StringUtils.join(param.getValues(), ",")));
 		} else {
-			setDefaultModel(Model.of("<i>Unspecified</i>"));
+			setDefaultModel(Model.of("<i>未指定</i>"));
 			setEscapeModelStrings(false);
 		}
 	}

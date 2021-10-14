@@ -83,7 +83,7 @@ public class DefaultBoardListPage extends IssueSettingPage {
 		
 		List<IColumn<BoardSpec, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<BoardSpec, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<BoardSpec, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<BoardSpec>> cellItem, String componentId, IModel<BoardSpec> rowModel) {
@@ -94,7 +94,7 @@ public class DefaultBoardListPage extends IssueSettingPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<BoardSpec, Void>(Model.of("Columns")) {
+		columns.add(new AbstractColumn<BoardSpec, Void>(Model.of("面板")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<BoardSpec>> cellItem, String componentId, IModel<BoardSpec> rowModel) {
@@ -104,7 +104,7 @@ public class DefaultBoardListPage extends IssueSettingPage {
 			
 		});		
 		
-		columns.add(new AbstractColumn<BoardSpec, Void>(Model.of("Identify Field")) {
+		columns.add(new AbstractColumn<BoardSpec, Void>(Model.of("标识字段")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<BoardSpec>> cellItem, String componentId, IModel<BoardSpec> rowModel) {

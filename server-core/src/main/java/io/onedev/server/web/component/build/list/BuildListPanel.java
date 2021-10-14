@@ -483,7 +483,7 @@ public abstract class BuildListPanel extends Panel {
 		
 		List<IColumn<Build, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<Build, Void>(Model.of("Build")) {
+		columns.add(new AbstractColumn<Build, Void>(Model.of("构建")) {
 
 			@Override
 			public String getCssClass() {
@@ -542,7 +542,7 @@ public abstract class BuildListPanel extends Panel {
 			}
 		});
 		
-		columns.add(new AbstractColumn<Build, Void>(Model.of(Build.NAME_JOB)) {
+		columns.add(new AbstractColumn<Build, Void>(Model.of("作业")) {
 
 			@Override
 			public String getCssClass() {
@@ -578,7 +578,7 @@ public abstract class BuildListPanel extends Panel {
 			}
 		});
 		
-		columns.add(new AbstractColumn<Build, Void>(Model.of("Branch/Tag")) {
+		columns.add(new AbstractColumn<Build, Void>(Model.of("分支/标签")) {
 
 			@Override
 			public String getCssClass() {
@@ -620,7 +620,7 @@ public abstract class BuildListPanel extends Panel {
 			}
 		});
 
-		columns.add(new AbstractColumn<Build, Void>(Model.of(Build.NAME_COMMIT)) {
+		columns.add(new AbstractColumn<Build, Void>(Model.of("提交")) {
 
 			@Override
 			public String getCssClass() {
@@ -647,7 +647,7 @@ public abstract class BuildListPanel extends Panel {
 			}
 		});
 
-		columns.add(new AbstractColumn<Build, Void>(Model.of(Build.NAME_PULL_REQUEST)) {
+		columns.add(new AbstractColumn<Build, Void>(Model.of("拉取请求")) {
 
 			@Override
 			public String getCssClass() {
@@ -690,13 +690,13 @@ public abstract class BuildListPanel extends Panel {
 					if (param != null && build.isParamVisible(paramName))
 						cellItem.add(new ParamValuesLabel(componentId, param));
 					else
-						cellItem.add(new Label(componentId, "<i>Unspecified</i>").setEscapeModelStrings(false));
+						cellItem.add(new Label(componentId, "<i>未指定</i>").setEscapeModelStrings(false));
 				}
 				
 			});
 		}	
 		
-		columns.add(new AbstractColumn<Build, Void>(Model.of("Last Update")) {
+		columns.add(new AbstractColumn<Build, Void>(Model.of("最近更新")) {
 
 			@Override
 			public String getCssClass() {

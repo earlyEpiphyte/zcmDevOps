@@ -331,7 +331,7 @@ public abstract class CodeCommentListPanel extends Panel {
 			
 		});
 		
-		columns.add(new AbstractColumn<CodeComment, Void>(Model.of("File")) {
+		columns.add(new AbstractColumn<CodeComment, Void>(Model.of("文件")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<CodeComment>> cellItem, String componentId, IModel<CodeComment> rowModel) {
@@ -392,7 +392,7 @@ public abstract class CodeCommentListPanel extends Panel {
 			
 		});
 		
-		columns.add(new AbstractColumn<CodeComment, Void>(Model.of("Last Update")) {
+		columns.add(new AbstractColumn<CodeComment, Void>(Model.of("最近更新")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<CodeComment>> cellItem, String componentId, IModel<CodeComment> rowModel) {

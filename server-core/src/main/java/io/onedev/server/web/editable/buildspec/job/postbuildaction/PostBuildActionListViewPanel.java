@@ -48,7 +48,7 @@ class PostBuildActionListViewPanel extends Panel {
 		
 		List<IColumn<PostBuildAction, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("Description")) {
+		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("描述")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<PostBuildAction>> cellItem, String componentId, IModel<PostBuildAction> rowModel) {
@@ -57,7 +57,7 @@ class PostBuildActionListViewPanel extends Panel {
 			
 		});		
 		
-		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("Condition")) {
+		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("条件")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<PostBuildAction>> cellItem, String componentId, IModel<PostBuildAction> rowModel) {
@@ -125,7 +125,7 @@ class PostBuildActionListViewPanel extends Panel {
 			protected void onInitialize() {
 				super.onInitialize();
 				addTopToolbar(new HeadersToolbar<Void>(this, null));
-				addBottomToolbar(new NoRecordsToolbar(this, Model.of("Not defined")));
+				addBottomToolbar(new NoRecordsToolbar(this, Model.of("未定义")));
 				add(new NoRecordsBehavior());
 			}
 			

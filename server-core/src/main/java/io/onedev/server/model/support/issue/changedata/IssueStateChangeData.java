@@ -95,7 +95,7 @@ public class IssueStateChangeData extends IssueFieldChangeData {
 
 	@Override
 	public String getActivity(Issue withIssue) {
-		String activity = "changed state to '" + newState + "'";
+		String activity = "更改状态为 '" + newState + "'";
 		if (withIssue != null)
 			activity += " for issue " + withIssue.getNumberAndTitle();
 		return activity;

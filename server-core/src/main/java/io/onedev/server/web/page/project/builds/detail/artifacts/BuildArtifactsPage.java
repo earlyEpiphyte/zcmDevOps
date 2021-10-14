@@ -56,7 +56,7 @@ public class BuildArtifactsPage extends BuildDetailPage {
 		if (getBuild().getArtifactsDir().exists()) {
 			List<IColumn<File, Void>> columns = new ArrayList<>();
 			
-			columns.add(new TreeColumn<File, Void>(Model.of("Name")));
+			columns.add(new TreeColumn<File, Void>(Model.of("名称")));
 			columns.add(new AbstractColumn<File, Void>(Model.of("Size")) {
 
 				@Override
@@ -69,7 +69,7 @@ public class BuildArtifactsPage extends BuildDetailPage {
 				}
 				
 			});
-			columns.add(new AbstractColumn<File, Void>(Model.of("Last Modified")) {
+			columns.add(new AbstractColumn<File, Void>(Model.of("最近修改")) {
 
 				@Override
 				public void populateItem(Item<ICellPopulator<File>> cellItem, String componentId, IModel<File> rowModel) {

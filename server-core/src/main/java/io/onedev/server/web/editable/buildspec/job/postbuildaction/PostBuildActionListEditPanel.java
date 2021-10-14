@@ -130,7 +130,7 @@ class PostBuildActionListEditPanel extends PropertyEditor<List<Serializable>> {
 			
 		});		
 		
-		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("Description")) {
+		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("描述")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<PostBuildAction>> cellItem, String componentId, IModel<PostBuildAction> rowModel) {
@@ -138,7 +138,7 @@ class PostBuildActionListEditPanel extends PropertyEditor<List<Serializable>> {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("Condition")) {
+		columns.add(new AbstractColumn<PostBuildAction, Void>(Model.of("条件")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<PostBuildAction>> cellItem, String componentId, IModel<PostBuildAction> rowModel) {
@@ -222,7 +222,7 @@ class PostBuildActionListEditPanel extends PropertyEditor<List<Serializable>> {
 		DataTable<PostBuildAction, Void> dataTable;
 		add(dataTable = new DataTable<PostBuildAction, Void>("actions", columns, dataProvider, Integer.MAX_VALUE));
 		dataTable.addTopToolbar(new HeadersToolbar<Void>(dataTable, null));
-		dataTable.addBottomToolbar(new NoRecordsToolbar(dataTable, Model.of("Not defined")));
+		dataTable.addBottomToolbar(new NoRecordsToolbar(dataTable, Model.of("未定义")));
 		dataTable.add(new NoRecordsBehavior());
 		
 		dataTable.add(new SortBehavior() {

@@ -48,7 +48,7 @@ public class IssueMilestoneChangeData implements IssueChangeData {
 
 	@Override
 	public String getActivity(Issue withIssue) {
-		String activity = "changed milestone";
+		String activity = "更改里程碑";
 		if (withIssue != null)
 			activity += " of issue " + withIssue.getNumberAndTitle();
 		return activity;

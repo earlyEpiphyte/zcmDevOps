@@ -49,7 +49,7 @@ public class OneDataTable<T, S> extends DataTable<T, S> {
 			}
 			
 		});
-		addBottomToolbar(new NoRecordsToolbar(this, Model.of("Not defined")));
+		addBottomToolbar(new NoRecordsToolbar(this, Model.of("未定义")));
 	}
 
 	@Override
