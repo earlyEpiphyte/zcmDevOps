@@ -675,7 +675,7 @@ public class NewPullRequestPage extends ProjectPage implements RevisionDiff.Anno
 			}
 			
 		});
-		titleInput.setRequired(true).setLabel(Model.of("Title"));
+		titleInput.setRequired(true).setLabel(Model.of("标题"));
 		
 		form.add(new FencedFeedbackPanel("titleFeedback", titleInput));
 		
@@ -796,20 +796,20 @@ public class NewPullRequestPage extends ProjectPage implements RevisionDiff.Anno
 				PullRequest request = getPullRequest();
 				MergePreview mergePreview = new MergePreview(request.getTarget().getObjectName(), 
 						request.getLatestUpdate().getHeadCommitHash(), request.getMergeStrategy(), null);
-				ObjectId merged = mergePreview.getMergeStrategy().merge(request, "Pull request merge preview");
+				ObjectId merged = mergePreview.getMergeStrategy().merge(request, "拉取请求合并预览");
 				if (merged != null)
 					mergePreview.setMergeCommitHash(merged.name());
 				request.setLastMergePreview(mergePreview);
 				
 				if (merged != null) {
-					String html = String.format("<svg class='icon mt-n1 mr-1'><use xlink:href='%s'/></svg> Able to merge without conflicts", 
+					String html = String.format("<svg class='icon mt-n1 mr-1'><use xlink:href='%s'/></svg> 能够无冲突地合并", 
 							SpriteImage.getVersionedHref("tick-circle-o"));
 					Component result = new Label(componentId, html);
 					result.add(AttributeAppender.append("class", "no-conflict"));
 					result.setEscapeModelStrings(false);
 					return result;
 				} else { 
-					String html = String.format("<svg class='icon mt-n1 mr-1'><use xlink:href='%s'/></svg> There are merge conflicts. "
+					String html = String.format("<svg class='icon mt-n1 mr-1'><use xlink:href='%s'/></svg> 存在合并冲突. "
 							+ "You can still create the pull request though", SpriteImage.getVersionedHref("warning-o"));
 					Component result = new Label(componentId, html);
 					result.add(AttributeAppender.append("class", "conflict"));
@@ -820,7 +820,7 @@ public class NewPullRequestPage extends ProjectPage implements RevisionDiff.Anno
 
 			@Override
 			public Component getLoadingComponent(String markupId) {
-				String html = String.format("<svg class='icon spin mt-n1 mr-1'><use xlink:href='%s'/></svg> Calculating merge preview...", 
+				String html = String.format("<svg class='icon spin mt-n1 mr-1'><use xlink:href='%s'/></svg> 合并预览...", 
 						SpriteImage.getVersionedHref("loading"));
 				Component component = new Label(markupId, html);
 				component.add(AttributeAppender.append("class", "calculating"));

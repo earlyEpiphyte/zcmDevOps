@@ -32,7 +32,7 @@ public abstract class ReviewerChoice extends SelectToAddChoice<User> {
 	protected void onInitialize() {
 		super.onInitialize();
 		
-		getSettings().setPlaceholder("Add reviewer...");
+		getSettings().setPlaceholder("添加审阅者...");
 		getSettings().setFormatResult("onedev.server.userChoiceFormatter.formatResult");
 		getSettings().setFormatSelection("onedev.server.userChoiceFormatter.formatSelection");
 		getSettings().setEscapeMarkup("onedev.server.userChoiceFormatter.escapeMarkup");

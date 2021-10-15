@@ -22,8 +22,8 @@
 					<div wicket:id="status" class="badge status mr-3 font-size-h6"></div>
 					<div class="branches font-size-lg mr-3 d-flex align-items-center">
 						<div class="text-muted">
-							<a wicket:id="user" class="link-gray"></a> wants to merge into <a wicket:id="target" class="branch link-gray"></a> 
-							from <a wicket:id="source" class="branch link-gray"></a> <span wicket:id="date"></span>
+							<a wicket:id="user" class="link-gray"></a> 想合并到 <a wicket:id="target" class="branch link-gray"></a> 
+							从 <a wicket:id="source" class="branch link-gray"></a> <span wicket:id="date"></span>
 						</div>
 					</div>
 					<a wicket:id="newPullRequest" class="btn btn-primary btn-icon flex-shrink-0 ml-auto" title="打开新的拉取请求"><wicket:svg href="plus" class="icon"/></a>
@@ -65,16 +65,16 @@
 						</wicket:enclosure>
 					</div>
 					<div wicket:id="requestedForChanges" class="requested-for-changes text-danger">
-						<wicket:svg href="times-circle-o" class="icon"></wicket:svg> Pull request can not be merged now as it was <a class="more-info d-inline link-primary">requested for changes</a> 
+						<wicket:svg href="times-circle-o" class="icon"></wicket:svg> 现在无法合并拉取请求，因为它已被<a class="more-info d-inline link-primary">请求更改</a> 
 					</div>
 					<div wicket:id="waitingForReviews" class="waiting-for-reviews text-warning">
-						<wicket:svg href="clock" class="icon"></wicket:svg> Pull request can not be merged now as it is <a class="more-info d-inline link-primary">pending review</a>
+						<wicket:svg href="clock" class="icon"></wicket:svg> 现在无法合并拉取请求，因为它在<a class="more-info d-inline link-primary">等待审核</a>
 					</div>
 					<div wicket:id="unsuccessfulBuilds" class="unsuccessful-builds text-danger">
-						<wicket:svg href="times-circle-o" class="icon"></wicket:svg> Pull request can not be merged now as <a class="more-info d-inline link-primary">required builds</a> are not successful
+						<wicket:svg href="times-circle-o" class="icon"></wicket:svg> 现在无法合并拉取请求，因为<a class="more-info d-inline link-primary">所需的构建</a>不成功
 					</div>
 					<div wicket:id="unfinishedBuilds" class="unfinished-builds text-warning">
-						<wicket:svg href="clock-o" class="icon"></wicket:svg> Pull request can not be merged now as <a class="more-info d-inline link-primary">required builds</a> are not finished yet
+						<wicket:svg href="clock-o" class="icon"></wicket:svg> 现在无法合并拉取请求，因为<a class="more-info d-inline link-primary">所需的构建</a>还没有完成
 					</div>
 					<wicket:enclosure child="untriggeredJobs">
 					<div class="untriggered-builds text-warning">
@@ -82,7 +82,7 @@
 					</div>
 					</wicket:enclosure>
 					<div wicket:id="mergeableByCodeWriters" class="mergeable-by-code-writers text-info">
-						<wicket:svg href="info-circle-o" class="icon"></wicket:svg> Pull request can only be merged by users with code write permission
+						<wicket:svg href="info-circle-o" class="icon"></wicket:svg> 拉取请求只能由具有代码写入权限的用户进行合并
 					</div>
 					<div wicket:id="contributions" class="contribution">
 						<div wicket:id="head" class="head font-weight-bold mb-2 "></div>
@@ -90,13 +90,13 @@
 					</div>
 				</div>
 				<div wicket:id="requestOperations" class="operations">
-					<a wicket:id="merge" class="btn btn-sm btn-success">Merge</a>
-					<a wicket:id="discard" class="btn btn-sm btn-danger">Discard</a>
-					<a wicket:id="approve" class="btn btn-sm btn-primary">Approve</a>
-					<a wicket:id="requestForChanges" class="btn btn-sm btn-primary">Request for changes</a>
-					<a wicket:id="reopen" class="btn btn-sm btn-primary">Reopen</a>
-					<a wicket:id="deleteSourceBranch" class="btn btn-sm btn-primary">Delete source branch</a>
-					<a wicket:id="restoreSourceBranch" class="btn btn-sm btn-primary">Restore source branch</a>
+					<a wicket:id="merge" class="btn btn-sm btn-success">合并</a>
+					<a wicket:id="discard" class="btn btn-sm btn-danger">丢弃</a>
+					<a wicket:id="approve" class="btn btn-sm btn-primary">同意</a>
+					<a wicket:id="requestForChanges" class="btn btn-sm btn-primary">请求更改</a>
+					<a wicket:id="reopen" class="btn btn-sm btn-primary">重新打开</a>
+					<a wicket:id="deleteSourceBranch" class="btn btn-sm btn-primary">删除源分支</a>
+					<a wicket:id="restoreSourceBranch" class="btn btn-sm btn-primary">恢复源分支</a>
 				</div>
 				<ul wicket:id="requestTabs" class="tabs nav nav-tabs nav-tabs-line nav-bold mb-5 mt-3 align-items-center"></ul>
 				<wicket:child></wicket:child>
@@ -124,14 +124,14 @@
 				</span>
 			</div> 
 			<div wicket:id="jobs" class="body"></div>
-			<div wicket:id="jobsHelp" class="font-size-sm text-muted form-text">Jobs marked with <span class="text-danger">*</span> are required to be successful</div>
+			<div wicket:id="jobsHelp" class="font-size-sm text-muted form-text">带有<span class="text-danger">*</span>的作业必须成功</div>
 		</div>
 		</wicket:enclosure>
 		<wicket:enclosure child="assignments">
 		<div class="assignments">
-			<div class="head">受让人</div>
+			<div class="head">委托执行人</div>
 			<div wicket:id="assignments" class="body"></div>
-			<div wicket:id="assigneeHelp" class="font-size-sm text-muted form-text">受让人应合并拉取请求</div>
+			<div wicket:id="assigneeHelp" class="font-size-sm text-muted form-text">委托执行人应合并拉取请求</div>
 		</div>
 		</wicket:enclosure>
 		<div wicket:id="mergeStrategy" class="merge-strategy">

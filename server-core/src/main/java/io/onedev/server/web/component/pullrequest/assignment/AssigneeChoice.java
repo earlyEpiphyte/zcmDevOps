@@ -32,7 +32,7 @@ public abstract class AssigneeChoice extends SelectToAddChoice<User> {
 	protected void onInitialize() {
 		super.onInitialize();
 		
-		getSettings().setPlaceholder("Add assignee...");
+		getSettings().setPlaceholder("添加委托执行人...");
 		getSettings().setFormatResult("onedev.server.userChoiceFormatter.formatResult");
 		getSettings().setFormatSelection("onedev.server.userChoiceFormatter.formatSelection");
 		getSettings().setEscapeMarkup("onedev.server.userChoiceFormatter.escapeMarkup");

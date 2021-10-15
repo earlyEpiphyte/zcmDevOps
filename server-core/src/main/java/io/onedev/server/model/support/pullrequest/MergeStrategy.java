@@ -12,7 +12,7 @@ import io.onedev.server.git.GitUtils;
 import io.onedev.server.model.PullRequest;
 
 public enum MergeStrategy {
-	CREATE_MERGE_COMMIT("Add all commits from source branch to target branch with a merge commit.") {
+	CREATE_MERGE_COMMIT("使用合并提交将所有提交从源分支添加到目标分支.") {
 
 		@Override
 		public ObjectId merge(PullRequest request, String commitMessage) {
@@ -25,7 +25,7 @@ public enum MergeStrategy {
 		}
 		
 	}, 
-	CREATE_MERGE_COMMIT_IF_NECESSARY("Only create merge commit if target branch can not be fast-forwarded to source branch") {
+	CREATE_MERGE_COMMIT_IF_NECESSARY("只有在目标分支不能快进到源分支时才创建合并提交") {
 
 		@Override
 		public ObjectId merge(PullRequest request, String commitMessage) {
@@ -42,7 +42,7 @@ public enum MergeStrategy {
 		}
 		
 	},
-	SQUASH_SOURCE_BRANCH_COMMITS("Squash all commits from source branch into a single commit in target branch") {
+	SQUASH_SOURCE_BRANCH_COMMITS("将源分支中的所有提交压缩到目标分支中的单个提交中") {
 
 		@Override
 		public ObjectId merge(PullRequest request, String commitMessage) {
@@ -56,7 +56,7 @@ public enum MergeStrategy {
 		}
 		
 	},
-	REBASE_SOURCE_BRANCH_COMMITS("Rebase all commits from source branch onto target branch") {
+	REBASE_SOURCE_BRANCH_COMMITS("将所有来自源分支的提交重新设置为目标分支") {
 
 		@Override
 		public ObjectId merge(PullRequest request, String commitMessage) {
