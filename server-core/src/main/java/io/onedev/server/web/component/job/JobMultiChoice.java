@@ -20,9 +20,9 @@ public class JobMultiChoice extends Select2MultiChoice<String> {
 	protected void onInitialize() {
 		super.onInitialize();
 		if (isRequired())
-			getSettings().setPlaceholder("Choose jobs...");
+			getSettings().setPlaceholder("选择作业...");
 		else
-			getSettings().setPlaceholder("Not specified");
+			getSettings().setPlaceholder("未指定");
 		getSettings().setFormatResult("onedev.server.choiceFormatter.formatResult");
 		getSettings().setFormatSelection("onedev.server.choiceFormatter.formatSelection");
 		getSettings().setEscapeMarkup("onedev.server.choiceFormatter.escapeMarkup");

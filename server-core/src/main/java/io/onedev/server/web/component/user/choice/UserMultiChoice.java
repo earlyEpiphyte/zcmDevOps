@@ -21,9 +21,9 @@ public class UserMultiChoice extends Select2MultiChoice<User> {
 	protected void onInitialize() {
 		super.onInitialize();
 		if (isRequired())
-			getSettings().setPlaceholder("Choose users...");
+			getSettings().setPlaceholder("选择用户...");
 		else
-			getSettings().setPlaceholder("Not specified");
+			getSettings().setPlaceholder("未指定");
 		getSettings().setFormatResult("onedev.server.userChoiceFormatter.formatResult");
 		getSettings().setFormatSelection("onedev.server.userChoiceFormatter.formatSelection");
 		getSettings().setEscapeMarkup("onedev.server.userChoiceFormatter.escapeMarkup");

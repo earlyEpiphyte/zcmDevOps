@@ -48,7 +48,7 @@ class JobTriggerListViewPanel extends Panel {
 		
 		List<IColumn<JobTrigger, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<JobTrigger, Void>(Model.of("Description")) {
+		columns.add(new AbstractColumn<JobTrigger, Void>(Model.of("描述")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<JobTrigger>> cellItem, String componentId, IModel<JobTrigger> rowModel) {
@@ -125,7 +125,7 @@ class JobTriggerListViewPanel extends Panel {
 			protected void onInitialize() {
 				super.onInitialize();
 				addTopToolbar(new HeadersToolbar<Void>(this, null));
-				addBottomToolbar(new NoRecordsToolbar(this, Model.of("Not defined")));
+				addBottomToolbar(new NoRecordsToolbar(this, Model.of("未定义")));
 				add(new NoRecordsBehavior());
 			}
 			

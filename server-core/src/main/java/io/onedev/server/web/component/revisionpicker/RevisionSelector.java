@@ -225,7 +225,7 @@ public abstract class RevisionSelector extends Panel {
 		
 		List<Tab> tabs = new ArrayList<>();
 		AjaxActionTab branchesTab;
-		tabs.add(branchesTab = new AjaxActionTab(Model.of("branches")) {
+		tabs.add(branchesTab = new AjaxActionTab(Model.of("分支")) {
 			
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -235,7 +235,7 @@ public abstract class RevisionSelector extends Panel {
 			
 		});
 		AjaxActionTab tagsTab;
-		tabs.add(tagsTab = new AjaxActionTab(Model.of("tags")) {
+		tabs.add(tagsTab = new AjaxActionTab(Model.of("标签")) {
 
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {

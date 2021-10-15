@@ -91,7 +91,7 @@ public class SsoConnectorListPage extends AdministrationPage {
 		
 		List<IColumn<SsoConnector, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<SsoConnector, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<SsoConnector, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<SsoConnector>> cellItem, String componentId, IModel<SsoConnector> rowModel) {
@@ -101,7 +101,7 @@ public class SsoConnectorListPage extends AdministrationPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<SsoConnector, Void>(Model.of("Type")) {
+		columns.add(new AbstractColumn<SsoConnector, Void>(Model.of("类型")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<SsoConnector>> cellItem, String componentId, IModel<SsoConnector> rowModel) {

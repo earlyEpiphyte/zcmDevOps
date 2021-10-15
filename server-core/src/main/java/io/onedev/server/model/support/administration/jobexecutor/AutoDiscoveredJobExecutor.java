@@ -21,7 +21,7 @@ public class AutoDiscoveredJobExecutor extends JobExecutor {
 	
 	@Override
 	public void execute(String jobToken, JobContext context) {
-		context.getLogger().log("Discovering job executor...");
+		context.getLogger().log("发现作业执行器...");
 		List<JobExecutor> jobExecutors = new ArrayList<>();
 		for (JobExecutorDiscoverer discoverer: OneDev.getExtensions(JobExecutorDiscoverer.class)) {
 			JobExecutor jobExecutor = discoverer.discover();
@@ -38,7 +38,7 @@ public class AutoDiscoveredJobExecutor extends JobExecutor {
 				
 			});
 			JobExecutor jobExecutor = jobExecutors.iterator().next();
-			context.getLogger().log("Discovered job executor type: " 
+			context.getLogger().log("已发现的作业执行器类型: " 
 					+ EditableUtils.getDisplayName(jobExecutor.getClass()));
 			jobExecutor.setName(getName());
 			jobExecutor.setCacheTTL(getCacheTTL());
@@ -46,7 +46,7 @@ public class AutoDiscoveredJobExecutor extends JobExecutor {
 			jobExecutor.setJobMatch(getJobMatch());
 			jobExecutor.execute(jobToken, context);
 		} else {
-			throw new ExplicitException("No job executors discovered");
+			throw new ExplicitException("没有发现作业执行器");
 		}
 	}
 

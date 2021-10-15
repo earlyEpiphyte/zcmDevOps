@@ -44,22 +44,22 @@
 	<wicket:fragment wicket:id="mergedFrag">
 		<div class="alert alert-notice alert-light-success shadow mb-5">
 			<div class="summary">
-				Branch <a wicket:id="targetBranch"></a> is up to date with all commits from <a wicket:id="sourceBranch"></a>.
-				Try <a wicket:id="swapBranches">swap source and target</a> for the comparison.
+				分支 <a wicket:id="targetBranch"></a> 是最新的，包含来自<a wicket:id="sourceBranch"></a>的所有提交.
+				尝试 <a wicket:id="swapBranches">交换源和目标</a> 进行比较.
 			</div>
 		</div>		
 	</wicket:fragment>
 	<wicket:fragment wicket:id="unrelatedHistoryFrag">
 		<div class="alert alert-notice alert-light-warning shadow mb-5">
 			<div class="summary">
-				<span>History of target branch and source branch is unrelated</span>
+				<span>目标分支和源分支的历史是不相关的</span>
 			</div>
 		</div>
 	</wicket:fragment>
 	<wicket:fragment wicket:id="branchNotSpecifiedFrag">
 		<div class="alert alert-notice alert-light-warning shadow mb-5">
 			<div class="summary">
-				<span>Please select branches to create pull request</span>
+				<span>请选择分支以创建拉取请求</span>
 			</div>
 		</div>
 	</wicket:fragment>

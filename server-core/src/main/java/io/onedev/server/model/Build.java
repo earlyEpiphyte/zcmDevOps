@@ -476,7 +476,7 @@ public class Build extends AbstractEntity implements Referenceable {
 		case PENDING:
 			return getPendingDate();
 		default:
-			throw new RuntimeException("Unexpected build status: " + status);
+			throw new RuntimeException("意外的构建状态: " + status);
 		}
 	}
 	
@@ -740,10 +740,10 @@ public class Build extends AbstractEntity implements Referenceable {
 					if (isOnBranches(secret.getAuthorizedBranches()))				
 						return secret.getValue();
 					else
-						throw new ExplicitException("Job secret not authorized: " + secretName);
+						throw new ExplicitException("作业秘密未授权: " + secretName);
 				}
 			}
-			throw new ExplicitException("No job secret found: " + secretName);
+			throw new ExplicitException("没有找到作业秘密: " + secretName);
 		}
 	}
 	

@@ -177,7 +177,7 @@ public class MilestoneListPage extends ProjectPage {
 		
 		List<IColumn<Milestone, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<Milestone, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Milestone, Void>(Model.of("名称")) {
 
 			@Override
 			public String getCssClass() {
@@ -207,7 +207,7 @@ public class MilestoneListPage extends ProjectPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<Milestone, Void>(Model.of("Due Date")) {
+		columns.add(new AbstractColumn<Milestone, Void>(Model.of("截止时间")) {
 
 			@Override
 			public String getCssClass() {
@@ -222,7 +222,7 @@ public class MilestoneListPage extends ProjectPage {
 			
 		});
 		
-		columns.add(new AbstractColumn<Milestone, Void>(Model.of("Issue Stats")) {
+		columns.add(new AbstractColumn<Milestone, Void>(Model.of("问题状态")) {
 
 			@Override
 			public String getCssClass() {
@@ -278,7 +278,7 @@ public class MilestoneListPage extends ProjectPage {
 		});
 		
 		if (SecurityUtils.canManageIssues(getProject())) {
-			columns.add(new AbstractColumn<Milestone, Void>(Model.of("Actions")) {
+			columns.add(new AbstractColumn<Milestone, Void>(Model.of("操作")) {
 
 				@Override
 				public String getCssClass() {

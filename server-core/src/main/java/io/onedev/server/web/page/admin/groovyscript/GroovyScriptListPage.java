@@ -97,7 +97,7 @@ public class GroovyScriptListPage extends AdministrationPage {
 		List<IColumn<GroovyScript, Void>> columns = new ArrayList<>();
 		
 		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("脚本名")) {
-
+		
 			@Override
 			public void populateItem(Item<ICellPopulator<GroovyScript>> cellItem, String componentId, IModel<GroovyScript> rowModel) {
 				String html = String.format("<svg class='drag-indicator icon'><use xlink:href='%s'/></svg> %s", 

@@ -382,7 +382,7 @@ public class NewPullRequestPage extends ProjectPage implements RevisionDiff.Anno
 		if (getPullRequest() != null) {
 			List<Tab> tabs = new ArrayList<>();
 			
-			tabs.add(new AjaxActionTab(Model.of("Commits")) {
+			tabs.add(new AjaxActionTab(Model.of("提交")) {
 				
 				@Override
 				protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -394,7 +394,7 @@ public class NewPullRequestPage extends ProjectPage implements RevisionDiff.Anno
 				
 			});
 
-			tabs.add(new AjaxActionTab(Model.of("File Changes")) {
+			tabs.add(new AjaxActionTab(Model.of("文件变更")) {
 				
 				@Override
 				protected void onSelect(AjaxRequestTarget target, Component tabLink) {

@@ -50,7 +50,7 @@ class StepListViewPanel extends Panel {
 		
 		List<IColumn<Step, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<Step, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<Step, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Step>> cellItem, String componentId, IModel<Step> rowModel) {
@@ -59,7 +59,7 @@ class StepListViewPanel extends Panel {
 			
 		});		
 		
-		columns.add(new AbstractColumn<Step, Void>(Model.of("Condition")) {
+		columns.add(new AbstractColumn<Step, Void>(Model.of("条件")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<Step>> cellItem, String componentId, IModel<Step> rowModel) {
@@ -82,7 +82,7 @@ class StepListViewPanel extends Panel {
 							@Override
 							protected Component newTitle(String componentId) {
 								String stepType = EditableUtils.getDisplayName(steps.get(stepIndex).getClass());
-								return new Label(componentId, "Step (type: " + stepType + ")");
+								return new Label(componentId, "步骤 (类型: " + stepType + ")");
 							}
 
 							@Override
@@ -126,7 +126,7 @@ class StepListViewPanel extends Panel {
 			protected void onInitialize() {
 				super.onInitialize();
 				addTopToolbar(new HeadersToolbar<Void>(this, null));
-				addBottomToolbar(new NoRecordsToolbar(this, Model.of("Not defined")));
+				addBottomToolbar(new NoRecordsToolbar(this, Model.of("未定义")));
 				add(new NoRecordsBehavior());
 			}
 			

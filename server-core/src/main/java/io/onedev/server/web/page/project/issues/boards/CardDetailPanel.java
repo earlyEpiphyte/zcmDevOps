@@ -105,7 +105,7 @@ abstract class CardDetailPanel extends GenericPanel<Issue> implements InputConte
 		});
 		
 		List<Tab> tabs = new ArrayList<>();
-		tabs.add(new AjaxActionTab(Model.of("Activities")) {
+		tabs.add(new AjaxActionTab(Model.of("活动")) {
 
 			@Override
 			protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -123,7 +123,7 @@ abstract class CardDetailPanel extends GenericPanel<Issue> implements InputConte
 		
 		if (!getIssue().getCommits().isEmpty()) {
 			if (SecurityUtils.canReadCode(getProject())) {
-				tabs.add(new AjaxActionTab(Model.of("Fixing Commits")) {
+				tabs.add(new AjaxActionTab(Model.of("修复提交")) {
 
 					@Override
 					protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -135,7 +135,7 @@ abstract class CardDetailPanel extends GenericPanel<Issue> implements InputConte
 					
 				});
 				if (!getIssue().getPullRequests().isEmpty()) {
-					tabs.add(new AjaxActionTab(Model.of("Pull Requests")) {
+					tabs.add(new AjaxActionTab(Model.of("拉取请求")) {
 
 						@Override
 						protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -155,7 +155,7 @@ abstract class CardDetailPanel extends GenericPanel<Issue> implements InputConte
 				}
 			}
 			
-			tabs.add(new AjaxActionTab(Model.of("Fixing Builds")) {
+			tabs.add(new AjaxActionTab(Model.of("修复构建")) {
 
 				@Override
 				protected void onSelect(AjaxRequestTarget target, Component tabLink) {
@@ -200,7 +200,7 @@ abstract class CardDetailPanel extends GenericPanel<Issue> implements InputConte
 							@Override
 							protected void updateAjaxAttributes(AjaxRequestAttributes attributes) {
 								super.updateAjaxAttributes(attributes);
-								attributes.getAjaxCallListeners().add(new ConfirmClickListener("Do you really want to delete this issue?"));
+								attributes.getAjaxCallListeners().add(new ConfirmClickListener("你真的要删除这个问题吗?"));
 							}
 
 							@Override

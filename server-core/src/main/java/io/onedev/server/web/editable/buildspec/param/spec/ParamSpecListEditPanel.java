@@ -106,7 +106,7 @@ class ParamSpecListEditPanel extends PropertyEditor<List<Serializable>> {
 			
 		});		
 		
-		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("名称")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<ParamSpec>> cellItem, String componentId, IModel<ParamSpec> rowModel) {
@@ -114,7 +114,7 @@ class ParamSpecListEditPanel extends PropertyEditor<List<Serializable>> {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("Type")) {
+		columns.add(new AbstractColumn<ParamSpec, Void>(Model.of("类型")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<ParamSpec>> cellItem, String componentId, IModel<ParamSpec> rowModel) {
@@ -183,7 +183,7 @@ class ParamSpecListEditPanel extends PropertyEditor<List<Serializable>> {
 		DataTable<ParamSpec, Void> dataTable;
 		add(dataTable = new DataTable<ParamSpec, Void>("paramSpecs", columns, dataProvider, Integer.MAX_VALUE));
 		dataTable.addTopToolbar(new HeadersToolbar<Void>(dataTable, null));
-		dataTable.addBottomToolbar(new NoRecordsToolbar(dataTable, Model.of("Not defined")));
+		dataTable.addBottomToolbar(new NoRecordsToolbar(dataTable, Model.of("未定义")));
 		dataTable.add(new NoRecordsBehavior());
 		
 		dataTable.add(new SortBehavior() {
