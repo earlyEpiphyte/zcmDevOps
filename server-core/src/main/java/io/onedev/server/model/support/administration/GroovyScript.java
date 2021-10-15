@@ -41,8 +41,8 @@ public class GroovyScript implements Serializable {
 	
 	private String allowedBranches;
 
-	@Editable(order=100)
-	@RegEx(pattern="^(?!" + BUILTIN_PREFIX + ").*$", message="Name is not allowed to start with '" + BUILTIN_PREFIX + "'")
+	@Editable(order=100,name="脚本名")
+	@RegEx(pattern="^(?!" + BUILTIN_PREFIX + ").*$", message="脚本名不允许以'" + BUILTIN_PREFIX + "'开头")
 	@NotEmpty
 	public String getName() {
 		return name;
@@ -52,7 +52,7 @@ public class GroovyScript implements Serializable {
 		this.name = name;
 	}
 
-	@Editable(order=300)
+	@Editable(order=300,name="内容")
 	@Code(language = Code.GROOVY)
 	@Size(min=1, message="不可为空")
 	public List<String> getContent() {
@@ -63,7 +63,7 @@ public class GroovyScript implements Serializable {
 		this.content = content;
 	}
 	
-	@Editable(order=350)
+	@Editable(order=350,name="能被构建作业使用")
 	public boolean isCanBeUsedByBuildJobs() {
 		return canBeUsedByBuildJobs;
 	}
@@ -77,12 +77,10 @@ public class GroovyScript implements Serializable {
 		return (boolean) EditContext.get().getInputValue("canBeUsedByBuildJobs");
 	}
 
-	@Editable(order=400, description="Optionally specify space-separated projects allowed to "
-			+ "execute this script. Use '*' or '?' for wildcard match. Prefix with '-' to exclude. "
-			+ "Leave empty to allow all")
+	@Editable(order=400,name="可使用的项目", description="指定以空格分隔的作业。使用 '*' 或者 '?' 用于通配符匹配。'-'开头表示排除。留空表示授权所有分支。")
 	@Patterns(suggester = "suggestProjects")
 	@ShowCondition("isCanBeUsedByBuildJobsEnabled")
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	public String getAllowedProjects() {
 		return allowedProjects;
 	}
@@ -91,12 +89,13 @@ public class GroovyScript implements Serializable {
 		this.allowedProjects = allowedProjects;
 	}
 	
-	@Editable(order=500, description="Optionally specify space-separated branches allowed to "
-		+ "execute this script. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-		+ "Prefix with '-' to exclude. Leave empty to allow all")
+	@Editable(order=500,name="可使用的分支", description="可选的指定分支进行授权，空格隔开。\n"
+			+ "只有授权的分支才可以获取这个秘密。\n"
+			+ "使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>。"
+			+ "'-'开头表示排除。留空表示授权所有分支 。")
 	@Patterns(path=true)
 	@ShowCondition("isCanBeUsedByBuildJobsEnabled")
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	public String getAllowedBranches() {
 		return allowedBranches;
 	}

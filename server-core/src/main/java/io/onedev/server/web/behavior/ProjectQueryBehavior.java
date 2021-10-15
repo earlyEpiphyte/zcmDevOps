@@ -119,14 +119,14 @@ public class ProjectQueryBehavior extends ANTLRAssistBehavior {
 					String fieldName = ProjectQuery.getValue(fieldElements.get(0).getMatchedText());
 					if (fieldName.equals(Project.NAME_NAME) 
 							|| fieldName.equals(Project.NAME_DESCRIPTION)) {
-						hints.add("Use '*' for wildcard match");
-						hints.add("Use '\\' to escape quotes");
+						hints.add("使用'*'进行模式匹配");
+						hints.add("使用'\\'进行字符转义");
 					}
 				} else {
 					Element operatorElement = terminalExpect.getState().findMatchedElementsByLabel("operator", true).iterator().next();
 					if (operatorElement.getMatchedTokens().iterator().next().getType() == ProjectQueryLexer.ForksOf)
-						hints.add("Use '*' for wildcard match");
-					hints.add("Use '\\' to escape quotes");
+						hints.add("使用'*'进行模式匹配");
+					hints.add("使用'\\'进行字符转义");
 				}
 			}
 		} 

@@ -20,7 +20,7 @@ public class CreateTagAuthorization extends ActionAuthorization {
 	@Editable(order=100,name="标签名称", description="指定以空格分隔的标签名称。 使用 '**', '*' 或者 '?' 用于<b><i>路径通配符匹配</i></b>。 "
 			+ "以'-'为前缀来排除。 留空以匹配所有")
 	@Patterns(suggester = "suggestTags", path=true)
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	public String getTagNames() {
 		return tagNames;
 	}

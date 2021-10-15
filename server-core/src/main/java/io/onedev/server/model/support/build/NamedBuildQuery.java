@@ -24,7 +24,7 @@ public class NamedBuildQuery implements NamedQuery {
 	public NamedBuildQuery() {
 	}
 
-	@Editable
+	@Editable(name="查询名称")
 	@NotEmpty
 	@Override
 	public String getName() {
@@ -35,9 +35,9 @@ public class NamedBuildQuery implements NamedQuery {
 		this.name = name;
 	}
 
-	@Editable
+	@Editable(name="查询语句")
 	@BuildQuery(withCurrentUserCriteria = true, withUnfinishedCriteria = true)
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	@Override
 	public String getQuery() {
 		return query;

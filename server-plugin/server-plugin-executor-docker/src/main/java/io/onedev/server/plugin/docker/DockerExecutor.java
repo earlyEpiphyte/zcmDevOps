@@ -83,7 +83,7 @@ import io.onedev.server.web.editable.annotation.NameOfEmptyValue;
 import io.onedev.server.web.editable.annotation.OmitName;
 import io.onedev.server.web.util.Testable;
 
-@Editable(order=200, description="This executor runs build jobs as docker containers on OneDev server")
+@Editable(order=200,name="docker执行器", description="以docker容器的方式运行")
 @ClassValidating
 @Horizontal
 public class DockerExecutor extends JobExecutor implements Testable<TestData>, Validatable {
@@ -104,7 +104,7 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 	
 	private transient volatile String outerInstallPath;
 
-	@Editable(order=400, description="Specify login information for docker registries if necessary")
+	@Editable(order=400,name="注册中心登录", description="指定登录信息")
 	public List<RegistryLogin> getRegistryLogins() {
 		return registryLogins;
 	}
@@ -113,8 +113,7 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 		this.registryLogins = registryLogins;
 	}
 
-	@Editable(order=475, description="Specify max number of concurrent jobs being executed. Each job execution "
-			+ "will launch a separate docker container. Defaults to number of processors in the system")
+	@Editable(order=475,name="并行作业数量", description="指定并行作业最大数量。每个作业都会在独立的docker容器中加载。默认为系统处理器数量")
 	public int getCapacity() {
 		return capacity;
 	}
@@ -123,8 +122,7 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 		this.capacity = capacity;
 	}
 
-	@Editable(order=50050, group="更多设置", description="Optionally specify options to run container. For instance, you may use <tt>-m 2g</tt> "
-			+ "to limit memory of created container to be 2 giga bytes")
+	@Editable(order=50050,name="运行选项", group="更多设置", description="指定容器运行的选项。例如<tt>-m 2g</tt>限制容器的内存为2 giga bytes")
 	public String getRunOptions() {
 		return runOptions;
 	}
@@ -133,9 +131,9 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 		this.runOptions = runOptions;
 	}
 
-	@Editable(order=50100, group="更多设置", description="Optionally specify docker executable, for instance <i>/usr/local/bin/docker</i>. "
+	@Editable(order=50100,name="可执行的docker环境", group="更多设置", description="指定可执行的docker环境，例如<i>/usr/local/bin/docker</i>. "
 			+ "Leave empty to use docker executable in PATH")
-	@NameOfEmptyValue("Use default")
+	@NameOfEmptyValue("使用默认")
 	public String getDockerExecutable() {
 		return dockerExecutable;
 	}

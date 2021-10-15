@@ -93,7 +93,7 @@ public class IssueTemplateListPage extends IssueSettingPage {
 		
 		List<IColumn<IssueTemplate, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<IssueTemplate, Void>(Model.of("Applicable Issues")) {
+		columns.add(new AbstractColumn<IssueTemplate, Void>(Model.of("适用于问题")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<IssueTemplate>> cellItem, String componentId, IModel<IssueTemplate> rowModel) {
@@ -107,7 +107,7 @@ public class IssueTemplateListPage extends IssueSettingPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<IssueTemplate, Void>(Model.of("Description Template")) {
+		columns.add(new AbstractColumn<IssueTemplate, Void>(Model.of("问题描述")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<IssueTemplate>> cellItem, String componentId, IModel<IssueTemplate> rowModel) {

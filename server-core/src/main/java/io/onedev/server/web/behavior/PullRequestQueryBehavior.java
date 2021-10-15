@@ -169,8 +169,8 @@ public class PullRequestQueryBehavior extends ANTLRAssistBehavior {
 							|| fieldName.equals(PullRequest.NAME_TITLE) 
 							|| fieldName.equals(PullRequest.NAME_DESCRIPTION)
 							|| fieldName.equals(PullRequest.NAME_COMMENT)) {
-						hints.add("Use '*' for wildcard match");
-						hints.add("Use '\\' to escape quotes");
+						hints.add("使用'*'进行模式匹配");
+						hints.add("使用'\\'进行字符转义");
 					}
 				}
 			}

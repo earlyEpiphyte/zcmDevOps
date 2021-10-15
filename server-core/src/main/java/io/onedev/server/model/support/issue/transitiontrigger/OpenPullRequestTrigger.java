@@ -2,7 +2,7 @@ package io.onedev.server.model.support.issue.transitiontrigger;
 
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=200, name="Pull request is opened")
+@Editable(order=200, name="开放拉取请求")
 public class OpenPullRequestTrigger extends PullRequestTrigger {
 
 	private static final long serialVersionUID = 1L;
@@ -10,9 +10,9 @@ public class OpenPullRequestTrigger extends PullRequestTrigger {
 	@Override
 	public String getDescription() {
 		if (getBranches() != null)
-			return "Pull request to branches '" + getBranches() + "' is opened";
+			return "分支'" + getBranches() + "'上的拉取请求已开放";
 		else
-			return "Pull request to any branch is opened";
+			return "任意分支上的拉取请求开发";
 	}
 
 }

@@ -26,8 +26,7 @@ public class DnsNameValidator implements ConstraintValidator<DnsName, String> {
 		if (!PATTERN.matcher(value).matches()) {
 			String message = this.message;
 			if (message.length() == 0) {
-				message = "Should only contain alphanumberic characters or '-', and can only "
-						+ "start and end with alphanumeric characters";
+				message = "只能包含字母数字或者'-',并且只能以字母数字开头";
 			}
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;

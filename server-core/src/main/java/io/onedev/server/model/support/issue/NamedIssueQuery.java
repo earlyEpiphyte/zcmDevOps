@@ -24,7 +24,7 @@ public class NamedIssueQuery implements NamedQuery {
 	public NamedIssueQuery() {
 	}
 
-	@Editable
+	@Editable(name="查询名称")
 	@NotEmpty
 	@Override
 	public String getName() {
@@ -35,10 +35,10 @@ public class NamedIssueQuery implements NamedQuery {
 		this.name = name;
 	}
 
-	@Editable
+	@Editable(name="查询语句")
 	@IssueQuery(withCurrentUserCriteria = true, withCurrentBuildCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentCommitCriteria = false)
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	@Override
 	public String getQuery() {
 		return query;

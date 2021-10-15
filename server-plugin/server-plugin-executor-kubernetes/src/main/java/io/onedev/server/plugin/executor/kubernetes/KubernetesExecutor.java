@@ -79,9 +79,8 @@ import io.onedev.server.web.editable.annotation.NameOfEmptyValue;
 import io.onedev.server.web.editable.annotation.OmitName;
 import io.onedev.server.web.util.Testable;
 
-@Editable(order=100, description="This executor runs build jobs as pods in a kubernetes cluster. "
-		+ "<b class='text-danger'>Note:</b> Make sure server url is specified correctly in system "
-		+ "setting as job pods need to access it to download source and artifacts")
+@Editable(order=100,name="K8s执行器", description="在kubernetes集群中，将构件作业以pods的形式运行。 "
+		+ "<b class='text-danger'>注意:</b> 确保服务器地址正确")
 @Horizontal
 public class KubernetesExecutor extends JobExecutor implements Testable<TestData> {
 
@@ -113,7 +112,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 	
 	private boolean createCacheLabels = true;
 
-	@Editable(order=20, description="Optionally specify node selector of the job pods")
+	@Editable(order=20,name="选择节点", description="为作业pods指定节点")
 	public List<NodeSelectorEntry> getNodeSelector() {
 		return nodeSelector;
 	}
@@ -122,9 +121,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 		this.nodeSelector = nodeSelector;
 	}
 
-	@Editable(order=40, description="Optionally specify cluster role the job pods service account "
-			+ "binding to. This is necessary if you want to do things such as running other "
-			+ "Kubernetes pods in job command")
+	@Editable(order=40,name="集群角色", description="可以选择指定作业pods服务帐户绑定到的集群角色。 如果您想在作业命令中运行其他Kubernetes pods，这是必要的 ")
 	public String getClusterRole() {
 		return clusterRole;
 	}
@@ -133,8 +130,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 		this.clusterRole = clusterRole;
 	}
 
-	@Editable(order=200, description="Specify login information of docker registries if necessary. "
-			+ "These logins will be used to create image pull secrets of the job pods")
+	@Editable(order=200,name="注册中心登录", description="指定docker注册中心的登录信息 ")
 	public List<RegistryLogin> getRegistryLogins() {
 		return registryLogins;
 	}
@@ -143,9 +139,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 		this.registryLogins = registryLogins;
 	}
 
-	@Editable(order=25000, group="More Settings", description="Optionally specify where to run service pods "
-			+ "specified in job. The first matching locator will be used. If no any locators are found, "
-			+ "node selector of the executor will be used")
+	@Editable(order=25000,name="服务定位器", group="更多设置", description="也可以指定在何处运行作业中指定的服务pods。 将使用第一个匹配定位器。 如果没有找到任何定位器，将使用执行器的节点选择器")
 	public List<ServiceLocator> getServiceLocators() {
 		return serviceLocators;
 	}
@@ -154,11 +148,8 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 		this.serviceLocators = serviceLocators;
 	}
 
-	@Editable(name="Kubectl Config File", order=26000, group="More Settings", description=
-			"Specify absolute path to the config file used by kubectl to access the "
-			+ "cluster. Leave empty to have kubectl determining cluster access "
-			+ "information automatically")
-	@NameOfEmptyValue("Use default")
+	@Editable(name="Kubectl配置文件", order=26000, group="更多设置", description="指定kubectl访问集群时使用的配置文件的绝对路径。 为空则让kubectl自动确定集群访问信息 ")
+	@NameOfEmptyValue("使用默认")
 	public String getConfigFile() {
 		return configFile;
 	}
@@ -167,10 +158,10 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 		this.configFile = configFile;
 	}
 
-	@Editable(name="Path to kubectl", order=27000, group="More Settings", description=
+	@Editable(name="kubectl路径", order=27000, group="更多设置", description=
 			"Specify absolute path to the kubectl utility, for instance: <i>/usr/bin/kubectl</i>. "
 			+ "If left empty, OneDev will try to find the utility from system path")
-	@NameOfEmptyValue("Use default")
+	@NameOfEmptyValue("使用默认")
 	public String getKubeCtlPath() {
 		return kubeCtlPath;
 	}
@@ -179,10 +170,8 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 		this.kubeCtlPath = kubeCtlPath;
 	}
 
-	@Editable(order=60000, group="More Settings", description="If enabled, OneDev will create labels "
-			+ "on nodes to record cache count for each cache key in job definition, and then "
-			+ "leverage Kubernetes node affinity feature to improve job cache hit rate. Note that "
-			+ "many labels might be created on node if there are many cache keys")
+	@Editable(order=60000, name="创建缓存标签",group="更多设置", description="如果启用，将在节点上创建标签，以记录作业定义中每个缓存键的缓存计数，"
+			+ "然后利用Kubernetes节点亲和性特性来提高作业缓存命中率。 注意，如果有许多缓存键，可能会在节点上创建许多标签  ")
 	public boolean isCreateCacheLabels() {
 		return createCacheLabels;
 	}

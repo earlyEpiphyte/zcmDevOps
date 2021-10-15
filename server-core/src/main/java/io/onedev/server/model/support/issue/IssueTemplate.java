@@ -40,7 +40,7 @@ public class IssueTemplate implements Serializable {
 		this.issueQuery = issueQuery;
 	}
 	
-	@Editable(order=200)
+	@Editable(order=200,name="问题描述")
 	@Markdown
 	@NotEmpty
 	public String getIssueDescription() {

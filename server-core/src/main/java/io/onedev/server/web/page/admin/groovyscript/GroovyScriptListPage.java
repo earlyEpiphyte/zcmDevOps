@@ -96,8 +96,8 @@ public class GroovyScriptListPage extends AdministrationPage {
 		
 		List<IColumn<GroovyScript, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("名称")) {
-
+		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("脚本名")) {
+		
 			@Override
 			public void populateItem(Item<ICellPopulator<GroovyScript>> cellItem, String componentId, IModel<GroovyScript> rowModel) {
 				String html = String.format("<svg class='drag-indicator icon'><use xlink:href='%s'/></svg> %s", 
@@ -106,7 +106,7 @@ public class GroovyScriptListPage extends AdministrationPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("可以被构建作业使用")) {
+		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("能被构建作业使用")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<GroovyScript>> cellItem, String componentId, IModel<GroovyScript> rowModel) {

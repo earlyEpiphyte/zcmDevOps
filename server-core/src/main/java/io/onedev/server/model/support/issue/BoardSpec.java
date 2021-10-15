@@ -60,7 +60,7 @@ public class BoardSpec implements Serializable {
 	
 	private List<String> editColumns;
 
-	@Editable(order=100)
+	@Editable(order=100,name="状态名")
 	@NotEmpty
 	public String getName() {
 		return name;
@@ -70,7 +70,7 @@ public class BoardSpec implements Serializable {
 		this.name = name;
 	}
 
-	@Editable(order=200, description="Optionally specify a base query to filter/order issues of the board")
+	@Editable(order=200,name="基础查询", description="可选的指定过滤/排序的查询语句")
 	@IssueQuery(withCurrentUserCriteria = true, withCurrentBuildCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentCommitCriteria = false)
 	@Nullable
@@ -82,8 +82,8 @@ public class BoardSpec implements Serializable {
 		this.baseQuery = baseQuery;
 	}
 
-	@Editable(order=250, description="Optionally specify a base query to filter/order issues in backlog. "
-			+ "Backlog issues are those not associating with any milestones")
+	@Editable(order=250,name="积压的基础查询",  description="可选的指定过滤/排序的查询语句。"
+			+ "积压问题指的是那些与里程碑无关的问题")
 	@IssueQuery(withCurrentUserCriteria = true, withCurrentBuildCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentCommitCriteria = false)
 	@Nullable
@@ -95,7 +95,7 @@ public class BoardSpec implements Serializable {
 		this.backlogBaseQuery = backlogBaseQuery;
 	}
 
-	@Editable(order=300, description="Specify issue field to identify different columns of the board")
+	@Editable(order=300,name="标识字段",  description="指定问题字段作为面板不同列的标识")
 	@ChoiceProvider("getIdentifyFieldChoices")
 	@NotEmpty
 	public String getIdentifyField() {
@@ -114,9 +114,9 @@ public class BoardSpec implements Serializable {
 		this.columns = columns;
 	}
 
-	@Editable(order=400, name="Board Columns", description="Specify columns of the board. "
-			+ "Each column corresponds to a value of the issue field specified above")
-	@Size(min=2, message="At least two columns need to be defined")
+	@Editable(order=400, name="面板包含的列", description="指定面板的列。"
+			+ "每列都会对应标识字段的一个值")
+	@Size(min=2, message="至少指定两列")
 	@ChoiceProvider("getColumnChoices")
 	public List<String> getEditColumns() {
 		if (editColumns == null)
@@ -143,7 +143,7 @@ public class BoardSpec implements Serializable {
 		return displayColumns;
 	}
 
-	@Editable(order=500, description="Specify fields to display in board card except issue number and title")
+	@Editable(order=500, name="展示的字段",description="指定在面板卡片展示的字段除了问题数量和名称")
 	@ChoiceProvider("getDisplayFieldsChoices")
 	public List<String> getDisplayFields() {
 		return displayFields;

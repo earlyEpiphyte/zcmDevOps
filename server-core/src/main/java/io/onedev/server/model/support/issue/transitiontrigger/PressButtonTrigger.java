@@ -22,7 +22,7 @@ import io.onedev.server.web.editable.annotation.IssueQuery;
 import io.onedev.server.web.editable.annotation.NameOfEmptyValue;
 import io.onedev.server.web.editable.annotation.RoleChoice;
 
-@Editable(order=100, name="Button is pressed")
+@Editable(order=100, name="按下按钮")
 public class PressButtonTrigger extends TransitionTrigger {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class PressButtonTrigger extends TransitionTrigger {
 	
 	private List<String> promptFields = new ArrayList<>();
 	
-	@Editable(order=100)
+	@Editable(order=100,name="按钮名称")
 	@NotEmpty
 	public String getButtonLabel() {
 		return buttonLabel;
@@ -43,8 +43,8 @@ public class PressButtonTrigger extends TransitionTrigger {
 		this.buttonLabel = buttonLabel;
 	}
 
-	@Editable(order=200, description="Optionally specify authorized roles to press this button. "
-			+ "If not specified, all users are allowed")
+	@Editable(order=200,name="已授权角色", description="可选的选择角色进行授权"
+			+ "若无指定，则授权所有角色")
 	@RoleChoice
 	public List<String> getAuthorizedRoles() {
 		return authorizedRoles;
@@ -54,9 +54,9 @@ public class PressButtonTrigger extends TransitionTrigger {
 		this.authorizedRoles = authorizedRoles;
 	}
 
-	@Editable(order=500, description="Optionally select fields to prompt when this button is pressed")
+	@Editable(order=500,name="需改变值的字段", description="当按下按钮时，可选的选择需改变值的字段的值")
 	@ChoiceProvider("getFieldChoices")
-	@NameOfEmptyValue("No fields to prompt")
+	@NameOfEmptyValue("无字段需改变值")
 	public List<String> getPromptFields() {
 		return promptFields;
 	}
@@ -132,7 +132,7 @@ public class PressButtonTrigger extends TransitionTrigger {
 	@Editable(order=1000, name="适用问题", description="（可选）指定适用于此转换的问题.为所有问题留空")
 	@IssueQuery(withOrder = false, withCurrentUserCriteria = true, withCurrentBuildCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentCommitCriteria = false)	
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	@Override
 	public String getIssueQuery() {
 		return super.getIssueQuery();
@@ -145,9 +145,9 @@ public class PressButtonTrigger extends TransitionTrigger {
 	@Override
 	public String getDescription() {
 		if (authorizedRoles.isEmpty())
-			return "Button '" + buttonLabel + "' is pressed by any user";
+			return "按钮'" + buttonLabel + "'被角色中的某个用户按下";
 		else
-			return "Button '" + buttonLabel + "' is pressed by any user of roles " + authorizedRoles;
+			return "按钮'" + buttonLabel + "'被角色中的某个用户按下" + authorizedRoles;
 	}
 	
 }

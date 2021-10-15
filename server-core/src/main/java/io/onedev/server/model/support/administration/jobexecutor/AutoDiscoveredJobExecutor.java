@@ -13,7 +13,7 @@ import io.onedev.server.web.editable.EditableUtils;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Horizontal;
 
-@Editable(order=10000, description="自动发现合适的作业执行器")
+@Editable(order=10000,name="自动寻找作业执行器", description="自动寻找合适的作业执行器")
 @Horizontal
 public class AutoDiscoveredJobExecutor extends JobExecutor {
 
