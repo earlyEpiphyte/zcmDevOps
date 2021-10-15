@@ -41,7 +41,7 @@ public abstract class JobExecutor implements Serializable {
 		this.enabled = enabled;
 	}
 
-	@Editable(order=10)
+	@Editable(order=10,name="名称")
 	@DnsName //this name may be used as namespace/network prefixes, so put a strict constraint
 	@NotEmpty
 	public String getName() {
@@ -52,8 +52,7 @@ public abstract class JobExecutor implements Serializable {
 		this.name = name;
 	}
 
-	@Editable(order=10000, name="Job Match Condition", description="Jobs applicable for this executor must match "
-			+ "condition specified here")
+	@Editable(order=10000, name="作业匹配条件", description="作业必须满足此处的条件")
 	@JobMatch
 	@NotEmpty
 	public String getJobMatch() {
@@ -71,10 +70,7 @@ public abstract class JobExecutor implements Serializable {
 		return SuggestionUtils.suggest(jobNames, matchWith);
 	}
 
-	@Editable(order=50000, group="更多设置", description="Specify job cache TTL (time to live) by days. "
-			+ "OneDev may create multiple job caches even for same cache key to avoid cache conflicts when "
-			+ "running jobs concurrently. This setting tells OneDev to remove caches inactive for specified "
-			+ "time period to save disk space")
+	@Editable(order=50000,name="缓存TTL",group="更多设置", description="指定作业缓存TTL(time to live)的天数。 ")
 	public int getCacheTTL() {
 		return cacheTTL;
 	}

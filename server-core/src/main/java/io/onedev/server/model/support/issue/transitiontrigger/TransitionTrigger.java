@@ -24,7 +24,7 @@ public abstract class TransitionTrigger implements Serializable {
 	@Editable(order=1000, name="适用问题", description="（可选）指定适用于此转换的问题.为所有问题留空")
 	@IssueQuery(withOrder = false, withCurrentUserCriteria = false, withCurrentBuildCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentCommitCriteria = false)
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	public String getIssueQuery() {
 		return issueQuery;
 	}

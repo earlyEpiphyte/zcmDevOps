@@ -24,7 +24,7 @@ public class NamedPullRequestQuery implements NamedQuery {
 	public NamedPullRequestQuery() {
 	}
 
-	@Editable
+	@Editable(name="查询名称")
 	@NotEmpty
 	@Override
 	public String getName() {
@@ -35,9 +35,9 @@ public class NamedPullRequestQuery implements NamedQuery {
 		this.name = name;
 	}
 
-	@Editable
+	@Editable(name="查询语句")
 	@PullRequestQuery
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	@Override
 	public String getQuery() {
 		return query;

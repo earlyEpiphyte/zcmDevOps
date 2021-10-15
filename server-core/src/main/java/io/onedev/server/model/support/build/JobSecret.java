@@ -54,7 +54,7 @@ public class JobSecret implements Serializable {
 			+ "使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>。"
 			+ "'-'开头表示排除。留空表示授权所有分支 。")
 	@Patterns(suggester = "suggestBranches", path=true)
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	public String getAuthorizedBranches() {
 		return authorizedBranches;
 	}

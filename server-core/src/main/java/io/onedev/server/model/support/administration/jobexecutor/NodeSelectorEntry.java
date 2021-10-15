@@ -15,7 +15,7 @@ public class NodeSelectorEntry implements Serializable {
 	
 	private String labelValue;
 
-	@Editable(order=100)
+	@Editable(order=100,name="标签名")
 	@NotEmpty
 	public String getLabelName() {
 		return labelName;
@@ -25,7 +25,7 @@ public class NodeSelectorEntry implements Serializable {
 		this.labelName = labelName;
 	}
 
-	@Editable(order=200)
+	@Editable(order=200,name="标签值")
 	@NotEmpty
 	public String getLabelValue() {
 		return labelValue;

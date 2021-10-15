@@ -2,7 +2,7 @@ package io.onedev.server.model.support.issue.transitiontrigger;
 
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=300, name="Pull request is discarded")
+@Editable(order=300, name="丢弃的拉取请求")
 public class DiscardPullRequestTrigger extends PullRequestTrigger {
 
 	private static final long serialVersionUID = 1L;
@@ -10,9 +10,9 @@ public class DiscardPullRequestTrigger extends PullRequestTrigger {
 	@Override
 	public String getDescription() {
 		if (getBranches() != null)
-			return "Pull request to branches '" + getBranches() + "' is discarded";
+			return "分支'" + getBranches() + "'上的拉取请求被丢弃";
 		else
-			return "Pull request to any branch is discarded";
+			return "任意分支上的拉取请求被丢弃";
 	}
 
 }

@@ -12,7 +12,7 @@ import io.onedev.server.web.editable.annotation.NameOfEmptyValue;
 import io.onedev.server.web.editable.annotation.Patterns;
 import io.onedev.server.web.util.SuggestionUtils;
 
-@Editable(order=500, name="Code is committed")
+@Editable(order=500, name="代码已提交")
 public class BranchUpdateTrigger extends TransitionTrigger {
 
 	private static final long serialVersionUID = 1L;
@@ -24,11 +24,10 @@ public class BranchUpdateTrigger extends TransitionTrigger {
 				.getRuleName(IssueQueryLexer.FixedInCurrentCommit));		
 	}
 	
-	@Editable(order=200, name="Applicable Branches", description="Optionally specify space-separated branches "
-			+ "applicable for this trigger. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude. Leave empty to match all")
+	@Editable(order=200, name="适用于分支", description="指定以空格分隔的分支。 使用 '**','*'或者 '?'用于 <b><i>路径通配符匹配</i></b>。 "
+			+ "以'-'为前缀来排除。留空匹配所有")
 	@Patterns(suggester = "suggestBranches", path=true)
-	@NameOfEmptyValue("Any branch")
+	@NameOfEmptyValue("任意分支")
 	public String getBranches() {
 		return branches;
 	}
@@ -49,7 +48,7 @@ public class BranchUpdateTrigger extends TransitionTrigger {
 	@Editable(order=1000, name="适用问题", description="（可选）指定适用于此转换的问题.为所有问题留空")
 	@IssueQuery(withOrder = false, withCurrentUserCriteria = false, withCurrentBuildCriteria = false, 
 			withCurrentPullRequestCriteria = false, withCurrentCommitCriteria = true)
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	@Override
 	public String getIssueQuery() {
 		return super.getIssueQuery();
@@ -62,9 +61,9 @@ public class BranchUpdateTrigger extends TransitionTrigger {
 	@Override
 	public String getDescription() {
 		if (branches != null)
-			return "Committed to branches '" + branches + "'";
+			return "提交到'" + branches + "'分支";
 		else
-			return "Committed to any branch";
+			return "提交到某个分支";
 	}
 	
 }

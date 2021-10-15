@@ -28,8 +28,8 @@ public class MailSetting implements Serializable {
 	
 	private int timeout = 60;
 
-	@Editable(order=100, name="SMTP 主机", description=
-		"指定 OneDev 用于发送电子邮件的 SMTP 主机."
+	@Editable(order=100, name="SMTP主机", description=
+		"用于发送电子邮件的 SMTP主机."
 		)
 	@NotEmpty
 	public String getSmtpHost() {
@@ -40,7 +40,7 @@ public class MailSetting implements Serializable {
 		this.smtpHost = smtpHost;
 	}
 
-	@Editable(order=200, name="SMTP 端口")
+	@Editable(order=200, name="SMTP端口")
 	public int getSmtpPort() {
 		return smtpPort;
 	}
@@ -58,8 +58,8 @@ public class MailSetting implements Serializable {
 		this.enableStartTLS = enableStartTLS;
 	}
 
-	@Editable(order=260, name="以 HTML 格式发送", description=
-			"如果选中，邮件将以 html 格式发送. 否则为纯文本格式")
+	@Editable(order=260, name="以 HTML格式发送", description=
+			"如果选中，邮件将以 html格式发送。否则为纯文本格式")
 	public boolean isSendAsHtml() {
 		return sendAsHtml;
 	}
@@ -68,8 +68,8 @@ public class MailSetting implements Serializable {
 		this.sendAsHtml = sendAsHtml;
 	}
 
-	@Editable(order=300, name="SMTP 用户", description=
-		"如果 SMTP 主机需要身份验证，可选择在此处指定用户名"
+	@Editable(order=300, name="SMTP用户", description=
+		"如果 SMTP主机需要身份验证，可选择在此处指定用户名"
 		)
 	public String getSmtpUser() {
 		return smtpUser;
@@ -79,8 +79,8 @@ public class MailSetting implements Serializable {
 		this.smtpUser = smtpUser;
 	}
 
-	@Editable(order=400, name="SMTP 密码", description=
-		"如果 SMTP 主机需要身份验证，可选择在此处指定密码"
+	@Editable(order=400, name="SMTP密码", description=
+		"如果 SMTP主机需要身份验证，可选择在此处指定密码"
 		)
 	@Password(autoComplete="new-password")
 	public String getSmtpPassword() {
@@ -91,10 +91,10 @@ public class MailSetting implements Serializable {
 		this.smtpPassword = smtpPassword;
 	}
 
-	@Editable(order=500, description=
-		"此属性是可选的。 如果指定，OneDev 将在发送电子邮件时使用此电子邮件作为发件人地址. 否则, 发件人地址将是" +
-		"<b>onedev@&lt;hostname&gt;</b>, 其中 &lt;hostname&gt; " +
-		"是 OneDev 服务器的主机名."
+	@Editable(order=500,name="发件人地址", description=
+		"此属性是可选的。 如果指定，在发送电子邮件时使用此电子邮件作为发件人地址。 否则, 发件人地址将是" +
+		"<b>test@&lt;hostname&gt;</b>, 其中 &lt;hostname&gt; " +
+		"是服务器的主机名."
 		)
 	public String getSenderAddress() {
 		return senderAddress;
@@ -104,7 +104,7 @@ public class MailSetting implements Serializable {
 		this.senderAddress = senderAddress;
 	}
 
-	@Editable(order=600, description="指定与 SMTP 服务器通信时的超时时间（以秒为单位）. " +
+	@Editable(order=600, name="超时时间", description="指定与 SMTP服务器通信时的超时时间（以秒为单位）. " +
 			"设置 0 表示无限超时.")
 	public int getTimeout() {
 		return timeout;

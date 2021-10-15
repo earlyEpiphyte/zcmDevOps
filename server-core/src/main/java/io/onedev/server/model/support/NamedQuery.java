@@ -9,9 +9,11 @@ import io.onedev.server.web.editable.annotation.Editable;
 
 @Editable
 public interface NamedQuery extends Serializable {
-
+	
+	@Editable(name="查询名称")
 	String getName();
 	
+	@Editable(name="查询语句")
 	String getQuery();
 	
 	@Nullable

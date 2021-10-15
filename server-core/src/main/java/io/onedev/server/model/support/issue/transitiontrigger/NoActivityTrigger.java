@@ -4,14 +4,14 @@ import javax.validation.constraints.Min;
 
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=600, name="No activity for some time")
+@Editable(order=600, name="一段时间无事件")
 public class NoActivityTrigger extends TransitionTrigger {
 
 	private static final long serialVersionUID = 1L;
 
 	private int days;
 
-	@Editable(order=200, name="No Activity Days")
+	@Editable(order=200, name="无事件的天数")
 	@Min(1)
 	public int getDays() {
 		return days;
@@ -23,7 +23,7 @@ public class NoActivityTrigger extends TransitionTrigger {
 	
 	@Override
 	public String getDescription() {
-		return "No activity for " + days + " days"; 
+		return "" + days + "天无事件"; 
 	}
 	
 }

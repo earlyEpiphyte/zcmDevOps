@@ -96,7 +96,7 @@ public class GroovyScriptListPage extends AdministrationPage {
 		
 		List<IColumn<GroovyScript, Void>> columns = new ArrayList<>();
 		
-		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("Name")) {
+		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("脚本名")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<GroovyScript>> cellItem, String componentId, IModel<GroovyScript> rowModel) {
@@ -106,7 +106,7 @@ public class GroovyScriptListPage extends AdministrationPage {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("Can be Used by Build Jobs")) {
+		columns.add(new AbstractColumn<GroovyScript, Void>(Model.of("能被构建作业使用")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<GroovyScript>> cellItem, String componentId, IModel<GroovyScript> rowModel) {

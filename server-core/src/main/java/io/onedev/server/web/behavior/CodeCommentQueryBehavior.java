@@ -130,8 +130,8 @@ public class CodeCommentQueryBehavior extends ANTLRAssistBehavior {
 				if (!fieldElements.isEmpty()) {
 					String fieldName = ProjectQuery.getValue(fieldElements.get(0).getMatchedText());
 					if (fieldName.equals(CodeComment.NAME_CONTENT)) {
-						hints.add("Use '*' for wildcard match");
-						hints.add("Use '\\' to escape quotes");
+						hints.add("使用'*'进行模式匹配");
+						hints.add("使用'\\'进行字符转义");
 					}
 				}
 			}

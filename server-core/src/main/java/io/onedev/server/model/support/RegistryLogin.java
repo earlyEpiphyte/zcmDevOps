@@ -19,8 +19,8 @@ public class RegistryLogin implements Serializable {
 	
 	private String password;
 
-	@Editable(order=100, description="Specify registry url. Leave empty for official registry")
-	@NameOfEmptyValue("Default Registry")
+	@Editable(order=100,name="注册中心", description="指定注册中心。留空为官方注册中心")
+	@NameOfEmptyValue("默认注册中心")
 	public String getRegistryUrl() {
 		return registryUrl;
 	}
@@ -29,7 +29,7 @@ public class RegistryLogin implements Serializable {
 		this.registryUrl = registryUrl;
 	}
 
-	@Editable(order=200)
+	@Editable(order=200,name="用户名")
 	@NotEmpty
 	public String getUserName() {
 		return userName;
@@ -39,7 +39,7 @@ public class RegistryLogin implements Serializable {
 		this.userName = userName;
 	}
 
-	@Editable(order=300)
+	@Editable(order=300,name="密码")
 	@NotEmpty
 	@Password
 	public String getPassword() {

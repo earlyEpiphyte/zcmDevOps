@@ -20,7 +20,7 @@ public class CloseMilestoneAuthorization extends ActionAuthorization {
 	@Editable(order=100,name="里程碑名称", description="指定以空格分隔的里程碑名称. 使用 '*' 或者 '?' 用于通配符匹配. "
 			+ "以'-'为前缀来排除. 留空以匹配所有")
 	@Patterns(suggester = "suggestMilestones")
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	public String getMilestoneNames() {
 		return milestoneNames;
 	}

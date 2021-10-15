@@ -23,7 +23,7 @@ public class NamedCommitQuery implements NamedQuery {
 	public NamedCommitQuery() {
 	}
 
-	@Editable
+	@Editable(name="查询名称")
 	@NotEmpty
 	@Override
 	public String getName() {
@@ -34,9 +34,9 @@ public class NamedCommitQuery implements NamedQuery {
 		this.name = name;
 	}
 
-	@Editable
+	@Editable(name="查询语句")
 	@CommitQuery
-	@NameOfEmptyValue("All")
+	@NameOfEmptyValue("所有")
 	@Override
 	public String getQuery() {
 		return query;

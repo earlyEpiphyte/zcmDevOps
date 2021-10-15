@@ -206,10 +206,10 @@ public class BuildQueryBehavior extends ANTLRAssistBehavior {
 					String fieldName = BuildQuery.getValue(fieldElements.get(0).getMatchedText());
 					if (fieldName.equals(Build.NAME_PROJECT) || fieldName.equals(Build.NAME_VERSION)
 							|| fieldName.equals(Build.NAME_JOB)) {
-						hints.add("Use '*' for wildcard match");
-						hints.add("Use '\\' to escape quotes");
+						hints.add("使用'*'进行模式匹配");
+						hints.add("使用'\\'进行字符转义");
 					} else if (fieldName.equals(Build.NAME_BRANCH) || fieldName.equals(Build.NAME_TAG)) {
-						hints.add("Use '*' for wildcard match");
+						hints.add("使用'*'进行模式匹配");
 					}
 				}
 			}

@@ -39,7 +39,7 @@ public class MergeConfig {
 		} catch (IOException e) {
 			// ignore
 		}
-		// use defaults if branch can't be determined
+		// 使用默认s if branch can't be determined
 		return new MergeConfig();
 	}
 
