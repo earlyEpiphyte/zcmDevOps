@@ -54,15 +54,15 @@ public abstract class MergeConfirmPanel extends OperationConfirmPanel {
 		MergeStrategy mergeStrategy = getPullRequest().getMergeStrategy();
 		MergePreview mergePreview = getPullRequest().getMergePreview();
 		if (mergeStrategy == CREATE_MERGE_COMMIT) 
-			bean.setSummary("Merge pull request " + request.getNumberAndTitle());
+			bean.setSummary("合并拉取请求 " + request.getNumberAndTitle());
 		else if (mergeStrategy == SQUASH_SOURCE_BRANCH_COMMITS) 
-			bean.setSummary("Pull request " + request.getNumberAndTitle());
+			bean.setSummary("拉取请求 " + request.getNumberAndTitle());
 		else if (mergeStrategy == REBASE_SOURCE_BRANCH_COMMITS) 
 			description = "源分支提交将重新基于目标分支";
 		else if (mergePreview.getMergeCommitHash().equals(mergePreview.getHeadCommitHash())) 
 			description = "源分支提交将快速转发到目标分支";
 		else 
-			bean.setSummary("Merge pull request " + request.getNumberAndTitle());
+			bean.setSummary("合并拉取请求 " + request.getNumberAndTitle());
 		
 		getForm().add(new Label("description", description).setVisible(description != null));
 		

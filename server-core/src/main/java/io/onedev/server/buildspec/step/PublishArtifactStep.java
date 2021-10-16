@@ -18,15 +18,15 @@ import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 import io.onedev.server.web.editable.annotation.Patterns;
 
-@Editable(order=105, name="Publish Artifacts")
+@Editable(order=105, name="发布Artifacts")
 public class PublishArtifactStep extends ServerStep {
 
 	private static final long serialVersionUID = 1L;
 
 	private String artifacts;
 	
-	@Editable(order=100, description="Specify files to publish as job artifacts relative to "
-			+ "<a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>. Use * or ? for pattern match")
+	@Editable(order=100, description="指定要发布为相对于作业工作区的作业artifacts."
+			+ "使用 * 或 ? 用于模式匹配")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
 	@NotEmpty

@@ -790,9 +790,9 @@ public class ProjectBranchesPage extends ProjectPage {
 				super.onComponentTag(tag);
 				
 				if (ahead)
-					tag.put("title", "" + count + " commits ahead of base branch");
+					tag.put("title", "" + count + "次提交在基础分支之前");
 				else
-					tag.put("title", "" + count + " commits behind of base branch");
+					tag.put("title", "" + count + "次提交在基础分支之后");
 					
 				if (count == 0)
 					tag.setName("span");

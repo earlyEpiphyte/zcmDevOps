@@ -11,15 +11,15 @@ import io.onedev.server.model.PullRequest;
 import io.onedev.server.util.validation.annotation.CronExpression;
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=600, name="Cron schedule")
+@Editable(order=600, name="Cron计划")
 public class ScheduleTrigger extends JobTrigger {
 
 	private static final long serialVersionUID = 1L;
 
 	private String cronExpression;
 	
-	@Editable(order=100, description="Specify a <a target='_blank' href='http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html#format'>cron schedule</a> to "
-			+ "fire the job automatically. <b>Note:</b> this is only applicable to default branch")
+	@Editable(order=100, name="Cron表达式", description="指定一个注意：<a target='_blank' href='http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html#format'>cron 计划</a>"
+			+ "来自动触发作业. <b>注意:</b> 这只适用于默认分支")
 	@CronExpression
 	@NotEmpty
 	public String getCronExpression() {
@@ -47,7 +47,7 @@ public class ScheduleTrigger extends JobTrigger {
 
 				@Override
 				public String getDescription() {
-					return "Scheduled time reaches";
+					return "预定时间到达";
 				}
 				
 			};
@@ -58,7 +58,7 @@ public class ScheduleTrigger extends JobTrigger {
 
 	@Override
 	public String getTriggerDescription() {
-		return "Schedule at " + cronExpression;
+		return "计划在" + cronExpression;
 	}
 
 }

@@ -264,7 +264,7 @@ public class BuildSpec implements Serializable, Validatable {
 					else
 						location = "";
 
-					String errorMessage = String.format("Error validating imported %s (%s: %s, %serror message: %s)", 
+					String errorMessage = String.format("验证导入时出错 %s (%s: %s, %s错误信息: %s)", 
 							elementTypeName, elementTypeName, element.getName(), location, violation.getMessage());
 					context.buildConstraintViolationWithTemplate(errorMessage)
 							.addPropertyNode(PROP_IMPORTS)
@@ -294,7 +294,7 @@ public class BuildSpec implements Serializable, Validatable {
 		Set<String> jobNames = new HashSet<>();
 		for (Job job: jobs) {
 			if (!jobNames.add(job.getName())) {
-				context.buildConstraintViolationWithTemplate("Duplicate job name (" + job.getName() + ")")
+				context.buildConstraintViolationWithTemplate("重复的作业名称 (" + job.getName() + ")")
 						.addPropertyNode(PROP_JOBS).addConstraintViolation();
 				isValid = false;
 			}
@@ -302,7 +302,7 @@ public class BuildSpec implements Serializable, Validatable {
 		Set<String> serviceNames = new HashSet<>();
 		for (Service service: services) {
 			if (!serviceNames.add(service.getName())) {
-				context.buildConstraintViolationWithTemplate("Duplicate service name (" + service.getName() + ")")
+				context.buildConstraintViolationWithTemplate("重复的服务名称 (" + service.getName() + ")")
 						.addPropertyNode(PROP_SERVICES).addConstraintViolation();
 				isValid = false;
 			}
@@ -310,7 +310,7 @@ public class BuildSpec implements Serializable, Validatable {
 		Set<String> stepTemplateNames = new HashSet<>();
 		for (StepTemplate template: stepTemplates) {
 			if (!stepTemplateNames.add(template.getName())) {
-				context.buildConstraintViolationWithTemplate("Duplicate template name (" + template.getName() + ")")
+				context.buildConstraintViolationWithTemplate("重复的模板名称 (" + template.getName() + ")")
 						.addPropertyNode(PROP_STEP_TEMPLATES).addConstraintViolation();
 				isValid = false;
 			}
@@ -318,7 +318,7 @@ public class BuildSpec implements Serializable, Validatable {
 		Set<String> propertyNames = new HashSet<>();
 		for (Property property: properties) {
 			if (!propertyNames.add(property.getName())) {
-				context.buildConstraintViolationWithTemplate("Duplicate property name (" + property.getName() + ")")
+				context.buildConstraintViolationWithTemplate("重复的属性名称 (" + property.getName() + ")")
 							.addPropertyNode(PROP_PROPERTIES).addConstraintViolation();
 				isValid = false;
 			}
@@ -326,7 +326,7 @@ public class BuildSpec implements Serializable, Validatable {
 		Set<String> importProjectNames = new HashSet<>();
 		for (Import aImport: imports) {
 			if (!importProjectNames.add(aImport.getProjectName())) {
-				context.buildConstraintViolationWithTemplate("Duplicate import (" + aImport.getProjectName() + ")")
+				context.buildConstraintViolationWithTemplate("重复导入 (" + aImport.getProjectName() + ")")
 						.addPropertyNode(PROP_IMPORTS).addConstraintViolation();
 				isValid = false;
 			}
@@ -351,7 +351,7 @@ public class BuildSpec implements Serializable, Validatable {
 										.addConstraintViolation();
 							} else {
 								int importIndex = getImportIndex(template.getName(), it->it.getStepTemplateMap());
-								String errorMessage = String.format("Error validating imported step template (step template: %s, error message: %s)", 
+								String errorMessage = String.format("验证导入的步骤模板时出错 (步骤模板: %s, 错误信息: %s)", 
 											template.getName(), e.getMessage());
 								context.buildConstraintViolationWithTemplate(errorMessage)
 										.addPropertyNode(PROP_IMPORTS)
@@ -378,7 +378,7 @@ public class BuildSpec implements Serializable, Validatable {
 								.addConstraintViolation();
 					} else {
 						int importIndex = getImportIndex(job.getName(), it->it.getJobMap());
-						String errorMessage = String.format("Error validating imported job (job: %s, error message: %s)", 
+						String errorMessage = String.format("验证导入的作业时出错 (作业: %s, 错误信息: %s)", 
 								job.getName(), e.getMessage());
 						context.buildConstraintViolationWithTemplate(errorMessage)
 							.addPropertyNode(PROP_IMPORTS)
@@ -391,7 +391,7 @@ public class BuildSpec implements Serializable, Validatable {
 				
 				for (String serviceName: job.getRequiredServices()) {
 					if (!getServiceMap().containsKey(serviceName)) {
-						context.buildConstraintViolationWithTemplate("Undefined service (" + serviceName + ")")
+						context.buildConstraintViolationWithTemplate("未定义的服务 (" + serviceName + ")")
 								.addPropertyNode(PROP_JOBS)
 								.addPropertyNode(Job.PROP_REQUIRED_SERVICES)
 									.inIterable().atIndex(jobIndex)
@@ -416,7 +416,7 @@ public class BuildSpec implements Serializable, Validatable {
 										.addConstraintViolation();
 							} else {
 								int importIndex = getImportIndex(job.getName(), it->it.getJobMap());
-								String errorMessage = String.format("Error validating imported job (job: %s, location: steps[%d].templateName, error message: %s)", 
+								String errorMessage = String.format("验证导入的作业时出错 (作业: %s, 位置: steps[%d].templateName, 错误信息: %s)", 
 										job.getName(), stepIndex, e.getMessage());
 								context.buildConstraintViolationWithTemplate(errorMessage)
 										.addPropertyNode(PROP_IMPORTS)
@@ -440,7 +440,7 @@ public class BuildSpec implements Serializable, Validatable {
 						job.getPostBuildActions().get(actionIndex).validateWith(this, job);
 					} catch (Exception e) {
 						if (jobIndex != -1) {
-							String errorMessage = String.format("Error validating post build action (index: %d, error message: %s)", 
+							String errorMessage = String.format("验证构建后操作时出错 (索引: %d, 错误信息: %s)", 
 									actionIndex+1, e.getMessage());
 							context.buildConstraintViolationWithTemplate(errorMessage)
 									.addPropertyNode(PROP_JOBS)
@@ -449,7 +449,7 @@ public class BuildSpec implements Serializable, Validatable {
 									.addConstraintViolation();
 						} else {
 							int importIndex = getImportIndex(job.getName(), it->it.getJobMap());
-							String errorMessage = String.format("Error validating imported job (job: %s, error message: %s)", 
+							String errorMessage = String.format("验证导入的作业时出错 (作业: %s, 错误信息: %s)", 
 									job.getName(), e.getMessage());
 							context.buildConstraintViolationWithTemplate(errorMessage)
 									.addPropertyNode(PROP_IMPORTS)
@@ -471,7 +471,7 @@ public class BuildSpec implements Serializable, Validatable {
 	private void checkTemplateUsages(UseTemplateStep step, List<String> templateChain) {
 		if(templateChain.contains(step.getTemplateName())) {
 			templateChain.add(step.getTemplateName());
-			throw new ValidationException("Circular template usages (" + templateChain + ")");
+			throw new ValidationException("循环模板用法 (" + templateChain + ")");
 		} else {
 			StepTemplate template = getStepTemplateMap().get(step.getTemplateName());
 			if (template != null) {
@@ -479,7 +479,7 @@ public class BuildSpec implements Serializable, Validatable {
 					try {
 						ParamUtils.validateParams(template.getParamSpecs(), step.getParams());
 					} catch (Exception e) {
-						throw new ValidationException(String.format("Error validating step template parameters (%s)", e.getMessage()));
+						throw new ValidationException(String.format("验证步骤模板参数时出错 (%s)", e.getMessage()));
 					}
 				}
 				templateChain.add(step.getTemplateName());
@@ -488,7 +488,7 @@ public class BuildSpec implements Serializable, Validatable {
 						checkTemplateUsages((UseTemplateStep) templateStep, new ArrayList<>(templateChain));
 				}
 			} else if (templateChain.isEmpty()) {
-				throw new ValidationException("Step template not found (" + step.getTemplateName() + ")");
+				throw new ValidationException("未找到步骤模板 (" + step.getTemplateName() + ")");
 			}
 		}
 	}
@@ -497,7 +497,7 @@ public class BuildSpec implements Serializable, Validatable {
 		for (JobDependency dependency: job.getJobDependencies()) {
 			if (dependencyChain.contains(dependency.getJobName())) {
 				dependencyChain.add(dependency.getJobName());
-				throw new ValidationException("Circular dependencies (" + dependencyChain + ")");
+				throw new ValidationException("循环依赖 (" + dependencyChain + ")");
 			} else {
 				Job dependencyJob = getJobMap().get(dependency.getJobName());
 				if (dependencyJob != null) {
@@ -505,7 +505,7 @@ public class BuildSpec implements Serializable, Validatable {
 						try {
 							ParamUtils.validateParams(dependencyJob.getParamSpecs(), dependency.getJobParams());
 						} catch (ValidationException e) {
-							String message = String.format("Error validating dependency job parameters (dependency job: %s, error message: %s)", 
+							String message = String.format("验证依赖作业参数时出错 (依赖作业: %s, 错误信息: %s)", 
 									dependencyJob.getName(), e.getMessage());
 							throw new ValidationException(message);
 						}
@@ -514,7 +514,7 @@ public class BuildSpec implements Serializable, Validatable {
 					newDependencyChain.add(dependency.getJobName());
 					checkDependencies(dependencyJob, newDependencyChain);
 				} else if (dependencyChain.isEmpty()) {
-					throw new ValidationException("Dependency job not found (" + dependency.getJobName() + ")");
+					throw new ValidationException("找不到依赖作业 (" + dependency.getJobName() + ")");
 				}
 			}
 		}

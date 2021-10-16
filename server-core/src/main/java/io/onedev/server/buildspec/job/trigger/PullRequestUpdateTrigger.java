@@ -7,7 +7,7 @@ import io.onedev.server.event.pullrequest.PullRequestMergePreviewCalculated;
 import io.onedev.server.model.PullRequest;
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=300, name="Pull request open or update", description="Job will run on the merge commit of target branch and source branch")
+@Editable(order=300, name="打开或更新拉取请求", description="作业将运行在目标分支和源分支的合并提交上")
 public class PullRequestUpdateTrigger extends PullRequestTrigger {
 
 	private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class PullRequestUpdateTrigger extends PullRequestTrigger {
 
 	@Override
 	public String getTriggerDescription() {
-		return getTriggerDescription("open/update");
+		return getTriggerDescription("打开/更新");
 	}
 
 }

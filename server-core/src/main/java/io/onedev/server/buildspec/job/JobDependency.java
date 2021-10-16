@@ -58,7 +58,7 @@ public class JobDependency implements Serializable {
 		this.requireSuccessful = requireSuccessful;
 	}
 
-	@Editable(order=200, name="Job Parameters")
+	@Editable(order=200, name="作业参数")
 	@ParamSpecProvider("getParamSpecs")
 	@VariableOption(withBuildVersion=false, withFile=false)
 	@OmitName
@@ -70,11 +70,11 @@ public class JobDependency implements Serializable {
 		this.jobParams = jobParams;
 	}
 	
-	@Editable(order=300, name="检索的工件", description="（可选）指定要从依赖项检索到 "
-			+ "<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a> 的工件. 留空以不检索任何工件")
+	@Editable(order=300, name="检索的artifacts", description="（可选）指定要从依赖项检索到 "
+			+ "<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a> 的工件. 空白以不检索任何工件")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
-	@NameOfEmptyValue("Do not retrieve")
+	@NameOfEmptyValue("不检索")
 	public String getArtifacts() {
 		return artifacts;
 	}

@@ -31,7 +31,7 @@ import io.onedev.server.web.editable.annotation.ParamSpecProvider;
 import io.onedev.server.web.editable.annotation.VariableOption;
 import io.onedev.server.web.util.WicketUtils;
 
-@Editable(name="Run job", order=100)
+@Editable(name="运行作业", order=100)
 public class RunJobAction extends PostBuildAction {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +40,7 @@ public class RunJobAction extends PostBuildAction {
 	
 	private List<ParamSupply> jobParams = new ArrayList<>();
 	
-	@Editable(order=900, name="Job")
+	@Editable(order=900, name="作业")
 	@ChoiceProvider("getJobChoices")
 	@NotEmpty
 	public String getJobName() {

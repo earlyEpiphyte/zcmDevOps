@@ -147,8 +147,8 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 				Long requestNumber = Long.valueOf(requestNumberString);
 				PullRequest request = getPullRequestManager().find(getProject(), requestNumber);
 				if (request == null) {
-					throw new EntityNotFoundException("Unable to find pull request #" 
-							+ requestNumber + " in project " + getProject());
+					throw new EntityNotFoundException("无法在项目"
+							+ getProject()+"中找到拉取请求 #"+requestNumber);
 				}
 				else if (!request.getTargetProject().equals(getProject()))
 					throw new RestartResponseException(getPageClass(), paramsOf(request));
@@ -802,7 +802,7 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 						public void onClick() {
 							getPullRequestManager().check(getPullRequest());
 							if (getPullRequest().getCheckError() == null) 
-								Session.get().success("Pull request is synchronized");
+								Session.get().success("拉取请求已同步");
 						}
 						
 					});
@@ -1134,7 +1134,7 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 							result.setCommit(request.getLatestUpdate().getHeadCommitHash());
 							review.setResult(result);
 							OneDev.getInstance(PullRequestReviewManager.class).review(review);
-							Session.get().success("Approved");
+							Session.get().success("已同意");
 							return true;
 						} else {
 							return false; 
@@ -1143,7 +1143,7 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 					
 					@Override
 					protected String getTitle() {
-						return "Confirm Approve";
+						return "确认同意";
 					}
 				};
 			}

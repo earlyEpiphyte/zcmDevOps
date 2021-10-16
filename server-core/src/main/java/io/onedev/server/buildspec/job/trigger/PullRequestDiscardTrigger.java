@@ -7,7 +7,7 @@ import io.onedev.server.event.pullrequest.PullRequestChangeEvent;
 import io.onedev.server.model.support.pullrequest.changedata.PullRequestDiscardData;
 import io.onedev.server.web.editable.annotation.Editable;
 
-@Editable(order=320, name="Pull request discard", description="Job will run on head commit of target branch")
+@Editable(order=320, name="丢弃拉取请求", description="作业将在目标分支的头部提交上运行")
 public class PullRequestDiscardTrigger extends PullRequestTrigger {
 
 	private static final long serialVersionUID = 1L;
@@ -24,7 +24,7 @@ public class PullRequestDiscardTrigger extends PullRequestTrigger {
 
 	@Override
 	public String getTriggerDescription() {
-		return getTriggerDescription("discard");
+		return getTriggerDescription("丢弃");
 	}
 
 }

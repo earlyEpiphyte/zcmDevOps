@@ -24,7 +24,7 @@ public abstract class Step implements Serializable {
 	
 	private String name;
 
-	@Editable(order=10)
+	@Editable(order=10, name="名称")
 	@NotEmpty
 	public String getName() {
 		return name;
@@ -34,7 +34,7 @@ public abstract class Step implements Serializable {
 		this.name = name;
 	}
 
-	@Editable(order=10000, description="在什么条件下应该运行这一步")
+	@Editable(order=10000,name="条件",description="在什么条件下应该运行这一步")
 	@NotNull
 	public ExecuteCondition getCondition() {
 		return condition;

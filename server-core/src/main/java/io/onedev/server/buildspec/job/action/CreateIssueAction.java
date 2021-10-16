@@ -30,7 +30,7 @@ import io.onedev.server.web.editable.annotation.Interpolative;
 import io.onedev.server.web.editable.annotation.Multiline;
 import io.onedev.server.web.editable.annotation.OmitName;
 
-@Editable(name="Create issue", order=300)
+@Editable(name="创建问题", order=300)
 public class CreateIssueAction extends PostBuildAction {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class CreateIssueAction extends PostBuildAction {
 	
 	private List<FieldSupply> issueFields = new ArrayList<>();
 	
-	@Editable(order=1000, name="Title", group="Issue Detail", description="Specify title of the issue")
+	@Editable(order=1000, name="标题", group="问题详情", description="指定问题的标题")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getIssueTitle() {
@@ -52,7 +52,7 @@ public class CreateIssueAction extends PostBuildAction {
 		this.issueTitle = issueTitle;
 	}
 	
-	@Editable(order=1050, name="Description", group="Issue Detail", description="Optionally specify description of the issue")
+	@Editable(order=1050, name="描述", group="问题详情", description="（可选）指定问题的描述")
 	@Multiline
 	@Interpolative(variableSuggester="suggestVariables")
 	public String getIssueDescription() {
@@ -68,7 +68,7 @@ public class CreateIssueAction extends PostBuildAction {
 		return BuildSpec.suggestVariables(matchWith, true, false);
 	}
 	
-	@Editable(order=1100, group="Issue Detail")
+	@Editable(order=1100, group="问题详情")
 	@FieldNamesProvider("getFieldNames")
 	@OmitName
 	@Valid
@@ -115,7 +115,7 @@ public class CreateIssueAction extends PostBuildAction {
 
 	@Override
 	public String getDescription() {
-		return "Create issue";
+		return "创建问题";
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class CreateIssueAction extends PostBuildAction {
 		try {
 			FieldUtils.validateFields(issueSetting.getFieldSpecMap(getFieldNames()), issueFields);
 		} catch (ValidationException e) {
-			throw new ValidationException("Error validating issue fields: " + e.getMessage());
+			throw new ValidationException("验证问题字段时出错: " + e.getMessage());
 		}
 		
 	}

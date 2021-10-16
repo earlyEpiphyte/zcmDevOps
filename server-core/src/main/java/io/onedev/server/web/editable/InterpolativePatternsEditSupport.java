@@ -66,7 +66,7 @@ public class InterpolativePatternsEditSupport implements EditSupport {
 							@Override
 							protected List<String> getHints(TerminalExpect terminalExpect) {
 								return Lists.newArrayList(
-										"Pattern containing spaces or starting with dash needs to be quoted",
+										"需要引用包含空格或以破折号开头的模式",
 										patterns.path()? "使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>。'-'开头表示排除。": "使用 '*' 或者 '?' 用于 路径通配符匹配。'-'开头表示排除。");
 							}
 							
@@ -75,8 +75,7 @@ public class InterpolativePatternsEditSupport implements EditSupport {
         			
         		};
         	} else {
-	    		throw new RuntimeException("Annotation 'Interpolative' and 'Patterns' should be applied to property "
-	    				+ "of type 'String'");
+	    		throw new RuntimeException("注释“Interpolative”和“Patterns”应应用于“String”类型的属性");
         	}
         } else {
             return null;

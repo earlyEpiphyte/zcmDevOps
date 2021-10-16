@@ -31,7 +31,7 @@ import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 import io.onedev.server.web.editable.annotation.Patterns;
 
-@Editable(order=310, name="Publish Checkstyle Report")
+@Editable(order=310, name="发布Checkstyle报告")
 public class PublishCheckstyleReportStep extends PublishReportStep {
 
 	private static final long serialVersionUID = 1L;
@@ -40,10 +40,10 @@ public class PublishCheckstyleReportStep extends PublishReportStep {
 	
 	public static final String VIOLATION_FILES = "violation-files";
 	
-	@Editable(order=100, description="Specify checkstyle result xml file relative to <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>, "
-			+ "for instance, <tt>target/checkstyle-result.xml</tt>. "
-			+ "Refer to <a href='https://checkstyle.org/'>checkstyle documentation</a> "
-			+ "on how to generate the result xml file. Use * or ? for pattern match")
+	@Editable(order=100, name="文件模式", description="指定与作业工作区相关的 checkstyle 结果 xml 文件, "
+			+ "例如, <tt>target/checkstyle-result.xml</tt>. "
+			+ "有关如何生成结果 xml 文件，请参阅<a href='https://checkstyle.org/'>checkstyle 文档</a> "
+			+ "使用 * 或 ? 用于模式匹配")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
 	@NotEmpty
@@ -80,7 +80,7 @@ public class PublishCheckstyleReportStep extends PublishReportStep {
 				
 				boolean hasReports = false;
 				for (File file: getPatternSet().listFiles(filesDir)) {
-					logger.log("Processing checkstyle report: " + file.getAbsolutePath().substring(baseLen));
+					logger.log("处理checkstyle报告: " + file.getAbsolutePath().substring(baseLen));
 					Document doc = reader.read(file);
 					for (Element fileElement: doc.getRootElement().elements("file")) {
 						String filePath = fileElement.attributeValue("name");

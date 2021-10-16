@@ -32,7 +32,7 @@ import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 import io.onedev.server.web.editable.annotation.Patterns;
 
-@Editable(order=410, name="Publish Clover Coverage Report")
+@Editable(order=410, name="发布Clover覆盖报告")
 public class PublishCloverReportStep extends PublishReportStep {
 
 	private static final long serialVersionUID = 1L;
@@ -41,10 +41,10 @@ public class PublishCloverReportStep extends PublishReportStep {
 	
 	public static final String TEST_COUNTS_DIR = "test-count";
 	
-	@Editable(order=100, description="Specify clover coverage xml report file relative to <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>, "
-			+ "for instance, <tt>target/site/clover/clover.xml</tt>. "
-			+ "Refer to <a href='https://openclover.org/documentation'>OpenClover documentation</a> "
-			+ "on how to generate clover xml file. Use * or ? for pattern match")
+	@Editable(order=100,name="文件模式",description="指定与作业工作区相关的clover覆盖率 xml 报告文件, "
+			+ "例如, <tt>target/site/clover/clover.xml</tt>. "
+			+ "有关如何生成clover xml 文件的信息，请参阅<a href='https://openclover.org/documentation'>OpenClover 文档.</a> "
+			+ "使用 * 或 ? 用于模式匹配.")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
 	@NotEmpty
@@ -89,7 +89,7 @@ public class PublishCloverReportStep extends PublishReportStep {
 				List<PackageCoverageInfo> packageCoverages = new ArrayList<>();
 				
 				for (File file: getPatternSet().listFiles(filesDir)) {
-					logger.log("Processing clover report: " + file.getAbsolutePath().substring(baseLen));
+					logger.log("处理clover报告: " + file.getAbsolutePath().substring(baseLen));
 					Document doc = reader.read(file);
 					for (Element projectElement: doc.getRootElement().elements("project")) {
 						Element metricsElement = projectElement.element("metrics");

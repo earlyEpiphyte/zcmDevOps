@@ -794,7 +794,7 @@ public class ProjectBlobPage extends ProjectPage implements BlobRenderContext, S
 
 						@Override
 						public IModel<?> getBody() {
-							return Model.of("adding " + BuildSpec.BLOB_PATH);
+							return Model.of("添加" + BuildSpec.BLOB_PATH);
 						}
 						
 					});

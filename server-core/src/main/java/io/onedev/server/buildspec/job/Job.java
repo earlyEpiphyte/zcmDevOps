@@ -160,7 +160,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		this.triggers = triggers;
 	}
 
-	@Editable(name="作业依赖", order=9110, group="依赖和服务", description="作业依赖性决定了运行不同作业时的顺序和并发性。您还可以指定要从上游作业中检索的工件")
+	@Editable(name="作业依赖", order=9110, group="依赖和服务", description="作业依赖性决定了运行不同作业时的顺序和并发性。您还可以指定要从上游作业中检索的artifacts")
 	@Valid
 	public List<JobDependency> getJobDependencies() {
 		return jobDependencies;

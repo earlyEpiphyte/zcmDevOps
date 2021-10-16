@@ -13,7 +13,7 @@ public class SpecifiedValue implements ValueProvider {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String DISPLAY_NAME = "Use specified value";
+	public static final String DISPLAY_NAME = "使用指定值";
 	
 	public static final String SECRET_DISPLAY_NAME = "Use specified job secret";
 

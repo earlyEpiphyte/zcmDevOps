@@ -30,7 +30,7 @@ import io.onedev.server.web.editable.annotation.OmitName;
 import io.onedev.server.web.editable.annotation.ParamSpecProvider;
 import io.onedev.server.web.editable.annotation.VariableOption;
 
-@Editable(order=10000, name="Use Step Template", description="Step to use specified template")
+@Editable(order=10000, name="使用步骤模板", description="使用指定模板的步骤")
 public class UseTemplateStep extends Step {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class UseTemplateStep extends Step {
 	
 	private List<ParamSupply> params = new ArrayList<>();
 
-	@Editable(order=100)
+	@Editable(order=100,name="模板名称")
 	@ChoiceProvider("getTemplateChoices")
 	@NotEmpty
 	public String getTemplateName() {

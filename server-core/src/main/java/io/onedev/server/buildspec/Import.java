@@ -123,25 +123,25 @@ public class Import implements Serializable, Validatable {
 			if (canReadCode(project)) {
 				RevCommit commit = project.getRevCommit(tag, false);
 				if (commit == null) {
-					String errorMessage = String.format("Unable to find tag to import build spec (project: %s, tag: %s)", 
+					String errorMessage = String.format("无法找到导入构建规范的标签 (项目: %s, 标签: %s)", 
 							projectName, tag);
 					throw new ExplicitException(errorMessage);
 				}
 				try {
 					buildSpec = project.getBuildSpec(commit);
 				} catch (BuildSpecParseException e) {
-					String errorMessage = String.format("Malformed build spec (project: %s, tag: %s)", 
+					String errorMessage = String.format("格式错误的构建规范 (项目: %s, 标签: %s)", 
 							projectName, tag);
 					throw new ExplicitException(errorMessage);
 				}
 				if (buildSpec == null) {
-					String errorMessage = String.format("Build spec not defined (project: %s, tag: %s)", 
+					String errorMessage = String.format("未定义构建规范 (项目: %s, 标签: %s)", 
 							projectName, tag);
 					throw new ExplicitException(errorMessage);
 				}
 			} else {
-				String errorMessage = String.format("Unable to read build spec. Make sure default role of the project "
-						+ "has permission to read code (project: %s, tag: %s)", projectName, tag);
+				String errorMessage = String.format("无法读取构建规范. 确保项目的默认角色具有读取代码的权限"
+						+ "(项目: %s, 标签: %s)", projectName, tag);
 				throw new ExplicitException(errorMessage);
 			}
 			
@@ -154,7 +154,7 @@ public class Import implements Serializable, Validatable {
 		if (importChain.get().contains(projectName)) {
 			List<String> circular = new ArrayList<>(importChain.get());
 			circular.add(projectName);
-			String errorMessage = "Circular build spec imports (" + circular + ")";
+			String errorMessage = "循环构建规范导入 (" + circular + ")";
 			context.disableDefaultConstraintViolation();
 			context.buildConstraintViolationWithTemplate(errorMessage).addConstraintViolation();
 			return false;
@@ -168,7 +168,7 @@ public class Import implements Serializable, Validatable {
 						String location = "imports[" + i + "]";
 						if (violation.getPropertyPath().toString().length() != 0)
 							location += "." + violation.getPropertyPath();
-			    		String message = String.format("Error validating imported build spec (project: %s, location: %s, message: %s)", 
+			    		String message = String.format("验证导入的构建规范时出错 (项目: %s, 位置: %s, 信息: %s)", 
 			    				projectName, location, violation.getMessage());
 			    		throw new ValidationException(message);
 					}
@@ -187,7 +187,7 @@ public class Import implements Serializable, Validatable {
 	public Project getProject() {
 		Project project = OneDev.getInstance(ProjectManager.class).find(projectName);
 		if (project == null) 
-			throw new ExplicitException("Unable to find project to import build spec (" + projectName + ")");
+			throw new ExplicitException("无法找到导入构建规范的项目 (" + projectName + ")");
 		else 
 			return project;
 	}

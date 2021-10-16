@@ -21,7 +21,7 @@ import io.onedev.server.web.editable.annotation.NameOfEmptyValue;
 import io.onedev.server.web.editable.annotation.Patterns;
 import io.onedev.server.web.util.SuggestionUtils;
 
-@Editable(order=100, name="Branch update")
+@Editable(order=100, name="更新分支")
 public class BranchUpdateTrigger extends JobTrigger {
 
 	private static final long serialVersionUID = 1L;
@@ -30,11 +30,11 @@ public class BranchUpdateTrigger extends JobTrigger {
 	
 	private String paths;
 	
-	@Editable(name="Branches", order=100, description="Optionally specify space-separated branches "
-			+ "to check. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude. Leave empty to match all branches")
+	@Editable(name="分支", order=100, description="可选择指定以空格分隔的分支进行检查. "
+			+ "使用“**”、“*”或“?” 用于<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "以“-”为前缀来排除. 空白以匹配所有分支")
 	@Patterns(suggester = "suggestBranches", path=true)
-	@NameOfEmptyValue("Any branch")
+	@NameOfEmptyValue("任何分支")
 	public String getBranches() {
 		return branches;
 	}
@@ -48,11 +48,12 @@ public class BranchUpdateTrigger extends JobTrigger {
 		return SuggestionUtils.suggestBranches(Project.get(), matchWith);
 	}
 	
-	@Editable(name="Touched Files", order=200, 
-			description="Optionally specify space-separated files to check. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-					+ "Prefix with '-' to exclude. Leave empty to match all files")
+	@Editable(name="文件", order=200, 
+			description="可选择指定以空格分隔的文件进行检查. "
+					+ "使用“**”、“*”或“?” 用于<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+					+ "以“-”为前缀来排除. 空白以匹配所有文件")
 	@Patterns(suggester = "getPathSuggestions", path=true)
-	@NameOfEmptyValue("Any file")
+	@NameOfEmptyValue("任何文件")
 	public String getPaths() {
 		return paths;
 	}
@@ -111,7 +112,7 @@ public class BranchUpdateTrigger extends JobTrigger {
 
 					@Override
 					public String getDescription() {
-						return "Branch '" + updatedBranch + "' is updated";
+						return "分支'" + updatedBranch + "'已更新";
 					}
 					
 				};
@@ -124,13 +125,13 @@ public class BranchUpdateTrigger extends JobTrigger {
 	public String getTriggerDescription() {
 		String description;
 		if (getBranches() != null && getPaths() != null)
-			description = String.format("When update branches '%s' and touch files '%s'", getBranches(), getPaths());
+			description = String.format("当更新分支'%s'和文件'%s'", getBranches(), getPaths());
 		else if (getBranches() != null)
-			description = String.format("When update branches '%s'", getBranches());
+			description = String.format("当更新分支'%s'", getBranches());
 		else if (getPaths() != null)
-			description = String.format("When touch files '%s'", getPaths());
+			description = String.format("当更新文件'%s'", getPaths());
 		else
-			description = "When update branches";
+			description = "当更新分支";
 		return description;
 	}
 

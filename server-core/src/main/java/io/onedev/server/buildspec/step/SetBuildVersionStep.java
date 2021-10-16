@@ -22,14 +22,14 @@ import io.onedev.server.util.SimpleLogger;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 
-@Editable(order=20, name="Set Build Version")
+@Editable(order=20, name="设置构建版本")
 public class SetBuildVersionStep extends ServerStep {
 
 	private static final long serialVersionUID = 1L;
 
 	private String buildVersion;
 
-	@Editable(order=100)
+	@Editable(order=100,name="构建版本")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getBuildVersion() {

@@ -19,14 +19,14 @@ import io.onedev.server.util.SimpleLogger;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 
-@Editable(name="Close Milestone", order=40)
+@Editable(name="关闭里程碑", order=40)
 public class CloseMilestoneStep extends ServerStep {
 
 	private static final long serialVersionUID = 1L;
 	
 	private String milestoneName;
 	
-	@Editable(order=1000, description="指定里程碑的名称")
+	@Editable(order=1000, name="里程碑名称",description="指定里程碑的名称")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getMilestoneName() {

@@ -18,7 +18,7 @@ import io.onedev.server.util.SimpleLogger;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 
-@Editable(order=110, name="Publish Markdown Report")
+@Editable(order=110, name="发布Markdown报告")
 public class PublishMarkdownReportStep extends PublishReportStep {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +29,7 @@ public class PublishMarkdownReportStep extends PublishReportStep {
 	
 	private String startPage;
 	
-	@Editable(order=1100, description="Specify start page of the report relative to <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>, for instance: <tt>manual/index.md</tt>")
+	@Editable(order=1100, name="起始页",description="指定与作业工作区相关的报告的起始页, 例如: <tt>manual/index.md</tt>")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getStartPage() {
@@ -69,7 +69,7 @@ public class PublishMarkdownReportStep extends PublishReportStep {
 					}
 					
 				} else {
-					logger.log("WARNING: Markdown report start page not found: " + startPage.getAbsolutePath());
+					logger.log("WARNING: 未找到Markdown报告起始页: " + startPage.getAbsolutePath());
 				}
 				return null;
 			}

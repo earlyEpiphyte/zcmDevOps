@@ -101,7 +101,7 @@ public class ProjectDependency implements Serializable {
 			return new ArrayList<>();
 	}
 
-	@Editable(order=400, name="检索的工件", description="指定要检索到<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a>的工件")
+	@Editable(order=400, name="检索的artifacts", description="指定要检索到<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a>的工件")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(suggester="suggestArtifacts", path=true)
 	@NotEmpty

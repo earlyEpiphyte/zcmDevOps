@@ -26,11 +26,10 @@ public abstract class PullRequestTrigger extends JobTrigger {
 	
 	private String paths;
 	
-	@Editable(name="Target Branches", order=100, description="Optionally specify space-separated "
-			+ "target branches of the pull requests to check. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-			+ "Prefix with '-' to exclude. Leave empty to match all branches")
+	@Editable(name="目标分支", order=100, description="（可选）指定要检查的拉取请求的以空格分隔的目标分支. 使用“**”、“*”或“?” 对于路径通配符匹配."
+			+ "以“-”为前缀来排除.空白以匹配所有分支")
 	@Patterns(suggester = "suggestBranches", path=true)
-	@NameOfEmptyValue("Any branch")
+	@NameOfEmptyValue("任何分支")
 	public String getBranches() {
 		return branches;
 	}
@@ -44,11 +43,11 @@ public abstract class PullRequestTrigger extends JobTrigger {
 		return SuggestionUtils.suggestBranches(Project.get(), matchWith);
 	}
 	
-	@Editable(name="Touched Files", order=200, 
-			description="Optionally specify space-separated files to check. Use '**', '*' or '?' for <a href='$docRoot/pages/path-wildcard.md' target='_blank'>path wildcard match</a>. "
-					+ "Prefix with '-' to exclude. Leave empty to match all files")
+	@Editable(name="文件", order=200, 
+			description="（可选）指定要检查的以空格分隔的文件.使用“**”、“*”或“?” 对于路径通配符匹配."
+					+ "以“-”为前缀来排除.空白以匹配所有分支")
 	@Patterns(suggester = "getPathSuggestions", path=true)
-	@NameOfEmptyValue("Any file")
+	@NameOfEmptyValue("任何文件")
 	public String getPaths() {
 		return paths;
 	}
@@ -98,7 +97,7 @@ public abstract class PullRequestTrigger extends JobTrigger {
 
 				@Override
 				public String getDescription() {
-					return "Pull request #" + request.getNumber() + " is opened/updated";
+					return "拉取请求#" + request.getNumber() + "已打开/更新";
 				}
 				
 			};
@@ -109,13 +108,13 @@ public abstract class PullRequestTrigger extends JobTrigger {
 	protected String getTriggerDescription(String action) {
 		String description;
 		if (getBranches() != null && getPaths() != null)
-			description = String.format("When " + action + " pull requests targeting branches '%s' and touching files '%s'", getBranches(), getPaths());
+			description = String.format("当" + action + "拉取请求目标分支'%s'和文件'%s'", getBranches(), getPaths());
 		else if (getBranches() != null)
-			description = String.format("When " + action + " pull requests targeting branches '%s'", getBranches());
+			description = String.format("当" + action + "拉取请求目标分支'%s'", getBranches());
 		else if (getPaths() != null)
-			description = String.format("When " + action + " pull requests touching files '%s'", getPaths());
+			description = String.format("当" + action + "拉取请求文件'%s'", getPaths());
 		else
-			description = "When " + action + " pull requests";
+			description = "当" + action + "拉取请求";
 		return description;
 	}
 

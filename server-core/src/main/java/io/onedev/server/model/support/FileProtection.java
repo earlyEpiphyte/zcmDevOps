@@ -77,7 +77,7 @@ public class FileProtection implements Serializable, Validatable {
 	
 	@Editable(order=500, name="所需的构建", description="可选")
 	@JobChoice
-	@NameOfEmptyValue("No any")
+	@NameOfEmptyValue("没有")
 	public List<String> getJobNames() {
 		return jobNames;
 	}

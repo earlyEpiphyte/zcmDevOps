@@ -38,12 +38,11 @@ public abstract class JobTrigger implements Serializable {
 	
 	private List<ParamSupply> params = new ArrayList<>();
 
-	@Editable(name="Applicable Projects", order=900, description="Optionally specify space-separated projects "
-			+ "applicable for this trigger. This is useful for instance when you want to prevent "
-			+ "the job from being triggered in forked projects. Use '*' or '?' for wildcard match. "
-			+ "Prefix with '-' to exclude. Leave empty to match all projects")
+	@Editable(name="适用项目", order=900, description="（可选）指定适用于此触发器的以空格分隔的项目. "
+			+ "例如，当您想防止在forked项目中触发作业时，这很有用. 使用“*”或“?” 通配符匹配. "
+			+ "以“-”为前缀来排除. 空白以匹配所有项目")
 	@Patterns(suggester="suggestProjects")
-	@NameOfEmptyValue("Any project")
+	@NameOfEmptyValue("任何项目")
 	public String getProjects() {
 		return projects;
 	}
@@ -57,7 +56,7 @@ public abstract class JobTrigger implements Serializable {
 		return SuggestionUtils.suggestProjects(matchWith);
 	}
 
-	@Editable(name="Job Parameters", order=1000)
+	@Editable(name="作业参数", order=1000)
 	@ParamSpecProvider("getParamSpecs")
 	@VariableOption(withBuildVersion=false, withFile=false)
 	@OmitName
@@ -95,7 +94,7 @@ public abstract class JobTrigger implements Serializable {
 	public String getDescription() {
 		String description = getTriggerDescription();
 		if (projects != null)
-			description += " in projects '" + projects + "'";
+			description += " 在项目'" + projects + "'中";
 		return description;
 	}
 

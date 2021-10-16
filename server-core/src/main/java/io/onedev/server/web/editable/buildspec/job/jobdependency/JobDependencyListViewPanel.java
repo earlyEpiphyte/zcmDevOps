@@ -57,7 +57,7 @@ class JobDependencyListViewPanel extends Panel {
 			
 		});		
 		
-		columns.add(new AbstractColumn<JobDependency, Void>(Model.of("#Params")) {
+		columns.add(new AbstractColumn<JobDependency, Void>(Model.of("#参数")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<JobDependency>> cellItem, String componentId, IModel<JobDependency> rowModel) {

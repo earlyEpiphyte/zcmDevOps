@@ -131,7 +131,7 @@ class JobTriggerListEditPanel extends PropertyEditor<List<Serializable>> {
 			}
 		});		
 		
-		columns.add(new AbstractColumn<JobTrigger, Void>(Model.of("#Params")) {
+		columns.add(new AbstractColumn<JobTrigger, Void>(Model.of("#参数")) {
 
 			@Override
 			public void populateItem(Item<ICellPopulator<JobTrigger>> cellItem, String componentId, IModel<JobTrigger> rowModel) {

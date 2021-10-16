@@ -27,15 +27,15 @@ import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 import io.onedev.server.web.editable.annotation.Patterns;
 
-@Editable(order=300, name="Publish Jest Test Report")
+@Editable(order=300, name="发布Jest测试报告")
 public class PublishJestTestReportStep extends PublishReportStep {
 
 	private static final long serialVersionUID = 1L;
 	
 	public static final String DIR = "jest-reports";
 	
-	@Editable(order=100, description="Specify Jest test result file in json format relative to <a href='$docRoot/pages/concepts.md#job-workspace'>job workspace</a>. "
-			+ "This file can be generated via Jest option <tt>'--json'</tt> and <tt>'--outputFile'</tt>. Use * or ? for pattern match")
+	@Editable(order=100,name="文件模式",description="以相对于作业工作空间的json格式指定Jest测试结果文件. "
+			+ "这个文件可以通过 Jest 选项生成 <tt>'--json'</tt> 和 <tt>'--outputFile'</tt>. 使用 * 或 ? 用于模式匹配")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
 	@NotEmpty
@@ -67,7 +67,7 @@ public class PublishJestTestReportStep extends PublishReportStep {
 				Collection<JsonNode> rootNodes = new ArrayList<>();
 				int baseLen = filesDir.getAbsolutePath().length()+1;
 				for (File file: filesDir.listFiles()) {
-					logger.log("Processing jest test report: " + file.getAbsolutePath().substring(baseLen));
+					logger.log("处理jest测试报告: " + file.getAbsolutePath().substring(baseLen));
 					try {
 						rootNodes.add(mapper.readTree(file));
 					} catch (Exception e) {

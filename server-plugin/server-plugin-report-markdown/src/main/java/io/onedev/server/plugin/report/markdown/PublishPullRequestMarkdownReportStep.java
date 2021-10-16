@@ -18,8 +18,7 @@ import io.onedev.server.util.SimpleLogger;
 import io.onedev.server.web.editable.annotation.Editable;
 import io.onedev.server.web.editable.annotation.Interpolative;
 
-@Editable(order=120, name="Publish Markdown Report (for Pull Request)", description="This report will be displayed in pull request overview "
-		+ "page if the build belongs to a pull request")
+@Editable(order=120, name="发布Markdown报告(用于拉取请求)", description="如果构建属于拉取请求，此报告将显示在拉取请求概览页面中")
 public class PublishPullRequestMarkdownReportStep extends PublishReportStep {
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +29,7 @@ public class PublishPullRequestMarkdownReportStep extends PublishReportStep {
 
 	private String file;
 	
-	@Editable(order=1100, description="Specify markdown file relative to repository workspace to publish")
+	@Editable(order=1100, name="文件",description="指定相对于要发布的存储库工作区的 Markdown 文件")
 	@Interpolative(variableSuggester="suggestVariables")
 	@NotEmpty
 	public String getFile() {
@@ -66,7 +65,7 @@ public class PublishPullRequestMarkdownReportStep extends PublishReportStep {
 						FileUtils.createDir(reportDir);
 						FileUtils.writeFile(new File(reportDir, FILE), markdown, StandardCharsets.UTF_8.name());
 					} else {
-						logger.log("WARNING: Markdown report file not found: " + file.getAbsolutePath());
+						logger.log("WARNING: 未找到Markdown报告文件: " + file.getAbsolutePath());
 					}
 					return null;
 				}

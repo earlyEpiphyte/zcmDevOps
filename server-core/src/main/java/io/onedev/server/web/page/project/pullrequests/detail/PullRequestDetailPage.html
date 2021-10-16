@@ -22,8 +22,9 @@
 					<div wicket:id="status" class="badge status mr-3 font-size-h6"></div>
 					<div class="branches font-size-lg mr-3 d-flex align-items-center">
 						<div class="text-muted">
-							<a wicket:id="user" class="link-gray"></a> 想合并到 <a wicket:id="target" class="branch link-gray"></a> 
-							从 <a wicket:id="source" class="branch link-gray"></a> <span wicket:id="date"></span>
+							<a wicket:id="user" class="link-gray"></a>从<a wicket:id="source" class="branch link-gray"></a>合并到
+							<a wicket:id="target" class="branch link-gray"></a> 
+							 <span wicket:id="date"></span>
 						</div>
 					</div>
 					<a wicket:id="newPullRequest" class="btn btn-primary btn-icon flex-shrink-0 ml-auto" title="打开新的拉取请求"><wicket:svg href="plus" class="icon"/></a>
@@ -105,7 +106,7 @@
 		</div>
 	</div>
 	<wicket:fragment wicket:id="codeCommentsTabLinkFrag">
-		<a wicket:id="link" class="code-comments nav-link d-flex align-items-center">代码注释<wicket:svg href="dot" class="icon ml-2 d-none"></wicket:svg></a>
+		<a wicket:id="link" class="code-comments nav-link d-flex align-items-center">代码评论<wicket:svg href="dot" class="icon ml-2 d-none"></wicket:svg></a>
 	</wicket:fragment>
 	<wicket:fragment wicket:id="moreInfoFrag">
 		<wicket:enclosure child="reviews">

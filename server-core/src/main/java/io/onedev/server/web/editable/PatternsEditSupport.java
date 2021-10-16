@@ -52,7 +52,7 @@ public class PatternsEditSupport implements EditSupport {
 							protected List<String> getHints(TerminalExpect terminalExpect) {
 								return Lists.newArrayList(
 										"需要引用包含空格或以破折号开头的模式",
-										patterns.path()? "使用 '**', '*' 或者 '?' 用于<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. Prefix with '-' to exclude": "Use '*' or '?' for wildcard match. Prefix with '-' to exclude"
+										patterns.path()? "使用 '**', '*' 或者 '?' 用于<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. 以“-”为前缀来排除": "使用“*”或“?” 做通配符匹配. 以“-”为前缀来排除"
 										);
 							}
 							
@@ -61,8 +61,7 @@ public class PatternsEditSupport implements EditSupport {
         			
         		};
         	} else {
-	    		throw new RuntimeException("Annotation 'Patterns' should be applied to property "
-	    				+ "of type 'String'");
+	    		throw new RuntimeException("注释 'Patterns' 应采用类型为 'String' 的属性");
         	}
         } else {
             return null;

@@ -21,7 +21,7 @@ public class ScriptingValue implements ValueProvider {
 
 	private static final long serialVersionUID = 1L;
 	
-	public static final String DISPLAY_NAME = "Evaluate script to get value";
+	public static final String DISPLAY_NAME = "评估脚本以获取值";
 	
 	public static final String SECRET_DISPLAY_NAME = "Evaluate script to get secret";
 	

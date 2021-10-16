@@ -53,7 +53,7 @@ public class StepTemplate implements NamedElement, Serializable {
 		return new ArrayList<>();
 	}
 	
-	@Editable(order=200, name="步骤", description="步骤将在同一个节点上串行执行，共享同一个<a href='$docRoot/pages/concepts.md#job-workspace'>作业空间</a>")
+	@Editable(order=200, name="步骤", description="步骤将在同一个节点上串行执行，共享同一个作业空间")
 	@Size(min=1, max=1000, message="至少需要定义一个步骤")
 	public List<Step> getSteps() {
 		return steps;
