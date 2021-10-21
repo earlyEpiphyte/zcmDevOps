@@ -32,7 +32,7 @@ public class ShowCondition implements Serializable {
 	
 	@Editable(order=100, name="条件")
 	@ChoiceProvider("getNameChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getInputName() {
 		return inputName;
 	}

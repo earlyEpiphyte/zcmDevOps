@@ -29,7 +29,7 @@ public class TagCreateTrigger extends JobTrigger {
 	private String branches;
 	
 	@Editable(name="标签", order=100, description="（可选）指定要检查的以空格分隔的标签. "
-			+ "使用“**”、“*”或“?”做<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "使用“**”、“*”或“?”做<b><i>路径通配符匹配</b></i>. "
 			+ "以“-”为前缀来排除.空白以匹配所有标签")
 	@Patterns(suggester="suggestTags", path=true)
 	@NameOfEmptyValue("任何标签")
@@ -47,7 +47,7 @@ public class TagCreateTrigger extends JobTrigger {
 	}
 
 	@Editable(name="在分支上", order=200, description="此触发器仅适用于标签提交位于此处指定的分支上的情况. 多个分支应该用空格隔开. "
-			+ "使用“**”、“*”或“?”做<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "使用“**”、“*”或“?”做<b><i>路径通配符匹配</b></i>. "
 			+ "以“-”为前缀来排除.空白以匹配所有标签")
 	@Patterns(suggester="suggestBranches", path=true)
 	@NameOfEmptyValue("任何分支")

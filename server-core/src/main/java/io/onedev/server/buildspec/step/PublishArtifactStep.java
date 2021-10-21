@@ -29,7 +29,7 @@ public class PublishArtifactStep extends ServerStep {
 			+ "使用 * 或 ? 用于模式匹配")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getArtifacts() {
 		return artifacts;
 	}

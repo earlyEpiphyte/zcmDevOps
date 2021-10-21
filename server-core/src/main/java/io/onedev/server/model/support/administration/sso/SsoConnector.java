@@ -21,7 +21,7 @@ public abstract class SsoConnector implements Serializable {
 	private String defaultGroup;
 
 	@Editable(order=100, description="Name of the provider will be displayed on login button")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}

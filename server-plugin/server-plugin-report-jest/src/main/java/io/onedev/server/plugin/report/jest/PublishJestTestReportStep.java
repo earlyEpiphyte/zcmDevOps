@@ -38,7 +38,7 @@ public class PublishJestTestReportStep extends PublishReportStep {
 			+ "这个文件可以通过 Jest 选项生成 <tt>'--json'</tt> 和 <tt>'--outputFile'</tt>. 使用 * 或 ? 用于模式匹配")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getFilePatterns() {
 		return super.getFilePatterns();

@@ -43,7 +43,7 @@ public class GroovyScript implements Serializable {
 
 	@Editable(order=100,name="脚本名")
 	@RegEx(pattern="^(?!" + BUILTIN_PREFIX + ").*$", message="脚本名不允许以'" + BUILTIN_PREFIX + "'开头")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}

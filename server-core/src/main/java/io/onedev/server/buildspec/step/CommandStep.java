@@ -28,7 +28,7 @@ public class CommandStep extends Step {
 	
 	@Editable(order=100, name="镜像",description="指定docker镜像并在里面执行命令")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getImage() {
 		return image;
 	}
@@ -37,7 +37,7 @@ public class CommandStep extends Step {
 		this.image = image;
 	}
 
-	@Editable(order=110,name="命令",description="指定在<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作空间</a>执行的 Linux shell 脚本或 Windows 命令批处理的内容")
+	@Editable(order=110,name="命令",description="指定在作业工作空间执行的 Linux shell 脚本或 Windows 命令批处理的内容")
 	@Interpolative
 	@Code(language=Code.SHELL, variableProvider="suggestCommandVariables")
 	@Size(min=1, message="不能为空")

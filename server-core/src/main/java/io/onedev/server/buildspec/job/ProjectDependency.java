@@ -47,7 +47,7 @@ public class ProjectDependency implements Serializable {
 	// change Named("projectName") also if change name of this property 
 	@Editable(order=200, name="项目", description="指定项目来从中检索工件")
 	@ChoiceProvider("getProjectChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getProjectName() {
 		return projectName;
 	}
@@ -72,7 +72,7 @@ public class ProjectDependency implements Serializable {
 	
 	@Editable(order=300, name="构建", description="指定构建来从中检索工件")
 	@Interpolative(variableSuggester="suggestVariables", literalSuggester="suggestBuilds")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getBuildNumber() {
 		return buildNumber;
 	}
@@ -101,10 +101,10 @@ public class ProjectDependency implements Serializable {
 			return new ArrayList<>();
 	}
 
-	@Editable(order=400, name="检索的artifacts", description="指定要检索到<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a>的工件")
+	@Editable(order=400, name="检索的artifacts", description="指定要检索到作业工作区的工件")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(suggester="suggestArtifacts", path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getArtifacts() {
 		return artifacts;
 	}

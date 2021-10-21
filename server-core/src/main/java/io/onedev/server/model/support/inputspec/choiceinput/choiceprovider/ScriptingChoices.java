@@ -29,7 +29,7 @@ public class ScriptingChoices extends ChoiceProvider {
 			+ "查看用户手册<b><i>脚本帮助</i></b>查看详情")
 	@ScriptChoice
 	@OmitName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getScriptName() {
 		return scriptName;
 	}

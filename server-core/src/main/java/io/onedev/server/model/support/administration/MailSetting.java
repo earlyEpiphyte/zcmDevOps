@@ -31,7 +31,7 @@ public class MailSetting implements Serializable {
 	@Editable(order=100, name="SMTP主机", description=
 		"用于发送电子邮件的 SMTP主机."
 		)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getSmtpHost() {
 		return smtpHost;
 	}

@@ -31,7 +31,7 @@ public class PublishPullRequestMarkdownReportStep extends PublishReportStep {
 	
 	@Editable(order=1100, name="文件",description="指定相对于要发布的存储库工作区的 Markdown 文件")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getFile() {
 		return file;
 	}

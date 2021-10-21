@@ -109,7 +109,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 	
 	@Editable(order=100, name="名称", description="指定作业名称")
 	@SuggestionProvider("getNameSuggestions")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;
@@ -130,7 +130,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 		return new ArrayList<>();
 	}
 
-	@Editable(order=200, name="步骤", description="步骤将在同一个节点上串行执行,共享同一个<a href='$docRoot/pages/concepts.md#job-workspace'>作业空间</a>")
+	@Editable(order=200, name="步骤", description="步骤将在同一个节点上串行执行,共享同一个作业空间")
 	@Size(min=1, max=1000, message="至少需要配置一个步骤")
 	public List<Step> getSteps() {
 		return steps;
@@ -206,7 +206,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 	}
 
 	@Editable(name="重试条件", order=9400, group="更多设置", description="指定条件以在失败时重试构建")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@RetryCondition
 	public String getRetryCondition() {
 		return retryCondition;
@@ -240,7 +240,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 	@Editable(order=10050, name="CPU要求", group="更多设置", description="指定作业所需的CPU,"
 			+ "有关详细信息,请参阅 <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu' target='_blank'>kubernetes 文档</a>")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getCpuRequirement() {
 		return cpuRequirement;
 	}
@@ -252,7 +252,7 @@ public class Job implements NamedElement, Serializable, Validatable {
 	@Editable(name="内存要求", order=10060, group="更多设置", description="指定作业所需的内存,"
 			+ "有关详细信息,请参阅 <a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory' target='_blank'>kubernetes 文档</a>")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getMemoryRequirement() {
 		return memoryRequirement;
 	}

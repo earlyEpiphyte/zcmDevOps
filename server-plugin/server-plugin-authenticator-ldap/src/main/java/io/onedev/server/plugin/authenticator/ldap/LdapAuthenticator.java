@@ -63,7 +63,7 @@ public class LdapAuthenticator extends Authenticator {
     
     @Editable(order=100, name="LDAP URL", description=
         	"指定 Active Directory 服务器的 LDAP URL, 例如: <i>ldap://localhost</i>, or <i>ldaps://localhost</i>.")
-    @NotEmpty
+    @NotEmpty(message="不能为空")
 	public String getLdapUrl() {
 		return ldapUrl;
 	}
@@ -75,7 +75,7 @@ public class LdapAuthenticator extends Authenticator {
 	@Editable(order=300, description=""
 			+ "根据 LDAP 对用户进行身份验证并检索关联的属性和组, OneDev 必须首先针对 LDAP 服务器对自身进行身份验证，"
 			+ "而 OneDev 通过发送'manager'DN 和密码来做到这一点")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getManagerDN() {
 		return managerDN;
 	}
@@ -85,7 +85,7 @@ public class LdapAuthenticator extends Authenticator {
 	}
 
 	@Editable(order=400, description="指定manager DN 的密码")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Password
 	public String getManagerPassword() {
 		return managerPassword;
@@ -97,7 +97,7 @@ public class LdapAuthenticator extends Authenticator {
 
 	@Editable(order=500, description=
 			"指定用于用户搜索的基节点. 例如: <i>ou=users, dc=example, dc=com</i>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getUserSearchBase() {
 		return userSearchBase;
 	}
@@ -110,7 +110,7 @@ public class LdapAuthenticator extends Authenticator {
 		     "此过滤器用于确定当前用户的 LDAP 条目. " + 
 		     "例如: <i>(&(uid={0})(objectclass=person))</i>. 在该例子中, " +
 		     "<i>{0}</i> 代表当前用户的登录名.")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getUserSearchFilter() {
 		return userSearchFilter;
 	}
@@ -132,7 +132,7 @@ public class LdapAuthenticator extends Authenticator {
 
 	@Editable(order=800, description=""
 			+ "指定用户 LDAP 条目内的属性名称，其值将作为用户电子邮件.根据 RFC 2798,该字段通常设置为 <i>mail</i>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getUserEmailAttribute() {
 		return userEmailAttribute;
 	}

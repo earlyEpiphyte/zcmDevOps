@@ -40,7 +40,7 @@ public class JobDependency implements Serializable {
 	// change Named("jobName") also if change name of this property 
 	@Editable(order=100, name="作业")
 	@ChoiceProvider("getJobChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getJobName() {
 		return jobName;
 	}
@@ -71,7 +71,7 @@ public class JobDependency implements Serializable {
 	}
 	
 	@Editable(order=300, name="检索的artifacts", description="（可选）指定要从依赖项检索到 "
-			+ "<a href='$docRoot/pages/concepts.md#job-workspace'>作业工作区</a> 的工件. 空白以不检索任何工件")
+			+ "作业工作区的工件. 空白以不检索任何工件")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
 	@NameOfEmptyValue("不检索")

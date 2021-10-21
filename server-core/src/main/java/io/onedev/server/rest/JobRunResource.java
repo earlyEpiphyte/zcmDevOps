@@ -149,7 +149,7 @@ public class JobRunResource {
 		}
 
 		@CommitHash
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getCommitHash() {
 			return commitHash;
 		}
@@ -158,7 +158,7 @@ public class JobRunResource {
 			this.commitHash = commitHash;
 		}
 
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getJobName() {
 			return jobName;
 		}
@@ -176,7 +176,7 @@ public class JobRunResource {
 			this.params = params;
 		}
 
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getRefName() {
 			return refName;
 		}
@@ -193,7 +193,7 @@ public class JobRunResource {
 			this.pullRequestId = pullRequestId;
 		}
 
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getReason() {
 			return reason;
 		}
@@ -236,7 +236,7 @@ public class JobRunResource {
 			this.params = params;
 		}
 
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getReason() {
 			return reason;
 		}

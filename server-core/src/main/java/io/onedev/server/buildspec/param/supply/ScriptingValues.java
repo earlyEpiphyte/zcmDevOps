@@ -29,7 +29,7 @@ public class ScriptingValues implements ValuesProvider {
 	
 	@Editable
 	@ScriptChoice
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getScriptName() {
 		return scriptName;
 	}

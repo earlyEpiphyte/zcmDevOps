@@ -16,7 +16,7 @@ public class PublishJestCoverageReportStep extends PublishCloverReportStep {
 			+ "使用 * 或 ? 用于模式匹配")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getFilePatterns() {
 		return super.getFilePatterns();

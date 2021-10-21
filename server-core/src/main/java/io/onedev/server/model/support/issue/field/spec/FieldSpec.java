@@ -34,7 +34,7 @@ public abstract class FieldSpec extends InputSpec {
 	
 	@Editable(order=10,name="字段名")
 	@FieldName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return super.getName();
@@ -94,7 +94,7 @@ public abstract class FieldSpec extends InputSpec {
 	
 	@Editable(order=60,name="空值的名称")
 	@io.onedev.server.web.editable.annotation.ShowCondition("isNameOfEmptyValueVisible")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getNameOfEmptyValue() {
 		return nameOfEmptyValue;
 	}

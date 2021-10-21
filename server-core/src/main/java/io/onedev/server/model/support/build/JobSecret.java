@@ -27,7 +27,7 @@ public class JobSecret implements Serializable {
 	private String authorizedBranches;
 	
 	@Editable(order=100,name="名称")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@SecretName
 	public String getName() {
 		return name;
@@ -38,7 +38,7 @@ public class JobSecret implements Serializable {
 	}
 	
 	@Editable(order=200,name="值")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Multiline
 	public String getValue() {
 		return value;

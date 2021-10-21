@@ -17,7 +17,7 @@ public class Choice implements Serializable {
 	private String color = "#0d87e9";
 
 	@Editable(order=100,name="值")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getValue() {
 		return value;
 	}
@@ -27,7 +27,7 @@ public class Choice implements Serializable {
 	}
 
 	@Editable(order=200,name="颜色")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Color
 	public String getColor() {
 		return color;

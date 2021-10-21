@@ -21,9 +21,9 @@ public class Property implements NamedElement, Serializable {
 	
 	private String value;
 
-	@Editable(order=100)
+	@Editable(name="属性名",order=100)
 	@SuggestionProvider("getNameSuggestions")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;
@@ -44,8 +44,8 @@ public class Property implements NamedElement, Serializable {
 		return new ArrayList<>();
 	}
 	
-	@Editable(order=200)
-	@NotEmpty
+	@Editable(name="属性值",order=200)
+	@NotEmpty(message="不能为空")
 	public String getValue() {
 		return value;
 	}

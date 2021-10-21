@@ -37,7 +37,7 @@ public class Service implements NamedElement, Serializable {
 	@Editable(order=100,name="名称", description="指定服务的名称，该名称将用作访问服务的主机名")
 	@SuggestionProvider("getNameSuggestions")
 	@DnsName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;
@@ -60,7 +60,7 @@ public class Service implements NamedElement, Serializable {
 
 	@Editable(order=200, name="镜像", description="指定服务的docker镜像")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getImage() {
 		return image;
 	}
@@ -90,7 +90,7 @@ public class Service implements NamedElement, Serializable {
 
 	@Editable(order=400, name="检查服务准备情况的命令", description="指定命令来检查服务的准备情况. 此命令将由 cmd.exe 在 Windows 映像上解释，在 Linux 映像上由 shell 解释。 将重复执行，直到返回zero code表示服务就绪")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getReadinessCheckCommand() {
 		return readinessCheckCommand;
 	}
@@ -100,9 +100,9 @@ public class Service implements NamedElement, Serializable {
 	}
 	
 	@Editable(order=10000, name="CPU要求", group="更多设置", description="指定作业的CPU要求。"
-			+ "有关详细信息，请参阅<a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu' target='_blank'>kubernetes 文档</a> for details")
+			+ "有关详细信息，请参阅<a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu' target='_blank'>kubernetes 文档</a>")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getCpuRequirement() {
 		return cpuRequirement;
 	}
@@ -112,9 +112,9 @@ public class Service implements NamedElement, Serializable {
 	}
 
 	@Editable(order=10100, name="内存要求", group="更多设置", description="指定作业的内存要求。"
-			+ "有关详细信息，请参阅<a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory' target='_blank'>kubernetes 文档</a> for details")
+			+ "有关详细信息，请参阅<a href='https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory' target='_blank'>kubernetes 文档</a>")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getMemoryRequirement() {
 		return memoryRequirement;
 	}

@@ -23,7 +23,7 @@ public class ParamSupply implements Serializable {
 	private ValuesProvider valuesProvider = new SpecifiedValues();
 	
 	@Editable
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}

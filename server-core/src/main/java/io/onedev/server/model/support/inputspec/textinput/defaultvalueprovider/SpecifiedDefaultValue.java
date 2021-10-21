@@ -15,7 +15,7 @@ public class SpecifiedDefaultValue implements DefaultValueProvider {
 
 	@Editable(name="指定默认值")
 	@Password
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@OmitName
 	public String getValue() {
 		return value;

@@ -21,7 +21,7 @@ public class AuthorizationBean implements Serializable {
 
 	@Editable(order=100, name="User")
 	@UserChoice
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getUserName() {
 		return userName;
 	}

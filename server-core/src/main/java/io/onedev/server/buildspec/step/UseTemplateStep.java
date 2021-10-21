@@ -43,7 +43,7 @@ public class UseTemplateStep extends Step {
 
 	@Editable(order=100,name="模板名称")
 	@ChoiceProvider("getTemplateChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getTemplateName() {
 		return templateName;
 	}

@@ -412,7 +412,7 @@ public class User extends AbstractEntity implements AuthenticationInfo, NameAwar
 
 	@Editable(name="用户名", order=100)
 	@UserName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;
@@ -424,7 +424,7 @@ public class User extends AbstractEntity implements AuthenticationInfo, NameAwar
     
 	@Editable(name="密码",order=150)
 	@Password(needConfirm=true, autoComplete="new-password")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getPassword() {
 		return password;
 	}
@@ -469,7 +469,7 @@ public class User extends AbstractEntity implements AuthenticationInfo, NameAwar
 	}
 
 	@Editable(name="邮箱",order=300)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Email
 	public String getEmail() {
 		return email;

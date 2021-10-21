@@ -74,7 +74,7 @@ public class WebHook implements Serializable {
 	private String secret = RandomStringUtils.randomAlphanumeric(20);
 
 	@Editable(order=100,name="发布的URL", description="将接收 webhook POST 请求的服务器端点的 URL")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getPostUrl() {
 		return postUrl;
 	}
@@ -95,7 +95,7 @@ public class WebHook implements Serializable {
 
 	@Editable(order=300,name="密钥", description="允许您确保发送到有效负载 URL 的 POST 请求来自平台的密钥. "
 			+ "设置密钥后，您将在 webhook POST 请求中收到 X-OneDev-Signature 标头")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getSecret() {
 		return secret;
 	}

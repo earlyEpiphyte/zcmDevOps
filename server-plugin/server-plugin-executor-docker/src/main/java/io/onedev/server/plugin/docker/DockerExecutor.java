@@ -1029,7 +1029,7 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 
 		@Editable
 		@OmitName
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getDockerImage() {
 			return dockerImage;
 		}

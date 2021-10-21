@@ -526,7 +526,7 @@ public abstract class RevisionDiffPanel extends Panel {
 			protected List<String> getHints(TerminalExpect terminalExpect) {
 				return Lists.newArrayList(
 						"包含空格或以破折号开头的路径需要加引号",
-						"使用 '**', '*' 或者 '?' 做 <a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. 以 '-' 为前缀来排除"
+						"使用 '**', '*' 或者 '?' 做<b><i>路径通配符匹配</b></i>. 以 '-' 为前缀来排除"
 						);
 			}
 			

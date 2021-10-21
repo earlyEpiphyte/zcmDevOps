@@ -49,7 +49,7 @@ public class UndefinedFieldValueResolution implements Serializable {
 	@ChoiceProvider("getValueChoices")
 	@ShowCondition("isNewValueVisible")
 	@OmitName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getNewValue() {
 		return newValue;
 	}

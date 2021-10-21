@@ -58,7 +58,7 @@ public class TransitionSpec implements Serializable {
 	}
 
 	@Editable(order=200,name="到状态")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@ChoiceProvider("getStateChoices")
 	public String getToState() {
 		return toState;

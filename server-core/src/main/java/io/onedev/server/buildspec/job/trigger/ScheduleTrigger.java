@@ -21,7 +21,7 @@ public class ScheduleTrigger extends JobTrigger {
 	@Editable(order=100, name="Cron表达式", description="指定一个注意：<a target='_blank' href='http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html#format'>cron 计划</a>"
 			+ "来自动触发作业. <b>注意:</b> 这只适用于默认分支")
 	@CronExpression
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getCronExpression() {
 		return cronExpression;
 	}

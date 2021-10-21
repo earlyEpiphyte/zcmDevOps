@@ -98,7 +98,7 @@ public class Role extends AbstractEntity implements Permission, NameAware {
 	
 	@Editable(order=100, name="角色名",description="明确角色名称。<b class='text-danger'>注意:</b> "
 			+ "即便这里没有明确其他权限，会隐含的授予查看问题的权限")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;

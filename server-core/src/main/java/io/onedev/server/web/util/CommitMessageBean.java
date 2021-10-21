@@ -19,7 +19,7 @@ public class CommitMessageBean implements Serializable {
 	private String body;
 
 	@Editable(order=100, name="提交消息摘要")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@OmitName
 	@ReferenceAware
 	public String getSummary() {

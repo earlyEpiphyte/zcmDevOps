@@ -72,7 +72,7 @@ public class BranchProtection implements Serializable {
 	@Editable(order=100,name="分支", description="指定要保护的以空格分隔的分支. 使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>. "
 			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestBranches", path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getBranches() {
 		return branches;
 	}

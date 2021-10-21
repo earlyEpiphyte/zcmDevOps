@@ -31,7 +31,7 @@ public class PublishMarkdownReportStep extends PublishReportStep {
 	
 	@Editable(order=1100, name="起始页",description="指定与作业工作区相关的报告的起始页, 例如: <tt>manual/index.md</tt>")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getStartPage() {
 		return startPage;
 	}

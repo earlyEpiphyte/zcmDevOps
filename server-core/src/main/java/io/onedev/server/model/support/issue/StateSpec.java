@@ -20,7 +20,7 @@ public class StateSpec implements Serializable {
 	private String color = "#0d87e9";
 	
 	@Editable(order=100,name="状态名")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}

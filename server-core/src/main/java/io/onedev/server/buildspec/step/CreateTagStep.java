@@ -32,7 +32,7 @@ public class CreateTagStep extends ServerStep {
 	
 	@Editable(order=1000,name="标签名称", description="指定标签名称")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getTagName() {
 		return tagName;
 	}

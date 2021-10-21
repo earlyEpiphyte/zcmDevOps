@@ -28,7 +28,7 @@ public class CloseMilestoneStep extends ServerStep {
 	
 	@Editable(order=1000, name="里程碑名称",description="指定里程碑的名称")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getMilestoneName() {
 		return milestoneName;
 	}

@@ -26,7 +26,7 @@ public class BackupSetting implements Serializable, Validatable {
 		"例如, <em>0 0 1 * * ?</em> 表示每天 1:00am. 有关格式的详细信息，请参阅 <a href='http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/tutorial-lesson-06.html'>Quartz tutorial</a>." + 
 		"备份文件将被放置在平台安装目录下的 <em>db-backup</em> 文件夹中. " +
 		"如果您不想启用数据库自动备份，请将此属性保留为空.")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getSchedule() {
 		return schedule;
 	}

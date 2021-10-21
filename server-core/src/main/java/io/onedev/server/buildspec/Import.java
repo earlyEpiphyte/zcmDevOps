@@ -58,7 +58,7 @@ public class Import implements Serializable, Validatable {
 	// change Named("projectName") also if change name of this property 
 	@Editable(order=100, name="项目", description="指定要从中导入构建规范的项目。 此项目的默认角色应具有读取代码权限")
 	@ChoiceProvider("getProjectChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getProjectName() {
 		return projectName;
 	}
@@ -94,7 +94,7 @@ public class Import implements Serializable, Validatable {
 	
 	@Editable(order=200, name="标签", description="在上面的项目中指定标签并从中导入构建规范")
 	@Interpolative(variableSuggester="suggestTags", literalSuggester="suggestTags")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getTag() {
 		return tag;
 	}

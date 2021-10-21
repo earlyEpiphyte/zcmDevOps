@@ -20,7 +20,7 @@ public class SpecifiedDefaultValue implements DefaultValueProvider {
 
 	@Editable(name="字面意义的默认值")
 	@UserChoice("getValueChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@OmitName
 	public String getValue() {
 		return value;

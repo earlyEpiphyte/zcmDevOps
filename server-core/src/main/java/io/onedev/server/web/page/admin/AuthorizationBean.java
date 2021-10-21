@@ -19,7 +19,7 @@ public class AuthorizationBean implements Serializable {
 
 	@Editable(order=100, name="项目")
 	@ProjectChoice
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getProjectName() {
 		return projectName;
 	}
@@ -30,7 +30,7 @@ public class AuthorizationBean implements Serializable {
 
 	@Editable(order=200, name="角色")
 	@RoleChoice
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getRoleName() {
 		return roleName;
 	}

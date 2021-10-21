@@ -23,7 +23,7 @@ public class EnvVar implements Serializable {
 	@Editable(order=100, description="Specify name of the environment variable")
 	@Interpolative(variableSuggester="suggestVariables")
 	@EnvironmentName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}
@@ -34,7 +34,7 @@ public class EnvVar implements Serializable {
 
 	@Editable(order=200, description="Specify value of the environment variable")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getValue() {
 		return value;
 	}

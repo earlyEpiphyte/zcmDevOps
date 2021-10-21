@@ -43,7 +43,7 @@ public abstract class JobExecutor implements Serializable {
 
 	@Editable(order=10,name="名称")
 	@DnsName //this name may be used as namespace/network prefixes, so put a strict constraint
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}
@@ -54,7 +54,7 @@ public abstract class JobExecutor implements Serializable {
 
 	@Editable(order=10000, name="作业匹配条件", description="作业必须满足此处的条件")
 	@JobMatch
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getJobMatch() {
 		return jobMatch;
 	}

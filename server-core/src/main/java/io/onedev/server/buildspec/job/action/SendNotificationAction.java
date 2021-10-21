@@ -17,7 +17,7 @@ public class SendNotificationAction extends PostBuildAction {
 	
 	@Editable(order=1000,name="接收者")
 	@NotificationReceiver
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getReceivers() {
 		return receivers;
 	}

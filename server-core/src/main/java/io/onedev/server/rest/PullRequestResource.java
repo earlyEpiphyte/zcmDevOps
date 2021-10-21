@@ -457,7 +457,7 @@ public class PullRequestResource {
 			this.sourceBranch = sourceBranch;
 		}
 
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getTitle() {
 			return title;
 		}

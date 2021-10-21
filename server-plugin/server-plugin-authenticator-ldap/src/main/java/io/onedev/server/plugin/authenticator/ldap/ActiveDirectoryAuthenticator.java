@@ -14,7 +14,7 @@ public class ActiveDirectoryAuthenticator extends LdapAuthenticator {
 	
     @Editable(order=100, name="LDAP URL", description=
     	"指定 Active Directory 服务器的 LDAP URL, 例如: <i>ldap://ad-server</i>, or <i>ldaps://ad-server</i>")
-    @NotEmpty
+    @NotEmpty(message="不能为空")
 	@Override
 	public String getLdapUrl() {
 		return super.getLdapUrl();
@@ -30,7 +30,7 @@ public class ActiveDirectoryAuthenticator extends LdapAuthenticator {
 			+ "OneDev 必须首先针对 Active Directory 服务器对自身进行身份验证，而 OneDev 通过发送 'manager' DN 和密码来做到这一点，"
 			+ "'manager' DN 应该以以下形式进行指定 "
 			+ "<i>&lt;account name&gt;@&lt;domain&gt;</i>, 例如: <i>onedev@example.com</i>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getManagerDN() {
 		return super.getManagerDN();
@@ -43,7 +43,7 @@ public class ActiveDirectoryAuthenticator extends LdapAuthenticator {
 
 	@Editable(order=500, description=
 		"指定用于用户搜索的基节点. 例如: <i>cn=Users, dc=example, dc=com</i>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getUserSearchBase() {
 		return super.getUserSearchBase();

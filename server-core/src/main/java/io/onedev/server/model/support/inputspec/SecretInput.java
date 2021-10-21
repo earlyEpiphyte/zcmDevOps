@@ -19,7 +19,7 @@ public class SecretInput {
 		StringBuffer buffer = new StringBuffer();
 		inputSpec.appendField(buffer, index, "String");
 		inputSpec.appendCommonAnnotations(buffer, index);
-		buffer.append("    @NotEmpty\n");
+		buffer.append("    @NotEmpty(message="不能为空")\n");
 		buffer.append("    @Password\n");
 		inputSpec.appendMethods(buffer, index, "String", null, null);
 		

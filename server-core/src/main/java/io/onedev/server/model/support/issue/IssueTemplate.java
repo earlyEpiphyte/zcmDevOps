@@ -42,7 +42,7 @@ public class IssueTemplate implements Serializable {
 	
 	@Editable(order=200,name="问题描述")
 	@Markdown
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getIssueDescription() {
 		return issueDescription;
 	}

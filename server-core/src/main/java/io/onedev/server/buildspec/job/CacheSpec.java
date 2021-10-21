@@ -23,7 +23,7 @@ public class CacheSpec implements Serializable {
 
 	@Editable(order=100, description="Specify key of the cache. Caches with same key can be reused by different jobs")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@RegEx(pattern="[a-zA-Z0-9\\-_\\.]+", message="Can only contain alphanumeric, dash, dot and underscore")
 	public String getKey() {
 		return key;
@@ -37,7 +37,7 @@ public class CacheSpec implements Serializable {
 			+ "Specify \".\" (without quote) to cache workspace itself")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Path
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getPath() {
 		return path;
 	}

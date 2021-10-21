@@ -32,7 +32,7 @@ public class StepTemplate implements NamedElement, Serializable {
 	
 	@Editable(order=100, name="名称")
 	@SuggestionProvider("getNameSuggestions")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;

@@ -12,7 +12,7 @@ public class SpecifiedCurl extends CurlConfig {
 	private String curlPath;
 	
 	@Editable(name="curl路径",description="指定curl可执行的路径,例如: <tt>/usr/bin/curl</tt>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getCurlPath() {
 		return curlPath;
 	}

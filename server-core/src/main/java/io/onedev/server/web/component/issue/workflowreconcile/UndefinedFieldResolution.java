@@ -42,7 +42,7 @@ public class UndefinedFieldResolution implements Serializable {
 	@Editable(order=100, name="new field")
 	@ChoiceProvider("getFieldChoices")
 	@ShowCondition("isNewFieldVisible")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@OmitName
 	public String getNewField() {
 		return newField;

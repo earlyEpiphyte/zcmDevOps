@@ -26,7 +26,7 @@ public abstract class PublishReportStep extends ServerStep {
 
 	@Editable(order=50,name="报告名称",description="指定报告名称")
 	@PathSegment
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getReportName() {
 		return reportName;
 	}
@@ -47,7 +47,7 @@ public abstract class PublishReportStep extends ServerStep {
 	@Editable(order=100,name="文件模式",description="指定与作业工作区相关的文件以进行发布. 使用 * 或 ? 用于模式匹配")
 	@Interpolative(variableSuggester="suggestVariables")
 	@Patterns(path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getFilePatterns() {
 		return filePatterns;
 	}

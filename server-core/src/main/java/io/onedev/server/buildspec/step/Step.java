@@ -25,7 +25,7 @@ public abstract class Step implements Serializable {
 	private String name;
 
 	@Editable(order=10, name="名称")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}

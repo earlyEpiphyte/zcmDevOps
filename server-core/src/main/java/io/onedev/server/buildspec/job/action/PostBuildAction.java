@@ -19,7 +19,7 @@ public abstract class PostBuildAction implements Serializable {
 
 	@Editable(order=100, name="条件", description="指定当前构建执行此操作必须满足的条件")
 	@ActionCondition
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getCondition() {
 		return condition;
 	}

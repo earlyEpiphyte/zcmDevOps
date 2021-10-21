@@ -20,8 +20,7 @@ public class CheckoutStep extends Step {
 	private Integer cloneDepth;
 	
 	@Editable(order=100, name="克隆凭证", description="默认情况下，代码是通过自动生成的凭据克隆的, "
-			+ "只对当前项目有读权限. 如果作业需要将 <a href='$docRoot/pages/push-in-job.md' target='_blank'>代码推送到服务器</a>, 或者想要 "
-			+ "<a href='$docRoot/pages/clone-submodules-via-ssh.md' target='_blank'>克隆私有子模块</a>, 您应该提供具有适当权限的自定义凭证")
+			+ "只对当前项目有读权限. 如果作业需要将代码推送到服务器, 或者想要克隆私有子模块, 您应该提供具有适当权限的自定义凭证")
 	@NotNull
 	public GitCredential getCloneCredential() {
 		return cloneCredential;

@@ -30,9 +30,9 @@ public class SshCredential implements GitCredential, Validatable {
 
 	private String keySecret;
 
-	@Editable(order=100, description="Specify a secret to be used as SSH private key")
+	@Editable(order=100,name="密钥", description="指定一个作业秘密当做ssh密钥使用")
 	@ChoiceProvider("getKeySecretChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getKeySecret() {
 		return keySecret;
 	}

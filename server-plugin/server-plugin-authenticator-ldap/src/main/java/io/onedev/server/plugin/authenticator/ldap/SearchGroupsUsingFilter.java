@@ -18,7 +18,7 @@ public class SearchGroupsUsingFilter implements GroupRetrieval {
 	@Editable(order=100, description=
 		"In case user group membership maintained at group side, this property specifies " +
 		"base node for group search. For example: <i>ou=groups, dc=example, dc=com</i>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getGroupSearchBase() {
 		return groupSearchBase;
 	}
@@ -31,7 +31,7 @@ public class SearchGroupsUsingFilter implements GroupRetrieval {
 			+ "In case user group relationship maintained at group side, this filter is used to determine belonging "
 			+ "groups of current user. For example: <i>(&(uniqueMember={0})(objectclass=groupOfUniqueNames))</i>. In "
 			+ "this example, <i>{0}</i> represents DN of current user")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getGroupSearchFilter() {
 		return groupSearchFilter;
 	}
@@ -43,7 +43,7 @@ public class SearchGroupsUsingFilter implements GroupRetrieval {
 	@Editable(order=300, description=""
 			+ "Specifies the attribute containing group name inside the found group LDAP entry. Value of this attribute "
 			+ "will be mapped to a OneDev group. This attribute is normally set to <i>cn</i>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getGroupNameAttribute() {
 		return groupNameAttribute;
 	}

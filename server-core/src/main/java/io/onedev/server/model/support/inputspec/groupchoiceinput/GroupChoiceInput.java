@@ -33,7 +33,7 @@ public class GroupChoiceInput {
 		inputSpec.appendField(buffer, index, "String");
 		inputSpec.appendCommonAnnotations(buffer, index);
 		if (!inputSpec.isAllowEmpty())
-			buffer.append("    @NotEmpty\n");
+			buffer.append("    @NotEmpty(message="不能为空")\n");
 		inputSpec.appendChoiceProvider(buffer, index, "@GroupChoice");
 		inputSpec.appendMethods(buffer, index, "String", choiceProvider, defaultValueProvider);
 		

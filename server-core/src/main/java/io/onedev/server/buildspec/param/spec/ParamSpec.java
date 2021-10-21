@@ -24,7 +24,7 @@ public abstract class ParamSpec extends InputSpec {
 	
 	@Editable(order=10,name="参数名")
 	@ParamName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return super.getName();

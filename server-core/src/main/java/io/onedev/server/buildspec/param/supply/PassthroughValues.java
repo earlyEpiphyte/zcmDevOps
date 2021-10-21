@@ -27,7 +27,7 @@ public class PassthroughValues implements ValuesProvider {
 	
 	@Editable
 	@ChoiceProvider("getParamChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getParamName() {
 		return paramName;
 	}

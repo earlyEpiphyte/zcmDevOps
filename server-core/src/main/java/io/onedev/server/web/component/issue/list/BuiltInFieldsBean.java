@@ -24,7 +24,7 @@ public class BuiltInFieldsBean implements Serializable {
 
 	@Editable(order=100)
 	@ChoiceProvider("getStateChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getState() {
 		return state;
 	}

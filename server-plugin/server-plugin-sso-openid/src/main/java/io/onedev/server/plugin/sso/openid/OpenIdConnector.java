@@ -94,7 +94,7 @@ public class OpenIdConnector extends SsoConnector {
 			+ "<li>形成授权回调url <i>&lt;server url&gt;/" + SsoProcessPage.MOUNT_PATH + "/" + SsoProcessPage.STAGE_CALLBACK + "/&lt;name&gt;</i>"
 			+ "</ul>")
 	@UrlSegment // will be used as part of callback url
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return super.getName();
@@ -108,7 +108,7 @@ public class OpenIdConnector extends SsoConnector {
 	@Editable(order=200, description="指定 OpenID 提供商的 URL. OpenID 端点发现 url 将通过"
 			+ "附加 <i>/.well-known/openid-configuration</i>. "
 			+ "确保使用 HTTPS 协议，因为 OneDev 依赖 TLS 加密来确保令牌有效性")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getIssuerUrl() {
 		return issuerUrl;
 	}
@@ -118,7 +118,7 @@ public class OpenIdConnector extends SsoConnector {
 	}
 
 	@Editable(order=1000, description="将此 OneDev 实例注册为客户端应用程序时，您的 OpenID 提供商将分配 OpenID 客户端标识")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getClientId() {
 		return clientId;
 	}
@@ -129,7 +129,7 @@ public class OpenIdConnector extends SsoConnector {
 
 	@Editable(order=1100, description="将此 OneDev 实例注册为客户端应用程序时，您的 OpenID 提供商将生成 OpenID 客户端密钥")
 	@Password
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getClientSecret() {
 		return clientSecret;
 	}
@@ -148,7 +148,7 @@ public class OpenIdConnector extends SsoConnector {
 	}
 
 	@Editable(order=19100, description="指定登录按钮上的图片")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getButtonImageUrl() {
 		return buttonImageUrl;		

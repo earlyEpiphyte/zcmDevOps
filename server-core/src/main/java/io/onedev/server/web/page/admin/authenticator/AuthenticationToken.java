@@ -17,7 +17,7 @@ public class AuthenticationToken implements Serializable {
 	private String password;
 
 	@Editable(order=100,name="用户名", description="指定用户名以进行身份验证")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getUserName() {
 		return userName;
 	}
@@ -28,7 +28,7 @@ public class AuthenticationToken implements Serializable {
 
 	@Editable(order=200,name="密码", description="指定密码进行身份验证")
 	@Password
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getPassword() {
 		return password;
 	}

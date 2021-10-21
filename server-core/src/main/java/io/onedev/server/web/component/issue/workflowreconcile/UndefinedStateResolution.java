@@ -43,7 +43,7 @@ public class UndefinedStateResolution implements Serializable {
 	@ChoiceProvider("getStateChoices")
 	@ShowCondition("isNewStateVisible")
 	@OmitName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getNewState() {
 		return newState;
 	}

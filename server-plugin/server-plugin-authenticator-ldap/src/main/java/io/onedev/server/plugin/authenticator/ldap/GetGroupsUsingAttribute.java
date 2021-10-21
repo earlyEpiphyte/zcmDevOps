@@ -16,7 +16,7 @@ public class GetGroupsUsingAttribute implements GroupRetrieval {
 	@Editable(order=100, description=""
 			+ "Specifies name of the attribute inside the user LDAP entry whose value contains distinguished names of "
 			+ "belonging groups. For instance some LDAP servers uses attribute <i>memberOf</i> to list groups")
-    @NotEmpty
+    @NotEmpty(message="不能为空")
 	public String getUserGroupsAttribute() {
 		return userGroupsAttribute;
 	}
@@ -28,7 +28,7 @@ public class GetGroupsUsingAttribute implements GroupRetrieval {
 	@Editable(order=200, description=""
 			+ "Specifies the attribute containing group name inside the found group LDAP entry. Value of this attribute "
 			+ "will be mapped to a OneDev group. This attribute is normally set to <i>cn</i>")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getGroupNameAttribute() {
 		return groupNameAttribute;
 	}

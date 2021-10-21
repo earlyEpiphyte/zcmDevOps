@@ -20,7 +20,7 @@ public class PasswordEditBean implements Serializable {
 	@Editable(order=100)
 	@CurrentPassword
 	@Password
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getOldPassword() {
 		return oldPassword;
 	}
@@ -31,7 +31,7 @@ public class PasswordEditBean implements Serializable {
 
 	@Editable(name="新的密码",order=200)
 	@Password(needConfirm=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getNewPassword() {
 		return newPassword;
 	}

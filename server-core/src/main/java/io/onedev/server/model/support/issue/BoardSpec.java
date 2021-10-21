@@ -61,7 +61,7 @@ public class BoardSpec implements Serializable {
 	private List<String> editColumns;
 
 	@Editable(order=100,name="状态名")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}
@@ -97,7 +97,7 @@ public class BoardSpec implements Serializable {
 
 	@Editable(order=300,name="标识字段",  description="指定问题字段作为面板不同列的标识")
 	@ChoiceProvider("getIdentifyFieldChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getIdentifyField() {
 		return identifyField;
 	}

@@ -34,7 +34,7 @@ public class PressButtonTrigger extends TransitionTrigger {
 	private List<String> promptFields = new ArrayList<>();
 	
 	@Editable(order=100,name="按钮名称")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getButtonLabel() {
 		return buttonLabel;
 	}

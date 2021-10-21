@@ -323,7 +323,7 @@ public class Project extends AbstractEntity implements NameAware {
 	
 	@Editable(order=100,name="项目名称")
 	@ProjectName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;

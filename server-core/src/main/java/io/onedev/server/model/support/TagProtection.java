@@ -46,7 +46,7 @@ public class TagProtection implements Serializable {
 	@Editable(order=100,name="标签名", description="指定要保护的空格分隔标签。使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>。"
 			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestTags", path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getTags() {
 		return tags;
 	}

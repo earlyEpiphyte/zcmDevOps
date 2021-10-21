@@ -30,7 +30,7 @@ public class SshSetting implements Serializable, Validatable {
     private String pemPrivateKey;
     
 	@Editable(name="SSH服务器地址", order=90, description="这个属性将被用作构建各种ssh服务(如使用ssh的git)的基础url")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
     public String getServerUrl() {
         return serverUrl;
     }
@@ -41,7 +41,7 @@ public class SshSetting implements Serializable, Validatable {
 
     @Editable(name="服务器私钥", order=100, description="明确与客户端建立连接的ssh服务器的私钥(PEM格式)")
     @Multiline
-    @NotEmpty
+    @NotEmpty(message="不能为空")
     public String getPemPrivateKey() {
         return pemPrivateKey;
     }

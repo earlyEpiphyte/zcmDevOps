@@ -23,7 +23,7 @@ public class FieldSupply implements Serializable {
 	private ValueProvider valueProvider = new SpecifiedValue();
 
 	@Editable
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}

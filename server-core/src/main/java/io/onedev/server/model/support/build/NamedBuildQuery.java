@@ -25,7 +25,7 @@ public class NamedBuildQuery implements NamedQuery {
 	}
 
 	@Editable(name="查询名称")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;

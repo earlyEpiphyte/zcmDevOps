@@ -17,7 +17,7 @@ public class ScriptingDefaultValue implements DefaultValueProvider {
 	@Editable(name="脚本",description="用于评估的Groovy脚本。它应该返回<i>String</i>值。查看用户手册<b><i>脚本帮助</i></b>查看详情。")
 	@ScriptChoice
 	@OmitName
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getScriptName() {
 		return scriptName;
 	}

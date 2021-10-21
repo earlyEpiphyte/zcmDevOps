@@ -31,7 +31,7 @@ public class BranchUpdateTrigger extends JobTrigger {
 	private String paths;
 	
 	@Editable(name="分支", order=100, description="可选择指定以空格分隔的分支进行检查. "
-			+ "使用“**”、“*”或“?” 用于<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+			+ "使用“**”、“*”或“?” 用于<b><i>路径通配符匹配</b></i>. "
 			+ "以“-”为前缀来排除. 空白以匹配所有分支")
 	@Patterns(suggester = "suggestBranches", path=true)
 	@NameOfEmptyValue("任何分支")
@@ -50,7 +50,7 @@ public class BranchUpdateTrigger extends JobTrigger {
 	
 	@Editable(name="文件", order=200, 
 			description="可选择指定以空格分隔的文件进行检查. "
-					+ "使用“**”、“*”或“?” 用于<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. "
+					+ "使用“**”、“*”或“?” 用于<b><i>路径通配符匹配</b></i>. "
 					+ "以“-”为前缀来排除. 空白以匹配所有文件")
 	@Patterns(suggester = "getPathSuggestions", path=true)
 	@NameOfEmptyValue("任何文件")

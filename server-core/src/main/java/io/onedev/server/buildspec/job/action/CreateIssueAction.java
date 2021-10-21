@@ -43,7 +43,7 @@ public class CreateIssueAction extends PostBuildAction {
 	
 	@Editable(order=1000, name="标题", group="问题详情", description="指定问题的标题")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getIssueTitle() {
 		return issueTitle;
 	}

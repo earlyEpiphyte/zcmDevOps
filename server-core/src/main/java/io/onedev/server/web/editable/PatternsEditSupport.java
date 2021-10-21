@@ -52,7 +52,7 @@ public class PatternsEditSupport implements EditSupport {
 							protected List<String> getHints(TerminalExpect terminalExpect) {
 								return Lists.newArrayList(
 										"需要引用包含空格或以破折号开头的模式",
-										patterns.path()? "使用 '**', '*' 或者 '?' 用于<a href='$docRoot/pages/path-wildcard.md' target='_blank'>路径通配符匹配</a>. 以“-”为前缀来排除": "使用“*”或“?” 做通配符匹配. 以“-”为前缀来排除"
+										patterns.path()? "使用 '**', '*' 或者 '?' 用于<b><i>路径通配符匹配</b></i>. 以“-”为前缀来排除": "使用“*”或“?” 做通配符匹配. 以“-”为前缀来排除"
 										);
 							}
 							

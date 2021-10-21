@@ -26,9 +26,9 @@ public class HttpCredential implements GitCredential, Validatable {
 
 	private String accessTokenSecret;
 
-	@Editable(order=200, description="Specify a secret to be used as access token")
+	@Editable(order=200, name="访问令牌",description="指定一个作业秘密当做访问令牌使用")
 	@ChoiceProvider("getAccessTokenSecretChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getAccessTokenSecret() {
 		return accessTokenSecret;
 	}

@@ -36,7 +36,7 @@ public class JobPrivilege implements Serializable {
 	@Editable(name="作业名称",order=100, description="明确空格隔开的任务。使用'*'或'?'通配符"
 			+ "'-'前缀表示排除。<b class='text-danger'>注意: </b>即便在此没有明确其他权限，在匹配的任务中会默许授权访问构建实例的权限")
 	@Patterns(suggester = "suggestJobNames")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getJobNames() {
 		return jobNames;
 	}

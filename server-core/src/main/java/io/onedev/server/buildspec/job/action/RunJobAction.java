@@ -42,7 +42,7 @@ public class RunJobAction extends PostBuildAction {
 	
 	@Editable(order=900, name="作业")
 	@ChoiceProvider("getJobChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getJobName() {
 		return jobName;
 	}

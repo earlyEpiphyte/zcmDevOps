@@ -70,7 +70,7 @@ public class Milestone extends AbstractEntity {
 	}
 
 	@Editable(order=100)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
 	}

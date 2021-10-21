@@ -22,7 +22,7 @@ public class BranchBean implements Validatable, Serializable {
 	private String name;
 	
 	@Editable(order=100, name="分支名称")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@OmitName
 	public String getName() {
 		return name;

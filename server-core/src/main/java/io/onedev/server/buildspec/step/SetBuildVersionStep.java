@@ -31,7 +31,7 @@ public class SetBuildVersionStep extends ServerStep {
 
 	@Editable(order=100,name="构建版本")
 	@Interpolative(variableSuggester="suggestVariables")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getBuildVersion() {
 		return buildVersion;
 	}

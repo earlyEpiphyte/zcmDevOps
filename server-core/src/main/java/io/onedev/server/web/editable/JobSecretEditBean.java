@@ -21,7 +21,7 @@ public class JobSecretEditBean implements Serializable {
 
 	@Editable
 	@ChoiceProvider("getSecretChoices")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getSecret() {
 		return secret;
 	}

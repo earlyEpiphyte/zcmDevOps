@@ -415,7 +415,7 @@ public class IssueResource {
 		
 		private String comment;
 
-		@NotEmpty
+		@NotEmpty(message="不能为空")
 		public String getState() {
 			return state;
 		}

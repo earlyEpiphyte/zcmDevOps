@@ -25,7 +25,7 @@ public class TagBean implements Validatable, Serializable {
 	private String message;
 	
 	@Editable(order=100, name="标签名称")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@OmitName
 	public String getName() {
 		return name;

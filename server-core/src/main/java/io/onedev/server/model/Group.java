@@ -42,7 +42,7 @@ public class Group extends AbstractEntity implements NameAware {
 	private transient Collection<User> members;
 	
 	@Editable(name="分组名称",order=100)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Override
 	public String getName() {
 		return name;

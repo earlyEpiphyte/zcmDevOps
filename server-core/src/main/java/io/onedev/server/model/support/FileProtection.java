@@ -36,7 +36,7 @@ public class FileProtection implements Serializable, Validatable {
 	@Editable(order=100,name="文件路径", description="指定要保护的空格分隔路径. 使用 '**', '*' 或者 '?' 用于 <b><i>路径通配符匹配</i></b>. "
 			+ "以'-'为前缀来排除")
 	@Patterns(suggester = "suggestPaths", path=true)
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getPaths() {
 		return paths;
 	}

@@ -29,7 +29,7 @@ public class SystemSetting implements Serializable, Validatable {
 	private boolean gravatarEnabled;
 	
 	@Editable(name="服务器地址", order=90, description="明确访问服务器的根地址。在Kubernetes集群中运行的任务会通过这个地址下载源文件和生成物")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getServerUrl() {
 		return serverUrl;
 	}

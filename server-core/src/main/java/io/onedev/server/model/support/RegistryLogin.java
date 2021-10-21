@@ -30,7 +30,7 @@ public class RegistryLogin implements Serializable {
 	}
 
 	@Editable(order=200,name="用户名")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	public String getUserName() {
 		return userName;
 	}
@@ -40,7 +40,7 @@ public class RegistryLogin implements Serializable {
 	}
 
 	@Editable(order=300,name="密码")
-	@NotEmpty
+	@NotEmpty(message="不能为空")
 	@Password
 	public String getPassword() {
 		return password;
