@@ -19,7 +19,7 @@ public class CommitInput {
 		inputSpec.appendCommonAnnotations(buffer, index);
 		buffer.append("    @CommitHash\n");
 		if (!inputSpec.isAllowEmpty())
-			buffer.append("    @NotEmpty(message="不能为空")\n");
+			buffer.append("    @NotEmpty(message=\"不能为空\")\n");
 		inputSpec.appendMethods(buffer, index, "String", null, null);
 		
 		return buffer.toString();

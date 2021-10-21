@@ -31,7 +31,7 @@ public class UserChoiceInput {
 			if (inputSpec.isAllowMultiple())
 				buffer.append("    @Size(min=1, message=\"At least one option needs to be selected\")\n");
 			else
-				buffer.append("    @NotEmpty(message="不能为空")\n");
+				buffer.append("    @NotEmpty(message=\"不能为空\")\n");
 		}
 		inputSpec.appendChoiceProvider(buffer, index, "@UserChoice");
 		

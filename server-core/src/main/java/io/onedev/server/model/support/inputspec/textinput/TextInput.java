@@ -23,7 +23,7 @@ public class TextInput {
 		inputSpec.appendField(buffer, index, "String");
 		inputSpec.appendCommonAnnotations(buffer, index);
 		if (!inputSpec.isAllowEmpty())
-			buffer.append("    @NotEmpty(message="不能为空")\n");
+			buffer.append("    @NotEmpty(message=\"不能为空\")\n");
 		if (pattern != null)
 			buffer.append("    @Pattern(regexp=\"" + pattern + "\", message=\"Should match regular expression: " + pattern + "\")\n");
 		inputSpec.appendMethods(buffer, index, "String", null, defaultValueProvider);
