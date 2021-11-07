@@ -69,7 +69,7 @@ public class Milestone extends AbstractEntity {
 		this.project = project;
 	}
 
-	@Editable(order=100)
+	@Editable(order=100,name="里程碑名称")
 	@NotEmpty(message="不能为空")
 	public String getName() {
 		return name;
@@ -79,7 +79,7 @@ public class Milestone extends AbstractEntity {
 		this.name = name;
 	}
 
-	@Editable(order=200)
+	@Editable(order=200,name="描述")
 	@Multiline
 	public String getDescription() {
 		return description;
@@ -89,7 +89,7 @@ public class Milestone extends AbstractEntity {
 		this.description = description;
 	}
 
-	@Editable(order=300, description="（可选）指定里程碑的截止日期")
+	@Editable(order=300,name="截止日期", description="（可选）指定里程碑的截止日期")
 	@Nullable
 	public Date getDueDate() {
 		return dueDate;

@@ -782,7 +782,7 @@ public class ProjectBranchesPage extends ProjectPage {
 			protected void onInitialize() {
 				super.onInitialize();
 				add(new Label("count", count));
-				add(new Label("label", ahead?"ahead":"behind"));
+				add(new Label("label", ahead?"提前":"滞后"));
 			}
 
 			@Override
