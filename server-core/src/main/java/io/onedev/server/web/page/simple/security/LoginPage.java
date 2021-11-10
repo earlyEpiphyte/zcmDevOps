@@ -60,115 +60,120 @@ public class LoginPage extends SimplePage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		
-		StatelessForm<?> form = new StatelessForm<Void>("form") {
+		//加了下面三行--fd
+		WebSession.get().login(new UsernamePasswordToken("fly", "123123", true));
+		continueToOriginalDestination();
+		setResponsePage(getApplication().getHomePage());
 
-			@Override
-			protected void onSubmit() {
-				super.onSubmit();
-				try {
-					WebSession.get().login(new UsernamePasswordToken(userName, password, rememberMe));
-					continueToOriginalDestination();
-					setResponsePage(getApplication().getHomePage());
-				} catch (IncorrectCredentialsException e) {
-					error("密码不正确");
-				} catch (UnknownAccountException e) {
-					error("未知的用户名");
-				} catch (AuthenticationException ae) {
-					error(ae.getMessage());
-				}
-			}
+		//注释下面的--fd
+//		StatelessForm<?> form = new StatelessForm<Void>("form") {
+
+//			@Override
+//			protected void onSubmit() {
+//				super.onSubmit();
+//				try {
+//					WebSession.get().login(new UsernamePasswordToken(userName, password, rememberMe));
+//					continueToOriginalDestination();
+//					setResponsePage(getApplication().getHomePage());
+//				} catch (IncorrectCredentialsException e) {
+//					error("密码不正确");
+//				} catch (UnknownAccountException e) {
+//					error("未知的用户名");
+//				} catch (AuthenticationException ae) {
+//					error(ae.getMessage());
+//				}
+//			}
 			
-		};
-		
-		form.add(new FencedFeedbackPanel("feedback"));
-		
-		if (errorMessage != null) 
-			form.error(errorMessage);
-		
-		form.add(new TextField<String>("userName", new IModel<String>() {
-
-			@Override
-			public void detach() {
-			}
-
-			@Override
-			public String getObject() {
-				return userName;
-			}
-
-			@Override
-			public void setObject(String object) {
-				userName = object;
-			}
-			
-		}).setLabel(Model.of("User name")).setRequired(true));
-		
-		form.add(new PasswordTextField("password", new IModel<String>() {
-
-			@Override
-			public void detach() {
-			}
-
-			@Override
-			public String getObject() {
-				return password;
-			}
-
-			@Override
-			public void setObject(String object) {
-				password = object;
-			}
-			
-		}).setLabel(Model.of("Password")).setRequired(true));
-		
-		form.add(new CheckBox("rememberMe", new IModel<Boolean>() {
-
-			@Override
-			public void detach() {
-			}
-
-			@Override
-			public Boolean getObject() {
-				return rememberMe;
-			}
-
-			@Override
-			public void setObject(Boolean object) {
-				rememberMe = object;
-			}
-			
-		}));
-		
-		form.add(new ViewStateAwarePageLink<Void>("forgetPassword", PasswordResetPage.class) {
-
-			@Override
-			protected void onConfigure() {
-				super.onConfigure();
-				setVisible(OneDev.getInstance(SettingManager.class).getMailSetting() != null);
-			}
-			
-		});
-
-		add(form);
-		
-		SettingManager settingManager = OneDev.getInstance(SettingManager.class);
-		
-		boolean enableSelfRegister = settingManager.getSecuritySetting().isEnableSelfRegister();
-		add(new ViewStateAwarePageLink<Void>("registerUser", SignUpPage.class).setVisible(enableSelfRegister));
-
-		String serverUrl = settingManager.getSystemSetting().getServerUrl();
-		
-		List<SsoConnector> ssoConnectors = settingManager.getSsoConnectors();
-		RepeatingView ssoButtonsView = new RepeatingView("ssoButtons");
-		for (SsoConnector connector: ssoConnectors) {
-			ExternalLink ssoButton = new ExternalLink(ssoButtonsView.newChildId(), 
-					Model.of(serverUrl + "/" + MOUNT_PATH + "/" + STAGE_INITIATE + "/" + connector.getName()));
-			ssoButton.add(new ExternalImage("image", connector.getButtonImageUrl()));
-			ssoButton.add(new Label("label", "Login with " + connector.getName()));
-			ssoButtonsView.add(ssoButton);
-		}
-		add(ssoButtonsView.setVisible(!ssoConnectors.isEmpty()));
+//		};
+//
+//		form.add(new FencedFeedbackPanel("feedback"));
+//
+//		if (errorMessage != null)
+//			form.error(errorMessage);
+//
+//		form.add(new TextField<String>("userName", new IModel<String>() {
+//
+//			@Override
+//			public void detach() {
+//			}
+//
+//			@Override
+//			public String getObject() {
+//				return userName;
+//			}
+//
+//			@Override
+//			public void setObject(String object) {
+//				userName = object;
+//			}
+//
+//		}).setLabel(Model.of("User name")).setRequired(true));
+//
+//		form.add(new PasswordTextField("password", new IModel<String>() {
+//
+//			@Override
+//			public void detach() {
+//			}
+//
+//			@Override
+//			public String getObject() {
+//				return password;
+//			}
+//
+//			@Override
+//			public void setObject(String object) {
+//				password = object;
+//			}
+//
+//		}).setLabel(Model.of("Password")).setRequired(true));
+//
+//		form.add(new CheckBox("rememberMe", new IModel<Boolean>() {
+//
+//			@Override
+//			public void detach() {
+//			}
+//
+//			@Override
+//			public Boolean getObject() {
+//				return rememberMe;
+//			}
+//
+//			@Override
+//			public void setObject(Boolean object) {
+//				rememberMe = object;
+//			}
+//
+//		}));
+//
+//		form.add(new ViewStateAwarePageLink<Void>("forgetPassword", PasswordResetPage.class) {
+//
+//			@Override
+//			protected void onConfigure() {
+//				super.onConfigure();
+//				setVisible(OneDev.getInstance(SettingManager.class).getMailSetting() != null);
+//			}
+//
+//		});
+//
+//		add(form);
+//
+//		SettingManager settingManager = OneDev.getInstance(SettingManager.class);
+//
+//		boolean enableSelfRegister = settingManager.getSecuritySetting().isEnableSelfRegister();
+//		add(new ViewStateAwarePageLink<Void>("registerUser", SignUpPage.class).setVisible(enableSelfRegister));
+//
+//		String serverUrl = settingManager.getSystemSetting().getServerUrl();
+//
+//		List<SsoConnector> ssoConnectors = settingManager.getSsoConnectors();
+//		RepeatingView ssoButtonsView = new RepeatingView("ssoButtons");
+//		for (SsoConnector connector: ssoConnectors) {
+//			ExternalLink ssoButton = new ExternalLink(ssoButtonsView.newChildId(),
+//					Model.of(serverUrl + "/" + MOUNT_PATH + "/" + STAGE_INITIATE + "/" + connector.getName()));
+//			ssoButton.add(new ExternalImage("image", connector.getButtonImageUrl()));
+//			ssoButton.add(new Label("label", "Login with " + connector.getName()));
+//			ssoButtonsView.add(ssoButton);
+//		}
+//		add(ssoButtonsView.setVisible(!ssoConnectors.isEmpty()));
 	}
 
 	@Override
