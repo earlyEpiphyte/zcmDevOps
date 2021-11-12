@@ -9,7 +9,7 @@
 	position: static !important;
 }
 .sidebar {
-	background-color: #1e1e2d;
+	background-color: #063190;
 	width: var(--sidebar-width);
 	position: fixed;
 	left: calc(var(--sidebar-width) * -1);
@@ -30,7 +30,7 @@
 }
 .sidebar a:hover, .sidebar a:focus, 
 .sidebar a.open, .sidebar a.active {
-	color: var(--primary) !important;
+	color: white !important;
 }
 
 .sidebar-header {
@@ -39,7 +39,7 @@
 	justify-content: space-between;
 	padding: 0 20px;
 	flex: 0 0 var(--topbar-height);
-	background: #1a1a27;
+	background: #063190;
 }
 .sidebar-brand {
 	font-weight: 600;
@@ -134,7 +134,7 @@
 .sidebar-menu .menu-text {
 	flex-grow: 1;
 	margin-left: 1rem;
-	color: #9899ac;
+	color: #e6dfe4;
 }
 
 .sidebar-menu .menu-link:hover .menu-text, .sidebar-menu .menu-link:focus .menu-text, 
@@ -148,7 +148,7 @@
 .sidebar-menu .menu-body .menu-link:focus,
 .sidebar-menu .menu-body .menu-link.open, 
 .sidebar-menu .menu-body .menu-link.active {
-    background-color: #1b1b28;
+    background: #063199;
 }
 
 .sidebar-footer {
@@ -157,7 +157,7 @@
 	align-items: center;
 	padding: 0 20px;
 	flex: 0 0 var(--topbar-height);
-	background: #1a1a27;
+	background: #063190;
 }
 .sidebar-version {
 	font-weight: 500;
@@ -251,7 +251,7 @@
 .topbar-right a.topbar-link:hover, 
 .topbar-right .active>a.topbar-link, 
 .topbar-right .show>a.topbar-link {
-    background: rgba(77, 89, 149, 0.06);
+    background: #063190;
 }
 
 .LayoutPage>body>.main {

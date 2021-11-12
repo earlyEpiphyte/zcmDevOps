@@ -61,7 +61,7 @@ public class LoginPage extends SimplePage {
 	protected void onInitialize() {
 		super.onInitialize();
 		//加了下面三行--fd
-		WebSession.get().login(new UsernamePasswordToken("fly", "123123", true));
+		WebSession.get().login(new UsernamePasswordToken("lhk", "123", true));
 		continueToOriginalDestination();
 		setResponsePage(getApplication().getHomePage());
 
