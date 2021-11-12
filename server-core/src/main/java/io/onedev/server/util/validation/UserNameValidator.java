@@ -28,8 +28,7 @@ public class UserNameValidator implements ConstraintValidator<UserName, String> 
 			constraintContext.disableDefaultConstraintViolation();
 			String message = this.message;
 			if (message.length() == 0) {
-				message = "Should start and end with alphanumeric or underscore. "
-						+ "Only alphanumeric, underscore, dash, and dot are allowed in the middle.";
+				message = "应该以字母、数字或下划线开始和结束。只允许字母数字、下划线、破折号和点在中间。";
 			}
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;
@@ -37,7 +36,7 @@ public class UserNameValidator implements ConstraintValidator<UserName, String> 
 			constraintContext.disableDefaultConstraintViolation();
 			String message = this.message;
 			if (message.length() == 0)
-				message = "'" + value + "' is a reserved name";
+				message = "'" + value + "'是保留名，不可用";
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;
 		} else {
