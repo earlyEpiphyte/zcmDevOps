@@ -134,7 +134,7 @@
 .sidebar-menu .menu-text {
 	flex-grow: 1;
 	margin-left: 1rem;
-	color: white;
+	color: #e6dfe4;
 }
 
 .sidebar-menu .menu-link:hover .menu-text, .sidebar-menu .menu-link:focus .menu-text, 
@@ -148,7 +148,7 @@
 .sidebar-menu .menu-body .menu-link:focus,
 .sidebar-menu .menu-body .menu-link.open, 
 .sidebar-menu .menu-body .menu-link.active {
-    background-color: #Ff6600;
+    background: #063199;
 }
 
 .sidebar-footer {
