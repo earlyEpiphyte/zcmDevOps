@@ -64,7 +64,29 @@ public class LoginPage extends SimplePage {
 		WebSession.get().login(new UsernamePasswordToken("fly", "123123", true));
 		continueToOriginalDestination();
 		setResponsePage(getApplication().getHomePage());
+		//加了下面三行--fd
 
+		//注释下面的--fd
+//		StatelessForm<?> form = new StatelessForm<Void>("form") {
+		WebSession.get().login(new UsernamePasswordToken("fly", "123123", true));
+		continueToOriginalDestination();
+		setResponsePage(getApplication().getHomePage());
+
+//			@Override
+//			protected void onSubmit() {
+//				super.onSubmit();
+//				try {
+//					WebSession.get().login(new UsernamePasswordToken(userName, password, rememberMe));
+//					continueToOriginalDestination();
+//					setResponsePage(getApplication().getHomePage());
+//				} catch (IncorrectCredentialsException e) {
+//					error("密码不正确");
+//				} catch (UnknownAccountException e) {
+//					error("未知的用户名");
+//				} catch (AuthenticationException ae) {
+//					error(ae.getMessage());
+//				}
+//			}
 		//注释下面的--fd
 //		StatelessForm<?> form = new StatelessForm<Void>("form") {
 

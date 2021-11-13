@@ -27,15 +27,14 @@ public class ParamNameValidator implements ConstraintValidator<ParamName, String
 		String message = this.message;
 		if (!PATTERN.matcher(value).matches()) {
 			if (message.length() == 0) {
-				message = "Should start and end with alphanumeric or underscore. "
-						+ "Only alphanumeric, underscore, dash, space and dot are allowed in the middle.";
+				message = "应该以字母、数字或下划线开始和结束。只允许字母数字、下划线、破折号和点在中间。";
 			}
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;
 		} else if (Build.ALL_FIELDS.contains(value)) {
 			constraintContext.disableDefaultConstraintViolation();
 			if (message.length() == 0)
-				message = "'" + value + "' is reserved";
+				message = "'" + value + "'是保留的，不可用";
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;
 		} else {

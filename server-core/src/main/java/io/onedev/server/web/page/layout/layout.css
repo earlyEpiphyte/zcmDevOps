@@ -30,7 +30,7 @@
 }
 .sidebar a:hover, .sidebar a:focus, 
 .sidebar a.open, .sidebar a.active {
-	color: var(--primary) !important;
+	color: white !important;
 }
 
 .sidebar-header {
