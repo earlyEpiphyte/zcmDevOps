@@ -113,7 +113,7 @@ public class CommitOptionPanel extends Panel {
 			oldName = oldPath;
 		
 		if (newContentProvider == null) { 
-			return "Delete " + oldName;
+			return "删除" + oldName;
 		} else {
 			String newPath = context.getNewPath();
 
@@ -125,13 +125,13 @@ public class CommitOptionPanel extends Panel {
 			
 			if (oldPath == null) {
 				if (newName != null)
-					return "Add " + newName;
+					return "添加" + newName;
 				else
 					return "Add new file";
 			} else if (oldPath.equals(newPath)) {
-				return "Edit " + oldName;
+				return "编辑" + oldName;
 			} else {
-				return "Rename " + oldName;
+				return "重命名" + oldName;
 			}
 		}
 			

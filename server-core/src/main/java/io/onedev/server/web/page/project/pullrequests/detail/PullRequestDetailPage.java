@@ -599,7 +599,7 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 		
 		List<Tab> tabs = new ArrayList<>();
 		
-		tabs.add(new PullRequestTab("Activities", PullRequestActivitiesPage.class) {
+		tabs.add(new PullRequestTab("事件", PullRequestActivitiesPage.class) {
 
 			@Override
 			protected Component renderOptions(String componentId) {
@@ -608,8 +608,8 @@ public abstract class PullRequestDetailPage extends ProjectPage implements PullR
 			}
 			
 		});
-		tabs.add(new PullRequestTab("File Changes", PullRequestChangesPage.class));
-		tabs.add(new PullRequestTab("Code Comments", PullRequestCodeCommentsPage.class));
+		tabs.add(new PullRequestTab("文件变动", PullRequestChangesPage.class));
+		tabs.add(new PullRequestTab("代码评论", PullRequestCodeCommentsPage.class));
 		
 		add(new Tabbable("requestTabs", tabs).setOutputMarkupId(true));
 		

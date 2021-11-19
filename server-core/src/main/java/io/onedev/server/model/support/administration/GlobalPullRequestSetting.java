@@ -15,16 +15,13 @@ public class GlobalPullRequestSetting implements Serializable {
 	private List<NamedPullRequestQuery> namedQueries = new ArrayList<>();
 	
 	public GlobalPullRequestSetting() {
-		namedQueries.add(new NamedPullRequestQuery("Open", "open"));
-		namedQueries.add(new NamedPullRequestQuery("To be reviewed by me", "to be reviewed by me"));
-		namedQueries.add(new NamedPullRequestQuery("To be changed by me", "submitted by me and someone requested for changes"));
-		namedQueries.add(new NamedPullRequestQuery("Requested for changes by me", "requested for changes by me"));
-		namedQueries.add(new NamedPullRequestQuery("Approved by me", "approved by me"));
-		namedQueries.add(new NamedPullRequestQuery("Submitted by me", "submitted by me"));
-		namedQueries.add(new NamedPullRequestQuery("Submitted recently", "\"Submit Date\" is since \"last week\""));
-		namedQueries.add(new NamedPullRequestQuery("Updated recently", "\"Update Date\" is since \"last week\""));
-		namedQueries.add(new NamedPullRequestQuery("Closed", "merged or discarded"));
-		namedQueries.add(new NamedPullRequestQuery("All", null));
+		namedQueries.add(new NamedPullRequestQuery("开放的", "open"));
+		namedQueries.add(new NamedPullRequestQuery("由我改变的", "submitted by me and someone requested for changes"));
+		namedQueries.add(new NamedPullRequestQuery("由我提交的", "submitted by me"));
+		namedQueries.add(new NamedPullRequestQuery("最近提交的", "\"Submit Date\" is since \"last week\""));
+		namedQueries.add(new NamedPullRequestQuery("最近更新的", "\"Update Date\" is since \"last week\""));
+		namedQueries.add(new NamedPullRequestQuery("已关闭的", "merged or discarded"));
+		namedQueries.add(new NamedPullRequestQuery("所有", null));
 	}
 	
 	public List<NamedPullRequestQuery> getNamedQueries() {

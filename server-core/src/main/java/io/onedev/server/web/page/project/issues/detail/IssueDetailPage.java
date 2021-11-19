@@ -115,7 +115,7 @@ public abstract class IssueDetailPage extends ProjectIssuesPage implements Input
 		});
 
 		List<Tab> tabs = new ArrayList<>();
-		tabs.add(new IssueTab("Activities", IssueActivitiesPage.class) {
+		tabs.add(new IssueTab("事件", IssueActivitiesPage.class) {
 
 			@Override
 			protected Component renderOptions(String componentId) {
@@ -127,12 +127,12 @@ public abstract class IssueDetailPage extends ProjectIssuesPage implements Input
 		
 		if (!getIssue().getCommits().isEmpty()) {
 			if (SecurityUtils.canReadCode(getProject())) {
-				tabs.add(new IssueTab("Fixing Commits", IssueCommitsPage.class));
+				tabs.add(new IssueTab("修复提交", IssueCommitsPage.class));
 				if (!getIssue().getPullRequests().isEmpty())
-					tabs.add(new IssueTab("Pull Requests", IssuePullRequestsPage.class));
+					tabs.add(new IssueTab("拉取请求", IssuePullRequestsPage.class));
 			}
 			// Do not calculate fix builds now as it might be slow
-			tabs.add(new IssueTab("Fixing Builds", IssueBuildsPage.class));
+			tabs.add(new IssueTab("修复构建", IssueBuildsPage.class));
 		}
 		
 		add(new Tabbable("issueTabs", tabs).setOutputMarkupId(true));

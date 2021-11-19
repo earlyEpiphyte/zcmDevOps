@@ -68,7 +68,7 @@ public class GlobalIssueSetting implements Serializable {
 	
 	public GlobalIssueSetting() {
 		ChoiceField type = new ChoiceField();
-		type.setName("Type");
+		type.setName("类别");
 		SpecifiedChoices specifiedChoices = new SpecifiedChoices();
 
 		List<Choice> choices = new ArrayList<>(); 
@@ -107,7 +107,7 @@ public class GlobalIssueSetting implements Serializable {
 		fieldSpecs.add(type);
 		
 		ChoiceField priority = new ChoiceField();
-		priority.setName("Priority");
+		priority.setName("优先级");
 		specifiedChoices = new SpecifiedChoices();
 
 		choices = new ArrayList<>(); 
@@ -144,56 +144,56 @@ public class GlobalIssueSetting implements Serializable {
 		UserChoiceField assignees = new UserChoiceField();
 		assignees.setAllowMultiple(true);
 		assignees.setAllowEmpty(true);
-		assignees.setNameOfEmptyValue("Not assigned");
-		assignees.setName("Assignees");
+		assignees.setNameOfEmptyValue("无代理");
+		assignees.setName("代理人");
 		
 		fieldSpecs.add(assignees);
 		
 		BuildChoiceField failedBuild = new BuildChoiceField();
-		failedBuild.setName("Failed Build");
+		failedBuild.setName("失败的构建");
 		failedBuild.setAllowEmpty(true);
-		failedBuild.setNameOfEmptyValue("Not specified");
+		failedBuild.setNameOfEmptyValue("无指定");
 		
 		fieldSpecs.add(failedBuild);
 		
 		ShowCondition showCondition = new ShowCondition();
-		showCondition.setInputName("Type");
+		showCondition.setInputName("类别");
 		ValueIsOneOf valueIsOneOf = new ValueIsOneOf();
 		valueIsOneOf.setValues(Lists.newArrayList("Build Failure"));
 		showCondition.setValueMatcher(valueIsOneOf);
 		failedBuild.setShowCondition(showCondition);
 		
 		StateSpec open = new StateSpec();
-		open.setName("Open");
+		open.setName("开放");
 		open.setColor("#FFA800");
 		
 		stateSpecs.add(open);
 		
 		StateSpec closed = new StateSpec();
 		closed.setColor("#8950FC");
-		closed.setName("Closed");
+		closed.setName("已关闭");
 		
 		stateSpecs.add(closed);
 		
 		StateSpec released = new StateSpec();
 		released.setColor("#1BC5BD");
-		released.setName("Released");
+		released.setName("已发布");
 		
 		stateSpecs.add(released);
 		
 		TransitionSpec transition = new TransitionSpec();
-		transition.setFromStates(Lists.newArrayList("Open"));
-		transition.setToState("Closed");
+		transition.setFromStates(Lists.newArrayList("开放"));
+		transition.setToState("已关闭");
 		PressButtonTrigger pressButton = new PressButtonTrigger();
 		pressButton.setButtonLabel("Close");
-		pressButton.setAuthorizedRoles(Lists.newArrayList("Code Writer", "Code Reader"));
+		pressButton.setAuthorizedRoles(Lists.newArrayList("代码编写者", "代码阅读者"));
 		transition.setTrigger(pressButton);
 		
 		transitionSpecs.add(transition);
 		
 		transition = new TransitionSpec();
-		transition.setFromStates(Lists.newArrayList("Open"));
-		transition.setToState("Closed");
+		transition.setFromStates(Lists.newArrayList("开放"));
+		transition.setToState("已关闭");
 		BranchUpdateTrigger branchUpdate = new BranchUpdateTrigger();
 		branchUpdate.setBranches("master");
 		transition.setTrigger(branchUpdate);
@@ -201,18 +201,18 @@ public class GlobalIssueSetting implements Serializable {
 		transitionSpecs.add(transition);
 		
 		transition = new TransitionSpec();
-		transition.setFromStates(Lists.newArrayList("Open"));
-		transition.setToState("Closed");
+		transition.setFromStates(Lists.newArrayList("开放"));
+		transition.setToState("已关闭");
 		BuildSuccessfulTrigger buildSuccessful = new BuildSuccessfulTrigger();
 		buildSuccessful.setBranches("master");
-		buildSuccessful.setIssueQuery("\"Type\" is \"Build Failure\" and (\"Failed Build\" is current or \"Failed Build\" is previous)");
+		buildSuccessful.setIssueQuery("\"类别\" is \"Build Failure\" and (\"Failed Build\" is current or \"Failed Build\" is previous)");
 		transition.setTrigger(buildSuccessful);
 		
 		transitionSpecs.add(transition);
 		
 		transition = new TransitionSpec();
-		transition.setFromStates(Lists.newArrayList("Open", "Closed"));
-		transition.setToState("Released");
+		transition.setFromStates(Lists.newArrayList("开放", "已关闭"));
+		transition.setToState("已发布");
 		buildSuccessful = new BuildSuccessfulTrigger();
 		buildSuccessful.setBranches("master");
 		buildSuccessful.setJobNames("Release");
@@ -222,44 +222,42 @@ public class GlobalIssueSetting implements Serializable {
 		transitionSpecs.add(transition);
  		
 		transition = new TransitionSpec();
-		transition.setFromStates(Lists.newArrayList("Closed", "Released"));
-		transition.setToState("Open");
+		transition.setFromStates(Lists.newArrayList("已关闭", "已发布"));
+		transition.setToState("开放");
 		pressButton = new PressButtonTrigger();
 		pressButton.setButtonLabel("Reopen");
-		pressButton.setAuthorizedRoles(Lists.newArrayList("Code Writer", "Code Reader"));
+		pressButton.setAuthorizedRoles(Lists.newArrayList("代码编写者", "代码阅读者"));
 		transition.setTrigger(pressButton);
 		
 		transitionSpecs.add(transition);
 		
-		promptFieldsUponIssueOpen.add("Type");
-		promptFieldsUponIssueOpen.add("Priority");
-		promptFieldsUponIssueOpen.add("Assignees");
-		promptFieldsUponIssueOpen.add("Failed Build");
+		promptFieldsUponIssueOpen.add("类别");
+		promptFieldsUponIssueOpen.add("优先级");
+		promptFieldsUponIssueOpen.add("代理人");
+		promptFieldsUponIssueOpen.add("失败的构建");
 		
 		BoardSpec board = new BoardSpec();
 		board.setName(Issue.NAME_STATE);
 		board.setIdentifyField(Issue.NAME_STATE);
-		board.setColumns(Lists.newArrayList("Open", "Closed", "Released"));
-		board.setDisplayFields(Lists.newArrayList(Issue.NAME_STATE, "Type", "Priority", "Assignees"));
+		board.setColumns(Lists.newArrayList("开放", "已关闭", "已发布"));
+		board.setDisplayFields(Lists.newArrayList(Issue.NAME_STATE, "类别", "优先级", "代理人"));
 		boardSpecs.add(board);
 		
 		listFields.add(Issue.NAME_STATE);
-		listFields.add("Type");
-		listFields.add("Priority");
-		listFields.add("Assignees");
+		listFields.add("类别");
+		listFields.add("优先级");
+		listFields.add("代理人");
 		
-		namedQueries.add(new NamedIssueQuery("Open", "\"State\" is \"Open\""));
-		namedQueries.add(new NamedIssueQuery("Assigned to me & Open", "\"Assignees\" is me and \"State\" is \"Open\""));
-		namedQueries.add(new NamedIssueQuery("Submitted by me & Open", "submitted by me and \"State\" is \"Open\""));
-		namedQueries.add(new NamedIssueQuery("Assigned to me", "\"Assignees\" is me"));
-		namedQueries.add(new NamedIssueQuery("Submitted by me", "submitted by me"));
-		namedQueries.add(new NamedIssueQuery("Submitted recently", "\"Submit Date\" is since \"last week\""));
-		namedQueries.add(new NamedIssueQuery("Updated recently", "\"Update Date\" is since \"last week\""));
-		namedQueries.add(new NamedIssueQuery("Open & Critical", "\"State\" is \"Open\" and \"Priority\" is \"Critical\""));
-		namedQueries.add(new NamedIssueQuery("Open & Unassigned", "\"State\" is \"Open\" and \"Assignees\" is empty"));
-		namedQueries.add(new NamedIssueQuery("Closed", "\"State\" is \"Closed\""));
-		namedQueries.add(new NamedIssueQuery("Released", "\"State\" is \"Released\""));
-		namedQueries.add(new NamedIssueQuery("All", null));
+		namedQueries.add(new NamedIssueQuery("开放的", "\"State\" is \"Open\""));
+		namedQueries.add(new NamedIssueQuery("由我代理并开放的", "\"Assignees\" is me and \"State\" is \"Open\""));
+		namedQueries.add(new NamedIssueQuery("由我提交并开放的", "submitted by me and \"State\" is \"Open\""));
+		namedQueries.add(new NamedIssueQuery("由我代理的", "\"Assignees\" is me"));
+		namedQueries.add(new NamedIssueQuery("由我提交的", "submitted by me"));
+		namedQueries.add(new NamedIssueQuery("最近提交的", "\"Submit Date\" is since \"last week\""));
+		namedQueries.add(new NamedIssueQuery("最近更新的", "\"Update Date\" is since \"last week\""));
+		namedQueries.add(new NamedIssueQuery("已关闭的", "\"State\" is \"Closed\""));
+		namedQueries.add(new NamedIssueQuery("已发布的", "\"State\" is \"Released\""));
+		namedQueries.add(new NamedIssueQuery("所有", null));
 	}
 	
 	public List<String> sortFieldNames(Collection<String> fieldNames) {

@@ -100,7 +100,7 @@ public class DefaultRoleManager extends BaseEntityManager<Role> implements RoleM
 	@Transactional
 	public void setupDefaults() {
 		Role codeWriter = new Role();
-		codeWriter.setName("Code Writer");
+		codeWriter.setName("代码编写者");
 		codeWriter.setCodePrivilege(CodePrivilege.WRITE);
 		codeWriter.setScheduleIssues(true);
 		codeWriter.setEditableIssueFields(new AllIssueFields());
@@ -113,7 +113,7 @@ public class DefaultRoleManager extends BaseEntityManager<Role> implements RoleM
 		save(codeWriter, null);
 
 		Role codeReader = new Role();
-		codeReader.setName("Code Reader");
+		codeReader.setName("代码阅读者");
 		codeReader.setCodePrivilege(CodePrivilege.READ);
 		codeReader.setScheduleIssues(true);
 		codeReader.setEditableIssueFields(new AllIssueFields());
@@ -126,10 +126,10 @@ public class DefaultRoleManager extends BaseEntityManager<Role> implements RoleM
 		save(codeReader, null);
 		
 		Role issueReporter = new Role();
-		issueReporter.setName("Issue Reporter");
+		issueReporter.setName("问题汇报者");
 		issueReporter.setCodePrivilege(CodePrivilege.NONE);
 		ExcludeIssueFields allfieldsExcept = new ExcludeIssueFields();
-		allfieldsExcept.getExcludeFields().add("Assignees");
+		allfieldsExcept.getExcludeFields().add("代理人");
 		issueReporter.setEditableIssueFields(allfieldsExcept);
 		
 		jobPrivilege = new JobPrivilege();

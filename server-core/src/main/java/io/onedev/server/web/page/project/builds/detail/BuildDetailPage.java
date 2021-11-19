@@ -400,7 +400,7 @@ public abstract class BuildDetailPage extends ProjectPage
 				List<Tab> tabs = new ArrayList<>();
 
 				if (SecurityUtils.canAccessLog(getBuild())) {
-					tabs.add(new BuildTab("Log", BuildLogPage.class) {
+					tabs.add(new BuildTab("日志", BuildLogPage.class) {
 	
 						@Override
 						protected Component renderOptions(String componentId) {
@@ -416,13 +416,13 @@ public abstract class BuildDetailPage extends ProjectPage
 					@Override
 					public Void call() throws Exception {
 						if (getBuild().getArtifactsDir().exists()) 
-							tabs.add(new BuildTab("Artifacts", BuildArtifactsPage.class));
+							tabs.add(new BuildTab("生成物", BuildArtifactsPage.class));
 						return null;
 					}
 					
 				});
 				
-				tabs.add(new BuildTab("Fixed Issues", FixedIssuesPage.class) {
+				tabs.add(new BuildTab("已修复的问题", FixedIssuesPage.class) {
 
 					@Override
 					public Component render(String componentId) {
@@ -442,7 +442,7 @@ public abstract class BuildDetailPage extends ProjectPage
 				});
 				
 				if (SecurityUtils.canReadCode(getProject()))
-					tabs.add(new BuildTab("Changes", BuildChangesPage.class));
+					tabs.add(new BuildTab("变动", BuildChangesPage.class));
 				
 				List<BuildTabContribution> contributions = new ArrayList<>(OneDev.getExtensions(BuildTabContribution.class));
 				contributions.sort(Comparator.comparing(BuildTabContribution::getOrder));

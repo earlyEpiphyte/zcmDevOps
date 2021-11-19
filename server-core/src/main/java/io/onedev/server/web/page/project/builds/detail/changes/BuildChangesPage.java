@@ -91,16 +91,6 @@ public class BuildChangesPage extends BuildDetailPage {
 			}
 			
 		});
-		
-		add(new WebMarkupContainer("buildStreamHelpUrl") {
-
-			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				tag.put("href", OneDev.getInstance().getDocRoot() + "/pages/concepts.md#build-stream");
-			}
-			
-		});
 	}
 	
 	@Override
