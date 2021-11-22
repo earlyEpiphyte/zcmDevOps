@@ -33,7 +33,6 @@ import io.onedev.server.web.page.admin.role.RoleListPage;
 import io.onedev.server.web.page.admin.serverinformation.ServerInformationPage;
 import io.onedev.server.web.page.admin.serverlog.ServerLogPage;
 import io.onedev.server.web.page.admin.ssh.SshSettingPage;
-import io.onedev.server.web.page.admin.sso.SsoConnectorListPage;
 import io.onedev.server.web.page.admin.sso.SsoProcessPage;
 import io.onedev.server.web.page.admin.systemsetting.SystemSettingPage;
 import io.onedev.server.web.page.admin.user.UserListPage;

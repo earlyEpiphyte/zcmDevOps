@@ -249,9 +249,9 @@ public class GlobalIssueSetting implements Serializable {
 		listFields.add("代理人");
 		
 		namedQueries.add(new NamedIssueQuery("开放的", "\"State\" is \"Open\""));
-		namedQueries.add(new NamedIssueQuery("由我代理并开放的", "\"Assignees\" is me and \"State\" is \"Open\""));
+		namedQueries.add(new NamedIssueQuery("由我代理并开放的", "\"代理人\" is me and \"State\" is \"Open\""));
 		namedQueries.add(new NamedIssueQuery("由我提交并开放的", "submitted by me and \"State\" is \"Open\""));
-		namedQueries.add(new NamedIssueQuery("由我代理的", "\"Assignees\" is me"));
+		namedQueries.add(new NamedIssueQuery("由我代理的", "\"代理人\" is me"));
 		namedQueries.add(new NamedIssueQuery("由我提交的", "submitted by me"));
 		namedQueries.add(new NamedIssueQuery("最近提交的", "\"Submit Date\" is since \"last week\""));
 		namedQueries.add(new NamedIssueQuery("最近更新的", "\"Update Date\" is since \"last week\""));

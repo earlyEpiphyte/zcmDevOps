@@ -1,36 +1,13 @@
 package io.onedev.server.web.page.simple.security;
 
-import static io.onedev.server.web.page.admin.sso.SsoProcessPage.MOUNT_PATH;
-import static io.onedev.server.web.page.admin.sso.SsoProcessPage.STAGE_INITIATE;
-
-import java.util.List;
-
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.wicket.RestartResponseException;
-import org.apache.wicket.feedback.FencedFeedbackPanel;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.CheckBox;
-import org.apache.wicket.markup.html.form.PasswordTextField;
-import org.apache.wicket.markup.html.form.StatelessForm;
-import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.image.ExternalImage;
-import org.apache.wicket.markup.html.link.ExternalLink;
-import org.apache.wicket.markup.repeater.RepeatingView;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import io.onedev.server.OneDev;
-import io.onedev.server.entitymanager.SettingManager;
-import io.onedev.server.model.support.administration.sso.SsoConnector;
 import io.onedev.server.web.WebSession;
-import io.onedev.server.web.component.link.ViewStateAwarePageLink;
 import io.onedev.server.web.page.simple.SimpleCssResourceReference;
 import io.onedev.server.web.page.simple.SimplePage;
 
