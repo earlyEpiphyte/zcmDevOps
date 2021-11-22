@@ -10,7 +10,7 @@ import io.onedev.server.util.validation.annotation.UserName;
 
 public class UserNameValidator implements ConstraintValidator<UserName, String> {
 	
-	public static final Pattern PATTERN = Pattern.compile("\\w([\\w-\\.]*\\w)?");
+	public static final Pattern PATTERN = Pattern.compile("[\\w\\u4e00-\\u9fa5]([\\w-\\.\\s\\u4e00-\\u9fa5]*[\\w\\u4e00-\\u9fa5])?");
 	
 	private String message;
 	

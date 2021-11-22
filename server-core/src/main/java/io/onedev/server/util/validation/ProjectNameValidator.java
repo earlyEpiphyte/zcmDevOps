@@ -9,7 +9,7 @@ import io.onedev.server.util.validation.annotation.ProjectName;
 
 public class ProjectNameValidator implements ConstraintValidator<ProjectName, String> {
 
-	public static final Pattern PATTERN = Pattern.compile("\\w([\\w-\\.]*\\w)?");
+	public static final Pattern PATTERN = Pattern.compile("[\\w\\u4e00-\\u9fa5]([\\w-\\.\\s\\u4e00-\\u9fa5]*[\\w\\u4e00-\\u9fa5])?");
 	
 	private String message;
 	
@@ -27,7 +27,7 @@ public class ProjectNameValidator implements ConstraintValidator<ProjectName, St
 			constraintContext.disableDefaultConstraintViolation();
 			String message = this.message;
 			if (message.length() == 0) {
-				message = "应该以字母、数字或下划线开始和结束。只允许字母数字、下划线、破折号和点在中间。";
+				message = "应该以字母、数字、下划线或者汉字开始和结束。只允许字母数字、下划线、破折号、点和汉字在中间。";
 			}
 			constraintContext.buildConstraintViolationWithTemplate(message).addConstraintViolation();
 			return false;
@@ -42,5 +42,4 @@ public class ProjectNameValidator implements ConstraintValidator<ProjectName, St
 			return true;
 		}	
 	}
-	
 }
