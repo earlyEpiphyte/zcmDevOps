@@ -244,7 +244,7 @@ public class ProjectListPage extends LayoutPage {
 
 	@Override
 	protected String getPageTitle() {
-		return "项目 - 工业互联网标识解析集成开发平台";
+		return "项目 - AI编译集成开发平台";
 	}
 	
 	@Override

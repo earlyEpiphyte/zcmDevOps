@@ -229,7 +229,7 @@ public class PullRequestListPage extends LayoutPage {
 	
 	@Override
 	protected String getPageTitle() {
-		return "拉取请求 - 工业互联网标识解析集成开发平台";
+		return "拉取请求 - AI编译集成开发平台";
 	}
 	
 	public static PageParameters paramsOf(int page) {

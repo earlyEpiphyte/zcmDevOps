@@ -265,7 +265,7 @@ public abstract class BasePage extends WebPage {
 	}
 	
 	protected String getPageTitle() {
-		return "工业互联网标识解析集成开发平台";
+		return "AI编译集成开发平台";
 	}
 
 	protected int getPageRefreshInterval() {
