@@ -568,14 +568,6 @@ public class DefaultJobManager implements JobManager, Runnable, CodePullAuthoriz
 														
 													});
 												}
-
-												@Override
-												public Map<String, byte[]> runServerStep(List<Integer> stepPosition,
-														File filesDir, Map<String, String> placeholderValues,
-														SimpleLogger logger) {
-													// TODO Auto-generated method stub
-													return null;
-												}
 												
 											};
 										} finally {

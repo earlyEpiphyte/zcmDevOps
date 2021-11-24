@@ -52,16 +52,17 @@ import io.onedev.commons.utils.command.ExecutionResult;
 import io.onedev.commons.utils.command.LineConsumer;
 import io.onedev.k8shelper.Action;
 import io.onedev.k8shelper.CommandExecutable;
-import io.onedev.k8shelper.LeafVisitor;
 import io.onedev.k8shelper.CompositeExecutable;
 import io.onedev.k8shelper.ExecuteCondition;
 import io.onedev.k8shelper.KubernetesHelper;
 import io.onedev.k8shelper.LeafExecutable;
+import io.onedev.k8shelper.LeafVisitor;
 import io.onedev.server.OneDev;
 import io.onedev.server.buildspec.Service;
 import io.onedev.server.buildspec.job.CacheSpec;
 import io.onedev.server.buildspec.job.EnvVar;
 import io.onedev.server.buildspec.job.JobContext;
+import io.onedev.server.buildspec.job.log.StyleBuilder;
 import io.onedev.server.entitymanager.SettingManager;
 import io.onedev.server.model.support.RegistryLogin;
 import io.onedev.server.model.support.administration.jobexecutor.JobExecutor;
@@ -227,7 +228,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 				@Override
 				public void consume(String line) {
-					jobLogger.log("Kubernetes: " + line);
+					jobLogger.error("Kubernetes: " + line);
 				}
 				
 			}).checkReturnCode();
@@ -256,7 +257,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 	
 				@Override
 				public void consume(String line) {
-					jobLogger.log("Kubernetes: " + line);
+					jobLogger.error("Kubernetes: " + line);
 				}
 				
 			}).checkReturnCode();
@@ -264,7 +265,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 			if (ExceptionUtils.find(e, TimeoutException.class) == null)
 				throw ExceptionUtils.unchecked(e);
 			else
-				jobLogger.log("Timed out deleting namespace");
+				jobLogger.error("Timed out deleting namespace");
 		}
 	}
 	
@@ -282,7 +283,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 			@Override
 			public void consume(String line) {
-				jobLogger.log("Kubernetes: " + line);
+				jobLogger.error("Kubernetes: " + line);
 			}
 			
 		}).checkReturnCode();
@@ -304,7 +305,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 			@Override
 			public void consume(String line) {
-				jobLogger.log("Kubernetes: " + line);
+				jobLogger.error("Kubernetes: " + line);
 			}
 			
 		}).checkReturnCode();
@@ -325,7 +326,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 			@Override
 			public void consume(String line) {
-				jobLogger.log("Kubernetes: " + line);
+				jobLogger.error("Kubernetes: " + line);
 			}
 			
 		}).checkReturnCode();
@@ -394,7 +395,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 			@Override
 			public void consume(String line) {
-				jobLogger.log("Kubernetes: " + line);
+				jobLogger.error("Kubernetes: " + line);
 			}
 			
 		}).checkReturnCode();
@@ -470,7 +471,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 			@Override
 			public void consume(String line) {
-				jobLogger.log("Kubernetes: " + line);
+				jobLogger.error("Kubernetes: " + line);
 			}
 			
 		}).checkReturnCode();
@@ -609,7 +610,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 				@Override
 				public void consume(String line) {
-					jobLogger.log("Kubernetes: " + line);
+					jobLogger.error("Kubernetes: " + line);
 				}
 				
 			}).checkReturnCode();
@@ -850,7 +851,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 						Map<Object, Object> stepContainerSpec = CollectionUtils.newHashMap(
 								"name", containerName, 
 								"image", image);
-				
+						
 						String positionStr = stringifyPosition(position);
 						if (baselineOsInfo.isLinux()) {
 							stepContainerSpec.put("command", Lists.newArrayList("sh"));
@@ -1174,7 +1175,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 			@Override
 			public void consume(String line) {
-				jobLogger.log("Kubernetes: " + line);
+				jobLogger.error("Kubernetes: " + line);
 			}
 			
 		}).checkReturnCode();
@@ -1227,7 +1228,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 				public void consume(String line) {
 					if (line.startsWith("label") && line.endsWith("not found."))
 						labelNotFound.set(true);
-					jobLogger.log("Kubernetes: " + line);
+					jobLogger.error("Kubernetes: " + line);
 				}
 				
 			});
@@ -1243,7 +1244,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 				if (conditionNode.get("type").asText().equals("PodScheduled") 
 						&& conditionNode.get("status").asText().equals("False")
 						&& conditionNode.get("reason").asText().equals("Unschedulable")) {
-					jobLogger.log("Kubernetes: " + conditionNode.get("message").asText());
+					jobLogger.warning("Kubernetes: " + conditionNode.get("message").asText());
 				}
 			}
 		}
@@ -1321,7 +1322,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 		
 					@Override
 					public void consume(String line) {
-						jobLogger.log("Kubernetes: " + line);
+						jobLogger.error("Kubernetes: " + line);
 					}
 					
 				}).checkReturnCode();
@@ -1342,7 +1343,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 			}		
 		}
 	}
-	
+
 	private void collectContainerLog(String namespace, String podName, String containerName, 
 			@Nullable String logEndMessage, SimpleLogger jobLogger) {
 		Thread thread = Thread.currentThread();
@@ -1356,8 +1357,10 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 			if (lastInstantRef.get() != null)
 				kubectl.addArgs("--since-time=" + DateTimeFormatter.ISO_INSTANT.format(lastInstantRef.get()));
 			
-			LineConsumer logConsumer = new LineConsumer() {
+			class Logger extends LineConsumer {
 
+				private final StyleBuilder styleBuilder = new StyleBuilder();
+				
 				@Override
 				public void consume(String line) {
 					if (line.contains("rpc error:") && line.contains("No such container:") 
@@ -1369,7 +1372,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 						if (StringUtils.substringAfter(lastLogMessage, " ").length() != 0)
 							consume(lastLogMessage);
 					} else if (line.startsWith("Error from server") || line.startsWith("error:")) {
-						jobLogger.log(line);
+						jobLogger.error(line);
 						if (!abortError.get()) {
 							abortError.set(true);
 							thread.interrupt();
@@ -1380,19 +1383,19 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 							Instant instant = Instant.from(DateTimeFormatter.ISO_INSTANT.parse(timestamp));
 							if (lastInstantRef.get() == null || lastInstantRef.get().isBefore(instant))
 								lastInstantRef.set(instant);
-							jobLogger.log(StringUtils.substringAfter(line, " "));
+							jobLogger.log(StringUtils.substringAfter(line, " "), styleBuilder);
 						} catch (DateTimeParseException e) {
-							jobLogger.log(line);
+							jobLogger.log(line, styleBuilder);
 						}
 					} else {
-						jobLogger.log(line);
+						jobLogger.log(line, styleBuilder);
 					}
 				}
 				
 			};
 			
 			try {
-				kubectl.execute(logConsumer, logConsumer).checkReturnCode();
+				kubectl.execute(new Logger(), new Logger()).checkReturnCode();
 			} catch (Exception e) {
 				if (!abortError.get()) 
 					throw ExceptionUtils.unchecked(e);
@@ -1462,7 +1465,7 @@ public class KubernetesExecutor extends JobExecutor implements Testable<TestData
 
 		@Editable
 		@OmitName
-		@NotEmpty(message="不能为空")
+		@NotEmpty
 		public String getDockerImage() {
 			return dockerImage;
 		}

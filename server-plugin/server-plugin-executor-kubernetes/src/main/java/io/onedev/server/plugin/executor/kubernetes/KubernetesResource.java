@@ -126,7 +126,7 @@ public class KubernetesResource {
 							filesDir, placeholderValues, new SimpleLogger() {
 
 						@Override
-						public void log(String message) {
+						public void log(String message, StyleBuilder styleBuilder) {
 							// While testing, ngrok.io buffers response and build can not get log entries 
 							// timely. This won't happen on pagekite however
 							KubernetesHelper.writeInt(output, 1);
@@ -136,12 +136,6 @@ public class KubernetesResource {
 							} catch (IOException e) {
 								throw new RuntimeException(e);
 							}
-						}
-
-						@Override
-						public void log(String message, StyleBuilder styleBuilder) {
-							// TODO Auto-generated method stub
-							
 						}
 						
 					});

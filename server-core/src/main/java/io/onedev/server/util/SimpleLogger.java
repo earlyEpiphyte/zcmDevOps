@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import com.google.common.base.Splitter;
 import com.google.common.base.Throwables;
 
+import io.onedev.k8shelper.KubernetesHelper;
 import io.onedev.server.buildspec.job.log.StyleBuilder;
 
 public abstract class SimpleLogger {
@@ -29,21 +30,27 @@ public abstract class SimpleLogger {
 	}
 	
 	public void error(String message, Throwable t) {
+		log(KubernetesHelper.wrapWithAnsiError(message), t);
 	}
 
 	public void error(String message) {
+		log(KubernetesHelper.wrapWithAnsiError(message));
 	}
 	
 	public void warning(String message, Throwable t) {
+		log(KubernetesHelper.wrapWithAnsiWarning(message), t);
 	}
 
 	public void warning(String message) {
+		log(KubernetesHelper.wrapWithAnsiWarning(message));
 	}
 
 	public void emphasize(String message, Throwable t) {
+		log(KubernetesHelper.wrapWithAnsiEmphasize(message), t);
 	}
 
 	public void emphasize(String message) {
+		log(KubernetesHelper.wrapWithAnsiEmphasize(message));
 	}
 	
 }
