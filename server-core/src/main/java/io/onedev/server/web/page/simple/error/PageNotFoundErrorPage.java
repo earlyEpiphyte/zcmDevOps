@@ -25,12 +25,12 @@ public class PageNotFoundErrorPage extends SimplePage {
 
 	@Override
 	protected String getTitle() {
-		return "Page Not Found";
+		return "页面未找到";
 	}
 
 	@Override
 	protected String getSubTitle() {
-		return "I didn't eat it. I swear!";
+		return "不是我吃的!";
 	}
 
 }

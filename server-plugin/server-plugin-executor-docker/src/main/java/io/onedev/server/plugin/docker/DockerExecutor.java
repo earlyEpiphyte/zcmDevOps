@@ -563,7 +563,7 @@ public class DockerExecutor extends JobExecutor implements Testable<TestData>, V
 										String containerName = network + "-step-" + stringifyPosition(position);
 										Commandline docker = newDocker();
 										docker.clearArgs();
-										docker.addArgs("run", "--name=" + containerName, "--network=" + network);
+										docker.addArgs("run", "--gpus","all","--name=" + containerName, "--network=" + network);
 										if (getRunOptions() != null)
 											docker.addArgs(StringUtils.parseQuoteTokens(getRunOptions()));
 										
