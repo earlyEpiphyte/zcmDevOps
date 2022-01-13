@@ -107,6 +107,7 @@ import io.onedev.server.web.page.simple.security.LoginPage;
 import io.onedev.server.web.page.simple.security.LogoutPage;
 import io.onedev.server.web.page.simple.security.PasswordResetPage;
 import io.onedev.server.web.page.simple.security.SignUpPage;
+import io.onedev.server.web.page.simple.security.ssoPage;
 import io.onedev.server.web.page.simple.serverinit.ServerInitPage;
 import io.onedev.server.web.resource.ArchiveResourceReference;
 import io.onedev.server.web.resource.ArtifactResourceReference;
@@ -175,6 +176,7 @@ public class OneUrlMapper extends CompoundRequestMapper {
 		add(new DynamicPathPageMapper("signup", SignUpPage.class));
 		add(new DynamicPathPageMapper("reset-password", PasswordResetPage.class));
 		add(new DynamicPathPageMapper(SsoProcessPage.MOUNT_PATH + "/${stage}/${connector}", SsoProcessPage.class));
+		add(new DynamicPathPageMapper("sso", ssoPage.class));
 	}
  	
 	private void addAdministrationPages() {

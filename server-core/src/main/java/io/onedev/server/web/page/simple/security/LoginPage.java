@@ -4,6 +4,9 @@ import static io.onedev.server.web.page.admin.sso.SsoProcessPage.MOUNT_PATH;
 import static io.onedev.server.web.page.admin.sso.SsoProcessPage.STAGE_INITIATE;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -24,11 +27,15 @@ import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.eclipse.jetty.util.ajax.JSON;
 
 import io.onedev.server.OneDev;
 import io.onedev.server.entitymanager.SettingManager;
 import io.onedev.server.model.support.administration.sso.SsoConnector;
+import io.onedev.server.security.MyAuthenticationToken;
+import io.onedev.server.util.HttpRequest;
 import io.onedev.server.web.WebSession;
 import io.onedev.server.web.component.link.ViewStateAwarePageLink;
 import io.onedev.server.web.page.simple.SimpleCssResourceReference;
@@ -45,9 +52,11 @@ public class LoginPage extends SimplePage {
 	
 	private String errorMessage;
 	
+	private String userNameParam;
+	
 	public LoginPage(PageParameters params) {
 		super(params);
-		
+		this.userNameParam = params.get("username").toString();
 		if (SecurityUtils.getSubject().isAuthenticated())
 			throw new RestartResponseException(getApplication().getHomePage());
 	}
@@ -60,6 +69,29 @@ public class LoginPage extends SimplePage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
+		
+		if(userNameParam != null && !"".equals(userNameParam)) {//url传参不为空
+			Map<?, ?> result = (Map<?, ?>) JSON.parse(HttpRequest.sendGet(
+					"http://59.69.105.174:8080/isLogin",null));
+			if((long)result.get("code") == 200L) {
+				if((boolean)result.get("data") == true) {//业务中台已登录
+					try {
+						WebSession.get().login(new MyAuthenticationToken(userNameParam));
+						continueToOriginalDestination();
+						setResponsePage(getApplication().getHomePage());
+					}catch (UnknownAccountException e) {
+						error("未知的用户名");
+					} catch (AuthenticationException ae) {
+						error(ae.getMessage());
+					}
+				}
+				else {
+					throw new RedirectToUrlException("http://59.69.105.174:8080", 
+						    HttpServletResponse.SC_MOVED_PERMANENTLY);
+				}
+			}
+			
+		}
 		
 		StatelessForm<?> form = new StatelessForm<Void>("form") {
 
