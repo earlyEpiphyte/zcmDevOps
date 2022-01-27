@@ -45,54 +45,44 @@ import io.onedev.server.web.page.simple.SimplePage;
 public class LoginPage extends SimplePage {
 
 	private String userName;
-	
+
 	private String password;
 
 	private boolean rememberMe;
-	
+
 	private String errorMessage;
-	
+
 	private String userNameParam;
-	
+
 	public LoginPage(PageParameters params) {
 		super(params);
 		this.userNameParam = params.get("username").toString();
 		if (SecurityUtils.getSubject().isAuthenticated())
 			throw new RestartResponseException(getApplication().getHomePage());
 	}
-	
+
 	public LoginPage(String errorMessage) {
 		super(new PageParameters());
 		this.errorMessage = errorMessage;
 	}
-	
+
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		
-		if(userNameParam != null && !"".equals(userNameParam)) {//url传参不为空
-			Map<?, ?> result = (Map<?, ?>) JSON.parse(HttpRequest.sendGet(
-					"http://59.69.105.174:8080/isLogin",null));
-			if((long)result.get("code") == 200L) {
-				if((boolean)result.get("data") == true) {//业务中台已登录
-					try {
-						WebSession.get().login(new MyAuthenticationToken(userNameParam));
-						continueToOriginalDestination();
-						setResponsePage(getApplication().getHomePage());
-					}catch (UnknownAccountException e) {
-						error("未知的用户名");
-					} catch (AuthenticationException ae) {
-						error(ae.getMessage());
-					}
-				}
-				else {
-					throw new RedirectToUrlException("http://59.69.105.174:8080", 
-						    HttpServletResponse.SC_MOVED_PERMANENTLY);
-				}
+
+		if (userNameParam != null && !"".equals(userNameParam)) {// url传参不为空
+
+			try {
+				WebSession.get().login(new MyAuthenticationToken(userNameParam));
+				continueToOriginalDestination();
+				setResponsePage(getApplication().getHomePage());
+			} catch (UnknownAccountException e) {
+				error("未知的用户名");
+			} catch (AuthenticationException ae) {
+				error(ae.getMessage());
 			}
-			
 		}
-		
+
 		StatelessForm<?> form = new StatelessForm<Void>("form") {
 
 			@Override
@@ -110,14 +100,14 @@ public class LoginPage extends SimplePage {
 					error(ae.getMessage());
 				}
 			}
-			
+
 		};
-		
+
 		form.add(new FencedFeedbackPanel("feedback"));
-		
-		if (errorMessage != null) 
+
+		if (errorMessage != null)
 			form.error(errorMessage);
-		
+
 		form.add(new TextField<String>("userName", new IModel<String>() {
 
 			@Override
@@ -133,9 +123,9 @@ public class LoginPage extends SimplePage {
 			public void setObject(String object) {
 				userName = object;
 			}
-			
+
 		}).setLabel(Model.of("User name")).setRequired(true));
-		
+
 		form.add(new PasswordTextField("password", new IModel<String>() {
 
 			@Override
@@ -151,9 +141,9 @@ public class LoginPage extends SimplePage {
 			public void setObject(String object) {
 				password = object;
 			}
-			
+
 		}).setLabel(Model.of("Password")).setRequired(true));
-		
+
 		form.add(new CheckBox("rememberMe", new IModel<Boolean>() {
 
 			@Override
@@ -169,9 +159,9 @@ public class LoginPage extends SimplePage {
 			public void setObject(Boolean object) {
 				rememberMe = object;
 			}
-			
+
 		}));
-		
+
 		form.add(new ViewStateAwarePageLink<Void>("forgetPassword", PasswordResetPage.class) {
 
 			@Override
@@ -179,22 +169,23 @@ public class LoginPage extends SimplePage {
 				super.onConfigure();
 				setVisible(OneDev.getInstance(SettingManager.class).getMailSetting() != null);
 			}
-			
+
 		});
 
 		add(form);
-		
+
 		SettingManager settingManager = OneDev.getInstance(SettingManager.class);
-		
+
 		boolean enableSelfRegister = settingManager.getSecuritySetting().isEnableSelfRegister();
+
 		add(new ViewStateAwarePageLink<Void>("registerUser", SignUpPage.class).setVisible(enableSelfRegister));
 
 		String serverUrl = settingManager.getSystemSetting().getServerUrl();
-		
+
 		List<SsoConnector> ssoConnectors = settingManager.getSsoConnectors();
 		RepeatingView ssoButtonsView = new RepeatingView("ssoButtons");
-		for (SsoConnector connector: ssoConnectors) {
-			ExternalLink ssoButton = new ExternalLink(ssoButtonsView.newChildId(), 
+		for (SsoConnector connector : ssoConnectors) {
+			ExternalLink ssoButton = new ExternalLink(ssoButtonsView.newChildId(),
 					Model.of(serverUrl + "/" + MOUNT_PATH + "/" + STAGE_INITIATE + "/" + connector.getName()));
 			ssoButton.add(new ExternalImage("image", connector.getButtonImageUrl()));
 			ssoButton.add(new Label("label", "Login with " + connector.getName()));
@@ -218,5 +209,5 @@ public class LoginPage extends SimplePage {
 	protected String getSubTitle() {
 		return "输入详细信息以登录账户";
 	}
-	
+
 }
