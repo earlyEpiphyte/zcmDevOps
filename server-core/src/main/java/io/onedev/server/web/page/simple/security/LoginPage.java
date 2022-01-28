@@ -33,11 +33,11 @@ import redis.clients.jedis.Jedis;
 public class LoginPage extends SimplePage {
 
 	private String userName;
-	
+
 	private String password;
 
 	private boolean rememberMe;
-	
+
 	private String errorMessage;
 	
 	private String back;
@@ -51,12 +51,12 @@ public class LoginPage extends SimplePage {
 		if (SecurityUtils.getSubject().isAuthenticated())
 			throw new RestartResponseException(getApplication().getHomePage());
 	}
-	
+
 	public LoginPage(String errorMessage) {
 		super(new PageParameters());
 		this.errorMessage = errorMessage;
 	}
-	
+
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
@@ -70,7 +70,7 @@ public class LoginPage extends SimplePage {
 			System.out.println(loginName);
 			jedis.close();
 		}
-		
+
 		StatelessForm<?> form = new StatelessForm<Void>("form") {
 
 			@Override
@@ -88,14 +88,14 @@ public class LoginPage extends SimplePage {
 					error(ae.getMessage());
 				}
 			}
-			
+
 		};
-		
+
 		form.add(new FencedFeedbackPanel("feedback"));
-		
-		if (errorMessage != null) 
+
+		if (errorMessage != null)
 			form.error(errorMessage);
-		
+
 		form.add(new TextField<String>("userName", new IModel<String>() {
 
 			@Override
@@ -111,9 +111,9 @@ public class LoginPage extends SimplePage {
 			public void setObject(String object) {
 				userName = object;
 			}
-			
+
 		}).setLabel(Model.of("User name")).setRequired(true));
-		
+
 		form.add(new PasswordTextField("password", new IModel<String>() {
 
 			@Override
@@ -129,9 +129,9 @@ public class LoginPage extends SimplePage {
 			public void setObject(String object) {
 				password = object;
 			}
-			
+
 		}).setLabel(Model.of("Password")).setRequired(true));
-		
+
 		form.add(new CheckBox("rememberMe", new IModel<Boolean>() {
 
 			@Override
@@ -147,9 +147,9 @@ public class LoginPage extends SimplePage {
 			public void setObject(Boolean object) {
 				rememberMe = object;
 			}
-			
+
 		}));
-		
+
 		form.add(new ViewStateAwarePageLink<Void>("forgetPassword", PasswordResetPage.class) {
 
 			@Override
@@ -157,14 +157,15 @@ public class LoginPage extends SimplePage {
 				super.onConfigure();
 				setVisible(OneDev.getInstance(SettingManager.class).getMailSetting() != null);
 			}
-			
+
 		});
 
 		add(form);
-		
+
 		SettingManager settingManager = OneDev.getInstance(SettingManager.class);
-		
+
 		boolean enableSelfRegister = settingManager.getSecuritySetting().isEnableSelfRegister();
+
 		add(new ViewStateAwarePageLink<Void>("registerUser", SignUpPage.class).setVisible(enableSelfRegister));
 
 		String serverUrl = settingManager.getSystemSetting().getServerUrl();
@@ -191,5 +192,5 @@ public class LoginPage extends SimplePage {
 	protected String getSubTitle() {
 		return "输入详细信息以登录账户";
 	}
-	
+
 }
