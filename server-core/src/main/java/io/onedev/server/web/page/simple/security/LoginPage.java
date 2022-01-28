@@ -1,13 +1,5 @@
 package io.onedev.server.web.page.simple.security;
 
-import static io.onedev.server.web.page.admin.sso.SsoProcessPage.MOUNT_PATH;
-import static io.onedev.server.web.page.admin.sso.SsoProcessPage.STAGE_INITIATE;
-
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -22,24 +14,20 @@ import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.image.ExternalImage;
 import org.apache.wicket.markup.html.link.ExternalLink;
-import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.eclipse.jetty.util.ajax.JSON;
+
+import com.alibaba.fastjson.JSONObject;
 
 import io.onedev.server.OneDev;
 import io.onedev.server.entitymanager.SettingManager;
-import io.onedev.server.model.support.administration.sso.SsoConnector;
-import io.onedev.server.security.MyAuthenticationToken;
-import io.onedev.server.util.HttpRequest;
 import io.onedev.server.web.WebSession;
 import io.onedev.server.web.component.link.ViewStateAwarePageLink;
 import io.onedev.server.web.page.simple.SimpleCssResourceReference;
 import io.onedev.server.web.page.simple.SimplePage;
+import redis.clients.jedis.Jedis;
 
 @SuppressWarnings("serial")
 public class LoginPage extends SimplePage {
@@ -52,11 +40,14 @@ public class LoginPage extends SimplePage {
 	
 	private String errorMessage;
 	
-	private String userNameParam;
+	private String back;
+	
+	private String ticket;
 	
 	public LoginPage(PageParameters params) {
 		super(params);
-		this.userNameParam = params.get("username").toString();
+		this.back = params.get("back").toString();
+		this.ticket = params.get("ticket").toString();
 		if (SecurityUtils.getSubject().isAuthenticated())
 			throw new RestartResponseException(getApplication().getHomePage());
 	}
@@ -70,27 +61,14 @@ public class LoginPage extends SimplePage {
 	protected void onInitialize() {
 		super.onInitialize();
 		
-		if(userNameParam != null && !"".equals(userNameParam)) {//url传参不为空
-			Map<?, ?> result = (Map<?, ?>) JSON.parse(HttpRequest.sendGet(
-					"http://59.69.105.174:8080/isLogin",null));
-			if((long)result.get("code") == 200L) {
-				if((boolean)result.get("data") == true) {//业务中台已登录
-					try {
-						WebSession.get().login(new MyAuthenticationToken(userNameParam));
-						continueToOriginalDestination();
-						setResponsePage(getApplication().getHomePage());
-					}catch (UnknownAccountException e) {
-						error("未知的用户名");
-					} catch (AuthenticationException ae) {
-						error(ae.getMessage());
-					}
-				}
-				else {
-					throw new RedirectToUrlException("http://59.69.105.174:8080", 
-						    HttpServletResponse.SC_MOVED_PERMANENTLY);
-				}
-			}
-			
+		if(back != null && !"".equals(back) && ticket != null && !"".equals(ticket)) {//sso认证中心已登录
+			Jedis jedis = new Jedis("localhost");
+			String sessionId = jedis.get("satoken:ticket:" + ticket);
+			String sessionInfo = jedis.get("satoken:login:session:" + sessionId);
+			JSONObject jsonObject = JSONObject.parseObject(sessionInfo);
+			String loginName = jsonObject.getJSONObject("dataMap").getString("name");
+			System.out.println(loginName);
+			jedis.close();
 		}
 		
 		StatelessForm<?> form = new StatelessForm<Void>("form") {
@@ -190,17 +168,12 @@ public class LoginPage extends SimplePage {
 		add(new ViewStateAwarePageLink<Void>("registerUser", SignUpPage.class).setVisible(enableSelfRegister));
 
 		String serverUrl = settingManager.getSystemSetting().getServerUrl();
-		
-		List<SsoConnector> ssoConnectors = settingManager.getSsoConnectors();
-		RepeatingView ssoButtonsView = new RepeatingView("ssoButtons");
-		for (SsoConnector connector: ssoConnectors) {
-			ExternalLink ssoButton = new ExternalLink(ssoButtonsView.newChildId(), 
-					Model.of(serverUrl + "/" + MOUNT_PATH + "/" + STAGE_INITIATE + "/" + connector.getName()));
-			ssoButton.add(new ExternalImage("image", connector.getButtonImageUrl()));
-			ssoButton.add(new Label("label", "Login with " + connector.getName()));
-			ssoButtonsView.add(ssoButton);
-		}
-		add(ssoButtonsView.setVisible(!ssoConnectors.isEmpty()));
+		serverUrl = "http://localhost:6610";
+		ExternalLink ssoButton = new ExternalLink("ssoButtons", 
+				Model.of("http://localhost:8443/sso/auth?redirect=" + serverUrl + "/login"
+						+ "?back=" + serverUrl));
+		ssoButton.add(new Label("label", "5G+工业互联网公共服务平台统一认证中心登录"));
+		add(ssoButton);
 	}
 
 	@Override
