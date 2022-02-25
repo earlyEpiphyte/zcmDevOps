@@ -1,8 +1,6 @@
 package io.onedev.server.web.page.simple.security;
 
 import java.io.IOException;
-
-import org.apache.shiro.SecurityUtils;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.RestartResponseException;
 import org.apache.wicket.markup.head.CssHeaderItem;
@@ -10,11 +8,13 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.request.flow.RedirectToUrlException;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import io.onedev.server.security.MyAuthenticationToken;
+import io.onedev.server.security.SecurityUtils;
 import io.onedev.server.web.WebSession;
 import io.onedev.server.web.page.simple.SimpleCssResourceReference;
 import io.onedev.server.web.page.simple.SimplePage;
@@ -32,20 +32,11 @@ public class LoginPage extends SimplePage {
 	
 	public LoginPage(PageParameters params) {
 		super(params);
-		this.ticket = params.get("ticket").toString();
-		if (SecurityUtils.getSubject().isAuthenticated())
+		if (SecurityUtils.getSubject().isAuthenticated())//已登录本系统，跳转至首页
 			throw new RestartResponseException(getApplication().getHomePage());
-	}
-
-	public LoginPage(String errorMessage) {
-		super(new PageParameters());
-	}
-
-	@Override
-	protected void onInitialize() {
-		super.onInitialize();
 		
-		if(ticket != null && !"".equals(ticket)) {//sso认证中心已登录
+		this.ticket = params.get("ticket").toString();
+		if(ticket != null && !"".equals(ticket)) {//sso已登录，校验ticket，登录子系统，跳至首页
 			Request request = Request.Post("http://172.168.1.44:8443/sso/checkTicket");
 			String body = "ticket=" + ticket;
 			request.bodyString(body,ContentType.APPLICATION_FORM_URLENCODED);
@@ -69,12 +60,23 @@ public class LoginPage extends SimplePage {
 				}
 			} catch (IOException e) {
 				// TODO: handle exception
-			}
-			
+			}	
 		}
+		else {//sso未登录，跳至sso登录中心
+			throw new RedirectToUrlException("http://111.4.83.55:8443/sso/auth?redirect=http://devops.5gii.com.cn:46610/login");
+		}
+	}
+
+	public LoginPage(String errorMessage) {
+		super(new PageParameters());
+	}
+
+	@Override
+	protected void onInitialize() {
+		super.onInitialize();
 
 		ExternalLink ssoButton = new ExternalLink("ssoButtons", 
-				Model.of("http://111.4.83.55:8443/sso/auth?redirect=http://111.4.83.55:46610/login"));
+				Model.of("http://111.4.83.55:8443/sso/auth?redirect=http://devops.5gii.com.cn:46610/login"));
 		ssoButton.add(new Label("label", "5G+工业互联网公共服务平台统一认证中心登录"));
 		add(ssoButton);
 	}
